@@ -1,0 +1,36 @@
+export default {
+  colors: {
+    black: "#000",
+    white: "#FFF",
+    primaryScale: {
+      V1: "#1E91DB",
+      V2: "#349CDE",
+      V3: "#4BA7E2",
+      V4: "#61B2E5",
+      V5: "#78BDE9",
+      V6: "#8EC8EC",
+      V7: "#A5D3F0",
+    },
+    secondaryScale: {
+      V1: "#2B3C64",
+      V2: "#404F73",
+      V3: "#556383",
+      V4: "#6A7692",
+      V5: "#7F8AA2",
+      V6: "#959DB1",
+      V7: "#AAB1C1",
+    },
+    grayScale: {
+      V1: "#33303E",
+      V2: "#4E4B59",
+      V3: "#5F5C6B",
+      V4: "#7A7786",
+      V5: "#8C8A97",
+      V6: "#ACABB7",
+      V7: "#C6C5CE",
+      V8: "#E1E0E7",
+      V9: "#F1F0F5",
+    },
+  },
+  fontFamily: {},
+};
