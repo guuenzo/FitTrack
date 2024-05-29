@@ -1,5 +1,6 @@
 import { View, Text } from "react-native";
 import React from "react";
+import SwitchComponent from "../Components/Switch";
 
 export default function HomeScreen() {
   return (
@@ -11,6 +12,7 @@ export default function HomeScreen() {
         backgroundColor: "#fafafa",
       }}
     >
+      <SwitchComponent />
       <Text>Treino</Text>
     </View>
   );

@@ -8,6 +8,7 @@ import PerfilScreen from "./src/Screens/PerfilScreen";
 import DietaScreen from "./src/Screens/DietaScreen";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Login from "./src/Screens/LoginScreen/Login";
 
 const MyComponent = () => {
   const [index, setIndex] = React.useState(1);
@@ -29,7 +30,7 @@ const MyComponent = () => {
           <MaterialCommunityIcons
             name="silverware-fork-knife"
             size={size}
-            color={color}
+            color={"#2B3C64"}
           />
         </View>
       ),
@@ -40,7 +41,7 @@ const MyComponent = () => {
         <MaterialCommunityIcons name="dumbbell" size={size} color={color} />
       ),
       unfocusedIcon: ({ color = "#2B3C64", size = 20 }) => (
-        <MaterialCommunityIcons name="dumbbell" size={size} color={color} />
+        <MaterialCommunityIcons name="dumbbell" size={size} color={"#2B3C64"} />
       ),
     },
     {
@@ -50,15 +51,26 @@ const MyComponent = () => {
         <FontAwesome6 name="user-circle" size={size} color={color} />
       ),
       unfocusedIcon: ({ color = "#2B3C64", size = 20 }) => (
-        <FontAwesome6 name="user-circle" size={size} color={color} />
+        <FontAwesome6 name="user-circle" size={size} color={"#2B3C64"} />
       ),
     },
+    // {
+    //   key: "Login",
+    //   // Use a function to return the Ionicons component
+    //   focusedIcon: ({ color = "#FFF", size = 20 }) => (
+    //     <MaterialCommunityIcons name="login" size={24} color="#fff" />
+    //   ),
+    //   unfocusedIcon: ({ color = "#2B3C64", size = 20 }) => (
+    //     <MaterialCommunityIcons name="login" size={24} color="#2B3C64" />
+    //   ),
+    // },
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
     Treino: HomeScreen,
     Perfil: PerfilScreen,
     Dieta: DietaScreen,
+    // Login: Login,
   });
 
   return (
