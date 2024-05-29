@@ -9,15 +9,29 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/montserrat-alternates": "^0.2.3",
+    "@expo-google-fonts/quicksand": "^0.2.3",
+    "@react-native-async-storage/async-storage": "^1.23.1",
+    "@react-navigation/native": "^6.1.17",
     "axios": "^1.7.2",
-    "expo": "~51.0.8",
+    "base-64": "^1.0.0",
+    "expo": "~51.0.9",
+    "expo-camera": "~15.0.10",
+    "expo-font": "~12.0.6",
+    "expo-linear-gradient": "~13.0.2",
+    "expo-local-authentication": "~14.0.1",
+    "expo-media-library": "~16.0.3",
+    "expo-notifications": "~0.28.4",
     "expo-status-bar": "~1.12.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "jwt-decode": "^4.0.0",
+    "lottie-react-native": "6.7.0",
+    "moment": "^2.30.1",
+    "react": "18.2.0",
     "react-native": "0.74.1",
     "react-native-paper": "^5.12.3",
-    "styled-components": "^6.1.11",
-    "lottie-react-native": "6.7.0"
+    "react-native-picker-select": "^9.1.3",
+    "remask": "^1.2.2",
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
