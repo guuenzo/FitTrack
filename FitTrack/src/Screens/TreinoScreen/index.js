@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const Routes = () => {
+const TreinoScreen = () => {
   return (
     <View>
-      <Text>Routes</Text>
+      <Text>TreinoScreen</Text>
     </View>
   );
 };
 
-export default Routes;
+export default TreinoScreen;

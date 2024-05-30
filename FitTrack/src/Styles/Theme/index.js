@@ -1,7 +1,23 @@
 export default {
   colors: {
-    black: "#000",
-    white: "#FFF",
+    black: {
+      v1: "#000",
+    },
+    white: {
+      v1: "#FFF",
+    },
+    yellow: {
+      v1: "#FFFF00",
+    },
+    purple: {
+      v1: "#A8A0E0",
+    },
+    green: {
+      v1: "#05FF00",
+    },
+    red: {
+      v1: "#C81D25",
+    },
     primaryScale: {
       V1: "#1E91DB",
       V2: "#349CDE",
@@ -20,6 +36,10 @@ export default {
       V6: "#959DB1",
       V7: "#AAB1C1",
     },
+    gray: {
+      v10: "#ACABB7",
+    },
+
     grayScale: {
       V1: "#33303E",
       V2: "#4E4B59",
@@ -32,5 +52,20 @@ export default {
       V9: "#F1F0F5",
     },
   },
-  fontFamily: {},
+  fonts: {
+    montserrat: {
+      Montserrat_700Bold: "Montserrat_700Bold",
+    },
+
+    montserratAlternates: {
+      MontserratAlternates_500Medium: "MontserratAlternates_500Medium",
+      MontserratAlternates_600SemiBold: "MontserratAlternates_600SemiBold",
+      MontserratAlternates_700Bold: "MontserratAlternates_700Bold",
+    },
+    quicksand: {
+      Quicksand_400Regular: "Quicksand_400Regular",
+      Quicksand_500Medium: "Quicksand_500Medium",
+      Quicksand_600SemiBold: "Quicksand_600SemiBold",
+    },
+  },
 };
