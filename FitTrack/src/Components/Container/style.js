@@ -11,8 +11,7 @@ export const Container = styled(SafeAreaView)`
 `;
 
 export const MainContentScroll = styled(ScrollView)`
-  width: 100%;
-  height: 100%;
+  flex: 1;
 `;
 
 export const LinearGradientTelasIniciais = styled(LinearGradient).attrs({

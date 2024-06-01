@@ -6,16 +6,17 @@ import {
   MainContent,
   MainContentScroll,
 } from "../../Components/Container/style";
+import Header from "../../Components/Header/Header";
 
 const AlimentacaoScreen = () => {
   return (
     <Container>
       <MainContentScroll>
-        <MainContent>
-          <GridLayout>
-            <Text>Alimentacao</Text>
-          </GridLayout>
-        </MainContent>
+        <GridLayout>
+          <MainContent>
+            <Header />
+          </MainContent>
+        </GridLayout>
       </MainContentScroll>
     </Container>
   );

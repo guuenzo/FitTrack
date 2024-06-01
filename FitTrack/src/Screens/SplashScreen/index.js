@@ -8,7 +8,7 @@ import {
 } from "../../Components/Container/style";
 import { CommonActions, useNavigation } from "@react-navigation/native";
 
-const SplashScreen = ({}) => {
+const SplashScreen = () => {
   const size = Dimensions.get("window").width * 0.5;
 
   const navigation = useNavigation();
@@ -21,7 +21,7 @@ const SplashScreen = ({}) => {
           routes: [{ name: "Login" }],
         })
       );
-    }, 3000);
+    }, 3700);
 
     return (cleanUp = () => {});
   }, []);
