@@ -5,6 +5,7 @@ export default {
     },
     white: {
       v1: "#FFF",
+      v2: "#FAFAFA",
     },
     yellow: {
       v1: "#FFFF00",
@@ -66,6 +67,7 @@ export default {
       Quicksand_400Regular: "Quicksand_400Regular",
       Quicksand_500Medium: "Quicksand_500Medium",
       Quicksand_600SemiBold: "Quicksand_600SemiBold",
+      Quicksand_700Bold: "Quicksand_700Bold",
     },
   },
 };

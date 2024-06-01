@@ -1,9 +1,18 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, useColorScheme } from "react-native";
-import Theme from "./src/Styles/Theme";
-import { useEffect } from "react";
-import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
-import { apiAlimentos } from "./src/Services/Service";
+import {
+  useFonts,
+  MontserratAlternates_500Medium,
+  MontserratAlternates_600SemiBold,
+  MontserratAlternates_700Bold,
+} from "@expo-google-fonts/montserrat-alternates";
+import {
+  Quicksand_400Regular,
+  Quicksand_500Medium,
+  Quicksand_600SemiBold,
+  Quicksand_700Bold,
+} from "@expo-google-fonts/quicksand";
+import { Montserrat_700Bold } from "@expo-google-fonts/montserrat";
+import Routes from "./src/Routes/Routes";
 
 const App = () => {
   //retorna se o tema do dispositivo é dark ou light. Possíveis retornos do método: dark, light, null, undefined
@@ -12,21 +21,23 @@ const App = () => {
   //caso venha como nulo, usa o tema light
   //o "deviceTheme"(tem o mesmo valor de dark ou light) é como se fosse o parametro de busca no "Theme"
   // const theme = Theme[deviceTheme] || Theme.light;
-  
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+  let [fontsLoaded, fontError] = useFonts({
+    MontserratAlternates_500Medium,
+    MontserratAlternates_600SemiBold,
+    MontserratAlternates_700Bold,
+    Quicksand_400Regular,
+    Quicksand_500Medium,
+    Quicksand_600SemiBold,
+    Quicksand_700Bold,
+    Montserrat_700Bold,
+  });
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+
+  return <Routes />;
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default App;

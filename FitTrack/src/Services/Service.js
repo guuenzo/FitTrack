@@ -21,3 +21,8 @@ export const apiAlimentos = axios.create({
 export const api = axios.create({
   baseURL: apiUrlLocal,
 });
+
+//Rotas
+
+export const loginResource = `/Login`
+export const userResource = `/Usuario`
