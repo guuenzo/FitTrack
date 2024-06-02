@@ -24,5 +24,5 @@ export const api = axios.create({
 
 //Rotas
 
-export const loginResource = `/Login`
-export const userResource = `/Usuario`
+export const loginResource = `/Login`;
+export const usuarioResource = `/Usuario`;

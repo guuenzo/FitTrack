@@ -1,17 +1,22 @@
-import { SafeAreaView, ScrollView, View } from "react-native";
+import {
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  View,
+} from "react-native";
 import { styled } from "styled-components";
 import Theme from "../../Styles/Theme";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
-  background-color: ${(props) =>
-    props.backGround ? props.backGround : Theme.colors.white.v2};
-  align-items: center;
+  background-color: ${Theme.colors.white.v2};
 `;
 
 export const MainContentScroll = styled(ScrollView)`
   flex: 1;
+  background-color: ${Theme.colors.white.v2};
 `;
 
 export const LinearGradientTelasIniciais = styled(LinearGradient).attrs({
@@ -26,10 +31,10 @@ export const LinearGradientTelasIniciais = styled(LinearGradient).attrs({
 `;
 
 export const GridLayout = styled(View)`
-  width: 85%;
+  width: 90%;
   height: 100%;
-  align-items: center;
-  justify-content: center;
+  align-self: center;
+  background-color: transparent;
 `;
 
 export const MainContent = styled(View)`

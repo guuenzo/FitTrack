@@ -8,7 +8,8 @@ export const HeaderStyle = styled(LinearGradient).attrs({
   end: { x: 1, y: 1 },
   colors: [Theme.colors.secondaryScale.V1, Theme.colors.primaryScale.V1],
 })`
-  width: 90%;
+  margin: 35px 0 0 0;
+  width: 100%;
   height: 85px;
   border-radius: 10px;
   padding: 17px 22px;

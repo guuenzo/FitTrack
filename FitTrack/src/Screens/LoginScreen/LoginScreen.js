@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   InputComponent,
   InputData,
@@ -16,9 +16,14 @@ import {
   ButtonLoginCriarContaBox,
   ButtonSecondary,
 } from "../../Components/Button/Button";
-import { api, loginResource, userResource } from "../../Services/Service";
+import { api, loginResource, usuarioResource } from "../../Services/Service";
+import { AuthContext } from "../../Contexts/AuthContext";
+import { Alert } from "react-native";
+import { userDecodeToken } from "../../utils/StringFunctions";
 
 const LoginScreen = ({ navigation }) => {
+  const { userGlobalData, setUserGlobalData } = useContext(AuthContext);
+
   const [user, setUser] = useState({
     nome: "",
     email: "",
@@ -29,22 +34,37 @@ const LoginScreen = ({ navigation }) => {
 
   const [isLoginForm, setIsLoginForm] = useState(true);
 
-  const logar = async () => {
+  const logar = async (email, senha) => {
     try {
-      const { token } = await api.post(loginResource, user);
+      const { data, status } = await api.post(loginResource, { email, senha });
 
-      navigation.navigate("Main");
+      if (status === 200) {
+        setUserGlobalData(await userDecodeToken(data.token));
+        navigation.replace("Main");
+        return;
+      }
+      Alert.alert("Erro", "Não foi possível realizar o login!");
     } catch (error) {
+      setUserGlobalData({
+        nome: "fefe",
+        idade: 17,
+        foto: "https://yt3.googleusercontent.com/ytc/AIdro_nTUT9kckaNnLii3NCep9r5_2ZbSWDE6E11wW0bmx1W5Y0=s160-c-k-c0x00ffffff-no-rj",
+      });
       navigation.navigate("Main");
     }
   };
   const criarConta = async () => {
     try {
-      const response = await api.post(userResource, {
+      const { data, status } = await api.post(usuarioResource, {
         ...user,
         dataNascimento,
       });
-      navigation.navigate("Main");
+
+      if (status === 200) {
+        await logar(user.email, user.senha);
+        return;
+      }
+      Alert.alert("Erro", "Não foi possível criar a conta");
     } catch (error) {
       navigation.navigate("Main");
     }

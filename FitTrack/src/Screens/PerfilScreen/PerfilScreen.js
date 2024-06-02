@@ -1,11 +1,22 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import { Container, GridLayout, MainContent, MainContentScroll } from '../../Components/Container/style'
+import Title from '../../Components/Title/Title'
 
 const PerfilScreen = () => {
   return (
-    <View>
-      <Text>PerfilScreen</Text>
-    </View>
+    <Container>
+    <MainContentScroll>
+      <GridLayout>
+        <MainContent>
+
+          <Title
+            text={"Perfil"}
+          />
+        </MainContent>
+      </GridLayout>
+    </MainContentScroll>
+  </Container>
   )
 }
 

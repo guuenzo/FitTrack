@@ -35,9 +35,6 @@ export const ButtonLoginCriarContaBoxStyle = styled(Animated.View)`
   height: max-content;
   align-items: center;
   justify-content: center;
-  /* position: absolute;
-  left: 0px;
-  bottom: 100px; */
   margin: ${(props) => props.fieldMargin || "0px"};
 `;
 
