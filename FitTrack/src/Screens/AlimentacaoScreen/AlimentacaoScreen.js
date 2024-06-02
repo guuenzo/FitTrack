@@ -58,6 +58,7 @@ const AlimentacaoScreen = () => {
               renderItem={({ item }) =>
                 refeicoes.length < 6 && (
                   <CardRefeicao
+                    isRefeicao
                     onPress={() => navigation.navigate("MonteSuaRefeição")}
                   />
                 )
