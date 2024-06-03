@@ -28,8 +28,6 @@ public partial class FitTrackBdContext : DbContext
 
     public virtual DbSet<Treino> Treinos { get; set; }
 
-    public virtual DbSet<TreinoExercicio> TreinoExercicios { get; set; }
-
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -131,6 +129,12 @@ public partial class FitTrackBdContext : DbContext
             entity.Property(e => e.IdExercicio)
                 .ValueGeneratedNever()
                 .HasColumnName("id_exercicio");
+            entity.Property(e => e.Carga)
+                .HasColumnType("decimal(5, 2)")
+                .HasColumnName("carga");
+            entity.Property(e => e.Carga1)
+                .HasColumnType("decimal(5, 2)")
+                .HasColumnName("carga1");
             entity.Property(e => e.Descricao)
                 .HasColumnType("text")
                 .HasColumnName("descricao");
@@ -143,12 +147,22 @@ public partial class FitTrackBdContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("nome_exercicio");
+            entity.Property(e => e.Repeticoes).HasColumnName("repeticoes");
+            entity.Property(e => e.Repeticoes1).HasColumnName("repeticoes1");
+            entity.Property(e => e.Series).HasColumnName("series");
+            entity.Property(e => e.Series1).HasColumnName("series1");
+            entity.Property(e => e.TreinoIdTreino).HasColumnName("Treino_id_treino");
             entity.Property(e => e.VideoExecucao).HasColumnName("video_execucao");
 
             entity.HasOne(d => d.MediaIdMediaNavigation).WithOne(p => p.Exercicio)
                 .HasForeignKey<Exercicio>(d => d.MediaIdMedia)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Exercicio_Media_FK");
+
+            entity.HasOne(d => d.TreinoIdTreinoNavigation).WithMany(p => p.Exercicios)
+                .HasForeignKey(d => d.TreinoIdTreino)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Exercicio_Treino_FK");
         });
 
         modelBuilder.Entity<Medium>(entity =>
@@ -177,56 +191,16 @@ public partial class FitTrackBdContext : DbContext
             entity.Property(e => e.IdTreino)
                 .ValueGeneratedNever()
                 .HasColumnName("id_treino");
-            entity.Property(e => e.DataCriacao).HasColumnName("data_criacao");
-            entity.Property(e => e.Descricao)
-                .HasColumnType("text")
-                .HasColumnName("descricao");
-            entity.Property(e => e.NivelDificuldade)
-                .HasMaxLength(15)
-                .IsUnicode(false)
-                .HasColumnName("nivel_dificuldade");
             entity.Property(e => e.NomeTreino)
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("nome_treino");
-            entity.Property(e => e.Objetivo)
-                .HasMaxLength(15)
-                .IsUnicode(false)
-                .HasColumnName("objetivo");
             entity.Property(e => e.UsuarioIdUsuario).HasColumnName("Usuario_id_usuario");
 
             entity.HasOne(d => d.UsuarioIdUsuarioNavigation).WithMany(p => p.Treinos)
                 .HasForeignKey(d => d.UsuarioIdUsuario)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Treino_Usuario_FK");
-        });
-
-        modelBuilder.Entity<TreinoExercicio>(entity =>
-        {
-            entity.HasKey(e => e.IdTreinoExercicio).HasName("Treino_Exercicio_PK");
-
-            entity.ToTable("Treino_Exercicio");
-
-            entity.Property(e => e.IdTreinoExercicio)
-                .ValueGeneratedNever()
-                .HasColumnName("id_treino_exercicio");
-            entity.Property(e => e.Carga)
-                .HasColumnType("decimal(5, 2)")
-                .HasColumnName("carga");
-            entity.Property(e => e.ExercicioIdExercicio).HasColumnName("Exercicio_id_exercicio");
-            entity.Property(e => e.Repeticoes).HasColumnName("repeticoes");
-            entity.Property(e => e.Series).HasColumnName("series");
-            entity.Property(e => e.TreinoIdTreino).HasColumnName("Treino_id_treino");
-
-            entity.HasOne(d => d.ExercicioIdExercicioNavigation).WithMany(p => p.TreinoExercicios)
-                .HasForeignKey(d => d.ExercicioIdExercicio)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("Treino_Exercicio_Exercicio_FK");
-
-            entity.HasOne(d => d.TreinoIdTreinoNavigation).WithMany(p => p.TreinoExercicios)
-                .HasForeignKey(d => d.TreinoIdTreino)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("Treino_Exercicio_Treino_FK");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
