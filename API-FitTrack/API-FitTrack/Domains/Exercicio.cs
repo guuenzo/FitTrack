@@ -25,7 +25,7 @@ public partial class Exercicio
 
     public Guid TreinoIdTreino { get; set; }
 
-    public virtual Medium MediaIdMediaNavigation { get; set; } = null!;
+    public virtual Media MediaIdMediaNavigation { get; set; } = null!;
 
     public virtual Treino TreinoIdTreinoNavigation { get; set; } = null!;
 }

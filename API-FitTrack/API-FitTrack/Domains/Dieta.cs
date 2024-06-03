@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace API_FitTrack.Domains;
 
-public partial class Dietum
+public partial class Dieta
 {
     public Guid IdDieta { get; set; }
 

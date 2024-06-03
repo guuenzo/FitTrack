@@ -18,11 +18,11 @@ public partial class FitTrackBdContext : DbContext
 
     public virtual DbSet<Alimento> Alimentos { get; set; }
 
-    public virtual DbSet<Dietum> Dieta { get; set; }
+    public virtual DbSet<Dieta> Dieta { get; set; }
 
     public virtual DbSet<Exercicio> Exercicios { get; set; }
 
-    public virtual DbSet<Medium> Media { get; set; }
+    public virtual DbSet<Media> Media { get; set; }
 
     public virtual DbSet<Treino> Treinos { get; set; }
 
@@ -65,7 +65,7 @@ public partial class FitTrackBdContext : DbContext
                 .HasConstraintName("Alimento_Dieta_FK");
         });
 
-        modelBuilder.Entity<Dietum>(entity =>
+        modelBuilder.Entity<Dieta>(entity =>
         {
             entity.HasKey(e => e.IdDieta).HasName("Dieta_PK");
 
@@ -134,7 +134,7 @@ public partial class FitTrackBdContext : DbContext
                 .HasConstraintName("Exercicio_Treino_FK");
         });
 
-        modelBuilder.Entity<Medium>(entity =>
+        modelBuilder.Entity<Media>(entity =>
         {
             entity.HasKey(e => e.IdMedia).HasName("Media_PK");
 

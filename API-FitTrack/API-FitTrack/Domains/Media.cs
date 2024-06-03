@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace API_FitTrack.Domains;
 
-public partial class Medium
+public partial class Media
 {
     public Guid IdMedia { get; set; }
 

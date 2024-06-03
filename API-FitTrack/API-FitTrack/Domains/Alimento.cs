@@ -19,5 +19,5 @@ public partial class Alimento
 
     public Guid DietaIdDieta { get; set; }
 
-    public virtual Dietum DietaIdDietaNavigation { get; set; } = null!;
+    public virtual Dieta DietaIdDietaNavigation { get; set; } = null!;
 }

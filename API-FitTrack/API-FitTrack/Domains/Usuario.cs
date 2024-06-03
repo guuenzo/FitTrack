@@ -29,9 +29,9 @@ public partial class Usuario
 
     public Guid MediaIdMedia { get; set; }
 
-    public virtual ICollection<Dietum> Dieta { get; set; } = new List<Dietum>();
+    public virtual ICollection<Dieta> Dieta { get; set; } = new List<Dieta>();
 
-    public virtual Medium MediaIdMediaNavigation { get; set; } = null!;
+    public virtual Media MediaIdMediaNavigation { get; set; } = null!;
 
     public virtual ICollection<Treino> Treinos { get; set; } = new List<Treino>();
 }
