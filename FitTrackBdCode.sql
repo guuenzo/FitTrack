@@ -9,7 +9,8 @@ CREATE TABLE Alimento
      calorias INTEGER NOT NULL , 
      proteinas DECIMAL (5,2) , 
      carboidratos DECIMAL (5,2) , 
-     gorduras DECIMAL (5,2) 
+     gorduras DECIMAL (5,2) , 
+     Dieta_id_dieta UNIQUEIDENTIFIER NOT NULL 
     )
 GO
 
@@ -36,22 +37,6 @@ ALTER TABLE Dieta ADD CONSTRAINT Dieta_PK PRIMARY KEY CLUSTERED (id_dieta)
      ALLOW_ROW_LOCKS = ON )
 GO
 
-CREATE TABLE Dieta_Alimento 
-    (
-     id_dieta_alimento UNIQUEIDENTIFIER NOT NULL , 
-     quantidade DECIMAL (5,2) NOT NULL , 
-     refeicao VARCHAR (15) NOT NULL , 
-     Dieta_id_dieta UNIQUEIDENTIFIER NOT NULL , 
-     Alimento_id_alimento UNIQUEIDENTIFIER NOT NULL 
-    )
-GO
-
-ALTER TABLE Dieta_Alimento ADD CONSTRAINT Dieta_Alimento_PK PRIMARY KEY CLUSTERED (id_dieta_alimento)
-     WITH (
-     ALLOW_PAGE_LOCKS = ON , 
-     ALLOW_ROW_LOCKS = ON )
-GO
-
 CREATE TABLE Exercicio 
     (
      id_exercicio UNIQUEIDENTIFIER NOT NULL , 
@@ -59,7 +44,11 @@ CREATE TABLE Exercicio
      descricao TEXT , 
      grupo_muscular VARCHAR (50) NOT NULL , 
      video_execucao INTEGER , 
-     Media_id_media UNIQUEIDENTIFIER NOT NULL 
+     Media_id_media UNIQUEIDENTIFIER NOT NULL , 
+     repeticoes INTEGER NOT NULL , 
+     carga DECIMAL (5,2) NOT NULL , 
+     series INTEGER NOT NULL , 
+     Treino_id_treino UNIQUEIDENTIFIER NOT NULL 
     )
 GO 
 
@@ -79,38 +68,6 @@ ALTER TABLE Exercicio ADD CONSTRAINT Exercicio_PK PRIMARY KEY CLUSTERED (id_exer
      ALLOW_ROW_LOCKS = ON )
 GO
 
-CREATE TABLE Historico_Exercicio 
-    (
-     id_historico_exercicio UNIQUEIDENTIFIER NOT NULL , 
-     repeticoes INTEGER NOT NULL , 
-     series INTEGER NOT NULL , 
-     carga DECIMAL (5,2) NOT NULL , 
-     Usuario_id_usuario UNIQUEIDENTIFIER NOT NULL 
-    )
-GO
-
-ALTER TABLE Historico_Exercicio ADD CONSTRAINT Historico_Exercicio_PK PRIMARY KEY CLUSTERED (id_historico_exercicio)
-     WITH (
-     ALLOW_PAGE_LOCKS = ON , 
-     ALLOW_ROW_LOCKS = ON )
-GO
-
-CREATE TABLE Historico_Treino 
-    (
-     id_historico_treino UNIQUEIDENTIFIER NOT NULL , 
-     data DATE NOT NULL , 
-     observacao TEXT , 
-     Usuario_id_usuario UNIQUEIDENTIFIER NOT NULL , 
-     Treino_Exercicio_id_treino_exercicio UNIQUEIDENTIFIER NOT NULL 
-    )
-GO
-
-ALTER TABLE Historico_Treino ADD CONSTRAINT Historico_Treino_PK PRIMARY KEY CLUSTERED (id_historico_treino)
-     WITH (
-     ALLOW_PAGE_LOCKS = ON , 
-     ALLOW_ROW_LOCKS = ON )
-GO
-
 CREATE TABLE Media 
     (
      id_media UNIQUEIDENTIFIER NOT NULL , 
@@ -120,23 +77,6 @@ CREATE TABLE Media
 GO
 
 ALTER TABLE Media ADD CONSTRAINT Media_PK PRIMARY KEY CLUSTERED (id_media)
-     WITH (
-     ALLOW_PAGE_LOCKS = ON , 
-     ALLOW_ROW_LOCKS = ON )
-GO
-
-CREATE TABLE Progresso 
-    (
-     id_progresso UNIQUEIDENTIFIER NOT NULL , 
-     data DATE NOT NULL , 
-     peso DECIMAL (5,2) NOT NULL , 
-     percentual_gordura DECIMAL (4,2) NOT NULL , 
-     massa_muscular DECIMAL (5,2) NOT NULL , 
-     Usuario_id_usuario UNIQUEIDENTIFIER NOT NULL 
-    )
-GO
-
-ALTER TABLE Progresso ADD CONSTRAINT Progresso_PK PRIMARY KEY CLUSTERED (id_progresso)
      WITH (
      ALLOW_PAGE_LOCKS = ON , 
      ALLOW_ROW_LOCKS = ON )
@@ -160,23 +100,6 @@ ALTER TABLE Treino ADD CONSTRAINT Treino_PK PRIMARY KEY CLUSTERED (id_treino)
      ALLOW_ROW_LOCKS = ON )
 GO
 
-CREATE TABLE Treino_Exercicio 
-    (
-     id_treino_exercicio UNIQUEIDENTIFIER NOT NULL , 
-     repeticoes INTEGER NOT NULL , 
-     carga DECIMAL (5,2) NOT NULL , 
-     series INTEGER NOT NULL , 
-     Treino_id_treino UNIQUEIDENTIFIER NOT NULL , 
-     Exercicio_id_exercicio UNIQUEIDENTIFIER NOT NULL 
-    )
-GO
-
-ALTER TABLE Treino_Exercicio ADD CONSTRAINT Treino_Exercicio_PK PRIMARY KEY CLUSTERED (id_treino_exercicio)
-     WITH (
-     ALLOW_PAGE_LOCKS = ON , 
-     ALLOW_ROW_LOCKS = ON )
-GO
-
 CREATE TABLE Usuario 
     (
      id_usuario UNIQUEIDENTIFIER NOT NULL , 
@@ -187,10 +110,8 @@ CREATE TABLE Usuario
      sexo CHAR (1) NOT NULL , 
      peso DECIMAL (5,2) NOT NULL , 
      altura DECIMAL (4,2) NOT NULL , 
-     data_cadastro DATETIME NOT NULL , 
      google_id_account VARCHAR (255) , 
      status VARCHAR (15) , 
-     foto_perfil INTEGER , 
      codigo_recuperacao_senha VARCHAR (4) , 
      Media_id_media UNIQUEIDENTIFIER NOT NULL 
     )
@@ -212,21 +133,8 @@ ALTER TABLE Usuario ADD CONSTRAINT Usuario_PK PRIMARY KEY CLUSTERED (id_usuario)
      ALLOW_ROW_LOCKS = ON )
 GO
 
-ALTER TABLE Dieta_Alimento 
-    ADD CONSTRAINT Dieta_Alimento_Alimento_FK FOREIGN KEY 
-    ( 
-     Alimento_id_alimento
-    ) 
-    REFERENCES Alimento 
-    ( 
-     id_alimento 
-    ) 
-    ON DELETE NO ACTION 
-    ON UPDATE NO ACTION 
-GO
-
-ALTER TABLE Dieta_Alimento 
-    ADD CONSTRAINT Dieta_Alimento_Dieta_FK FOREIGN KEY 
+ALTER TABLE Alimento 
+    ADD CONSTRAINT Alimento_Dieta_FK FOREIGN KEY 
     ( 
      Dieta_id_dieta
     ) 
@@ -264,73 +172,8 @@ ALTER TABLE Exercicio
     ON UPDATE NO ACTION 
 GO
 
-ALTER TABLE Historico_Exercicio 
-    ADD CONSTRAINT Historico_Exercicio_Usuario_FK FOREIGN KEY 
-    ( 
-     Usuario_id_usuario
-    ) 
-    REFERENCES Usuario 
-    ( 
-     id_usuario 
-    ) 
-    ON DELETE NO ACTION 
-    ON UPDATE NO ACTION 
-GO
-
-ALTER TABLE Historico_Treino 
-    ADD CONSTRAINT Historico_Treino_Treino_Exercicio_FK FOREIGN KEY 
-    ( 
-     Treino_Exercicio_id_treino_exercicio
-    ) 
-    REFERENCES Treino_Exercicio 
-    ( 
-     id_treino_exercicio 
-    ) 
-    ON DELETE NO ACTION 
-    ON UPDATE NO ACTION 
-GO
-
-ALTER TABLE Historico_Treino 
-    ADD CONSTRAINT Historico_Treino_Usuario_FK FOREIGN KEY 
-    ( 
-     Usuario_id_usuario
-    ) 
-    REFERENCES Usuario 
-    ( 
-     id_usuario 
-    ) 
-    ON DELETE NO ACTION 
-    ON UPDATE NO ACTION 
-GO
-
-ALTER TABLE Progresso 
-    ADD CONSTRAINT Progresso_Usuario_FK FOREIGN KEY 
-    ( 
-     Usuario_id_usuario
-    ) 
-    REFERENCES Usuario 
-    ( 
-     id_usuario 
-    ) 
-    ON DELETE NO ACTION 
-    ON UPDATE NO ACTION 
-GO
-
-ALTER TABLE Treino_Exercicio 
-    ADD CONSTRAINT Treino_Exercicio_Exercicio_FK FOREIGN KEY 
-    ( 
-     Exercicio_id_exercicio
-    ) 
-    REFERENCES Exercicio 
-    ( 
-     id_exercicio 
-    ) 
-    ON DELETE NO ACTION 
-    ON UPDATE NO ACTION 
-GO
-
-ALTER TABLE Treino_Exercicio 
-    ADD CONSTRAINT Treino_Exercicio_Treino_FK FOREIGN KEY 
+ALTER TABLE Exercicio 
+    ADD CONSTRAINT Exercicio_Treino_FK FOREIGN KEY 
     ( 
      Treino_id_treino
     ) 

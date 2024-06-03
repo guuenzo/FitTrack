@@ -17,7 +17,7 @@ public partial class Dietum
 
     public Guid UsuarioIdUsuario { get; set; }
 
-    public virtual ICollection<DietaAlimento> DietaAlimentos { get; set; } = new List<DietaAlimento>();
+    public virtual ICollection<Alimento> Alimentos { get; set; } = new List<Alimento>();
 
     public virtual Usuario UsuarioIdUsuarioNavigation { get; set; } = null!;
 }

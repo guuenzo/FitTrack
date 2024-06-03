@@ -23,12 +23,6 @@ public partial class Exercicio
 
     public int Series { get; set; }
 
-    public int Repeticoes1 { get; set; }
-
-    public decimal Carga1 { get; set; }
-
-    public int Series1 { get; set; }
-
     public Guid TreinoIdTreino { get; set; }
 
     public virtual Medium MediaIdMediaNavigation { get; set; } = null!;

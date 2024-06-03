@@ -21,8 +21,6 @@ public partial class Usuario
 
     public decimal Altura { get; set; }
 
-    public DateTime DataCadastro { get; set; }
-
     public string? GoogleIdAccount { get; set; }
 
     public string? Status { get; set; }
