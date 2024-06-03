@@ -6,5 +6,5 @@ export const TitleStyle = styled(Text)`
   font-family: ${Theme.fonts.montserratAlternates.MontserratAlternates_700Bold};
   color: ${Theme.colors.secondaryScale.V1};
   font-size: 22px;
-  margin: 25px 0 0 0;
+  margin: ${(props) => props.fieldMargin || "25px 0 0 0"};
 `;

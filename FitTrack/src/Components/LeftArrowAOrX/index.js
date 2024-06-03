@@ -10,34 +10,21 @@ export const LeftArrowAOrXComponent = ({
   top,
   left,
   fieldMargin,
+  isBlue = false,
 }) => {
   const navigation = useNavigation();
   return (
-    <LeftArrowAndXStyle fieldMargin={fieldMargin} top={top} left={left}>
+    <LeftArrowAndXStyle
+      onPress={() => navigation.goBack()}
+      fieldMargin={fieldMargin}
+      top={top}
+      left={left}
+    >
       <AntDesign
-        onPress={() => navigation.goBack()}
         name={isLefArrow ? "arrowleft" : "close"}
         size={size}
-        color={color}
+        color={isBlue ? Theme.colors.secondaryScale.V1 : Theme.colors.white.v1}
       />
     </LeftArrowAndXStyle>
-  );
-};
-
-export const LeftArrowAOrXCameraComponent = ({
-  size = 26,
-  color = Theme.colors.secondaryScale.V1,
-  isLefArrow = true,
-  navigation,
-  onPress,
-}) => {
-  return (
-    <LeftArrowAndXStyleCamera onPress={onPress}>
-      <AntDesign
-        name={isLefArrow ? "arrowleft" : "close"}
-        size={size}
-        color={color}
-      />
-    </LeftArrowAndXStyleCamera>
   );
 };
