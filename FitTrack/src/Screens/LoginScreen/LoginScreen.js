@@ -53,6 +53,7 @@ const LoginScreen = ({ navigation }) => {
       navigation.navigate("Main");
     }
   };
+
   const criarConta = async () => {
     try {
       const { data, status } = await api.post(usuarioResource, {

@@ -29,51 +29,6 @@ export const CardAdicionarRefeicao = ({ onPress }) => {
   );
 };
 
-const CardMacros = ({
-  quantidadeProteinas = 25,
-  quantidadeCarboidratos = 25,
-  quantidadeGorduras = 25,
-}) => {
-  return (
-    <InfoRefeicaoBoxMacros>
-      <MacroBox>
-        <IndiceMacroBox>
-          {/* fazer lógica para altura se equivalente a porcentagem do macronutriente dentro da refeição/alimento */}
-          <IndiceMacro height={20} macro={"Proteina"} />
-        </IndiceMacroBox>
-        <MacroTextBox>
-          <TextMABold fontSize={"14px"} color={Theme.colors.secondaryScale.V1}>
-            {quantidadeProteinas} g
-          </TextMABold>
-          <TextQuickSandBold>Proteínas</TextQuickSandBold>
-        </MacroTextBox>
-      </MacroBox>
-      <MacroBox>
-        <IndiceMacroBox>
-          <IndiceMacro height={80} macro={"Carboidrato"} />
-        </IndiceMacroBox>
-        <MacroTextBox>
-          <TextMABold color={Theme.colors.secondaryScale.V1}>
-            {quantidadeCarboidratos} g
-          </TextMABold>
-          <TextQuickSandBold>Carboidratos</TextQuickSandBold>
-        </MacroTextBox>
-      </MacroBox>
-      <MacroBox>
-        <IndiceMacroBox>
-          <IndiceMacro height={7} macro={"Gordura"} />
-        </IndiceMacroBox>
-        <MacroTextBox>
-          <TextMABold color={Theme.colors.secondaryScale.V1}>
-            {quantidadeGorduras} g
-          </TextMABold>
-          <TextQuickSandBold>Gorduras</TextQuickSandBold>
-        </MacroTextBox>
-      </MacroBox>
-    </InfoRefeicaoBoxMacros>
-  );
-};
-
 const CardInfoRefeicao = ({
   nome = "Lasanha",
   pesoRefeicao = 100,
@@ -126,6 +81,51 @@ const CardInfoRefeicao = ({
         </InfoELixeiraBox>
       </NomeEcaloriasBox>
     </InfoRefeicaoBoxNomeECalorias>
+  );
+};
+
+const CardMacros = ({
+  quantidadeProteinas = 25,
+  quantidadeCarboidratos = 25,
+  quantidadeGorduras = 25,
+}) => {
+  return (
+    <InfoRefeicaoBoxMacros>
+      <MacroBox>
+        <IndiceMacroBox>
+          {/* fazer lógica para altura se equivalente a porcentagem do macronutriente dentro da refeição/alimento */}
+          <IndiceMacro height={20} macro={"Proteina"} />
+        </IndiceMacroBox>
+        <MacroTextBox>
+          <TextMABold fontSize={"14px"} color={Theme.colors.secondaryScale.V1}>
+            {quantidadeProteinas} g
+          </TextMABold>
+          <TextQuickSandBold>Proteínas</TextQuickSandBold>
+        </MacroTextBox>
+      </MacroBox>
+      <MacroBox>
+        <IndiceMacroBox>
+          <IndiceMacro height={80} macro={"Carboidrato"} />
+        </IndiceMacroBox>
+        <MacroTextBox>
+          <TextMABold color={Theme.colors.secondaryScale.V1}>
+            {quantidadeCarboidratos} g
+          </TextMABold>
+          <TextQuickSandBold>Carboidratos</TextQuickSandBold>
+        </MacroTextBox>
+      </MacroBox>
+      <MacroBox>
+        <IndiceMacroBox>
+          <IndiceMacro height={7} macro={"Gordura"} />
+        </IndiceMacroBox>
+        <MacroTextBox>
+          <TextMABold color={Theme.colors.secondaryScale.V1}>
+            {quantidadeGorduras} g
+          </TextMABold>
+          <TextQuickSandBold>Gorduras</TextQuickSandBold>
+        </MacroTextBox>
+      </MacroBox>
+    </InfoRefeicaoBoxMacros>
   );
 };
 
