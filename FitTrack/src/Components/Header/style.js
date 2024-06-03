@@ -1,14 +1,17 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { Image, TouchableOpacity, View } from "react-native";
+import { StatusBar, TouchableOpacity, View } from "react-native";
 import { styled } from "styled-components";
 import Theme from "../../Styles/Theme/index";
+
+const heightStatusBar = StatusBar.currentHeight;
 
 export const HeaderStyle = styled(LinearGradient).attrs({
   start: { x: 0, y: 0 },
   end: { x: 1, y: 1 },
   colors: [Theme.colors.secondaryScale.V1, Theme.colors.primaryScale.V1],
 })`
-  margin: 35px 0 0 0;
+  /* isola a altura da status bar e adiciona 10 de margin top */
+  margin: ${heightStatusBar + 10 + `px 0 0 0`};
   width: 100%;
   height: 85px;
   border-radius: 10px;
