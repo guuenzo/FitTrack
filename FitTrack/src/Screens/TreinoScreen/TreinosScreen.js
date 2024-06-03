@@ -8,11 +8,17 @@ import {
   MainContentScroll,
 } from "../../Components/Container/style";
 import FlatListComponent from "../../Components/FlatList/FlatList";
+import CardTreino from "../../Components/CardTreino/CardTreino";
+import { ContainerTreino } from "../../Components/CardTreino/style";
+
 
 const TreinosScreen = () => {
-  const [treinos, setTreinos] = useState([]);
+  const [treinos, setTreinos] = useState([
+    { id: "a", grupo: "Peito, Triceps" }, { id: "b", grupo: "Costas" }
+  ]);
+
   useEffect(() => {
-    return (cleanUp = () => {});
+    return (cleanUp = () => { });
   }, []);
   return (
     <Container>
@@ -24,18 +30,18 @@ const TreinosScreen = () => {
             <Title
               text={treinos.length !== 0 ? "Meus treinos" : "Monte seu treino"}
             />
+            <ContainerTreino>
 
-            <FlatListComponent
-              data={treinos}
-              // keyExtractor={(item) => item.id}
-              // renderItem={({ item }) =>
-              //   refeicoes.length < 6 && (
-              //     <CardRefeicao
-              //       onPress={() => navigation.navigate("MonteSuaRefeição")}
-              //     />
-              //   )
-              // }
-            />
+              <FlatListComponent
+                data={treinos}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) =>
+                (
+                  <CardTreino text={item} />
+                )
+                }
+              />
+            </ContainerTreino>
           </MainContent>
         </GridLayout>
       </MainContentScroll>
