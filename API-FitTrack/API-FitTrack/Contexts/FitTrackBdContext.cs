@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API_FitTrack.Contexts;
 
-public partial class FitContext : DbContext
+public partial class FitTrackBdContext : DbContext
 {
-    public FitContext()
+    public FitTrackBdContext()
     {
     }
 
-    public FitContext(DbContextOptions<FitContext> options)
+    public FitTrackBdContext(DbContextOptions<FitTrackBdContext> options)
         : base(options)
     {
     }
@@ -20,17 +20,11 @@ public partial class FitContext : DbContext
 
     public virtual DbSet<DietaAlimento> DietaAlimentos { get; set; }
 
-    public virtual DbSet<Dieta> Dieta { get; set; }
+    public virtual DbSet<Dietum> Dieta { get; set; }
 
     public virtual DbSet<Exercicio> Exercicios { get; set; }
 
-    public virtual DbSet<HistoricoExercicio> HistoricoExercicios { get; set; }
-
-    public virtual DbSet<HistoricoTreino> HistoricoTreinos { get; set; }
-
-    public virtual DbSet<Media> Media { get; set; }
-
-    public virtual DbSet<Progresso> Progressos { get; set; }
+    public virtual DbSet<Medium> Media { get; set; }
 
     public virtual DbSet<Treino> Treinos { get; set; }
 
@@ -99,7 +93,7 @@ public partial class FitContext : DbContext
                 .HasConstraintName("Dieta_Alimento_Dieta_FK");
         });
 
-        modelBuilder.Entity<Dieta>(entity =>
+        modelBuilder.Entity<Dietum>(entity =>
         {
             entity.HasKey(e => e.IdDieta).HasName("Dieta_PK");
 
@@ -157,56 +151,7 @@ public partial class FitContext : DbContext
                 .HasConstraintName("Exercicio_Media_FK");
         });
 
-        modelBuilder.Entity<HistoricoExercicio>(entity =>
-        {
-            entity.HasKey(e => e.IdHistoricoExercicio).HasName("Historico_Exercicio_PK");
-
-            entity.ToTable("Historico_Exercicio");
-
-            entity.Property(e => e.IdHistoricoExercicio)
-                .ValueGeneratedNever()
-                .HasColumnName("id_historico_exercicio");
-            entity.Property(e => e.Carga)
-                .HasColumnType("decimal(5, 2)")
-                .HasColumnName("carga");
-            entity.Property(e => e.Repeticoes).HasColumnName("repeticoes");
-            entity.Property(e => e.Series).HasColumnName("series");
-            entity.Property(e => e.UsuarioIdUsuario).HasColumnName("Usuario_id_usuario");
-
-            entity.HasOne(d => d.UsuarioIdUsuarioNavigation).WithMany(p => p.HistoricoExercicios)
-                .HasForeignKey(d => d.UsuarioIdUsuario)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("Historico_Exercicio_Usuario_FK");
-        });
-
-        modelBuilder.Entity<HistoricoTreino>(entity =>
-        {
-            entity.HasKey(e => e.IdHistoricoTreino).HasName("Historico_Treino_PK");
-
-            entity.ToTable("Historico_Treino");
-
-            entity.Property(e => e.IdHistoricoTreino)
-                .ValueGeneratedNever()
-                .HasColumnName("id_historico_treino");
-            entity.Property(e => e.Data).HasColumnName("data");
-            entity.Property(e => e.Observacao)
-                .HasColumnType("text")
-                .HasColumnName("observacao");
-            entity.Property(e => e.TreinoExercicioIdTreinoExercicio).HasColumnName("Treino_Exercicio_id_treino_exercicio");
-            entity.Property(e => e.UsuarioIdUsuario).HasColumnName("Usuario_id_usuario");
-
-            entity.HasOne(d => d.TreinoExercicioIdTreinoExercicioNavigation).WithMany(p => p.HistoricoTreinos)
-                .HasForeignKey(d => d.TreinoExercicioIdTreinoExercicio)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("Historico_Treino_Treino_Exercicio_FK");
-
-            entity.HasOne(d => d.UsuarioIdUsuarioNavigation).WithMany(p => p.HistoricoTreinos)
-                .HasForeignKey(d => d.UsuarioIdUsuario)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("Historico_Treino_Usuario_FK");
-        });
-
-        modelBuilder.Entity<Media>(entity =>
+        modelBuilder.Entity<Medium>(entity =>
         {
             entity.HasKey(e => e.IdMedia).HasName("Media_PK");
 
@@ -221,33 +166,6 @@ public partial class FitContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("uri");
-        });
-
-        modelBuilder.Entity<Progresso>(entity =>
-        {
-            entity.HasKey(e => e.IdProgresso).HasName("Progresso_PK");
-
-            entity.ToTable("Progresso");
-
-            entity.Property(e => e.IdProgresso)
-                .ValueGeneratedNever()
-                .HasColumnName("id_progresso");
-            entity.Property(e => e.Data).HasColumnName("data");
-            entity.Property(e => e.MassaMuscular)
-                .HasColumnType("decimal(5, 2)")
-                .HasColumnName("massa_muscular");
-            entity.Property(e => e.PercentualGordura)
-                .HasColumnType("decimal(4, 2)")
-                .HasColumnName("percentual_gordura");
-            entity.Property(e => e.Peso)
-                .HasColumnType("decimal(5, 2)")
-                .HasColumnName("peso");
-            entity.Property(e => e.UsuarioIdUsuario).HasColumnName("Usuario_id_usuario");
-
-            entity.HasOne(d => d.UsuarioIdUsuarioNavigation).WithMany(p => p.Progressos)
-                .HasForeignKey(d => d.UsuarioIdUsuario)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("Progresso_Usuario_FK");
         });
 
         modelBuilder.Entity<Treino>(entity =>
@@ -337,7 +255,6 @@ public partial class FitContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("email");
-            entity.Property(e => e.FotoPerfil).HasColumnName("foto_perfil");
             entity.Property(e => e.GoogleIdAccount)
                 .HasMaxLength(255)
                 .IsUnicode(false)

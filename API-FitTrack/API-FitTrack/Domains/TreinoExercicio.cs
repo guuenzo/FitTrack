@@ -19,7 +19,5 @@ public partial class TreinoExercicio
 
     public virtual Exercicio ExercicioIdExercicioNavigation { get; set; } = null!;
 
-    public virtual ICollection<HistoricoTreino> HistoricoTreinos { get; set; } = new List<HistoricoTreino>();
-
     public virtual Treino TreinoIdTreinoNavigation { get; set; } = null!;
 }

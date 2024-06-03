@@ -27,21 +27,13 @@ public partial class Usuario
 
     public string? Status { get; set; }
 
-    public int? FotoPerfil { get; set; }
-
     public string? CodigoRecuperacaoSenha { get; set; }
 
     public Guid MediaIdMedia { get; set; }
 
-    public virtual ICollection<Dieta> Dieta { get; set; } = new List<Dieta>();
+    public virtual ICollection<Dietum> Dieta { get; set; } = new List<Dietum>();
 
-    public virtual ICollection<HistoricoExercicio> HistoricoExercicios { get; set; } = new List<HistoricoExercicio>();
-
-    public virtual ICollection<HistoricoTreino> HistoricoTreinos { get; set; } = new List<HistoricoTreino>();
-
-    public virtual Media MediaIdMediaNavigation { get; set; } = null!;
-
-    public virtual ICollection<Progresso> Progressos { get; set; } = new List<Progresso>();
+    public virtual Medium MediaIdMediaNavigation { get; set; } = null!;
 
     public virtual ICollection<Treino> Treinos { get; set; } = new List<Treino>();
 }

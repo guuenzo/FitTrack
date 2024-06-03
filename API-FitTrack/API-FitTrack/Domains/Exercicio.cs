@@ -17,7 +17,7 @@ public partial class Exercicio
 
     public Guid MediaIdMedia { get; set; }
 
-    public virtual Media MediaIdMediaNavigation { get; set; } = null!;
+    public virtual Medium MediaIdMediaNavigation { get; set; } = null!;
 
     public virtual ICollection<TreinoExercicio> TreinoExercicios { get; set; } = new List<TreinoExercicio>();
 }
