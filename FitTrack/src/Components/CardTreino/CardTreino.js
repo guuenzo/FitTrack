@@ -1,16 +1,17 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { CardTreinoStyle } from './style';
-import { TextMABold } from '../Text/style';
+import { CardTreinoStyle, ContainerTreino } from './style';
+import { TextMABold, TextTreinoBold } from '../Text/style';
+import Theme from '../../Styles/Theme';
 
 const CardTreino = ({ onPress, text }) => {
     return (
 
         <CardTreinoStyle>
-            <TextMABold>{text.id}</TextMABold>
-            <Text>{text.grupo}</Text>
-        </CardTreinoStyle>
+            <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V2} >{text.id}</TextMABold>
+            <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1}>{text.grupo}</TextMABold>
 
+        </CardTreinoStyle>
 
     );
 };
