@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Theme from "../../Styles/Theme/index";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -9,8 +9,8 @@ import { BottomNavigationStyle } from "./style";
 import { BottomNavigation } from "react-native-paper";
 import TreinosScreen from "../TreinoScreen/TreinosScreen";
 
-const Main = () => {
-  const [index, setIndex] = useState(1);
+const Main = ({ route }) => {
+  const [index, setIndex] = useState(route.params ? route.params.indice : 1);
   const [routes] = useState([
     {
       key: "Alimentacao",
@@ -76,6 +76,12 @@ const Main = () => {
     Treino: TreinosScreen,
     Perfil: PerfilScreen,
   });
+
+  useEffect(() => {
+    setIndex(route.params ? route.params.indice : 1);
+
+    return (cleanUp = () => {});
+  }, [route.params]);
 
   return (
     <BottomNavigationStyle

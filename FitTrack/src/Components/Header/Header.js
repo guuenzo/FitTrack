@@ -33,13 +33,13 @@ const Header = ({
           </TextMABold>
         </WelcomeTextBox>
       </WelcomeBox>
-      {/* <ProfileButton onPress={() => navigation.navigate("Perfil")}>
+      <ProfileButton onPress={() => navigation.navigate("Main", { indice: 2 })}>
         <Entypo
           name="chevron-small-right"
           size={30}
           color={Theme.colors.white.v1}
         />
-      </ProfileButton> */}
+      </ProfileButton>
     </HeaderStyle>
   );
 };

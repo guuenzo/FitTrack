@@ -4,11 +4,18 @@ import styled from "styled-components";
 import Theme from "../../Styles/Theme";
 import Animated from "react-native-reanimated";
 
-export const ButtonStyle = styled(Button)`
+export const ButtonStyle = styled(TouchableOpacity)`
   height: 45px;
   width: 125px;
   background-color: ${(props) =>
     props.statusButton ? "#2B3C64" : "transparent"};
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ButtonDefault = styled(ButtonStyle)`
+  width: 200px;
+  border-radius: 20px;
 `;
 
 export const ButtonStyleText = styled(Text)`

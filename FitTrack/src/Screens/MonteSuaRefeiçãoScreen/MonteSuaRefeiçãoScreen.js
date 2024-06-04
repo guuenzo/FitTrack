@@ -10,11 +10,12 @@ import CardRefeicao from "../../Components/CardRefeicao/CardRefeicao";
 import { useNavigation } from "@react-navigation/native";
 import Title from "../../Components/Title/Title";
 import { LeftArrowAOrXComponent } from "../../Components/LeftArrowAOrX";
-import { StatusBar } from "react-native";
+import { StatusBar, View } from "react-native";
 import { DropDownComponent } from "../../Components/Input/Input";
-import { InfoGlobalBox, InfoGlobalBoxTop } from "./style";
-import { TextMABold } from "../../Components/Text/style";
-import InfoGlobalBoxComponent from "./InfoGlobal";
+import InfoGlobalBoxComponent, {
+  MacronutrientesRefeicaoBox,
+} from "./InfoGlobal";
+import { ButtonComponentDefault } from "../../Components/Button/Button";
 
 const MonteSuaRefeiçãoScreen = () => {
   const heightStatusBar = StatusBar.currentHeight;
@@ -28,22 +29,6 @@ const MonteSuaRefeiçãoScreen = () => {
       id: 2,
       nome: "Refeição 2",
     },
-    {
-      id: 3,
-      nome: "Refeição 3",
-    },
-    {
-      id: 4,
-      nome: "Refeição 4",
-    },
-    {
-      id: 5,
-      nome: "Refeição 5",
-    },
-    // {
-    //   id: 6,
-    //   nome: "Refeição 6",
-    // },
   ]);
   const navigation = useNavigation();
 
@@ -62,11 +47,44 @@ const MonteSuaRefeiçãoScreen = () => {
 
             <InfoGlobalBoxComponent />
 
-            {/* <FlatListComponent
+            <MacronutrientesRefeicaoBox />
+
+            <FlatListComponent
               data={refeicoes}
               keyExtractor={(item) => item.id}
-              renderItem={({ item }) => <CardRefeicao onPress={() => {}} />}
-            /> */}
+              renderItem={({ item }) => (
+                <CardRefeicao
+                  onPressDeletar={() => {
+                    setRefeicoes(refeicoes.filter((x) => x.id === item.id));
+                    console.log(item.id);
+                  }}
+                  onPress={() => {}}
+                />
+              )}
+            />
+
+            <View style={{ marginBottom: 80, marginTop: 30, gap: 30 }}>
+              <ButtonComponentDefault
+                statusButton
+                text="confirmar"
+                onPress={() => {
+                  navigation.replace("Main", { indice: 0 });
+                }}
+              />
+              <ButtonComponentDefault
+                statusButton
+                text="adicionar"
+                onPress={() => {
+                  setRefeicoes([
+                    ...refeicoes,
+                    {
+                      id: Math.random(),
+                      nome: "refeicaio",
+                    },
+                  ]);
+                }}
+              />
+            </View>
           </MainContent>
         </GridLayout>
       </MainContentScroll>

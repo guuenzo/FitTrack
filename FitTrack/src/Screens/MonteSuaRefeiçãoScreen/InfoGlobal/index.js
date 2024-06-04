@@ -3,7 +3,14 @@ import React from "react";
 import { InfoGlobalBox, InfoGlobalBoxBottom, InfoGlobalBoxTop } from "../style";
 import { TextMABold, TextQuickSandBold } from "../../../Components/Text/style";
 import Theme from "../../../Styles/Theme";
-import { TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
+import {
+  ContainerMacroTotalStyle,
+  ContainerMacroValorStyle,
+  MacroBoxIndividualLabel,
+  MacroBoxIndividualStyle,
+  MacrosBoxStyle,
+} from "./style";
 
 const InfoGlobalBoxComponent = ({
   nomeRefeicao = "Lasanha",
@@ -14,10 +21,15 @@ const InfoGlobalBoxComponent = ({
     <InfoGlobalBox>
       <InfoGlobalBoxTop>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1}>
-            {nomeRefeicao}
-          </TextMABold>
-          <TouchableOpacity style={{ padding: 20 }}>
+          <TouchableOpacity
+            style={{ flexDirection: "row", alignItems: "center", gap: 20 }}
+          >
+            <TextMABold
+              fontSize={"16px"}
+              color={Theme.colors.secondaryScale.V1}
+            >
+              {nomeRefeicao}
+            </TextMABold>
             <FontAwesome5
               name="pen"
               size={10}
@@ -35,7 +47,7 @@ const InfoGlobalBoxComponent = ({
             fontSize={"14px"}
             color={Theme.colors.secondaryScale.V5}
           >
-            valores nutricionais:
+            Valores nutricionais:
           </TextQuickSandBold>
         </View>
         <TextQuickSandBold
@@ -46,6 +58,60 @@ const InfoGlobalBoxComponent = ({
         </TextQuickSandBold>
       </InfoGlobalBoxBottom>
     </InfoGlobalBox>
+  );
+};
+
+export const MacronutrientesRefeicaoBox = ({
+  quantidadeProteinas = 50,
+  quantidadeCarboidratos = 25,
+  quantidadeGorduras = 25,
+}) => {
+  return (
+    <MacrosBoxStyle>
+      <MacroBoxIndividual
+        quantidadeMacro={quantidadeProteinas}
+        macro="Proteínas"
+        width={50}
+      />
+      <MacroBoxIndividual
+        quantidadeMacro={quantidadeCarboidratos}
+        macro="Carboidratos"
+        width={10}
+      />
+      <MacroBoxIndividual
+        quantidadeMacro={quantidadeGorduras}
+        macro="Gorduras"
+        width={5}
+      />
+    </MacrosBoxStyle>
+  );
+};
+
+const MacroBoxIndividual = ({ quantidadeMacro = 25, width, macro }) => {
+  return (
+    <MacroBoxIndividualStyle>
+      <MacroBoxIndividualLabel>
+        <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1}>
+          {macro}
+        </TextMABold>
+
+        <TextQuickSandBold
+          fontSize={"14px"}
+          color={Theme.colors.secondaryScale.V5}
+        >
+          {quantidadeMacro} G
+        </TextQuickSandBold>
+      </MacroBoxIndividualLabel>
+      <ContainerMacroTotal width={width} macro={macro} />
+    </MacroBoxIndividualStyle>
+  );
+};
+
+const ContainerMacroTotal = ({ width = 40, macro = "Proteina" }) => {
+  return (
+    <ContainerMacroTotalStyle>
+      <ContainerMacroValorStyle width={width} macro={macro} />
+    </ContainerMacroTotalStyle>
   );
 };
 

@@ -1,8 +1,7 @@
-import { View, Text } from "react-native";
-import React from "react";
 import {
   AnimatedBoxStyle,
   AnimatedButton,
+  ButtonDefault,
   ButtonLoginCriarContaBoxStyle,
   ButtonScondaryStyle,
   ButtonScondaryText,
@@ -26,6 +25,18 @@ export const ButtonComponent = ({
     <ButtonStyle onPress={onPress} statusButton={statusButton}>
       <ButtonStyleText statusButton={statusButton}>{text}</ButtonStyleText>
     </ButtonStyle>
+  );
+};
+
+export const ButtonComponentDefault = ({
+  text = "",
+  onPress,
+  statusButton = false,
+}) => {
+  return (
+    <ButtonDefault onPress={onPress} statusButton={statusButton}>
+      <ButtonStyleText statusButton={statusButton}>{text}</ButtonStyleText>
+    </ButtonDefault>
   );
 };
 
