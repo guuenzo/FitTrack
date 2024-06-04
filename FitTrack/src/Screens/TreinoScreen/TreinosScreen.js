@@ -8,7 +8,7 @@ import {
   MainContentScroll,
 } from "../../Components/Container/style";
 import FlatListComponent from "../../Components/FlatList/FlatList";
-import CardTreino from "../../Components/CardTreino/CardTreino";
+import CardTreino, { CardAddTreino } from "../../Components/CardTreino/CardTreino";
 import { ContainerTreino } from "./style";
 import { ContainerCardTreino } from "../../Components/CardTreino/style";
 
@@ -33,19 +33,26 @@ const TreinosScreen = () => {
       <Title
         text={treinos.length !== 0 ? "Meus treinos" : "Monte seu treino"}
       />
-      {/* <ContainerCardTreino> */}
+      <ContainerCardTreino>
 
-      <FlatListComponent
-        data={treinos}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) =>
+        <FlatListComponent
+          data={treinos}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={{ justifyContent: 'center', alignItems: 'center' }}
+          numColumns={2}
+          renderItem={({ item }) =>
 
-        (
-          <CardTreino text={item} />
-        )
-        }
-      />
-      {/* </ContainerCardTreino> */}
+
+          (
+            <CardTreino text={item} />
+          )
+          }
+        />
+        <CardAddTreino />
+
+
+
+      </ContainerCardTreino>
 
 
     </ContainerTreino>

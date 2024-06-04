@@ -6,9 +6,9 @@ import { SafeAreaView, TouchableOpacity, View } from "react-native";
 
 export const ContainerCardTreino = styled.SafeAreaView`
 width: 90%;
-height: 75%;
-border: 1px solid black;
+/* border: 1px solid black; */
 align-items: center;
+justify-content: center;
 `
 
 export const CardTreinoStyle = styled(TouchableOpacity)`
@@ -20,6 +20,7 @@ export const CardTreinoStyle = styled(TouchableOpacity)`
   align-self: center;
   margin: ${(props) => (props.isLast ? "25px 0 50px" : "25px 0")};
   padding: 15px;
+  margin-left: 15px;
   
   /* flex-direction: row; */
   /* justify-content: space-evenly; */
@@ -31,4 +32,11 @@ export const CardTreinoStyle = styled(TouchableOpacity)`
   shadow-offset: 0px 4px;
   shadow-radius: 4px;
   elevation: 10;
+`;
+
+export const CardAddTreinoStyle = styled(CardTreinoStyle)`
+margin: 25px 0;
+justify-content: center;
+align-items: center;
+
 `;
