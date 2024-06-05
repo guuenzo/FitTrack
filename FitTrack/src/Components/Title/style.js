@@ -7,4 +7,5 @@ export const TitleStyle = styled(Text)`
   color: ${Theme.colors.secondaryScale.V1};
   font-size: 22px;
   margin: ${(props) => props.fieldMargin || "25px 0 0 0"};
+  text-align: ${(props) => props.textAling || "start"};
 `;

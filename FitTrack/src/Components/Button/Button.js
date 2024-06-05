@@ -44,10 +44,11 @@ export const ButtonSecondary = ({
   textButton = "Esqueceu sua senha ?",
   onPress,
   fieldMargin = "20px 0 0 0",
+  colorText,
 }) => {
   return (
     <ButtonScondaryStyle fieldMargin={fieldMargin} onPress={onPress}>
-      <ButtonScondaryText>{textButton}</ButtonScondaryText>
+      <ButtonScondaryText color={colorText}>{textButton}</ButtonScondaryText>
     </ButtonScondaryStyle>
   );
 };

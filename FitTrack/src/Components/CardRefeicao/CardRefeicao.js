@@ -19,7 +19,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Theme from "../../Styles/Theme";
 import { TextMABold, TextQuickSandBold } from "../Text/style";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
 export const CardAdicionarRefeicao = ({ onPress }) => {
   return (
@@ -36,12 +36,14 @@ const CardInfoRefeicao = ({
   uriImageRefeicao = "https://abrasel.com.br/site/assets/files/11226/prato_feito.500x0-is.jpg",
   //valida caso o card seja usado para exibir uma refeição ou um alimento
   isRefeicao = false,
+  hasImage = false,
   onPressDeletar,
+  isEditGramas = false,
 }) => {
   return (
     <InfoRefeicaoBoxNomeECalorias>
       <NomeEcaloriasBox>
-        {isRefeicao && <ImageRefeicao source={{ uri: uriImageRefeicao }} />}
+        {hasImage && <ImageRefeicao source={{ uri: uriImageRefeicao }} />}
 
         <InfoELixeiraBox>
           <NomeEcaloriasContent>
@@ -53,7 +55,12 @@ const CardInfoRefeicao = ({
             </TextMABold>
 
             <NomeEcaloriasContentInfo>
-              <View style={{ alignSelf: "center", marginRight: 5 }}>
+              <View
+                style={{
+                  alignSelf: "center",
+                  marginRight: 5,
+                }}
+              >
                 <FontAwesome5
                   name="gripfire"
                   size={15}
@@ -67,6 +74,21 @@ const CardInfoRefeicao = ({
               <TextQuickSandBold fontSize={"14px"}>
                 {pesoRefeicao} G
               </TextQuickSandBold>
+              {isEditGramas && (
+                <TouchableOpacity
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginLeft: 5,
+                  }}
+                >
+                  <FontAwesome5
+                    name="pen"
+                    size={10}
+                    color={Theme.colors.secondaryScale.V1}
+                  />
+                </TouchableOpacity>
+              )}
             </NomeEcaloriasContentInfo>
           </NomeEcaloriasContent>
           {!isRefeicao && (
@@ -145,11 +167,16 @@ const CardRefeicao = ({
   heightProteina = 0,
   heightCarboidrato = 0,
   heightGordura = 0,
+  hasImage,
+  isEditGramas,
+  isClickable = false,
 }) => {
   return (
     //isLast: se for o último card de um flatList, aplica 50px de margin bottom, ao invés de 25px
-    <CardStyle isLast={false} onPress={onPress}>
+     <CardStyle isClickable={isClickable} isLast={false} onPress={onPress}>
       <CardInfoRefeicao
+        isEditGramas={isEditGramas}
+        hasImage={hasImage}
         onPressDeletar={onPressDeletar}
         nome={nome}
         pesoRefeicao={pesoRefeicao}

@@ -16,11 +16,19 @@ import InfoGlobalBoxComponent, {
   MacronutrientesRefeicaoBox,
 } from "./InfoGlobal";
 import { ButtonComponentDefault } from "../../Components/Button/Button";
+import { ModalAlimentacao } from "../../Components/Modal/Modal";
 
 const MonteSuaRefeiçãoScreen = () => {
   const heightStatusBar = StatusBar.currentHeight;
 
+  const [exibeModal, setExibeModal] = useState(false);
+
   const [alimentos, setAlimentos] = useState([]);
+
+  const [refeicao, setRefeicao] = useState({
+    nomeRefeicao: "Jantar",
+    alimentos: [],
+  });
 
   const navigation = useNavigation();
 
@@ -98,6 +106,11 @@ const MonteSuaRefeiçãoScreen = () => {
     return (quantidadeMacro / pesoRefeicao) * 100;
   };
 
+  const atualizarNomeRefeicao = (txt) => {
+    setExibeModal(!exibeModal);
+    setRefeicao({ ...refeicao, nomeRefeicao: txt });
+  };
+
   return (
     <Container>
       <MainContentScroll>
@@ -112,6 +125,7 @@ const MonteSuaRefeiçãoScreen = () => {
             <DropDownComponent addAlimento={addAlimentoARefeicao} />
 
             <InfoGlobalBoxComponent
+              onPressAtualizarNome={atualizarNomeRefeicao}
               pesoRefeicao={calcularQuantidadeMacrosRefeicao("pesorefeicao")}
               caloriasRefeicao={calcularQuantidadeMacrosRefeicao("calorias")}
             />
@@ -144,6 +158,7 @@ const MonteSuaRefeiçãoScreen = () => {
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
                 <CardRefeicao
+                  isEditGramas
                   heightProteina={calcularPorcentagemMacro(
                     item.pesoRefeicao,
                     item.proteinas
@@ -170,6 +185,8 @@ const MonteSuaRefeiçãoScreen = () => {
                 />
               )}
             />
+
+            {exibeModal && <ModalAlimentacao exibeModal={exibeModal} />}
 
             <View style={{ marginBottom: 80, marginTop: 30, gap: 30 }}>
               <ButtonComponentDefault

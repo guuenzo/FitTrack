@@ -16,12 +16,14 @@ const InfoGlobalBoxComponent = ({
   nomeRefeicao = "Lasanha",
   pesoRefeicao = 700,
   caloriasRefeicao = 1500,
+  onPressAtualizarNome = () => {},
 }) => {
   return (
     <InfoGlobalBox>
       <InfoGlobalBoxTop>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <TouchableOpacity
+            onPress={onPressAtualizarNome}
             style={{ flexDirection: "row", alignItems: "center", gap: 20 }}
           >
             <TextMABold

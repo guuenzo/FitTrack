@@ -33,7 +33,7 @@ export const ButtonScondaryStyle = styled(TouchableOpacity)`
 `;
 
 export const ButtonScondaryText = styled(Text)`
-  color: ${Theme.colors.white.v1};
+  color: ${(props) => props.color || Theme.colors.white.v1};
   font-family: ${Theme.fonts.montserratAlternates
     .MontserratAlternates_500Medium};
 `;

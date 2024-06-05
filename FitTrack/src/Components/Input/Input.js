@@ -67,6 +67,16 @@ export const InputComponent = ({
   );
 };
 
+export const InputDefault = ({
+  value,
+  onChangeText = () => {},
+  placeholder = "",
+  keyboardType = "default",
+  disabled = false,
+}) => {
+  return <InputStyle onChangeText={onChangeText} value={value} />;
+};
+
 export const InputData = ({
   //passa a data para o componente pai
   setData,
@@ -221,6 +231,7 @@ export const DropDownComponent = ({
       maxHeight={300}
       labelField="nome"
       valueField="id"
+      search
       placeholder={!isFocus ? "Encontre um alimento" : "..."}
       searchPlaceholder="Pesquisar..."
       value={item}
