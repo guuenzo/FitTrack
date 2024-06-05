@@ -3,6 +3,7 @@ import React from "react";
 import {
   AnimatedBoxStyle,
   AnimatedButton,
+  ButtonDefault,
   ButtonLoginCriarContaBoxStyle,
   ButtonScondaryStyle,
   ButtonScondaryText,
@@ -112,5 +113,17 @@ export const ButtonLoginCriarContaBox = ({
         </AnimatedButton>
       </AnimatedBoxStyle>
     </ButtonLoginCriarContaBoxStyle>
+  );
+};
+
+export const ButtonComponentDefault = ({
+  text = "",
+  onPress,
+  statusButton = false,
+}) => {
+  return (
+    <ButtonDefault onPress={onPress} statusButton={statusButton}>
+      <ButtonStyleText statusButton={statusButton}>{text}</ButtonStyleText>
+    </ButtonDefault>
   );
 };

@@ -40,3 +40,20 @@ justify-content: center;
 align-items: center;
 
 `;
+
+export const CardTreinoUpdate = styled(TouchableOpacity)`
+   width: 143px;
+  height: 69px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: ${Theme.colors.white.v1};
+  ${(props) => props.selected ? "border: 2px solid #2B3C64" : null};
+
+  shadow-color: "black";
+  shadow-opacity: 0.25;
+  shadow-offset: 0px 4px;
+  shadow-radius: 4px;
+  elevation: 10;
+
+`

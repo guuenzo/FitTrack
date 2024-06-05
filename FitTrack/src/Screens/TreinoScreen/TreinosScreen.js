@@ -11,13 +11,21 @@ import FlatListComponent from "../../Components/FlatList/FlatList";
 import CardTreino, { CardAddTreino } from "../../Components/CardTreino/CardTreino";
 import { ContainerTreino } from "./style";
 import { ContainerCardTreino } from "../../Components/CardTreino/style";
+import { useNavigation } from "@react-navigation/native";
 
 
 const TreinosScreen = () => {
+  const navigation = useNavigation();
   const [treinos, setTreinos] = useState([
     { id: "A", grupo: "Peito, Triceps" }, { id: "B", grupo: "Costas" },
     { id: "C", grupo: "Peito, Triceps" }, { id: "D", grupo: "Costas" }
   ]);
+
+  async function AddTreino() {
+    navigation.navigate("PersonalizeSeusTreinos")
+
+  }
+
 
   useEffect(() => {
     return (cleanUp = () => { });
@@ -48,7 +56,7 @@ const TreinosScreen = () => {
           )
           }
         />
-        <CardAddTreino />
+        <CardAddTreino onPress={AddTreino} />
 
 
 
