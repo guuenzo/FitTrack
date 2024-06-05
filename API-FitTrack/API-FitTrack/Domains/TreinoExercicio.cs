@@ -9,7 +9,7 @@ public partial class TreinoExercicio
 
     public Guid ExercicioIdExercicio { get; set; }
 
-    public Guid IdTreinoExercicio { get; set; }
+    public Guid IdTreinoExercicio { get; set; } = Guid.NewGuid();
 
     public virtual Exercicio ExercicioIdExercicioNavigation { get; set; } = null!;
 

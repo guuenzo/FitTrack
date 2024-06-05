@@ -20,7 +20,7 @@ public partial class FitTrackBdContext : DbContext
 
     public virtual DbSet<DietaAlimento> DietaAlimentos { get; set; }
 
-    public virtual DbSet<Dietum> Dieta { get; set; }
+    public virtual DbSet<Dieta> Dieta { get; set; }
 
     public virtual DbSet<Exercicio> Exercicios { get; set; }
 
@@ -84,7 +84,7 @@ public partial class FitTrackBdContext : DbContext
                 .HasConstraintName("Dieta_Alimento_Dieta_FK");
         });
 
-        modelBuilder.Entity<Dietum>(entity =>
+        modelBuilder.Entity<Dieta>(entity =>
         {
             entity.HasKey(e => e.IdDieta).HasName("Dieta_PK");
 

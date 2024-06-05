@@ -5,7 +5,7 @@ namespace API_FitTrack.Domains;
 
 public partial class Treino
 {
-    public Guid IdTreino { get; set; }
+    public Guid IdTreino { get; set; } = Guid.NewGuid();
 
     public string NomeTreino { get; set; } = null!;
 
