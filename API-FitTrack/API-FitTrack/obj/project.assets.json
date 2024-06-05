@@ -4923,19 +4923,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\49816214857\\.nuget\\packages\\": {}
+    "C:\\Users\\kaua-\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\49816214857\\Desktop\\FitTrack\\API-FitTrack\\API-FitTrack\\API-FitTrack.csproj",
+      "projectUniqueName": "C:\\Users\\kaua-\\OneDrive\\Área de Trabalho\\Projeto Sprint5 SENAI\\FitTrack\\API-FitTrack\\API-FitTrack\\API-FitTrack.csproj",
       "projectName": "API-FitTrack",
-      "projectPath": "C:\\Users\\49816214857\\Desktop\\FitTrack\\API-FitTrack\\API-FitTrack\\API-FitTrack.csproj",
-      "packagesPath": "C:\\Users\\49816214857\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\49816214857\\Desktop\\FitTrack\\API-FitTrack\\API-FitTrack\\obj\\",
+      "projectPath": "C:\\Users\\kaua-\\OneDrive\\Área de Trabalho\\Projeto Sprint5 SENAI\\FitTrack\\API-FitTrack\\API-FitTrack\\API-FitTrack.csproj",
+      "packagesPath": "C:\\Users\\kaua-\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kaua-\\OneDrive\\Área de Trabalho\\Projeto Sprint5 SENAI\\FitTrack\\API-FitTrack\\API-FitTrack\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\49816214857\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kaua-\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4955,6 +4955,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -5027,7 +5032,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -17,7 +17,5 @@ public partial class Alimento
 
     public decimal? Gorduras { get; set; }
 
-    public Guid DietaIdDieta { get; set; }
-
-    public virtual Dieta DietaIdDietaNavigation { get; set; } = null!;
+    public virtual ICollection<DietaAlimento> DietaAlimentos { get; set; } = new List<DietaAlimento>();
 }
