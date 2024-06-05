@@ -15,8 +15,6 @@ public partial class Usuario
 
     public DateOnly? DataNascimento { get; set; }
 
-    public string Sexo { get; set; } = null!;
-
     public decimal Peso { get; set; }
 
     public decimal Altura { get; set; }
@@ -27,11 +25,9 @@ public partial class Usuario
 
     public string? CodigoRecuperacaoSenha { get; set; }
 
-    public Guid MediaIdMedia { get; set; }
+    public string? Foto { get; set; }
 
     public virtual ICollection<Dieta> Dieta { get; set; } = new List<Dieta>();
-
-    public virtual Media MediaIdMediaNavigation { get; set; } = null!;
 
     public virtual ICollection<Treino> Treinos { get; set; } = new List<Treino>();
 }

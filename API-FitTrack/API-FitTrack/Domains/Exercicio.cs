@@ -13,9 +13,7 @@ public partial class Exercicio
 
     public string GrupoMuscular { get; set; } = null!;
 
-    public int? VideoExecucao { get; set; }
-
-    public Guid MediaIdMedia { get; set; }
+    public string? VideoExecucao { get; set; }
 
     public int Repeticoes { get; set; }
 
@@ -23,9 +21,7 @@ public partial class Exercicio
 
     public int Series { get; set; }
 
-    public Guid TreinoIdTreino { get; set; }
+    public string? FotoExercicio { get; set; }
 
-    public virtual Media MediaIdMediaNavigation { get; set; } = null!;
-
-    public virtual Treino TreinoIdTreinoNavigation { get; set; } = null!;
+    public virtual ICollection<TreinoExercicio> TreinoExercicios { get; set; } = new List<TreinoExercicio>();
 }
