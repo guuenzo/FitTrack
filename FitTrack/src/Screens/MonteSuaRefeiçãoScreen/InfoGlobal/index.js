@@ -3,7 +3,7 @@ import React from "react";
 import { InfoGlobalBox, InfoGlobalBoxBottom, InfoGlobalBoxTop } from "../style";
 import { TextMABold, TextQuickSandBold } from "../../../Components/Text/style";
 import Theme from "../../../Styles/Theme";
-import { Text, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import {
   ContainerMacroTotalStyle,
   ContainerMacroValorStyle,
@@ -65,29 +65,32 @@ export const MacronutrientesRefeicaoBox = ({
   quantidadeProteinas = 50,
   quantidadeCarboidratos = 25,
   quantidadeGorduras = 25,
+  widthProteinas = 0,
+  widthCarboidratos = 0,
+  widthGorduras = 0,
 }) => {
   return (
     <MacrosBoxStyle>
       <MacroBoxIndividual
         quantidadeMacro={quantidadeProteinas}
         macro="Proteínas"
-        width={50}
+        width={widthProteinas}
       />
       <MacroBoxIndividual
         quantidadeMacro={quantidadeCarboidratos}
         macro="Carboidratos"
-        width={10}
+        width={widthCarboidratos}
       />
       <MacroBoxIndividual
         quantidadeMacro={quantidadeGorduras}
         macro="Gorduras"
-        width={5}
+        width={widthGorduras}
       />
     </MacrosBoxStyle>
   );
 };
 
-const MacroBoxIndividual = ({ quantidadeMacro = 25, width, macro }) => {
+const MacroBoxIndividual = ({ quantidadeMacro = 25, width = 0, macro }) => {
   return (
     <MacroBoxIndividualStyle>
       <MacroBoxIndividualLabel>
@@ -107,7 +110,7 @@ const MacroBoxIndividual = ({ quantidadeMacro = 25, width, macro }) => {
   );
 };
 
-const ContainerMacroTotal = ({ width = 40, macro = "Proteina" }) => {
+const ContainerMacroTotal = ({ width = 0, macro = "Proteina" }) => {
   return (
     <ContainerMacroTotalStyle>
       <ContainerMacroValorStyle width={width} macro={macro} />

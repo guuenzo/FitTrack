@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   BlurViewComponent,
@@ -128,17 +128,82 @@ export const InputData = ({
 
 export const DropDownComponent = ({
   data = [
-    { label: "Item 1", value: "1" },
-    { label: "Item 2", value: "2" },
-    { label: "Item 3", value: "3" },
-    { label: "Item 4", value: "4" },
-    { label: "Item 5", value: "5" },
-    { label: "Item 6", value: "6" },
-    { label: "Item 7", value: "7" },
-    { label: "Item 8", value: "8" },
+    {
+      id: "1",
+      nome: "Banana",
+      pesoRefeicao: 100,
+      kcal: 89,
+      proteinas: 81.1,
+      carboidratos: 23,
+      gorduras: 0.3,
+    },
+    {
+      id: "2",
+      nome: "Maçã",
+      pesoRefeicao: 100,
+      kcal: 52,
+      proteinas: 0.3,
+      carboidratos: 14,
+      gorduras: 0.2,
+    },
+    {
+      id: "3",
+      nome: "Pera",
+      pesoRefeicao: 100,
+      kcal: 57,
+      proteinas: 0.4,
+      carboidratos: 15,
+      gorduras: 0.1,
+    },
+    {
+      id: "4",
+      nome: "Uva",
+      pesoRefeicao: 100,
+      kcal: 69,
+      proteinas: 0.7,
+      carboidratos: 18,
+      gorduras: 0.2,
+    },
+    {
+      id: "5",
+      nome: "Laranja",
+      pesoRefeicao: 100,
+      kcal: 47,
+      proteinas: 0.9,
+      carboidratos: 12,
+      gorduras: 0.1,
+    },
+    {
+      id: "6",
+      nome: "Morango",
+      pesoRefeicao: 100,
+      kcal: 32,
+      proteinas: 0.7,
+      carboidratos: 8,
+      gorduras: 0.3,
+    },
+    {
+      id: "7",
+      nome: "Abacaxi",
+      pesoRefeicao: 100,
+      kcal: 50,
+      proteinas: 0.5,
+      carboidratos: 13,
+      gorduras: 0.1,
+    },
+    {
+      id: "8",
+      nome: "Melancia",
+      pesoRefeicao: 100,
+      kcal: 30,
+      proteinas: 0.6,
+      carboidratos: 8,
+      gorduras: 0.2,
+    },
   ],
+  addAlimento = () => {},
 }) => {
-  const [value, setValue] = useState(null);
+  const [item, setItem] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
 
   return (
@@ -153,17 +218,17 @@ export const DropDownComponent = ({
       inputSearchStyle={styles.inputSearchStyle}
       iconStyle={styles.iconStyle}
       data={data}
-      search
       maxHeight={300}
-      labelField="label"
-      valueField="value"
+      labelField="nome"
+      valueField="id"
       placeholder={!isFocus ? "Encontre um alimento" : "..."}
       searchPlaceholder="Pesquisar..."
-      value={value}
+      value={item}
       onFocus={() => setIsFocus(true)}
       onBlur={() => setIsFocus(false)}
       onChange={(item) => {
-        setValue(item.value);
+        setItem(item);
+        addAlimento(item);
         setIsFocus(false);
       }}
       renderLeftIcon={() => (

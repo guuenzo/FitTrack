@@ -100,7 +100,7 @@ export const IndiceMacroBox = styled(View)`
 
 export const IndiceMacro = styled(View)`
   width: 100%;
-  height: ${(props) => (props.height ? `${props.height}%` : "50%")};
+  height: ${(props) => (props.height ? `${props.height}%` : "0%")};
   border-radius: 10px;
   background-color: ${(props) =>
     props.macro === "Proteina"

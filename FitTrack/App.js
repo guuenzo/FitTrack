@@ -12,7 +12,7 @@ import {
   Quicksand_700Bold,
 } from "@expo-google-fonts/quicksand";
 import { Montserrat_700Bold } from "@expo-google-fonts/montserrat";
-import Routes from "./src/Routes/routes";
+import Routes from "./src/Routes/Routes"
 
 const App = () => {
   //retorna se o tema do dispositivo é dark ou light. Possíveis retornos do método: dark, light, null, undefined
@@ -37,7 +37,7 @@ const App = () => {
     return null;
   }
 
-  return <Routes />;
+  return <Routes/>;
 };
 
 export default App;

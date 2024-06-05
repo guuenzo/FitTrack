@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BotaoExcluir,
   CardStyle,
@@ -85,42 +85,45 @@ const CardInfoRefeicao = ({
 };
 
 const CardMacros = ({
-  quantidadeProteinas = 25,
-  quantidadeCarboidratos = 25,
-  quantidadeGorduras = 25,
+  proteinas = 25,
+  carboidratos = 25,
+  gorduras = 25,
+  heightProteina = 0,
+  heightCarboidrato = 0,
+  heightGordura = 0,
 }) => {
   return (
     <InfoRefeicaoBoxMacros>
       <MacroBox>
         <IndiceMacroBox>
           {/* fazer lógica para altura se equivalente a porcentagem do macronutriente dentro da refeição/alimento */}
-          <IndiceMacro height={20} macro={"Proteina"} />
+          <IndiceMacro height={heightProteina} macro={"Proteina"} />
         </IndiceMacroBox>
         <MacroTextBox>
           <TextMABold fontSize={"14px"} color={Theme.colors.secondaryScale.V1}>
-            {quantidadeProteinas} g
+            {proteinas} g
           </TextMABold>
           <TextQuickSandBold>Proteínas</TextQuickSandBold>
         </MacroTextBox>
       </MacroBox>
       <MacroBox>
         <IndiceMacroBox>
-          <IndiceMacro height={80} macro={"Carboidrato"} />
+          <IndiceMacro height={heightCarboidrato} macro={"Carboidrato"} />
         </IndiceMacroBox>
         <MacroTextBox>
           <TextMABold color={Theme.colors.secondaryScale.V1}>
-            {quantidadeCarboidratos} g
+            {carboidratos} g
           </TextMABold>
           <TextQuickSandBold>Carboidratos</TextQuickSandBold>
         </MacroTextBox>
       </MacroBox>
       <MacroBox>
         <IndiceMacroBox>
-          <IndiceMacro height={7} macro={"Gordura"} />
+          <IndiceMacro height={heightGordura} macro={"Gordura"} />
         </IndiceMacroBox>
         <MacroTextBox>
           <TextMABold color={Theme.colors.secondaryScale.V1}>
-            {quantidadeGorduras} g
+            {gorduras} g
           </TextMABold>
           <TextQuickSandBold>Gorduras</TextQuickSandBold>
         </MacroTextBox>
@@ -130,15 +133,18 @@ const CardMacros = ({
 };
 
 const CardRefeicao = ({
-  nome = "Lasanha",
+  nome = "Default",
   pesoRefeicao = 100,
   kcal = 100,
-  quantidadeProteinas = 25,
-  quantidadeCarboidratos = 25,
-  quantidadeGorduras = 25,
+  proteinas = 25,
+  carboidratos = 25,
+  gorduras = 25,
   onPress,
   onPressDeletar,
   isRefeicao = false,
+  heightProteina = 0,
+  heightCarboidrato = 0,
+  heightGordura = 0,
 }) => {
   return (
     //isLast: se for o último card de um flatList, aplica 50px de margin bottom, ao invés de 25px
@@ -151,9 +157,12 @@ const CardRefeicao = ({
         isRefeicao={isRefeicao}
       />
       <CardMacros
-        quantidadeCarboidratos={quantidadeCarboidratos}
-        quantidadeGorduras={quantidadeGorduras}
-        quantidadeProteinas={quantidadeProteinas}
+        heightProteina={heightProteina}
+        heightCarboidrato={heightCarboidrato}
+        heightGordura={heightGordura}
+        carboidratos={carboidratos}
+        gorduras={gorduras}
+        proteinas={proteinas}
       />
     </CardStyle>
   );
