@@ -1,25 +1,13 @@
 import styled from "styled-components";
 import Theme from "../../Styles/Theme";
+import { TouchableOpacity } from "react-native";
 
-export const LeftArrowAndXStyle = styled.View`
-  width: 100%;
+export const LeftArrowAndXStyle = styled(TouchableOpacity)`
+  width: max-content;
   height: 30px;
   border-radius: 30px;
-  flex-direction: row;
   margin: ${(props) => props.fieldMargin || "0px"};
-  align-items: center;
-  justify-content: center;
-  background-color: red;
+  align-self: flex-start;
+  
 `;
 
-export const LeftArrowAndXStyleCamera = styled.TouchableOpacity`
-  padding: 10px;
-  margin: 10px;
-  border-radius: 10px;
-  top: 0px;
-  left: 0px;
-  width: auto;
-  height: auto;
-  position: relative;
-  background-color: ${Theme.colors.white.v1};
-`;

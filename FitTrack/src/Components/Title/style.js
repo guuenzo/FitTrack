@@ -8,3 +8,7 @@ export const TitleStyle = styled(Text)`
   font-size: 22px;
   margin: 25px 0 0 0;
 `;
+
+export const TitleLogins = styled(TitleStyle)`
+  color: ${Theme.colors.white.v1};
+`;

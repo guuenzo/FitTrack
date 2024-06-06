@@ -32,9 +32,11 @@ export const LinearGradientTelasIniciais = styled(LinearGradient).attrs({
 
 export const GridLayout = styled(View)`
   width: 90%;
-  height: 100%;
+  height: 90%;
   align-self: center;
-  background-color: transparent;
+  padding-top: 31px;
+ 
+  
 `;
 
 export const MainContent = styled(View)`
@@ -50,7 +52,7 @@ export const MainContent = styled(View)`
 export const InputBox = styled(View)`
   width: 100%;
   height: ${(props) => props.fieldHeight || "max-content"};
-  /* background-color: red; */
+  background-color: none;
   gap: ${(props) => props.gap || "0px"};
   align-items: ${(props) => props.fieldAlignItems || "stretch"};
   justify-content: ${(props) => props.fieldJustifyContent || "flex-start"};
