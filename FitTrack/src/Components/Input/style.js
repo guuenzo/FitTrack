@@ -23,6 +23,14 @@ export const InputStyle = styled(TextInput).attrs({
   text-decoration: none;
 `;
 
+export const InputFormStyle = styled(InputStyle).attrs({
+  placeholderTextColor: Theme.colors.secondaryScale.V1,
+})`
+  height: 40px;
+  border: 1px solid ${Theme.colors.secondaryScale.V1};
+  color: ${Theme.colors.secondaryScale.V1};
+`;
+
 export const LinearGradientInputView = styled(LinearGradient).attrs({
   start: { x: -1, y: -0.3 },
   end: { x: 1.1, y: 1.3 },

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   GridLayout,
@@ -21,12 +21,13 @@ import { ModalAlimentacao } from "../../Components/Modal/Modal";
 const MonteSuaRefeiçãoScreen = () => {
   const heightStatusBar = StatusBar.currentHeight;
 
+  const [nomeRefeicao, setNomeRefeicao] = useState("Jantar");
+
   const [exibeModal, setExibeModal] = useState(false);
 
   const [alimentos, setAlimentos] = useState([]);
 
   const [refeicao, setRefeicao] = useState({
-    nomeRefeicao: "Jantar",
     alimentos: [],
   });
 
@@ -116,15 +117,26 @@ const MonteSuaRefeiçãoScreen = () => {
       <MainContentScroll>
         <GridLayout>
           <MainContent>
+            {exibeModal && (
+              <ModalAlimentacao
+                setExibeModal={setExibeModal}
+                exibeModal={exibeModal}
+                setTexto={setNomeRefeicao}
+                texto={nomeRefeicao}
+                // setTexto={setNomeRefeicao}
+              />
+            )}
+
             <LeftArrowAOrXComponent
               isBlue
               fieldMargin={`${heightStatusBar + 20}px 0 0 0`}
             />
-            <Title fieldMargin={"0 0 30px 0"} text={"Monte sua dieta"} />
+            <Title fieldMargin={"0 0 30px 0"} text={"Monte sua refeição"} />
 
             <DropDownComponent addAlimento={addAlimentoARefeicao} />
 
             <InfoGlobalBoxComponent
+              nomeRefeicao={nomeRefeicao}
               onPressAtualizarNome={atualizarNomeRefeicao}
               pesoRefeicao={calcularQuantidadeMacrosRefeicao("pesorefeicao")}
               caloriasRefeicao={calcularQuantidadeMacrosRefeicao("calorias")}
@@ -185,8 +197,6 @@ const MonteSuaRefeiçãoScreen = () => {
                 />
               )}
             />
-
-            {exibeModal && <ModalAlimentacao exibeModal={exibeModal} />}
 
             <View style={{ marginBottom: 80, marginTop: 30, gap: 30 }}>
               <ButtonComponentDefault

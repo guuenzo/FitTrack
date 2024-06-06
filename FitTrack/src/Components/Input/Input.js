@@ -4,6 +4,7 @@ import {
   BlurViewComponent,
   InputContainer,
   InputDataView,
+  InputFormStyle,
   InputStyle,
   LinearGradientInputView,
 } from "./style";
@@ -74,7 +75,14 @@ export const InputDefault = ({
   keyboardType = "default",
   disabled = false,
 }) => {
-  return <InputStyle onChangeText={onChangeText} value={value} />;
+  return (
+    <InputFormStyle
+      placeholder={placeholder}
+      keyboardType={keyboardType}
+      onChangeText={onChangeText}
+      value={value}
+    />
+  );
 };
 
 export const InputData = ({
