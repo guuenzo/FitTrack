@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Theme from "../../Styles/Theme";
-import { SafeAreaView, TouchableOpacity, View } from "react-native";
+import { Image, SafeAreaView, TouchableOpacity, View } from "react-native";
 
 
 
@@ -47,6 +47,7 @@ export const CardTreinoUpdate = styled(TouchableOpacity)`
   align-items: center;
   justify-content: center;
   border-radius: 10px;
+  margin-left: 19px;
   background-color: ${Theme.colors.white.v1};
   ${(props) => props.selected ? "border: 2px solid #2B3C64" : null};
 
@@ -56,4 +57,47 @@ export const CardTreinoUpdate = styled(TouchableOpacity)`
   shadow-radius: 4px;
   elevation: 10;
 
+`
+
+export const ContainerCardExercicio = styled.TouchableOpacity`
+width: 288px;
+height: 69px;
+border-radius: 8px;
+margin-bottom: 20px;
+/* border: 1px solid black; */
+flex-direction: row;
+align-items: center;
+background-color: ${Theme.colors.white.v1};
+shadow-color: "black";
+  shadow-opacity: 0.25;
+  shadow-offset: 0px 4px;
+  shadow-radius: 4px;
+elevation: 10;
+`
+
+export const ImgExercicio = styled.View`
+width: 83px;
+height: 69px;
+border-radius: 8px;
+margin-right: 20px;
+
+`
+export const ContainerCheckBox = styled.View`
+width: 20px;
+height: 20px;
+border: 1px solid red;
+border-radius: 5px;
+`
+
+export const ImgExe = styled(Image)`
+width: 100%;
+height: 100%;
+border-radius: 8px;
+`
+export const TextExercicio = styled.View`
+width: 110px;
+height: 46px;
+justify-content: center;
+margin-right: 27px;
+/* border: 1px solid green; */
 `

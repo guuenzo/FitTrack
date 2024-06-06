@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { CardAddTreinoStyle, CardTreinoStyle, CardTreinoUpdate, ContainerTreino } from './style';
+import { Image, Text } from 'react-native';
+import { CardAddTreinoStyle, CardTreinoStyle, CardTreinoUpdate, ContainerCardExercicio, ContainerCheckBox, ContainerTreino, ImgExe, ImgExercicio, TextExercicio } from './style';
 import { TextMABold, TextQuickSandBold, TextTreinoBold } from '../Text/style';
 import Theme from '../../Styles/Theme';
 import { Ionicons } from "@expo/vector-icons";
@@ -45,6 +45,24 @@ export const CardGrupoTreino = ({ onPress, grupo }) => {
         <CardTreinoUpdate onPress={onPress}>
             <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1} >{grupo}</TextMABold>
         </CardTreinoUpdate>
+
+    );
+};
+export const CardExercicio = ({ onPress, grupo, exercicio, img }) => {
+    return (
+
+        <ContainerCardExercicio onPress={onPress}>
+
+            <ImgExercicio>
+                <ImgExe source={{ uri: "https://blog.damamaefitness.com.br/wp-content/uploads/2020/07/Como-se-acostumar-a-ir-na-academia-frequentemente.jpg" }} />
+            </ImgExercicio>
+
+            <TextExercicio>
+                <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1} >{exercicio}</TextMABold>
+            </TextExercicio>
+
+            <ContainerCheckBox></ContainerCheckBox>
+        </ContainerCardExercicio>
 
     );
 };
