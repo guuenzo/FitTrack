@@ -1,10 +1,10 @@
 import React from 'react';
 import { Image, Text } from 'react-native';
-import { CardAddTreinoStyle, CardTreinoStyle, CardTreinoUpdate, ContainerCardExercicio, ContainerCheckBox, ContainerTreino, ImgExe, ImgExercicio, TextExercicio } from './style';
+import { CardAddTreinoStyle, CardTreinoStyle, CardTreinoUpdate, ContainerCardExercicio, ContainerCheckBox, ContainerTreino, ImgExe, ImgExercicio, StyledFontAwesome, TextExercicio } from './style';
 import { TextMABold, TextQuickSandBold, TextTreinoBold } from '../Text/style';
 import Theme from '../../Styles/Theme';
 import { Ionicons } from "@expo/vector-icons";
-
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 const CardTreino = ({ onPress, text }) => {
     return (
@@ -55,6 +55,7 @@ export const CardExercicio = ({ onPress, grupo, exercicio, img }) => {
 
             <ImgExercicio>
                 <ImgExe source={{ uri: "https://blog.damamaefitness.com.br/wp-content/uploads/2020/07/Como-se-acostumar-a-ir-na-academia-frequentemente.jpg" }} />
+                <StyledFontAwesome name="play" size={34} color="black" />
             </ImgExercicio>
 
             <TextExercicio>

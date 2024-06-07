@@ -4,43 +4,49 @@ import { LeftArrowAOrXComponent } from '../../Components/LeftArrowAOrX'
 import Title from '../../Components/Title/Title'
 import { ButtonComponentDefault } from '../../Components/Button/Button'
 import { ContainerPesonalizeTreino } from '../PersonalizeSeusTreinosScreen/style'
-import { ContainerExercicios } from './style'
+import { ContainerExercicios, ContainerTextGrupo, TextGrupo } from './style'
 import { CardExercicio, CardGrupoTreino } from '../../Components/CardTreino/CardTreino'
 import FlatListComponent from '../../Components/FlatList/FlatList'
 
 const SelecioneOsExerciciosScreen = () => {
   const [exercicios, setExercicios] = useState([
-    { id: 0, exercicio: "supino", grupo: "peito" },
-    { id: 1, exercicio: "supino reto", grupo: "peito" },
-    { id: 2, exercicio: "supino inclinado", grupo: "peito" },
+    { id: 0, exercicio: "supino", grupo: "Peito" },
+    { id: 1, exercicio: "supino reto", grupo: "Peito" },
+    { id: 2, exercicio: "supino inclinado", grupo: "Peito" },
     { id: 3, exercicio: "Triceps corda", grupo: "Triceps" },
     { id: 4, exercicio: "Triceps Francesa", grupo: "Triceps" },
     { id: 5, exercicio: "Triceps Testa", grupo: "Triceps" }])
-  const [grpMuscular, setGrpMuscular] = useState([
-    { id: 0, gg: "peito" },
-    { id: 1, gg: "Triceps" }])
+
+
+  const conjuntoUnico = new Set(exercicios.map(objeto => objeto["grupo"]));
+
+  // Converter o Set de volta para um array se necessário
+  const arrayUnico = [...conjuntoUnico];
+
   return (
     <ContainerPesonalizeTreino>
       <LeftArrowAOrXComponent fieldMargin={"50px 0 0 0"} />
 
       <Title text='Escolha seus exercicios' />
-      <ContainerExercicios>
+      <ContainerExercicios showsVerticalScrollIndicator={false}>
 
         <FlatListComponent
-          data={grpMuscular}
-          keyExtractor={(item) => item.id}
+          data={arrayUnico}
+          keyExtractor={(item) => item}
           renderItem={({ item }) =>
 
           (<>
-            <Title text={item.gg} />
+            <ContainerTextGrupo>
+              <TextGrupo>{item}</TextGrupo>
+            </ContainerTextGrupo>
+
 
             <FlatListComponent
               data={exercicios}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) =>
-
+              keyExtractor={(itemEx) => itemEx.id}
+              renderItem={(itemExercicio) =>
               (
-                item.grupo === "peito" && <CardExercicio exercicio={item.exercicio} />
+                itemExercicio.item.grupo === item && <CardExercicio exercicio={itemExercicio.item.exercicio} />
               )
               }
             />
@@ -55,6 +61,7 @@ const SelecioneOsExerciciosScreen = () => {
 
       <ButtonComponentDefault
         statusButton={true}
+        marginBottom={"7%"}
         text='Confirmar' />
 
 

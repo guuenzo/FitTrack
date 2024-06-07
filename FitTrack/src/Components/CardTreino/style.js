@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Theme from "../../Styles/Theme";
 import { Image, SafeAreaView, TouchableOpacity, View } from "react-native";
+import { FontAwesome } from '@expo/vector-icons';
 
 
 
@@ -75,9 +76,11 @@ shadow-color: "black";
 elevation: 10;
 `
 
-export const ImgExercicio = styled.View`
+export const ImgExercicio = styled.TouchableOpacity`
 width: 83px;
 height: 69px;
+justify-content: center;
+align-items: center;
 border-radius: 8px;
 margin-right: 20px;
 
@@ -93,7 +96,14 @@ export const ImgExe = styled(Image)`
 width: 100%;
 height: 100%;
 border-radius: 8px;
+ position: absolute;
+  z-index: 1;
 `
+export const StyledFontAwesome = styled(FontAwesome)`
+  position: absolute;
+  z-index:100000000; /* ou qualquer outro valor que você deseja */
+  opacity: 0.7;
+`;
 export const TextExercicio = styled.View`
 width: 110px;
 height: 46px;

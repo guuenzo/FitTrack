@@ -60,5 +60,6 @@ export const ToggleCriarConta = styled(View)``;
 export const ButtonDefault = styled(ButtonStyle)`
   width: 200px;
   border-radius: 20px;
+  margin-bottom: ${(props) => props.marginBottom || "0px"}
 `;
 
