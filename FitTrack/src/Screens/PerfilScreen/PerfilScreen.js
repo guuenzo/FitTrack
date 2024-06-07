@@ -26,8 +26,8 @@ const PerfilScreen = ({
       <GridLayout>
 
 
-        <TouchableOpacity onPress={()=> navigation.navigate("Login")}>
-        <Ionicons name="exit-outline" size={30} color="#C81D25" style={{ marginTop: 61, alignSelf: 'flex-end' }} />
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <Ionicons name="exit-outline" size={30} color="#C81D25" style={{ marginTop: 61, alignSelf: 'flex-end' }} />
 
         </TouchableOpacity>
         <View style={{ alignItems: 'center' }}>
@@ -48,9 +48,12 @@ const PerfilScreen = ({
 
         <View style={{ justifyContent: 'space-around', flexDirection: 'row', flexWrap: 'wrap', marginTop: 20 }}>
           <CardPerfil>
-          <MaterialCommunityIcons name="heart-pulse" size={24} color="#2B3C64" />
+            <MaterialCommunityIcons name="heart-pulse" size={24} color="#2B3C64" />
+            <View>
+              <TextMABold color={Theme.colors.secondaryScale.V1} fontSize='16px'>23.5</TextMABold>
+              <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>IMC</TextQuickSandSemiBold>
+            </View>
 
-            <TextMABold color={Theme.colors.secondaryScale.V1} fontSize='16px'>23.5</TextMABold>
           </CardPerfil>
 
 
@@ -59,7 +62,7 @@ const PerfilScreen = ({
             <MaterialIcons name="scale" size={24} color="#2B3C64" />
             <View>
               <TextMABold color={Theme.colors.secondaryScale.V1} fontSize='16px'>60.0KG</TextMABold>
-              <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>IMC</TextQuickSandSemiBold>
+              <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>Peso</TextQuickSandSemiBold>
             </View>
           </CardPerfil>
 
@@ -78,7 +81,12 @@ const PerfilScreen = ({
           <CardPerfil>
             <FontAwesome name="arrows-v" size={24} color="#2B3C64" />
 
-            <TextMABold color={Theme.colors.secondaryScale.V1} fontSize='16px'>1,7 m</TextMABold>
+
+            <View>
+              <TextMABold color={Theme.colors.secondaryScale.V1} fontSize='16px'>1,7 m</TextMABold>
+              <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>Altura</TextQuickSandSemiBold>
+            </View>
+
 
           </CardPerfil>
 
