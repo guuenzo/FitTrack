@@ -5,7 +5,7 @@ namespace API_FitTrack.Domains;
 
 public partial class TreinoExercicio
 {
-    public Guid TreinoIdTreino { get; set; }
+    public Guid TreinoIdTreino { get; set; } = Guid.NewGuid();
 
     public Guid ExercicioIdExercicio { get; set; }
 

@@ -5,7 +5,7 @@ namespace API_FitTrack.Domains;
 
 public partial class Dieta
 {
-    public Guid IdDieta { get; set; }
+    public Guid IdDieta { get; set; } = Guid.NewGuid();
 
     public string NomeDieta { get; set; } = null!;
 

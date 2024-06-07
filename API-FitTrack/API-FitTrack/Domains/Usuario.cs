@@ -5,7 +5,7 @@ namespace API_FitTrack.Domains;
 
 public partial class Usuario
 {
-    public Guid IdUsuario { get; set; }
+    public Guid IdUsuario { get; set; } = Guid.NewGuid();   
 
     public string Nome { get; set; } = null!;
 
@@ -13,17 +13,17 @@ public partial class Usuario
 
     public string? Senha { get; set; }
 
-    public DateOnly? DataNascimento { get; set; }
+    //public DateOnly? DataNascimento { get; set; }
 
-    public decimal Peso { get; set; }
+    public decimal? Peso { get; set; }
 
-    public decimal Altura { get; set; }
+    public decimal? Altura { get; set; }
 
     public string? GoogleIdAccount { get; set; }
 
     public string? Status { get; set; }
 
-    public string? CodigoRecuperacaoSenha { get; set; }
+    public int? CodigoRecuperacaoSenha { get; set; }
 
     public string? Foto { get; set; }
 
