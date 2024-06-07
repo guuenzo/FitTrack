@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const ip = "";
+const ip = " 192.168.21.56";
 
-const apiPort = "";
+const apiPort = ":4456";
 
-const apiUrlLocal = ``;
+const apiUrlLocal = `http://${ip}${apiPort}/api`;
 
 const appIdFoodDataBaseEdaman = "ab174771";
 
@@ -26,3 +26,4 @@ export const api = axios.create({
 
 export const loginResource = `/Login`;
 export const usuarioResource = `/Usuario`;
+export const recuperarSenhaResource = `/RecuperarSenha`;

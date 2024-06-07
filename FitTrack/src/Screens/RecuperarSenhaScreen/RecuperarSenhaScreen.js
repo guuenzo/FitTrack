@@ -18,7 +18,7 @@ import {
   ButtonLoginCriarContaBox,
   ButtonSecondary,
 } from "../../Components/Button/Button";
-import { api, loginResource, usuarioResource } from "../../Services/Service";
+import { api, loginResource, recuperarSenhaResource, usuarioResource } from "../../Services/Service";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { Alert, View } from "react-native";
 import { userDecodeToken } from "../../utils/StringFunctions";
@@ -30,6 +30,23 @@ import { LeftArrowAOrXComponent } from "../../Components/LeftArrowAOrX";
 const RecuperarSenhaScreen = ({
   navigation
 }) => {
+  const [email, setEmail] = useState('')
+
+
+
+  async function EnviarEmail() {
+    console.log("AAAAKA");
+    await api.post(`${recuperarSenhaResource}?email=${email}`)
+      .then(() => {
+        console.log("a");
+        // navigation.replace("VerificarCodigo")
+        
+      }).catch((error) => {
+        console.log(error);
+        alert(error)
+
+      })
+  }
   return (
     <Container>
       <LinearGradientTelasIniciais>
@@ -49,15 +66,15 @@ const RecuperarSenhaScreen = ({
           <View style={{ height: 42 }} />
           <InputComponent
             placeholder="Email"
-          // value={user.email}
-          // onChangeText={(txt) => setUser({ email: txt })}
+            value={email}
+            onChangeText={(txt) => setEmail(txt)}
           />
 
           <View style={{ marginTop: 72, alignItems: 'center' }} >
             <ButtonComponentDefault
               text="Continuar"
               statusButton={true}
-              onPress={()=> navigation.navigate("VerificarCodigo")}
+              onPress={() => EnviarEmail()}
             />
           </View>
 
