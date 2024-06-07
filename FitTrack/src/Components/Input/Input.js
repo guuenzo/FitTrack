@@ -158,7 +158,7 @@ export const DropDownComponent = ({
     {
       id: "2",
       nome: "Maçã",
-      pesoRefeicao: 100,
+      pesoRefeicao: 2,
       kcal: 52,
       proteinas: 0.3,
       carboidratos: 14,

@@ -1,5 +1,5 @@
 import { ModalContent, ModalStyle } from "./style";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Portal } from "react-native-paper";
 import Title from "../Title/Title";
 import { ButtonComponentDefault, ButtonSecondary } from "../Button/Button";
@@ -12,19 +12,19 @@ export const ModalAlimentacao = ({
   setExibeModal,
   titulo = "Dê um nome para sua refeição:",
   setTexto,
-  texto = "" || 0,
+  texto = "",
   isEditName = true,
+  alterarPesoAlimento = () => {},
 }) => {
   const [textoState, setTextoState] = useState(texto);
   const hideModal = () => setExibeModal(false);
-  const containerStyle = { backgroundColor: "white", padding: 20 };
+
+  useEffect(() => {
+    return (cleanUp = () => {});
+  }, [textoState]);
   return (
     <Portal>
-      <ModalStyle
-        visible={exibeModal}
-        onDismiss={hideModal}
-        contentContainerStyle={containerStyle}
-      >
+      <ModalStyle visible={exibeModal} onDismiss={hideModal}>
         <ModalContent gap={"50px"} aligItems={"center"}>
           {/* <View style={{}}> */}
           <Title
@@ -48,8 +48,13 @@ export const ModalAlimentacao = ({
               statusButton
               text="Salvar"
               onPress={() => {
-                setTexto(textoState);
-                setExibeModal(false);
+                if (isEditName) {
+                  setTexto(textoState);
+                  setExibeModal(false);
+                } else {
+                  alterarPesoAlimento(textoState);
+                  setExibeModal(false);
+                }
               }}
             />
             <ButtonSecondary

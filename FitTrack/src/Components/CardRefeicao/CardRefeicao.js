@@ -37,8 +37,9 @@ const CardInfoRefeicao = ({
   //valida caso o card seja usado para exibir uma refeição ou um alimento
   isRefeicao = false,
   hasImage = false,
-  onPressDeletar,
+  onPressDeletar = () => {},
   isEditGramas = false,
+  onPressEditar = () => {},
 }) => {
   return (
     <InfoRefeicaoBoxNomeECalorias>
@@ -76,6 +77,7 @@ const CardInfoRefeicao = ({
               </TextQuickSandBold>
               {isEditGramas && (
                 <TouchableOpacity
+                  onPress={onPressEditar}
                   style={{
                     alignItems: "center",
                     justifyContent: "center",
@@ -170,11 +172,13 @@ const CardRefeicao = ({
   hasImage,
   isEditGramas,
   isClickable = false,
+  onPressEditar = () => {},
 }) => {
   return (
     //isLast: se for o último card de um flatList, aplica 50px de margin bottom, ao invés de 25px
-     <CardStyle isClickable={isClickable} isLast={false} onPress={onPress}>
+    <CardStyle isClickable={isClickable} isLast={false} onPress={onPress}>
       <CardInfoRefeicao
+        onPressEditar={onPressEditar}
         isEditGramas={isEditGramas}
         hasImage={hasImage}
         onPressDeletar={onPressDeletar}

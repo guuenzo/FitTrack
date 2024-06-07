@@ -34,6 +34,7 @@ export const ContainerMacroTotalStyle = styled(View)`
 export const ContainerMacroValorStyle = styled(ContainerMacroTotalStyle)`
   height: 100%;
   width: ${(props) => (props.width ? `${props.width}%` : "0%")};
+  max-width: 100%;
 
   background-color: ${(props) =>
     props.macro === "Proteínas"

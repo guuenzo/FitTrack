@@ -2,9 +2,14 @@ import { View } from "react-native";
 import { Modal } from "react-native-paper";
 import { styled } from "styled-components";
 
-export const ModalStyle = styled(Modal)`
+export const ModalStyle = styled(Modal).attrs({
+  contentContainerStyle: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+  },
+})`
   padding: 5%;
-  border-radius: 10px;
 `;
 
 export const ModalContent = styled(View)`

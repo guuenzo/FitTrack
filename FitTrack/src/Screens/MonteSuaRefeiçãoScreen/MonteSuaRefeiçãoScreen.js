@@ -23,7 +23,11 @@ const MonteSuaRefeiçãoScreen = () => {
 
   const [nomeRefeicao, setNomeRefeicao] = useState("Jantar");
 
+  const [alimentoSelecionado, setAlimentoSelecionado] = useState({});
+
   const [exibeModal, setExibeModal] = useState(false);
+
+  const [isEditNameModal, setIsEditNameModal] = useState(false);
 
   const [alimentos, setAlimentos] = useState([]);
 
@@ -90,13 +94,11 @@ const MonteSuaRefeiçãoScreen = () => {
           : 0;
 
       case "pesorefeicao":
-        alimentos.forEach((alimento) => (total += alimento.pesoRefeicao));
+        alimentos.forEach((alimento) => {
+          total += alimento.pesoRefeicao;
+        });
 
-        return total !== 0
-          ? Number.isInteger(total)
-            ? total
-            : total.toFixed(1)
-          : 0;
+        return total !== 0 ? total : 0;
     }
   };
 
@@ -108,9 +110,34 @@ const MonteSuaRefeiçãoScreen = () => {
   };
 
   const atualizarNomeRefeicao = (txt) => {
+    setIsEditNameModal(true);
     setExibeModal(!exibeModal);
     setRefeicao({ ...refeicao, nomeRefeicao: txt });
   };
+
+  const alterarPesoAlimento = (pesoAlimento) => {
+    // Altera o peso do alimento
+    const novoAlimentoSelecionado = {
+      ...alimentoSelecionado,
+      pesoRefeicao: pesoAlimento,
+    };
+    setAlimentoSelecionado(novoAlimentoSelecionado);
+
+    // Remove o alimento que teve o peso alterado
+    const alimentosFiltrados = alimentos.filter(
+      (x) => x.id !== novoAlimentoSelecionado.id
+    );
+
+    console.log("novoAlimentoSelecionado", novoAlimentoSelecionado);
+    // Atualiza o estado dos alimentos com o novo alimento selecionado
+    setAlimentos([...alimentosFiltrados, novoAlimentoSelecionado]);
+  };
+
+  // useEffect(() => {
+  //   console.log("alimentoSelecionado ueh", alimentoSelecionado);
+  //   console.log("alimentos ueh", alimentos);
+  //   return (cleanUp = () => {});
+  // }, [alimentoSelecionado, alimentos]);
 
   return (
     <Container>
@@ -119,11 +146,16 @@ const MonteSuaRefeiçãoScreen = () => {
           <MainContent>
             {exibeModal && (
               <ModalAlimentacao
+                isEditName={isEditNameModal}
+                texto={
+                  isEditNameModal
+                    ? nomeRefeicao
+                    : alimentoSelecionado.pesoRefeicao
+                }
                 setExibeModal={setExibeModal}
                 exibeModal={exibeModal}
                 setTexto={setNomeRefeicao}
-                texto={nomeRefeicao}
-                // setTexto={setNomeRefeicao}
+                alterarPesoAlimento={alterarPesoAlimento}
               />
             )}
 
@@ -170,6 +202,11 @@ const MonteSuaRefeiçãoScreen = () => {
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
                 <CardRefeicao
+                  onPressEditar={() => {
+                    setIsEditNameModal(false);
+                    setAlimentoSelecionado(item);
+                    setExibeModal(true);
+                  }}
                   isEditGramas
                   heightProteina={calcularPorcentagemMacro(
                     item.pesoRefeicao,

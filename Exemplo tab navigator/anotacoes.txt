@@ -1,9 +1,0 @@
-Implementar esse código no projeto. Tentar alinhar os ícones verticalmente no barra
-
-pacotes:
-{
-react-navigation/material-bottom-tabs,
-react-navigation/native,
-react-native-paper,
-}
-
