@@ -126,3 +126,16 @@ export const ButtonLoginCriarContaBox = ({
     </ButtonLoginCriarContaBoxStyle>
   );
 };
+
+export const ButtonComponentDefault = ({
+  text = "",
+  onPress,
+  marginBottom,
+  statusButton = false,
+}) => {
+  return (
+    <ButtonDefault onPress={onPress} statusButton={statusButton} marginBottom={marginBottom}>
+      <ButtonStyleText statusButton={statusButton}>{text}</ButtonStyleText>
+    </ButtonDefault>
+  );
+};

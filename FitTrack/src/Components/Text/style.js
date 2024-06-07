@@ -8,6 +8,7 @@ export const TextMABold = styled(Text)`
   color: ${props => props.color || Theme.colors.grayScale.V9};
 `;
 
+
 export const TextQuickSandBold = styled(Text)`
   font-family: ${Theme.fonts.quicksand.Quicksand_700Bold};
   font-size: ${(props) => props.fontSize || "10px"};

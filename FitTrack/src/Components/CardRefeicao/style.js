@@ -107,6 +107,6 @@ export const IndiceMacro = styled(View)`
     props.macro === "Proteina"
       ? Theme.colors.green.v1
       : props.macro === "Carboidrato"
-      ? Theme.colors.yellow.v1
-      : Theme.colors.purple.v1};
+        ? Theme.colors.yellow.v1
+        : Theme.colors.purple.v1};
 `;
