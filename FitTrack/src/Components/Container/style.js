@@ -15,7 +15,6 @@ export const Container = styled(SafeAreaView)`
 `;
 
 export const MainContentScroll = styled(ScrollView)`
-  
   background-color: ${Theme.colors.white.v2};
 `;
 
@@ -32,11 +31,10 @@ export const LinearGradientTelasIniciais = styled(LinearGradient).attrs({
 
 export const GridLayout = styled(View)`
   width: 90%;
-  height: 90%;
+  height: ${(props) => props.height || "90%"};
   align-self: center;
   background-color: transparent;
-  padding-top: 31px;
-  
+  padding: ${(props) => props.padding || "31px 0 0 0"};
 `;
 
 export const MainContent = styled(View)`
@@ -47,7 +45,6 @@ export const MainContent = styled(View)`
   align-items: center;
   justify-content: center;
   gap: ${(props) => props.gap || "0px"};
-  
 `;
 
 export const InputBox = styled(View)`

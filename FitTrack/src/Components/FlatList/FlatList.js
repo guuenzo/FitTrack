@@ -1,6 +1,13 @@
 import { FlatListStyle } from "./style";
 
-const FlatListComponent = ({ data, renderItem, numColumns, keyExtractor, style, contentContainerStyle }) => {
+const FlatListComponent = ({
+  data,
+  renderItem,
+  numColumns,
+  keyExtractor,
+  style,
+  contentContainerStyle,
+}) => {
   return (
     <FlatListStyle
       style={style}

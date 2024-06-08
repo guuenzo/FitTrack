@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Container,
   GridLayout,
+  GridLayoutFilipe,
   MainContent,
   MainContentScroll,
 } from "../../Components/Container/style";
@@ -44,7 +45,7 @@ const AlimentacaoScreen = () => {
   return (
     <Container>
       <MainContentScroll>
-        <GridLayout>
+        <GridLayout height="100%" padding="0">
           <MainContent>
             <Header />
 

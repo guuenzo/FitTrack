@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   Container,
   GridLayout,
+  GridLayoutFilipe,
   MainContent,
   MainContentScroll,
 } from "../../Components/Container/style";
@@ -133,25 +134,15 @@ const MonteSuaRefeiçãoScreen = () => {
     setAlimentos([...alimentosFiltrados, novoAlimentoSelecionado]);
   };
 
-  // useEffect(() => {
-  //   console.log("alimentoSelecionado ueh", alimentoSelecionado);
-  //   console.log("alimentos ueh", alimentos);
-  //   return (cleanUp = () => {});
-  // }, [alimentoSelecionado, alimentos]);
-
   return (
     <Container>
       <MainContentScroll>
-        <GridLayout>
+        <GridLayout height="100%" padding="0">
           <MainContent>
             {exibeModal && (
               <ModalAlimentacao
                 isEditName={isEditNameModal}
-                texto={
-                  isEditNameModal
-                    ? nomeRefeicao
-                    : alimentoSelecionado.pesoRefeicao
-                }
+                texto={alimentoSelecionado.pesoRefeicao}
                 setExibeModal={setExibeModal}
                 exibeModal={exibeModal}
                 setTexto={setNomeRefeicao}

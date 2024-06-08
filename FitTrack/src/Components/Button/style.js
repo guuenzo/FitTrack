@@ -13,11 +13,6 @@ export const ButtonStyle = styled(TouchableOpacity)`
   justify-content: center;
 `;
 
-export const ButtonDefault = styled(ButtonStyle)`
-  width: 200px;
-  border-radius: 20px;
-`;
-
 export const ButtonStyleText = styled(Text)`
   color: ${Theme.colors.white.v1};
   font-family: ${Theme.fonts.quicksand.Quicksand_700Bold};
@@ -67,6 +62,5 @@ export const ToggleCriarConta = styled(View)``;
 export const ButtonDefault = styled(ButtonStyle)`
   width: 200px;
   border-radius: 20px;
-  margin-bottom: ${(props) => props.marginBottom || "0px"}
+  margin-bottom: ${(props) => props.marginBottom || "0px"};
 `;
-

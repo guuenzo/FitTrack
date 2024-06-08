@@ -28,18 +28,6 @@ export const ButtonComponent = ({
   );
 };
 
-export const ButtonComponentDefault = ({
-  text = "",
-  onPress,
-  statusButton = false,
-}) => {
-  return (
-    <ButtonDefault onPress={onPress} statusButton={statusButton}>
-      <ButtonStyleText statusButton={statusButton}>{text}</ButtonStyleText>
-    </ButtonDefault>
-  );
-};
-
 export const ButtonSecondary = ({
   textButton = "Esqueceu sua senha ?",
   onPress,
@@ -134,7 +122,11 @@ export const ButtonComponentDefault = ({
   statusButton = false,
 }) => {
   return (
-    <ButtonDefault onPress={onPress} statusButton={statusButton} marginBottom={marginBottom}>
+    <ButtonDefault
+      onPress={onPress}
+      statusButton={statusButton}
+      marginBottom={marginBottom}
+    >
       <ButtonStyleText statusButton={statusButton}>{text}</ButtonStyleText>
     </ButtonDefault>
   );
