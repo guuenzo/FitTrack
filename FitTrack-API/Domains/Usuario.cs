@@ -26,6 +26,7 @@ public partial class Usuario
     public int? CodigoRecuperacaoSenha { get; set; }
 
     public string? Foto { get; set; }
+    public string? BlobNameFoto { get; set; }
 
     public virtual ICollection<Dieta> Dieta { get; set; } = new List<Dieta>();
 

@@ -13,8 +13,8 @@ namespace API_FitTrack.Interfaces
 
         bool AlterarSenha(string email, string senhaNova);
 
-        public void AtualizarFoto(Guid id, string novaUrlFoto);
+        Task AtualizarFoto(Guid id, Usuario user);
 
-        public Usuario AtualizarDadosPerfil(Guid id, AlterarDadosPerfilViewModel usuario);
+        Usuario AtualizarDadosPerfil(Guid id, AlterarDadosPerfilViewModel usuario);
     }
 }

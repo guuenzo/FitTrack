@@ -112,8 +112,9 @@ CREATE TABLE Usuario
     altura DECIMAL (4,2) NULL ,
     google_id_account VARCHAR (255) ,
     status VARCHAR (15) ,
-    codigo_recuperacao_senha VARCHAR (4) ,
-    Media_id_media UNIQUEIDENTIFIER NOT NULL
+    codigo_recuperacao_senha int NULL ,
+	foto text NOT NULL,
+	blobNameFoto text NULL
 )
 GO
 

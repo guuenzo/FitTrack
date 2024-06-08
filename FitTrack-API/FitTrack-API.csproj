@@ -7,6 +7,10 @@
     <RootNamespace>FitTrack_API</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Controllers\UsuarioControlleer.cs" />
+  </ItemGroup>
+
 
 <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.20.0" />

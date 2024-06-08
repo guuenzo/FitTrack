@@ -55,12 +55,9 @@ namespace WebAPI.Controllers
         {
             try
             {
-                var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == email);
+                var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == email) ?? throw new Exception("Usuario nao encontrado");
 
-                if (user == null)
-                {
-                    return NotFound("Usuario nao encontrado");
-                }
+               
                 if (user.CodigoRecuperacaoSenha != codigo)
                 {
                     return BadRequest("Codigo de recupercao invalido");

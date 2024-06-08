@@ -3,6 +3,7 @@ using API_FitTrack.Domains;
 using API_FitTrack.Interfaces;
 using API_FitTrack.Utils;
 using API_FitTrack.ViewModels;
+using WebAPI.Utils.BlobStorage;
 
 namespace API_FitTrack.Repositories
 {
@@ -33,17 +34,21 @@ namespace API_FitTrack.Repositories
             }
         }
 
-        public void AtualizarFoto(Guid id, string novaUrlFoto)
+        public async Task AtualizarFoto(Guid id, Usuario user)
         {
             try
             {
-                Usuario usuarioBuscado = ctx.Usuarios.FirstOrDefault(x => x.IdUsuario == id)!;
+                Usuario usuarioBuscado = ctx.Usuarios.FirstOrDefault(x => x.IdUsuario == id)! ?? throw new Exception("Usuário não encontrado!");
 
-                if (usuarioBuscado != null)
+                if (usuarioBuscado.BlobNameFoto != null)
                 {
-                    usuarioBuscado.Foto = novaUrlFoto;
+                    await AzureBlobStorageHelper.DeleteBlobAsync(usuarioBuscado.BlobNameFoto);
                 }
 
+                usuarioBuscado.Foto = user.Foto;
+                usuarioBuscado.BlobNameFoto = user.BlobNameFoto;
+
+                ctx.Usuarios.Update(usuarioBuscado!);
                 ctx.SaveChanges();
             }
             catch (Exception)
@@ -56,7 +61,19 @@ namespace API_FitTrack.Repositories
         {
             try
             {
-                return ctx.Usuarios.FirstOrDefault(x => x.IdUsuario == id)!;
+                return ctx.Usuarios.Select(u => new Usuario
+                {
+
+                    IdUsuario = u.IdUsuario,
+                    Email = u.Email,
+                    Nome = u.Nome,
+                    Foto = u.Foto,
+                    Peso = u.Peso,
+                    Altura = u.Altura,
+                    Status = u.Status,
+
+
+                }).FirstOrDefault(x => x.IdUsuario == id)! ?? throw new Exception("Usuário não encontrado!");
             }
             catch (Exception)
             {
@@ -68,7 +85,22 @@ namespace API_FitTrack.Repositories
         {
             try
             {
-                usuario.Senha = Criptografia.GerarHash(usuario.Senha);
+                Usuario usuarioBuscado = ctx.Usuarios.FirstOrDefault(x => x.Email == usuario.Email)!;
+                bool emailEValido = EmailValidator.IsValidEmail(usuario.Email);
+
+                if (usuarioBuscado != null)
+                {
+                    throw new Exception("Já existe um usuário com esse email.");
+                }
+
+                if (!emailEValido)
+                {
+                    throw new Exception("O E-mail está em um formato inválido!");
+                }
+
+
+
+                usuario.Senha = Criptografia.GerarHash(usuario.Senha!);
                 usuario.Foto = "https://blobvitalhubg16enzo.blob.core.windows.net/containerfittrack/default_image.png";
                 ctx.Add(usuario);
                 ctx.SaveChanges();
@@ -83,6 +115,7 @@ namespace API_FitTrack.Repositories
         {
             try
             {
+                //retorna null se nao achar o usuario
                 var user = ctx.Usuarios.Select(u => new Usuario
                 {
                     IdUsuario = u.IdUsuario,
@@ -90,11 +123,10 @@ namespace API_FitTrack.Repositories
                     Senha = u.Senha,
                     Nome = u.Nome,
                 }).FirstOrDefault
-                (x => x.Email == email);
+                (x => x.Email == email) ?? throw new Exception("Usuário não encontrado!");
 
-                if (user == null) return null!;
 
-                if (!Criptografia.CompararHash(senha, user.Senha!)) return null!;
+                if (!Criptografia.CompararHash(senha, user.Senha!)) throw new Exception("Usuário não encontrado!");
 
                 return user;
             }

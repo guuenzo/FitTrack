@@ -73,7 +73,7 @@ builder.Services.AddSwaggerGen(options =>
         Description = "Backend API",
         Contact = new OpenApiContact
         {
-            Name = "Senai Inform�tica"
+            Name = "Senai Informática"
         }
     });
 
