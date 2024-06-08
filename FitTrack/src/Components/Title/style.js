@@ -9,3 +9,7 @@ export const TitleStyle = styled(Text)`
   margin: ${(props) => props.fieldMargin || "25px 0 0 0"};
   text-align: ${(props) => props.textAling || "start"};
 `;
+
+export const TitleLogins = styled(TitleStyle)`
+  color: ${Theme.colors.white.v1};
+`;

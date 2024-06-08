@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import { Button } from "react-native-paper";
-import styled from "styled-components";
+import {styled} from "styled-components";
 import Theme from "../../Styles/Theme";
 import Animated from "react-native-reanimated";
 

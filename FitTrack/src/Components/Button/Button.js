@@ -16,6 +16,8 @@ import {
 } from "react-native-reanimated";
 import Theme from "../../Styles/Theme";
 
+
+//Tela de login
 export const ButtonComponent = ({
   text = "",
   onPress,
@@ -25,6 +27,19 @@ export const ButtonComponent = ({
     <ButtonStyle onPress={onPress} statusButton={statusButton}>
       <ButtonStyleText statusButton={statusButton}>{text}</ButtonStyleText>
     </ButtonStyle>
+  );
+};
+
+//Botao que sera utilizado em todas as telas
+export const ButtonComponentDefault = ({
+  text = "",
+  onPress,
+  statusButton = false,
+}) => {
+  return (
+    <ButtonDefault onPress={onPress} statusButton={statusButton}>
+      <ButtonStyleText statusButton={statusButton}>{text}</ButtonStyleText>
+    </ButtonDefault>
   );
 };
 

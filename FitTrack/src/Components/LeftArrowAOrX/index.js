@@ -5,7 +5,6 @@ import { AntDesign } from "@expo/vector-icons"; //import para os ícones leftarr
 
 export const LeftArrowAOrXComponent = ({
   size = 26,
-  color = Theme.colors.secondaryScale.V1,
   isLefArrow = true,
   top,
   left,

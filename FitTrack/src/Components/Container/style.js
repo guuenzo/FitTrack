@@ -50,7 +50,7 @@ export const MainContent = styled(View)`
 export const InputBox = styled(View)`
   width: 100%;
   height: ${(props) => props.fieldHeight || "max-content"};
-  /* background-color: red; */
+  background-color: none;
   gap: ${(props) => props.gap || "0px"};
   align-items: ${(props) => props.fieldAlignItems || "stretch"};
   justify-content: ${(props) => props.fieldJustifyContent || "flex-start"};
