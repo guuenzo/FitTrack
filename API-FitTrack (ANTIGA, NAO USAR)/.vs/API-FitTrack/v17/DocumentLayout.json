@@ -1,0 +1,134 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\API-FitTrack\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEF5D580-BDFB-459D-85FC-1D7ECCB032EA}|API-FitTrack\\API-FitTrack.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\api-fittrack\\api-fittrack\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEF5D580-BDFB-459D-85FC-1D7ECCB032EA}|API-FitTrack\\API-FitTrack.csproj|solutionrelative:api-fittrack\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEF5D580-BDFB-459D-85FC-1D7ECCB032EA}|API-FitTrack\\API-FitTrack.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\api-fittrack\\api-fittrack\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEF5D580-BDFB-459D-85FC-1D7ECCB032EA}|API-FitTrack\\API-FitTrack.csproj|solutionrelative:api-fittrack\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEF5D580-BDFB-459D-85FC-1D7ECCB032EA}|API-FitTrack\\API-FitTrack.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\api-fittrack\\api-fittrack\\domains\\dieta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEF5D580-BDFB-459D-85FC-1D7ECCB032EA}|API-FitTrack\\API-FitTrack.csproj|solutionrelative:api-fittrack\\domains\\dieta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEF5D580-BDFB-459D-85FC-1D7ECCB032EA}|API-FitTrack\\API-FitTrack.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\api-fittrack\\api-fittrack\\api-fittrack.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{EEF5D580-BDFB-459D-85FC-1D7ECCB032EA}|API-FitTrack\\API-FitTrack.csproj|solutionrelative:api-fittrack\\api-fittrack.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kaua-\\OneDrive\\\u00C1rea de Trabalho\\Projeto Sprint5 SENAI\\FitTrack\\API-FitTrack\\API-FitTrack\\Domains\\Media.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kaua-\\OneDrive\\\u00C1rea de Trabalho\\Projeto Sprint5 SENAI\\FitTrack\\API-FitTrack\\API-FitTrack\\Controllers\\WeatherForecastController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Microsoft.Common.CurrentVersion.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAIwB0AAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2024-06-08T14:57:31.635Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsuarioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\API-FitTrack\\API-FitTrack\\Repositories\\UsuarioRepository.cs",
+              "RelativeDocumentMoniker": "API-FitTrack\\Repositories\\UsuarioRepository.cs",
+              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\API-FitTrack\\API-FitTrack\\Repositories\\UsuarioRepository.cs",
+              "RelativeToolTip": "API-FitTrack\\Repositories\\UsuarioRepository.cs",
+              "ViewState": "AQIAAJgAAAAAAAAAAAAqwMAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-08T14:56:46.063Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\API-FitTrack\\API-FitTrack\\Controllers\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "API-FitTrack\\Controllers\\UsuarioController.cs",
+              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\API-FitTrack\\API-FitTrack\\Controllers\\UsuarioController.cs",
+              "RelativeToolTip": "API-FitTrack\\Controllers\\UsuarioController.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-08T14:56:37.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Media.cs",
+              "DocumentMoniker": "C:\\Users\\kaua-\\OneDrive\\\u00C1rea de Trabalho\\Projeto Sprint5 SENAI\\FitTrack\\API-FitTrack\\API-FitTrack\\Domains\\Media.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\kaua-\\OneDrive\\\u00C1rea de Trabalho\\Projeto Sprint5 SENAI\\FitTrack\\API-FitTrack\\API-FitTrack\\Domains\\Media.cs",
+              "ToolTip": "C:\\Users\\kaua-\\OneDrive\\\u00C1rea de Trabalho\\Projeto Sprint5 SENAI\\FitTrack\\API-FitTrack\\API-FitTrack\\Domains\\Media.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\kaua-\\OneDrive\\\u00C1rea de Trabalho\\Projeto Sprint5 SENAI\\FitTrack\\API-FitTrack\\API-FitTrack\\Domains\\Media.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-03T19:58:10.522Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Dieta.cs",
+              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\API-FitTrack\\API-FitTrack\\Domains\\Dieta.cs",
+              "RelativeDocumentMoniker": "API-FitTrack\\Domains\\Dieta.cs",
+              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\API-FitTrack\\API-FitTrack\\Domains\\Dieta.cs",
+              "RelativeToolTip": "API-FitTrack\\Domains\\Dieta.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-03T19:58:02.064Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "API-FitTrack.csproj",
+              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\API-FitTrack\\API-FitTrack\\API-FitTrack.csproj",
+              "RelativeDocumentMoniker": "API-FitTrack\\API-FitTrack.csproj",
+              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\API-FitTrack\\API-FitTrack\\API-FitTrack.csproj",
+              "RelativeToolTip": "API-FitTrack\\API-FitTrack.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-05-27T19:33:07.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\kaua-\\OneDrive\\\u00C1rea de Trabalho\\Projeto Sprint5 SENAI\\FitTrack\\API-FitTrack\\API-FitTrack\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\kaua-\\OneDrive\\\u00C1rea de Trabalho\\Projeto Sprint5 SENAI\\FitTrack\\API-FitTrack\\API-FitTrack\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\kaua-\\OneDrive\\\u00C1rea de Trabalho\\Projeto Sprint5 SENAI\\FitTrack\\API-FitTrack\\API-FitTrack\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\kaua-\\OneDrive\\\u00C1rea de Trabalho\\Projeto Sprint5 SENAI\\FitTrack\\API-FitTrack\\API-FitTrack\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-27T17:47:54.804Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
