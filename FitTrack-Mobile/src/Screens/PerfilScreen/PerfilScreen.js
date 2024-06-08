@@ -19,9 +19,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import Theme from "../../Styles/Theme";
 import { CommonActions, useNavigation } from "@react-navigation/native";
 
-const PerfilScreen = ({
-  uriImageProfile = "https://avatars.githubusercontent.com/u/125310170?s=400&u=e379fad687a58d753af1755743dc6d57db9d001b&v=4",
-}) => {
+const PerfilScreen = () => {
   const navigation = useNavigation();
   const { userGlobalData, setUserGlobalData } = useContext(AuthContext);
 
@@ -54,11 +52,11 @@ const PerfilScreen = ({
         <View style={{ alignItems: "center" }}>
           <ImageProfile
             isHeader={false}
-            uriImageProfile={userGlobalData.foto || uriImageProfile}
+            uriImageProfile={userGlobalData.foto}
           />
 
-          <Title text={"Felipe Gois"} />
-          <TextQuickSandSemiBold>email@email.com</TextQuickSandSemiBold>
+          <Title text={userGlobalData.nome} />
+          <TextQuickSandSemiBold>{userGlobalData.email}</TextQuickSandSemiBold>
         </View>
 
         <View
@@ -89,7 +87,11 @@ const PerfilScreen = ({
           </CardPerfil>
 
           <CardPerfil>
-            <MaterialIcons name="scale" size={24} color={Theme.colors.secondaryScale.V1} />
+            <MaterialIcons
+              name="scale"
+              size={24}
+              color={Theme.colors.secondaryScale.V1}
+            />
             <View>
               <TextMABold
                 color={Theme.colors.secondaryScale.V1}
@@ -104,7 +106,11 @@ const PerfilScreen = ({
           </CardPerfil>
 
           <CardPerfil>
-            <FontAwesome name="line-chart" size={24} color={Theme.colors.secondaryScale.V1} />
+            <FontAwesome
+              name="line-chart"
+              size={24}
+              color={Theme.colors.secondaryScale.V1}
+            />
 
             <View>
               <TextMABold
@@ -120,7 +126,11 @@ const PerfilScreen = ({
             </View>
           </CardPerfil>
           <CardPerfil>
-            <FontAwesome name="arrows-v" size={24} color={Theme.colors.secondaryScale.V1} />
+            <FontAwesome
+              name="arrows-v"
+              size={24}
+              color={Theme.colors.secondaryScale.V1}
+            />
 
             <View>
               <TextMABold

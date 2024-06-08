@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Header from "../../Components/Header/Header";
 import Title from "../../Components/Title/Title";
 import {
@@ -14,6 +14,7 @@ import CardTreino, {
 import { ContainerTreino } from "./style";
 import { ContainerCardTreino } from "../../Components/CardTreino/style";
 import { useNavigation } from "@react-navigation/native";
+import { AuthContext } from "../../Contexts/AuthContext";
 
 const TreinosScreen = () => {
   const navigation = useNavigation();
@@ -24,11 +25,14 @@ const TreinosScreen = () => {
     { id: "D", grupo: "Costas" },
   ]);
 
+  const { userGlobalData, setUserGlobalData } = useContext(AuthContext);
+
   const AddTreino = async () => {
     navigation.navigate("PersonalizeSeusTreinos");
   };
 
   useEffect(() => {
+    console.log(userGlobalData)
     return (cleanUp = () => {});
   }, []);
   return (

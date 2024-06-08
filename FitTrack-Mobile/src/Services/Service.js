@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const ip = " 192.168.21.56";
+const ip = "192.168.15.61";
 
-const apiPort = ":4456";
+const apiPort = ":5179";
 
 const apiUrlLocal = `http://${ip}${apiPort}/api`;
 

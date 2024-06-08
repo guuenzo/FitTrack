@@ -21,6 +21,7 @@ import { AuthContext } from "../../Contexts/AuthContext";
 import { Alert } from "react-native";
 import { userDecodeToken } from "../../utils/StringFunctions";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -29,8 +30,8 @@ const LoginScreen = () => {
 
   const [user, setUser] = useState({
     nome: "",
-    email: "",
-    senha: "",
+    email: "fythoy@gmail.com",
+    senha: "12345",
   });
 
   const [dataNascimento, setDataNascimento] = useState(new Date());
@@ -48,29 +49,25 @@ const LoginScreen = () => {
       }
       Alert.alert("Erro", "Não foi possível realizar o login!");
     } catch (error) {
-      setUserGlobalData({
-        nome: "fefe",
-        idade: 17,
-        foto: "https://yt3.googleusercontent.com/ytc/AIdro_nTUT9kckaNnLii3NCep9r5_2ZbSWDE6E11wW0bmx1W5Y0=s160-c-k-c0x00ffffff-no-rj",
-      });
-      navigation.navigate("Main");
+      console.log(error);
+      // navigation.navigate("Main");
     }
   };
 
   const criarConta = async () => {
     try {
-      const { data, status } = await api.post(usuarioResource, {
-        ...user,
-        dataNascimento,
-      });
+      const { data, status } = await api.post(
+        `${usuarioResource + "/CadastrarUsuario"}`,
+        user
+      );
 
-      if (status === 200) {
+      if (status === 201) {
         await logar(user.email, user.senha);
         return;
       }
       Alert.alert("Erro", "Não foi possível criar a conta");
     } catch (error) {
-      navigation.navigate("Main");
+      console.log(error);
     }
   };
 
@@ -79,7 +76,7 @@ const LoginScreen = () => {
       setIsLoginForm(!isLoginForm);
       return;
     }
-    await logar();
+    await logar(user.email, user.senha);
   };
 
   const handleCriarConta = async () => {
@@ -126,9 +123,7 @@ const LoginScreen = () => {
                 onChangeText={(txt) => setUser({ ...user, senha: txt })}
               />
 
-              {!isLoginForm ? (
-                <InputData setData={setDataNascimento} />
-              ) : (
+              {isLoginForm && (
                 <ButtonSecondary
                   onPress={() => navigation.navigate("RecuperarSenha")}
                 />

@@ -136,60 +136,7 @@ namespace API_FitTrack.Repositories
             }
         }
 
-        //public Usuario AtualizarDadosPerfil(Guid id, AlterarDadosPerfilViewModel usuario)
-        //{
-        //    try
-        //    {
-        //        Usuario usuarioBuscado = ctx.Usuarios.FirstOrDefault(x => x.IdUsuario == id) ?? throw new Exception("Usuário não encontrado!");
 
-
-        //        //se o peso n for informado retorna oq já estava no banco
-        //        if (!usuario.Peso.HasValue || usuario.Peso == 0m)
-        //        {
-        //            usuarioBuscado.Peso = usuarioBuscado.Peso;
-        //        }
-        //        else
-        //        {
-        //            usuarioBuscado.Peso = usuario.Peso;
-        //        }
-
-        //        if (usuario.Status == null)
-        //        {
-        //            usuarioBuscado.Status = usuarioBuscado.Status;
-        //        }
-        //        else
-        //        {
-        //            usuarioBuscado.Status = usuario.Status;
-        //        }
-
-        //        if (!usuario.Altura.HasValue || usuario.Altura == 0m)
-        //        {
-        //            usuarioBuscado.Altura = usuarioBuscado.Altura;
-        //        }
-        //        else
-        //        {
-        //            usuarioBuscado.Altura = usuario.Altura;
-
-        //        }
-
-
-
-
-
-
-        //        ctx.Usuarios.Update(usuarioBuscado);
-        //        ctx.SaveChanges();
-
-
-
-
-        //        return usuarioBuscado;
-
-
-
-        //    }
-        //    catch (Exception) { throw; }
-        //}
         public Usuario AtualizarDadosPerfil(Guid id, AlterarDadosPerfilViewModel usuario)
         {
             try

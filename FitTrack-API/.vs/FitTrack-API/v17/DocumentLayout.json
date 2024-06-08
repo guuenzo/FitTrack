@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\controllers\\recuperarsenhacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:controllers\\recuperarsenhacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\utils\\blobstorage\\azureblobstoragehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:utils\\blobstorage\\azureblobstoragehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Controllers\\UsuarioControlleer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\UsuarioControlleer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\controllers\\recuperarsenhacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:controllers\\recuperarsenhacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\controllers\\treinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,8 +42,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AzureBlobStorageHelper.cs",
+              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Utils\\BlobStorage\\AzureBlobStorageHelper.cs",
+              "RelativeDocumentMoniker": "Utils\\BlobStorage\\AzureBlobStorageHelper.cs",
+              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Utils\\BlobStorage\\AzureBlobStorageHelper.cs",
+              "RelativeToolTip": "Utils\\BlobStorage\\AzureBlobStorageHelper.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-08T21:35:47.784Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-06-08T21:20:35.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UsuarioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\UsuarioRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\UsuarioRepository.cs",
+              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\UsuarioRepository.cs",
+              "RelativeToolTip": "Repositories\\UsuarioRepository.cs",
+              "ViewState": "AQIAAH8AAAAAAAAAAAAAAIoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-08T20:35:45.829Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -44,27 +91,14 @@
               "RelativeDocumentMoniker": "Controllers\\UsuarioController.cs",
               "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Controllers\\UsuarioController.cs",
               "RelativeToolTip": "Controllers\\UsuarioController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAABCAAAA",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAAABEAAABCAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-08T19:23:24.438Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UsuarioControlleer.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Controllers\\UsuarioControlleer.cs",
-              "RelativeDocumentMoniker": "Controllers\\UsuarioControlleer.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Controllers\\UsuarioControlleer.cs",
-              "RelativeToolTip": "Controllers\\UsuarioControlleer.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-08T19:23:24.293Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "TreinoController.cs",
               "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Controllers\\TreinoController.cs",
               "RelativeDocumentMoniker": "Controllers\\TreinoController.cs",
@@ -72,12 +106,11 @@
               "RelativeToolTip": "Controllers\\TreinoController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-08T19:23:24.142Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-08T19:23:24.142Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "LoginController.cs",
               "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Controllers\\LoginController.cs",
               "RelativeDocumentMoniker": "Controllers\\LoginController.cs",
@@ -85,12 +118,11 @@
               "RelativeToolTip": "Controllers\\LoginController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-08T19:23:23.939Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-08T19:23:23.939Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "ExercicioController.cs",
               "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Controllers\\ExercicioController.cs",
               "RelativeDocumentMoniker": "Controllers\\ExercicioController.cs",
@@ -98,12 +130,11 @@
               "RelativeToolTip": "Controllers\\ExercicioController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-08T19:23:23.784Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-08T19:23:23.784Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "RecuperarSenhaController.cs",
               "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Controllers\\RecuperarSenhaController.cs",
               "RelativeDocumentMoniker": "Controllers\\RecuperarSenhaController.cs",
@@ -111,8 +142,7 @@
               "RelativeToolTip": "Controllers\\RecuperarSenhaController.cs",
               "ViewState": "AQIAAC0AAAAAAAAAAAAAADwAAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-08T19:23:12.952Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-08T19:23:12.952Z"
             }
           ]
         }
