@@ -59,7 +59,7 @@ export const userDecodeToken = async (token) => {
         `${usuarioResource}/BuscarPorId?id=${idUsuario}`
       );
 
-      return data.foto;
+      return data.usuarioMidia.fotoUsuario;
     } catch (error) {}
   };
 

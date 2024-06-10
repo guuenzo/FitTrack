@@ -31,7 +31,7 @@ const LoginScreen = () => {
   const [user, setUser] = useState({
     nome: "",
     email: "fythoy@gmail.com",
-    senha: "12345",
+    senha: "1234",
   });
 
   const [dataNascimento, setDataNascimento] = useState(new Date());
@@ -88,6 +88,7 @@ const LoginScreen = () => {
   };
 
   useEffect(() => {
+
     console.log("userGlobalData", userGlobalData);
     return (cleanUp = () => {});
   }, []);

@@ -29,7 +29,7 @@ namespace FitTrack_API.Contexts
             //     // base.OnConfiguring(optionsBuilder);
 
             //     // pc de casa
-            optionsBuilder.UseSqlServer("Server=FilipeDesktop\\SQLEXPRESS; Database=FitTrackBD; User Id= sa; pwd=Xtringer28700; TrustServerCertificate=true;");
+            optionsBuilder.UseSqlServer("Server=NOTE14-SALA19; Database=FitTrackBD; User Id= sa; pwd=Senai@134; TrustServerCertificate=true;");
             base.OnConfiguring(optionsBuilder);
         }
     }

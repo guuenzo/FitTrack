@@ -32,7 +32,9 @@ const TreinosScreen = () => {
   };
 
   useEffect(() => {
+    console.log("aaaaaaaaaa");
     console.log(userGlobalData)
+    console.log("aaabbbbbbbbb");
     return (cleanUp = () => {});
   }, []);
   return (

@@ -12,12 +12,21 @@ import { useNavigation } from "@react-navigation/native";
 import Title from "../../Components/Title/Title";
 import { LeftArrowAOrXComponent } from "../../Components/LeftArrowAOrX";
 import { StatusBar, View } from "react-native";
-import { DropDownComponent } from "../../Components/Input/Input";
+import { DropDownComponent, InputDefault } from "../../Components/Input/Input";
 import InfoGlobalBoxComponent, {
   MacronutrientesRefeicaoBox,
 } from "./InfoGlobal";
 import { ButtonComponentDefault } from "../../Components/Button/Button";
 import { ModalAlimentacao } from "../../Components/Modal/Modal";
+import {
+  alimentoAserPesquisado,
+  api,
+  apiAlimentos,
+  apiUrlAlimentos,
+  appIdFoodDataBaseEdaman,
+  appKeyFoodDataBaseEdaman,
+} from "../../Services/Service";
+import axios from "axios";
 
 const MonteSuaRefeiçãoScreen = () => {
   const heightStatusBar = StatusBar.currentHeight;
@@ -35,6 +44,8 @@ const MonteSuaRefeiçãoScreen = () => {
   const [refeicao, setRefeicao] = useState({
     alimentos: [],
   });
+
+  const [alimentoBuscado, setAlimentoBuscado] = useState(null);
 
   const navigation = useNavigation();
 
@@ -134,6 +145,24 @@ const MonteSuaRefeiçãoScreen = () => {
     setAlimentos([...alimentosFiltrados, novoAlimentoSelecionado]);
   };
 
+  async function getFoodAdamamApi() {
+    const promise = await apiAlimentos.get();
+    // console.log(promise.data);
+
+    const apiAdamamResponse = promise.data._links.next.href;
+
+    const realApi = axios.create({
+      baseURL: apiAdamamResponse,
+    });
+
+    const realPromise = await realApi.get();
+    console.log(realPromise);
+  }
+
+  useEffect(() => {
+    getFoodAdamamApi();
+  }, []);
+
   return (
     <Container>
       <MainContentScroll>
@@ -156,7 +185,7 @@ const MonteSuaRefeiçãoScreen = () => {
             />
             <Title fieldMargin={"0 0 30px 0"} text={"Monte sua refeição"} />
 
-            <DropDownComponent addAlimento={addAlimentoARefeicao} />
+            <InputDefault placeholder="Procure por um alimento..."></InputDefault>
 
             <InfoGlobalBoxComponent
               nomeRefeicao={nomeRefeicao}
