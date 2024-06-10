@@ -1,5 +1,5 @@
-﻿using API_FitTrack.Contexts;
-using API_FitTrack.Utils.Mail;
+﻿using API_FitTrack.Utils.Mail;
+using FitTrack_API.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,11 +9,11 @@ namespace WebAPI.Controllers
     [ApiController]
     public class RecuperarSenhaController : ControllerBase
     {
-        private readonly FitTrackBdContext _context;
+        private readonly FitTrackContext _context;
         private readonly EmailSendingService _emailSendingService;
 
 
-        public RecuperarSenhaController(FitTrackBdContext context, EmailSendingService emailSendingService)
+        public RecuperarSenhaController(FitTrackContext context, EmailSendingService emailSendingService)
         {
             _context = context;
             _emailSendingService = emailSendingService;
@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                var user = await _context.Usuarios.FirstOrDefaultAsync(x => x.Email == email);
+                var user = await _context.Usuario.FirstOrDefaultAsync(x => x.Email == email);
 
                 if (user == null)
                 {
@@ -38,7 +38,7 @@ namespace WebAPI.Controllers
 
                 await _context.SaveChangesAsync();
 
-                await _emailSendingService.SendRecovery(user.Email, recoveryCode);
+                await _emailSendingService.SendRecovery(user.Email!, recoveryCode);
 
                 return (Ok("Código enviado com sucesso"));
             }
@@ -55,9 +55,9 @@ namespace WebAPI.Controllers
         {
             try
             {
-                var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == email) ?? throw new Exception("Usuario nao encontrado");
+                var user = await _context.Usuario.FirstOrDefaultAsync(u => u.Email == email) ?? throw new Exception("Usuario nao encontrado");
 
-               
+
                 if (user.CodigoRecuperacaoSenha != codigo)
                 {
                     return BadRequest("Codigo de recupercao invalido");

@@ -15,9 +15,9 @@ namespace WebAPI.Controllers
     {
         private readonly IUsuarioRepository _usuarioRepository;
 
-        public LoginController()
+        public LoginController(IUsuarioRepository usuarioRepository)
         {
-            _usuarioRepository = new UsuarioRepository();
+            _usuarioRepository = usuarioRepository;
         }
         //post
         [HttpPost]
@@ -26,15 +26,7 @@ namespace WebAPI.Controllers
             try
             {
                 //busca usuário por email e senha 
-                Usuario usuarioBuscado = _usuarioRepository.BuscarPorEmailESenha(usuario.Email!, usuario.Senha!);
-
-                //caso não encontre
-                if (usuarioBuscado == null)
-                {
-                    //retorna 401 - sem autorização
-                    return StatusCode(401, "Email ou senha inválidos!");
-                }
-
+                Usuario usuarioBuscado = _usuarioRepository.BuscarPorEmailESenha(usuario.Email!, usuario.Senha!) ?? throw new Exception("Email ou senha inválidos!");
 
                 //caso encontre, prossegue para a criação do token
 
@@ -44,7 +36,7 @@ namespace WebAPI.Controllers
                     new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Email!),
                     new Claim(JwtRegisteredClaimNames.Name,usuarioBuscado.Nome!),
                     new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.IdUsuario.ToString()),
-                    new Claim("role", "Usuário top da FitTrack")
+                    new Claim("role", "Comum")
                 };
 
                 //chave de segurança

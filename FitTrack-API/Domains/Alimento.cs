@@ -1,21 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace API_FitTrack.Domains;
-
-public partial class Alimento
+namespace FitTrack_API.Domains
 {
-    public Guid IdAlimento { get; set; } = Guid.NewGuid();
+    [Table("Alimento")]
+    [Index(nameof(NomeAlimento), IsUnique = true)]
+    public class Alimento
+    {
+        [Key]
+        public Guid IdAlimento { get; set; } = Guid.NewGuid();
 
-    public string NomeAlimento { get; set; } = null!;
+        [Column(TypeName = "VARCHAR(60)")]
+        [Required(ErrorMessage = "O Nome é obrigatório!")]
+        public string? NomeAlimento { get; set; }
 
-    public int Calorias { get; set; }
+        [Column(TypeName = "DECIMAL(5,2)")]
+        public decimal? Peso { get; set; }
 
-    public decimal? Proteinas { get; set; }
+        [Column(TypeName = "DECIMAL(5,2)")]
+        public decimal? Proteinas { get; set; }
 
-    public decimal? Carboidratos { get; set; }
+        [Column(TypeName = "DECIMAL(5,2)")]
+        public decimal? Calorias { get; set; }
 
-    public decimal? Gorduras { get; set; }
+        [Column(TypeName = "DECIMAL(5,2)")]
+        public decimal? Carboidratos { get; set; }
 
-    public virtual ICollection<DietaAlimento> DietaAlimentos { get; set; } = new List<DietaAlimento>();
+        [Column(TypeName = "DECIMAL(5,2)")]
+        public decimal? Gorduras { get; set; }
+    }
 }

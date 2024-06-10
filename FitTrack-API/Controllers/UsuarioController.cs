@@ -13,13 +13,13 @@ namespace WebAPI.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        private IUsuarioRepository usuarioRepository { get; set; }
+        private readonly IUsuarioRepository _usuarioRepository;
 
         private readonly EmailSendingService _emailSendingService;
 
-        public UsuarioController(EmailSendingService emailSendingService)
+        public UsuarioController(EmailSendingService emailSendingService, IUsuarioRepository usuarioRepository)
         {
-            usuarioRepository = new UsuarioRepository();
+            _usuarioRepository = usuarioRepository;
             _emailSendingService = emailSendingService;
         }
 
@@ -28,14 +28,15 @@ namespace WebAPI.Controllers
         {
             try
             {
-                Usuario usuario = new();
+                Usuario usuario = new()
+                {
+                    Nome = novoUsuario.Nome,
+                    Email = novoUsuario.Email,
+                    Senha = novoUsuario.Senha
+                };
 
-                usuario.Nome = novoUsuario.Nome!;
-                usuario.Email = novoUsuario.Email!;
-                usuario.Senha = novoUsuario.Senha;
-
-                usuarioRepository.Cadastrar(usuario);
-                await _emailSendingService.SendWelcomeEmail(usuario.Email, usuario.Nome);
+                _usuarioRepository.Cadastrar(usuario);
+                await _emailSendingService.SendWelcomeEmail(usuario.Email!, usuario.Nome!);
 
                 return StatusCode(201);
             }
@@ -51,7 +52,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                usuarioRepository.AlterarSenha(email, senha.SenhaNova!);
+                _usuarioRepository.AlterarSenha(email, senha.SenhaNova!);
 
                 return Ok("Senha alterada com sucesso !");
             }
@@ -66,7 +67,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                return Ok(usuarioRepository.BuscarPorId(id));
+                return Ok(_usuarioRepository.BuscarPorId(id));
             }
             catch (Exception ex)
             {
@@ -79,9 +80,10 @@ namespace WebAPI.Controllers
         {
             try
             {
-                Usuario userPreenchido = await AzureBlobStorageHelper.UploadImageBlobAsync(user.Arquivo!);
+                Usuario userPreenchido = new();
+                userPreenchido.UsuarioMidia = await AzureBlobStorageHelper.UploadImageBlobAsync(user.Arquivo!);
 
-                await usuarioRepository.AtualizarFoto(id, userPreenchido);
+                await _usuarioRepository.AtualizarFoto(id, userPreenchido);
 
                 return StatusCode(200);
             }
@@ -96,7 +98,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                return Ok(usuarioRepository.AtualizarDadosPerfil(idUsuario, usuario));
+                return Ok(_usuarioRepository.AtualizarDadosPerfil(idUsuario, usuario));
             }
             catch (Exception ex)
             {

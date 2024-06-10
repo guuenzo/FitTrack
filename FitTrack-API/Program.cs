@@ -1,7 +1,7 @@
-﻿using API_FitTrack.Contexts;
-using API_FitTrack.Interfaces;
+﻿using API_FitTrack.Interfaces;
 using API_FitTrack.Repositories;
 using API_FitTrack.Utils.Mail;
+using FitTrack_API.Contexts;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -105,8 +105,9 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-builder.Services.AddDbContext<FitTrackBdContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlDataBase")));
+builder.Services.AddDbContext<FitTrackContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+//options.UseSqlServer(builder.Configuration.GetConnectionString("SqlDataBase")));
 
 // Configure EmailSettings
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection(nameof(EmailSettings)));
@@ -130,6 +131,8 @@ builder.Services.AddCors(options =>
 
 // Registra a interface IExercicioRepository e sua implementa��o ExercicioRepository
 builder.Services.AddScoped<IExercicioRepository, ExercicioRepository>();
+
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 // Registra a interface ITreinoRepository e sua implementa��o TreinoRepository
 builder.Services.AddScoped<ITreinoRepository, TreinoRepository>();

@@ -1,5 +1,6 @@
 ﻿using API_FitTrack.Domains;
 using Azure.Storage.Blobs;
+using FitTrack_API.Domains;
 
 namespace WebAPI.Utils.BlobStorage
 {
@@ -8,11 +9,11 @@ namespace WebAPI.Utils.BlobStorage
         private static readonly string StringConnection = "DefaultEndpointsProtocol=https;AccountName=blobvitalhubg16enzo;AccountKey=oE4zwTcqqxKfuErbVv7o9ETdAbHzELSZDt7o60W5hQ07zfFdTU4YuZIGtOyVKRjh3E3GzJwRnAHn+AStsOUjgA==;EndpointSuffix=core.windows.net";
 
         private static readonly string ContainerName = "containerfittrack";
-        public static async Task<Usuario> UploadImageBlobAsync(IFormFile file)
+        public static async Task<UsuarioMidia> UploadImageBlobAsync(IFormFile file)
         {
             try
             {
-                Usuario usuarioUpado = new();
+                UsuarioMidia usuarioMidiaUpado = new();
                 //verifica se existe um arquivo
                 if (file != null)
                 {
@@ -35,18 +36,18 @@ namespace WebAPI.Utils.BlobStorage
                         await blobClient.UploadAsync(stream, true);
                     }
                     //retorna a uri do blob como uma string 
-                    usuarioUpado.Foto = blobClient.Uri.ToString();
+                    usuarioMidiaUpado.FotoUsuario = blobClient.Uri.ToString();
 
-                    usuarioUpado.BlobNameFoto = blobName;
-                    return usuarioUpado;
+                    usuarioMidiaUpado.BlobNameFotoUsuario = blobName;
+                    return usuarioMidiaUpado;
                 }
                 else
                 {
                     //retorna a uri de uma imagem padrao caso nenhum arquivo seja enviado
                     //usuarioUpado.Foto = "https://blobvitalhubg16enzo.blob.core.windows.net/containerfittrack/profileimage.jpg";
-                    usuarioUpado.Foto = "https://blobvitalhubg16enzo.blob.core.windows.net/containerfittrack/default_image.png";
+                    usuarioMidiaUpado!.FotoUsuario = "https://blobvitalhubg16enzo.blob.core.windows.net/containerfittrack/default_image.png";
 
-                    return usuarioUpado;
+                    return usuarioMidiaUpado;
                 }
             }
             catch (Exception)

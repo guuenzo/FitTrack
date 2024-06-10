@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\UsuarioControlleer.cs" />
+    <Compile Remove="Interfaces\Interface.cs" />
   </ItemGroup>
 
 

@@ -1,27 +1,34 @@
-﻿using API_FitTrack.Contexts;
-using API_FitTrack.Domains;
+﻿using API_FitTrack.Domains;
 using API_FitTrack.Interfaces;
 using API_FitTrack.Utils;
 using API_FitTrack.ViewModels;
+using FitTrack_API.Contexts;
+using FitTrack_API.Domains;
+using Microsoft.EntityFrameworkCore;
 using WebAPI.Utils.BlobStorage;
 
 namespace API_FitTrack.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        FitTrackBdContext ctx = new FitTrackBdContext();
+        private readonly FitTrackContext ctx;
+
+        public UsuarioRepository(FitTrackContext context)
+        {
+            ctx = context;
+        }
 
         public bool AlterarSenha(string email, string senhaNova)
         {
             try
             {
-                var usuarioBuscado = ctx.Usuarios.FirstOrDefault(x => x.Email == email);
+                var usuarioBuscado = ctx.Usuario.FirstOrDefault(x => x.Email == email);
 
                 if (usuarioBuscado == null) return false;
 
                 usuarioBuscado.Senha = Criptografia.GerarHash(senhaNova);
 
-                ctx.Update(usuarioBuscado);
+                ctx.Usuario.Update(usuarioBuscado);
 
                 ctx.SaveChanges();
 
@@ -38,17 +45,17 @@ namespace API_FitTrack.Repositories
         {
             try
             {
-                Usuario usuarioBuscado = ctx.Usuarios.FirstOrDefault(x => x.IdUsuario == id)! ?? throw new Exception("Usuário não encontrado!");
+                Usuario usuarioBuscado = ctx.Usuario.Include(x => x.UsuarioMidia).FirstOrDefault(x => x.IdUsuario == id)! ?? throw new Exception("Usuário não encontrado!");
 
-                if (usuarioBuscado.BlobNameFoto != null)
+                if (usuarioBuscado.UsuarioMidia!.BlobNameFotoUsuario != null)
                 {
-                    await AzureBlobStorageHelper.DeleteBlobAsync(usuarioBuscado.BlobNameFoto);
+                    await AzureBlobStorageHelper.DeleteBlobAsync(usuarioBuscado.UsuarioMidia!.BlobNameFotoUsuario);
                 }
 
-                usuarioBuscado.Foto = user.Foto;
-                usuarioBuscado.BlobNameFoto = user.BlobNameFoto;
+                usuarioBuscado.UsuarioMidia!.FotoUsuario = user.UsuarioMidia!.FotoUsuario;
+                usuarioBuscado.UsuarioMidia!.BlobNameFotoUsuario = user.UsuarioMidia!.BlobNameFotoUsuario;
 
-                ctx.Usuarios.Update(usuarioBuscado!);
+                ctx.Usuario.Update(usuarioBuscado!);
                 ctx.SaveChanges();
             }
             catch (Exception)
@@ -61,16 +68,28 @@ namespace API_FitTrack.Repositories
         {
             try
             {
-                return ctx.Usuarios.Select(u => new Usuario
+                return ctx.Usuario.Include(x => x.UsuarioMidia).Select(u => new Usuario
                 {
 
                     IdUsuario = u.IdUsuario,
                     Email = u.Email,
                     Nome = u.Nome,
-                    Foto = u.Foto,
                     Peso = u.Peso,
                     Altura = u.Altura,
-                    Status = u.Status,
+                    CodigoRecuperacaoSenha = u.CodigoRecuperacaoSenha,
+
+
+
+                    UsuarioMidia = new UsuarioMidia
+                    {
+                        IdUsuarioMidia = u.UsuarioMidia!.IdUsuarioMidia,
+                        FotoUsuario = u.UsuarioMidia.FotoUsuario,
+                        BlobNameFotoUsuario = u.UsuarioMidia.BlobNameFotoUsuario
+
+                    }
+
+
+
 
 
                 }).FirstOrDefault(x => x.IdUsuario == id)! ?? throw new Exception("Usuário não encontrado!");
@@ -85,8 +104,8 @@ namespace API_FitTrack.Repositories
         {
             try
             {
-                Usuario usuarioBuscado = ctx.Usuarios.FirstOrDefault(x => x.Email == usuario.Email)!;
-                bool emailEValido = EmailValidator.IsValidEmail(usuario.Email);
+                Usuario usuarioBuscado = ctx.Usuario.FirstOrDefault(x => x.Email == usuario.Email)!;
+                bool emailEValido = EmailValidator.IsValidEmail(usuario.Email!);
 
                 if (usuarioBuscado != null)
                 {
@@ -100,14 +119,21 @@ namespace API_FitTrack.Repositories
 
 
 
+                UsuarioMidia usuarioMidia = new()
+                {
+                    FotoUsuario = "https://blobvitalhubg16enzo.blob.core.windows.net/containerfittrack/default_image.png"
+                };
+
+
+                usuario.UsuarioMidia = usuarioMidia;
+
                 usuario.Senha = Criptografia.GerarHash(usuario.Senha!);
-                usuario.Foto = "https://blobvitalhubg16enzo.blob.core.windows.net/containerfittrack/default_image.png";
-                ctx.Add(usuario);
+                ctx.Usuario.Add(usuario);
                 ctx.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                throw new Exception(e.Message);
             }
         }
 
@@ -116,7 +142,7 @@ namespace API_FitTrack.Repositories
             try
             {
                 //retorna null se nao achar o usuario
-                var user = ctx.Usuarios.Select(u => new Usuario
+                var user = ctx.Usuario.Select(u => new Usuario
                 {
                     IdUsuario = u.IdUsuario,
                     Email = u.Email,
@@ -141,7 +167,7 @@ namespace API_FitTrack.Repositories
         {
             try
             {
-                Usuario usuarioBuscado = ctx.Usuarios.FirstOrDefault(x => x.IdUsuario == id) ?? throw new Exception("Usuário não encontrado!");
+                Usuario usuarioBuscado = ctx.Usuario.Include(x => x.UsuarioObjetivo).FirstOrDefault(x => x.IdUsuario == id) ?? throw new Exception("Usuário não encontrado!");
 
                 // Atualizar Peso
                 if (usuario.Peso.HasValue && usuario.Peso != 0m)
@@ -150,7 +176,7 @@ namespace API_FitTrack.Repositories
                 }
 
                 // Atualizar Status
-                usuarioBuscado.Status = usuario.Status ?? usuarioBuscado.Status;
+                usuarioBuscado.UsuarioObjetivo!.Objetivo = usuario.Status ?? usuarioBuscado.UsuarioObjetivo.Objetivo;
 
                 // Atualizar Altura
                 if (usuario.Altura.HasValue && usuario.Altura != 0m)
@@ -159,7 +185,7 @@ namespace API_FitTrack.Repositories
                 }
 
                 // Persistir mudanças no banco de dados
-                ctx.Usuarios.Update(usuarioBuscado);
+                ctx.Usuario.Update(usuarioBuscado);
                 ctx.SaveChanges();
 
                 return usuarioBuscado;

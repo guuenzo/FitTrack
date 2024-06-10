@@ -41,12 +41,12 @@ const PerfilScreen = () => {
   return (
     <Container>
       <GridLayout>
-        <TouchableOpacity onPress={logout}>
+        <TouchableOpacity style={{ width:"max-content", height:"max-content"}} onPress={logout}>
           <Ionicons
             name="exit-outline"
             size={30}
             color={Theme.colors.red.v1}
-            style={{ marginTop: 61, alignSelf: "flex-end" }}
+            style={{ marginTop: 61, alignSelf: "flex-end", width:"max-content" }}
           />
         </TouchableOpacity>
         <View style={{ alignItems: "center" }}>
@@ -67,24 +67,27 @@ const PerfilScreen = () => {
             marginTop: 20,
           }}
         >
-          <CardPerfil>
-            <MaterialCommunityIcons
-              name="heart-pulse"
-              size={24}
-              color={Theme.colors.secondaryScale.V1}
-            />
-            <View>
-              <TextMABold
+          {
+            //fazer um ternario para so exobir se tiver a altura e o peso
+            <CardPerfil>
+              <MaterialCommunityIcons
+                name="heart-pulse"
+                size={24}
                 color={Theme.colors.secondaryScale.V1}
-                fontSize="16px"
-              >
-                23.5
-              </TextMABold>
-              <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
-                IMC
-              </TextQuickSandSemiBold>
-            </View>
-          </CardPerfil>
+              />
+              <View>
+                <TextMABold
+                  color={Theme.colors.secondaryScale.V1}
+                  fontSize="16px"
+                >
+                  23.5
+                </TextMABold>
+                <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
+                  IMC
+                </TextQuickSandSemiBold>
+              </View>
+            </CardPerfil>
+          }
 
           <CardPerfil>
             <MaterialIcons

@@ -1,58 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using API_FitTrack.Contexts;
 using API_FitTrack.Domains;
 using API_FitTrack.Interfaces;
+using FitTrack_API.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace API_FitTrack.Repositories
 {
     public class ExercicioRepository : IExercicioRepository
     {
-        private readonly FitTrackBdContext _context;
+        private readonly FitTrackContext _context;
 
-        public ExercicioRepository(FitTrackBdContext context)
+        public ExercicioRepository(FitTrackContext context)
         {
             _context = context;
         }
 
+
         public void Cadastrar(Exercicio exercicio)
         {
-            _context.Exercicios.Add(exercicio);
+            _context.Exercicio.Add(exercicio);
             _context.SaveChanges();
         }
 
         public Exercicio BuscarPorId(Guid id)
         {
-            return _context.Exercicios
-                .Include(e => e.TreinoExercicios)
-                .ThenInclude(te => te.TreinoIdTreinoNavigation)
-                .FirstOrDefault(e => e.IdExercicio == id);
+            return _context.Exercicio.FirstOrDefault(e => e.IdExercicio == id)!;
         }
 
         public void Atualizar(Exercicio exercicio)
         {
-            _context.Exercicios.Update(exercicio);
+            _context.Exercicio.Update(exercicio);
             _context.SaveChanges();
         }
 
         public void Deletar(Guid id)
         {
-            var exercicio = _context.Exercicios.Find(id);
+            var exercicio = _context.Exercicio.Find(id);
             if (exercicio != null)
             {
-                _context.Exercicios.Remove(exercicio);
+                _context.Exercicio.Remove(exercicio);
                 _context.SaveChanges();
             }
         }
 
         public List<Exercicio> ListarTodos()
         {
-            return _context.Exercicios
-                .Include(e => e.TreinoExercicios)
-                .ThenInclude(te => te.TreinoIdTreinoNavigation)
-                .ToList();
+            return _context.Exercicio.ToList();
         }
     }
 }

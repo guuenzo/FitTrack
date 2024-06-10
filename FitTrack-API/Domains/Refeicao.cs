@@ -1,20 +1,20 @@
-﻿using System;
+﻿using FitTrack_API.Domains;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API_FitTrack.Domains
 {
-    [Table("Treino")]
-    public partial class Treino
+    [Table("Refeicao")]
+    public partial class Refeicao
     {
         [Key]
-        public Guid IdTreino { get; set; } = Guid.NewGuid();
+        public Guid IdRefeicao { get; set; } = Guid.NewGuid();
 
-        [Column(TypeName = "INT")]
+        [Column(TypeName = "VARCHAR(60)")]
         [Required(ErrorMessage = "O Nome é obrigatório!")]
-        public int? NomeTreino { get; set; }
-
+        public string? NomeRefeicao { get; set; }
 
 
         [ForeignKey("IdUsuario")]

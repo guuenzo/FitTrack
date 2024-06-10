@@ -1,17 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace API_FitTrack.Domains;
-
-public partial class TreinoExercicio
+namespace API_FitTrack.Domains
 {
-    public Guid TreinoIdTreino { get; set; } = Guid.NewGuid();
+    [Table("TreinoExercicio")]
+    public partial class TreinoExercicio
+    {
+        [Key]
+        public Guid IdTreinoExercicio { get; set; } = Guid.NewGuid();
 
-    public Guid ExercicioIdExercicio { get; set; }
+        [ForeignKey("IdTreino")]
+        public Treino? Treino { get; set; }
+        public Guid IdTreino { get; set; }
 
-    public Guid IdTreinoExercicio { get; set; }
 
-    public virtual Exercicio ExercicioIdExercicioNavigation { get; set; } = null!;
 
-    public virtual Treino TreinoIdTreinoNavigation { get; set; } = null!;
+        [ForeignKey("IdExercicio")]
+        public Exercicio? Exercicio { get; set; }
+        public Guid IdExercicio { get; set; }
+
+        public TreinoExercicio()
+        {
+            IdTreinoExercicio = IdTreino;
+        }
+
+    }
 }
