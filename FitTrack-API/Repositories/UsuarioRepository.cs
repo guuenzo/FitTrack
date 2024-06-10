@@ -121,6 +121,7 @@ namespace API_FitTrack.Repositories
 
                 UsuarioMidia usuarioMidia = new()
                 {
+                    IdUsuarioMidia = usuario.IdUsuario,
                     FotoUsuario = "https://blobvitalhubg16enzo.blob.core.windows.net/containerfittrack/default_image.png"
                 };
 

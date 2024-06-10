@@ -2,6 +2,8 @@
 using API_FitTrack.Repositories;
 using API_FitTrack.Utils.Mail;
 using FitTrack_API.Contexts;
+using FitTrack_API.Interfaces;
+using FitTrack_API.Repositories;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -133,6 +135,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IExercicioRepository, ExercicioRepository>();
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
+builder.Services.AddScoped<IRefeicaoRepository, RefeicaoRepository>();
 
 // Registra a interface ITreinoRepository e sua implementa��o TreinoRepository
 builder.Services.AddScoped<ITreinoRepository, TreinoRepository>();
