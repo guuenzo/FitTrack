@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, StatusBar } from "react-native";
 import React, { useState } from "react";
 import { LeftArrowAOrXComponent } from "../../Components/LeftArrowAOrX";
 import Title from "../../Components/Title/Title";
@@ -12,6 +12,8 @@ import {
 import FlatListComponent from "../../Components/FlatList/FlatList";
 
 const SelecioneOsExerciciosScreen = () => {
+  const heightStatusBar = StatusBar.currentHeight;
+  const [exeSelecionado, setExeSelecionado] = useState([{ exe: "", selecionado: false }])
   const [exercicios, setExercicios] = useState([
     { id: 0, exercicio: "supino", grupo: "Peito" },
     { id: 1, exercicio: "supino reto", grupo: "Peito" },
@@ -28,8 +30,10 @@ const SelecioneOsExerciciosScreen = () => {
 
   return (
     <ContainerPesonalizeTreino>
-      <LeftArrowAOrXComponent fieldMargin={"50px 0 0 0"} />
-
+      <LeftArrowAOrXComponent
+        isBlue
+        fieldMargin={`${heightStatusBar + 20}px 0 0 15px`}
+      />
       <Title text="Escolha seus exercicios" />
       <ContainerExercicios showsVerticalScrollIndicator={false}>
         <FlatListComponent
@@ -46,7 +50,7 @@ const SelecioneOsExerciciosScreen = () => {
                 keyExtractor={(itemEx) => itemEx.id}
                 renderItem={(itemExercicio) =>
                   itemExercicio.item.grupo === item && (
-                    <CardExercicio exercicio={itemExercicio.item.exercicio} />
+                    <CardExercicio exercicio={itemExercicio.item.exercicio} setExeSelecionado={setExeSelecionado} />
                   )
                 }
               />
@@ -59,6 +63,7 @@ const SelecioneOsExerciciosScreen = () => {
         statusButton={true}
         marginBottom={"7%"}
         text="Confirmar"
+        onPress={() => console.log(exeSelecionado)}
       />
     </ContainerPesonalizeTreino>
   );

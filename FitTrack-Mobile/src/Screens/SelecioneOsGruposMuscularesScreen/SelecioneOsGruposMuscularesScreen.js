@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, StatusBar } from "react-native";
 import React, { useState } from "react";
 import { LeftArrowAOrXComponent } from "../../Components/LeftArrowAOrX";
 import Title from "../../Components/Title/Title";
@@ -19,6 +19,8 @@ import { useNavigation } from "@react-navigation/native";
 import FlatListComponent from "../../Components/FlatList/FlatList";
 
 const SelecioneOsGruposMuscularesScreen = () => {
+  const heightStatusBar = StatusBar.currentHeight;
+
   const navigation = useNavigation();
 
   const [gruposMusculares, setGruposMusculares] = useState([
@@ -38,7 +40,10 @@ const SelecioneOsGruposMuscularesScreen = () => {
   }
   return (
     <ContainerPesonalizeTreino>
-      <LeftArrowAOrXComponent fieldMargin={"50px 0 0 0"} />
+      <LeftArrowAOrXComponent
+        isBlue
+        fieldMargin={`${heightStatusBar + 20}px 0 0 15px`}
+      />
 
       <Title text="Grupos musculares" />
 

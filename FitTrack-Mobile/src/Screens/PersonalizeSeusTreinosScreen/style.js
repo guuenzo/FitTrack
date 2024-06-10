@@ -4,6 +4,7 @@ import Theme from "../../Styles/Theme";
 export const ContainerPesonalizeTreino = styled.View`
 flex: 1;
 background-color: ${Theme.colors.white.v2};
+
 align-items: center;
 `
 export const ContainerCard = styled.View`

@@ -83,7 +83,8 @@ export const ImgExercicio = styled.TouchableOpacity`
 export const ContainerCheckBox = styled.View`
   width: 20px;
   height: 20px;
-  border: 1px solid red;
+  align-items: center;
+  justify-content: center;
   border-radius: 5px;
 `;
 

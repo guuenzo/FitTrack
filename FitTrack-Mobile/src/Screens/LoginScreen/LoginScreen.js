@@ -30,8 +30,8 @@ const LoginScreen = () => {
 
   const [user, setUser] = useState({
     nome: "",
-    email: "fythoy@gmail.com",
-    senha: "12345",
+    email: "gui@gui.com",
+    senha: "gui123",
   });
 
   const [dataNascimento, setDataNascimento] = useState(new Date());
@@ -41,7 +41,6 @@ const LoginScreen = () => {
   const logar = async (email, senha) => {
     try {
       const { data, status } = await api.post(loginResource, { email, senha });
-
       if (status === 200) {
         setUserGlobalData(await userDecodeToken(data.token));
         navigation.replace("Main");
@@ -76,6 +75,7 @@ const LoginScreen = () => {
       setIsLoginForm(!isLoginForm);
       return;
     }
+
     await logar(user.email, user.senha);
   };
 
@@ -89,7 +89,7 @@ const LoginScreen = () => {
 
   useEffect(() => {
     console.log("userGlobalData", userGlobalData);
-    return (cleanUp = () => {});
+    return (cleanUp = () => { });
   }, []);
 
   return (
@@ -133,7 +133,7 @@ const LoginScreen = () => {
             <ButtonLoginCriarContaBox
               statusButton={isLoginForm}
               handleCriarConta={handleCriarConta}
-              handleLogar={handleLogar}
+              handleLogar={(handleLogar)}
             />
           </MainContent>
         </GridLayout>
