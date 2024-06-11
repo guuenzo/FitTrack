@@ -25,7 +25,7 @@ const SelecioneOsExerciciosScreen = () => {
   ]);
   const [exercicioApi, setExercicioApi] = useState([])
 
-  const conjuntoUnico = new Set(exercicios.map((objeto) => objeto["grupo"]));
+  const conjuntoUnico = new Set(exercicioApi.map((objeto) => objeto["grupo"]));
 
   // Converter o Set de volta para um array se necessário
   const arrayUnico = [...conjuntoUnico];
@@ -35,17 +35,19 @@ const SelecioneOsExerciciosScreen = () => {
     await api.get(exercicioResource).then(async (response) => {
       const exercicioApi = response.data.map(exercicio => ({
         exercicio: exercicio.nomeExercicio,
-        grupo: exercicio.idGrupoMuscular
+        grupo: exercicio.grupoMuscular.nomeGrupoMuscular
 
       }));
       setExercicioApi(exercicioApi);
-      console.log(exercicioApi);
+      // console.log(exercicioApi);
+    }).catch(error => {
+      console.log(error)
     })
   }
 
-  //   useEffect(() => {
-  //     GetExercicios();
-  // }, []);
+  useEffect(() => {
+    GetExercicios();
+  }, []);
 
 
   return (
@@ -66,10 +68,10 @@ const SelecioneOsExerciciosScreen = () => {
               </ContainerTextGrupo>
 
               <FlatListComponent
-                data={exercicios}
+                data={exercicioApi}
                 keyExtractor={(itemEx) => itemEx.id}
                 renderItem={(itemExercicio) =>
-                  itemExercicio.item.grupo === item && (
+                  itemExercicio.item.grupo === item && (exercicioApi &&
                     <CardExercicio exercicio={itemExercicio.item.exercicio} setExeSelecionado={setExeSelecionado} />
                   )
                 }
@@ -83,7 +85,7 @@ const SelecioneOsExerciciosScreen = () => {
         statusButton={true}
         marginBottom={"7%"}
         text="Confirmar"
-        onPress={() => GetExercicios()}
+
       />
     </ContainerPesonalizeTreino>
   );

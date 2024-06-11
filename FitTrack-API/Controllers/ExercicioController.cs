@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using API_FitTrack.Domains;
 using API_FitTrack.Interfaces;
-using FitTrack_API.Domains;
 
 namespace API_FitTrack.Controllers
 {

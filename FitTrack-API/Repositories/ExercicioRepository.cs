@@ -48,7 +48,7 @@ namespace API_FitTrack.Repositories
 
         public List<Exercicio> ListarTodos()
         {
-            return _context.Exercicio.ToList();
+            return _context.Exercicio.Include(x => x.GrupoMuscular).ToList();
         }
     }
 }

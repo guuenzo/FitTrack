@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, StatusBar } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LeftArrowAOrXComponent } from "../../Components/LeftArrowAOrX";
 import Title from "../../Components/Title/Title";
 import {
@@ -17,12 +17,13 @@ import {
 } from "../PersonalizeSeusTreinosScreen/style";
 import { useNavigation } from "@react-navigation/native";
 import FlatListComponent from "../../Components/FlatList/FlatList";
+import { api, grupoMuscularResource } from "../../Services/Service";
 
 const SelecioneOsGruposMuscularesScreen = () => {
   const heightStatusBar = StatusBar.currentHeight;
 
   const navigation = useNavigation();
-
+  const [grupoMuscAPI, setGrupoMuscApi] = useState([])
   const [gruposMusculares, setGruposMusculares] = useState([
     { id: 1, grupo: "Peito" },
     { grupo: "Biceps" },
@@ -38,6 +39,27 @@ const SelecioneOsGruposMuscularesScreen = () => {
   async function AddExercicios() {
     navigation.navigate("SelecioneOsExercicios");
   }
+
+  async function GetGrupoMuscular() {
+    //Chamando o metodo da api
+    await api.get(grupoMuscularResource)
+      .then(async (response) => {
+        const grupoApi = response.data.map(x => ({
+          id: x.idGrupoMuscular,
+          grupo: x.nomeGrupoMuscular
+
+        }));
+        setGrupoMuscApi(grupoApi);
+        // console.log(grupoMuscAPI);
+      }).catch(error => {
+        console.log(error)
+      })
+
+  }
+
+  useEffect(() => {
+    GetGrupoMuscular();
+  }, []);
   return (
     <ContainerPesonalizeTreino>
       <LeftArrowAOrXComponent
@@ -63,7 +85,7 @@ const SelecioneOsGruposMuscularesScreen = () => {
           <CardGrupoTreino grupo={"Posterior de coxa"} />
         </View> */}
         <FlatListComponent
-          data={gruposMusculares}
+          data={grupoMuscAPI}
           keyExtractor={(item) => item.id}
           contentContainerStyle={{
             alignItems: "space-evenly",
@@ -72,7 +94,7 @@ const SelecioneOsGruposMuscularesScreen = () => {
             paddingTop: 20,
           }}
           numColumns={2}
-          renderItem={({ item }) => <CardGrupoTreino grupo={item.grupo} />}
+          renderItem={({ item }) => grupoMuscAPI && <CardGrupoTreino grupo={item.grupo} />}
         />
       </ContainerCard>
 
