@@ -143,24 +143,33 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
         {
           nomeRefeicao,
           idUsuario: userGlobalData.id,
-          alimentos: [
-            {
-              nomeAlimento: "adafasDA",
-              peso: 20,
-              proteinas: 30,
-              calorias: 40,
-              carboidratos: 10,
-              gorduras: 220,
-            },
-          ],
+          alimentos,
         }
       );
-
+      console.log("status", status);
       navigation.replace("Main", { indice: 0 });
     } catch (error) {
       console.log(error);
     }
   };
+
+  const atualizarRefeicao = async () => {
+    try {
+      const { data, status } = api.put(
+        `${refeicaoResource}/AtualizarRefeicao?idRefeicao=${route.params.idRefeicao}`,
+        {
+          nomeRefeicao,
+          idUsuario: userGlobalData.id,
+          alimentos,
+        }
+      );
+      console.log(status);
+    } catch (error) {
+
+      console.log(error);
+    }
+  };
+
   const excluirRefeicao = async () => {
     try {
       const { data, status } = await api.delete(
@@ -276,14 +285,21 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
               <ButtonComponentDefault
                 statusButton
                 text="confirmar"
-                onPress={cadastrarRefeicao}
+                onPress={
+                  !route.params.refeicao.idRefeicao
+                    ? cadastrarRefeicao
+                    : atualizarRefeicao
+                }
               />
-              <ButtonComponentDefault
-                isDeleteButton
-                statusButton
-                text="Excluir refeição"
-                onPress={excluirRefeicao}
-              />
+
+              {route.params.refeicao.idRefeicao && (
+                <ButtonComponentDefault
+                  isDeleteButton
+                  statusButton
+                  text="Excluir refeição"
+                  onPress={excluirRefeicao}
+                />
+              )}
             </View>
           </MainContent>
         </GridLayout>

@@ -25,6 +25,14 @@ namespace FitTrack_API.Repositories
                 {
                     RefeicaoViewModel refeicao = BuscarRefeicaoPorId(idRefeicao);
 
+                    foreach (var item in refeicaoViewModel.Alimentos)
+                    {
+                        if (item.Proteinas + item.Carboidratos + item.Gorduras > item.Peso)
+                        {
+                            throw new Exception("O macro não pode ser maior que o peso do alimento!");
+                        }
+                    }
+
                     // Atualiza os campos da refeição
                     refeicao.NomeRefeicao = refeicaoViewModel.NomeRefeicao;
 
@@ -123,6 +131,15 @@ namespace FitTrack_API.Repositories
                     {
                         throw new Exception("Adicione alimentos a refeição!");
                     }
+
+                    foreach (var item in refeicaoViewModel.Alimentos)
+                    {
+                        if (item.Proteinas + item.Carboidratos + item.Gorduras > item.Peso)
+                        {
+                            throw new Exception("O macro não pode ser maior que o peso do alimento!");
+                        }
+                    }
+
                     // Create a new Refeicao entity
                     Refeicao refeicao = new()
                     {
@@ -177,7 +194,7 @@ namespace FitTrack_API.Repositories
             {
                 try
                 {
-          
+
                     Refeicao refeicao = ctx.Refeicao.FirstOrDefault(x => x.IdRefeicao == idRefeicao)! ?? throw new Exception("Nenhuma refeição encontrada2!");
 
                     List<RefeicaoAlimento> listaRefeicaoAlimento = ctx.RefeicaoAlimento.Include(x => x.Alimento).Include(x => x.Refeicao).Where(x => x.IdRefeicao == idRefeicao).ToList()! ?? throw new Exception("Nenhuma RefeiçãoAlimento encontrada3!");
