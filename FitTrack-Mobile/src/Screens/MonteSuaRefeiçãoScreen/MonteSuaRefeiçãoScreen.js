@@ -145,22 +145,15 @@ const MonteSuaRefeiçãoScreen = () => {
     setAlimentos([...alimentosFiltrados, novoAlimentoSelecionado]);
   };
 
-  async function getFoodAdamamApi() {
+  async function getFoodEdamamApi() {
     const promise = await apiAlimentos.get();
     // console.log(promise.data);
-
-    const apiAdamamResponse = promise.data._links.next.href;
-
-    const realApi = axios.create({
-      baseURL: apiAdamamResponse,
-    });
-
-    const realPromise = await realApi.get();
-    console.log(realPromise);
+    console.log(promise.data.parsed[0].food);
+    // console.log(promise.data.nutrients);
   }
 
   useEffect(() => {
-    getFoodAdamamApi();
+    getFoodEdamamApi();
   }, []);
 
   return (
