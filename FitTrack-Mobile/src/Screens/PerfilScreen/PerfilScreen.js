@@ -18,11 +18,13 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import Theme from "../../Styles/Theme";
 import { CommonActions, useNavigation } from "@react-navigation/native";
+import { ModalObejetivo } from "../../Components/ModalObjetivo/ModalObjetivo";
 
 const PerfilScreen = () => {
   const navigation = useNavigation();
   const { userGlobalData, setUserGlobalData } = useContext(AuthContext);
   const [dados, setDados] = useState(false)
+  const [exibeModalObj, setExibeModalObj] = useState(false)
 
   const logout = () => {
     //reseta a pilha de telas do navigation e manda pra login
@@ -109,7 +111,7 @@ const PerfilScreen = () => {
 
 
                 {/* Card de objetivo */}
-                <CardPerfil>
+                <CardPerfil onPress={()=> setExibeModalObj(true)}>
                   <FontAwesome
                     name="line-chart"
                     size={24}
@@ -220,6 +222,12 @@ const PerfilScreen = () => {
               </>
 
           }
+
+          <ModalObejetivo
+          exibeModal={exibeModalObj}
+          setExibeModal={setExibeModalObj}
+
+          />
 
         </View>
       </GridLayout>
