@@ -177,27 +177,23 @@ namespace FitTrack_API.Repositories
             {
                 try
                 {
-                    //logica para remover os alimentos da tabela alimentos
-                    RefeicaoViewModel refeicaoViewModel = BuscarRefeicaoPorId(idRefeicao);
-
+          
                     Refeicao refeicao = ctx.Refeicao.FirstOrDefault(x => x.IdRefeicao == idRefeicao)! ?? throw new Exception("Nenhuma refeição encontrada2!");
 
-                    RefeicaoAlimento refeicaoAlimento = ctx.RefeicaoAlimento.Include(x => x.Refeicao).FirstOrDefault(x => x.IdRefeicao == idRefeicao)! ?? throw new Exception("Nenhuma RefeiçãoAlimento encontrada3!");
+                    List<RefeicaoAlimento> listaRefeicaoAlimento = ctx.RefeicaoAlimento.Include(x => x.Alimento).Include(x => x.Refeicao).Where(x => x.IdRefeicao == idRefeicao).ToList()! ?? throw new Exception("Nenhuma RefeiçãoAlimento encontrada3!");
+
+                    List<Alimento> listAlimento = [];
 
 
-                    //foreach (var item in refeicaoViewModel.Alimentos)
-                    //{
-                    //    Alimento alimento = ctx.Alimento.FirstOrDefault(x => x.IdAlimento == item.IdAlimento)!;
+                    foreach (var item in listaRefeicaoAlimento)
+                    {
+                        listAlimento.Add(item.Alimento!);
+                    }
 
-                    //    if (alimento != null)
-                    //    {
-                    //        ctx.Alimento.Remove(alimento);
-                    //        ctx.SaveChanges();
-                    //    }
-                    //}
+                    ctx.Alimento.RemoveRange(listAlimento);
 
-                    ctx.RefeicaoAlimento.Remove(refeicaoAlimento);
                     ctx.Refeicao.Remove(refeicao);
+                    ctx.RefeicaoAlimento.RemoveRange(listaRefeicaoAlimento);
 
                     ctx.SaveChanges();
                     transaction.Commit();
