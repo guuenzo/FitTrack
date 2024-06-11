@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Container,
   GridLayout,
-  GridLayoutFilipe,
   MainContent,
   MainContentScroll,
 } from "../../Components/Container/style";
@@ -13,35 +12,36 @@ import CardRefeicao, {
 } from "../../Components/CardRefeicao/CardRefeicao";
 import { useNavigation } from "@react-navigation/native";
 import FlatListComponent from "../../Components/FlatList/FlatList";
+import { api, refeicaoResource } from "../../Services/Service";
+import { AuthContext } from "../../Contexts/AuthContext";
 
 const AlimentacaoScreen = () => {
+  const { userGlobalData, setUserGlobalData } = useContext(AuthContext);
   const navigation = useNavigation();
-  const [refeicoes, setRefeicoes] = useState([
-    {
-      id: 1,
-      nome: "Refeição 1",
-    },
-    {
-      id: 2,
-      nome: "Refeição 2",
-    },
-    {
-      id: 3,
-      nome: "Refeição 3",
-    },
-    {
-      id: 4,
-      nome: "Refeição 4",
-    },
-    {
-      id: 5,
-      nome: "Refeição 5",
-    },
-    // {
-    //   id: 6,
-    //   nome: "Refeição 6",
-    // },
-  ]);
+  const [refeicoes, setRefeicoes] = useState([]);
+
+  const getRefeicoes = async () => {
+    try {
+      const { data, status } = await api.get(
+        refeicaoResource + "/ListarRefeicoesDoUsuario",
+        {
+          headers: {
+            Authorization: `Bearer ${userGlobalData.token}`,
+          },
+        }
+      );
+      setRefeicoes(data);
+
+      console.log("data", data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getRefeicoes();
+    return (cleanUp = () => {});
+  }, []);
   return (
     <Container>
       <MainContentScroll>
@@ -55,15 +55,19 @@ const AlimentacaoScreen = () => {
 
             <FlatListComponent
               data={refeicoes}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) =>
-                refeicoes.length < 6 && (
-                  <CardRefeicao
-                    isRefeicao
-                    onPress={() => navigation.navigate("MonteSuaRefeição")}
-                  />
-                )
-              }
+              keyExtractor={(item) => item.idRefeicao}
+              renderItem={({ item }) => (
+                <CardRefeicao
+                  nome={item.nomeRefeicao}
+                  isRefeicao
+                  onPress={() => {
+                    console.log("item", item);
+                    navigation.navigate("MonteSuaRefeição", {
+                      refeicao: item,
+                    });
+                  }}
+                />
+              )}
             />
 
             <CardAdicionarRefeicao

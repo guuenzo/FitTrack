@@ -53,21 +53,11 @@ export const userDecodeToken = async (token) => {
 
   const decoded = jwtDecode(token);
 
-  const getFotoUri = async (idUsuario) => {
-    try {
-      const { data } = await api.get(
-        `${usuarioResource}/BuscarPorId?id=${idUsuario}`
-      );
-
-      return data.foto;
-    } catch (error) {}
-  };
-
   return {
     id: decoded.jti,
     nome: decoded.name,
     email: decoded.email,
     token: token,
-    foto: await getFotoUri(decoded.jti),
+    foto: decoded.foto,
   };
 };

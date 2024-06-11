@@ -3,6 +3,7 @@ using FitTrack_API.Interfaces;
 using FitTrack_API.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace FitTrack_API.Controllers
 {
@@ -80,11 +81,12 @@ namespace FitTrack_API.Controllers
             }
         }
         [HttpGet("ListarRefeicoesDoUsuario")]
-        public IActionResult ListarRefeicoesDoUsuario(Guid idUsuario)
+        public IActionResult ListarRefeicoesDoUsuario()
         {
 
             try
             {
+                Guid idUsuario = Guid.Parse(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
 
                 return StatusCode(200, _refeicaoRepository.ListarRefeicoesDoUsuario(idUsuario));
             }

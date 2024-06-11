@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FitTrack_API.Migrations
 {
     /// <inheritdoc />
-    public partial class BD : Migration
+    public partial class bd : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -225,12 +225,6 @@ namespace FitTrack_API.Migrations
                         principalColumn: "IdTreino",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Alimento_NomeAlimento",
-                table: "Alimento",
-                column: "NomeAlimento",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Exercicio_IdGrupoMuscular",

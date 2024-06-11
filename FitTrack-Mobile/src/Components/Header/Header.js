@@ -13,10 +13,7 @@ import { TextMABold } from "../Text/style";
 import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../../Contexts/AuthContext";
 
-const Header = ({
-  uriImageProfile = "https://avatars.githubusercontent.com/u/125310170?s=400&u=e379fad687a58d753af1755743dc6d57db9d001b&v=4",
-  nome = "Filipe Góis",
-}) => {
+const Header = ({ uriImageProfile, nome = "Filipe Góis" }) => {
   const { userGlobalData } = useContext(AuthContext);
   const navigation = useNavigation();
 

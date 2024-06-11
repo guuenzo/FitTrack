@@ -34,8 +34,6 @@ const LoginScreen = () => {
     senha: "12345",
   });
 
-  const [dataNascimento, setDataNascimento] = useState(new Date());
-
   const [isLoginForm, setIsLoginForm] = useState(true);
 
   const logar = async (email, senha) => {

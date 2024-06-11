@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Container,
   GridLayout,
@@ -18,11 +18,19 @@ import InfoGlobalBoxComponent, {
 } from "./InfoGlobal";
 import { ButtonComponentDefault } from "../../Components/Button/Button";
 import { ModalAlimentacao } from "../../Components/Modal/Modal";
+import { api, refeicaoResource } from "../../Services/Service";
+import { AuthContext } from "../../Contexts/AuthContext";
 
-const MonteSuaRefeiçãoScreen = () => {
+const MonteSuaRefeiçãoScreen = ({ route }) => {
+  const navigation = useNavigation();
+
+  const { userGlobalData } = useContext(AuthContext);
+
   const heightStatusBar = StatusBar.currentHeight;
 
-  const [nomeRefeicao, setNomeRefeicao] = useState("Jantar");
+  const [nomeRefeicao, setNomeRefeicao] = useState(
+    route.params.refeicao.nomeRefeicao ? route.params.refeicao.nomeRefeicao : ""
+  );
 
   const [alimentoSelecionado, setAlimentoSelecionado] = useState({});
 
@@ -30,13 +38,9 @@ const MonteSuaRefeiçãoScreen = () => {
 
   const [isEditNameModal, setIsEditNameModal] = useState(false);
 
-  const [alimentos, setAlimentos] = useState([]);
-
-  const [refeicao, setRefeicao] = useState({
-    alimentos: [],
-  });
-
-  const navigation = useNavigation();
+  const [alimentos, setAlimentos] = useState(
+    route.params.refeicao.alimentos || []
+  );
 
   //adiona um alimento pesquisado à refeição
   //item: pega o item selecionado no componente de dropdown e passa aqui pra tela "MonteSuaRefeiçãoScreen"
@@ -86,7 +90,7 @@ const MonteSuaRefeiçãoScreen = () => {
           : 0;
 
       case "calorias":
-        alimentos.forEach((alimento) => (total += alimento.kcal));
+        alimentos.forEach((alimento) => (total += alimento.calorias));
 
         return total !== 0
           ? Number.isInteger(total)
@@ -96,7 +100,7 @@ const MonteSuaRefeiçãoScreen = () => {
 
       case "pesorefeicao":
         alimentos.forEach((alimento) => {
-          total += alimento.pesoRefeicao;
+          total += alimento.peso;
         });
 
         return total !== 0 ? total : 0;
@@ -113,14 +117,13 @@ const MonteSuaRefeiçãoScreen = () => {
   const atualizarNomeRefeicao = (txt) => {
     setIsEditNameModal(true);
     setExibeModal(!exibeModal);
-    setRefeicao({ ...refeicao, nomeRefeicao: txt });
   };
 
   const alterarPesoAlimento = (pesoAlimento) => {
     // Altera o peso do alimento
     const novoAlimentoSelecionado = {
       ...alimentoSelecionado,
-      pesoRefeicao: pesoAlimento,
+      peso: peso,
     };
     setAlimentoSelecionado(novoAlimentoSelecionado);
 
@@ -129,10 +132,51 @@ const MonteSuaRefeiçãoScreen = () => {
       (x) => x.id !== novoAlimentoSelecionado.id
     );
 
-    console.log("novoAlimentoSelecionado", novoAlimentoSelecionado);
     // Atualiza o estado dos alimentos com o novo alimento selecionado
     setAlimentos([...alimentosFiltrados, novoAlimentoSelecionado]);
   };
+
+  const cadastrarRefeicao = async () => {
+    try {
+      const { data, status } = await api.post(
+        `${refeicaoResource}/CadastrarRefeicao`,
+        {
+          nomeRefeicao,
+          idUsuario: userGlobalData.id,
+          alimentos: [
+            {
+              nomeAlimento: "adafasDA",
+              peso: 20,
+              proteinas: 30,
+              calorias: 40,
+              carboidratos: 10,
+              gorduras: 220,
+            },
+          ],
+        }
+      );
+
+      navigation.replace("Main", { indice: 0 });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const excluirRefeicao = async () => {
+    try {
+      const { data, status } = await api.delete(
+        `${refeicaoResource}/ExcluirRefeicao?idRefeicao=${route.params.refeicao.idRefeicao}`
+      );
+
+      navigation.replace("Main", { indice: 0 });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    console.log("route.params.refeicao:", route.params.refeicao);
+    return (cleanUp = () => {});
+  }, [route.params]);
 
   return (
     <Container>
@@ -142,7 +186,7 @@ const MonteSuaRefeiçãoScreen = () => {
             {exibeModal && (
               <ModalAlimentacao
                 isEditName={isEditNameModal}
-                texto={alimentoSelecionado.pesoRefeicao}
+                texto={alimentoSelecionado.peso}
                 setExibeModal={setExibeModal}
                 exibeModal={exibeModal}
                 setTexto={setNomeRefeicao}
@@ -188,9 +232,9 @@ const MonteSuaRefeiçãoScreen = () => {
             />
 
             <FlatListComponent
-              //coloca os cards em ordem decrescente pelo numero de kcal do alimento
+              //coloca os cards em ordem decrescente pelo numero de calorias do alimento
               data={alimentos.sort((a, b) => b.kcal - a.kcal)}
-              keyExtractor={(item) => item.id}
+              keyExtractor={(item) => item.idAlimento}
               renderItem={({ item }) => (
                 <CardRefeicao
                   onPressEditar={() => {
@@ -200,26 +244,28 @@ const MonteSuaRefeiçãoScreen = () => {
                   }}
                   isEditGramas
                   heightProteina={calcularPorcentagemMacro(
-                    item.pesoRefeicao,
+                    item.peso,
                     item.proteinas
                   )}
                   heightCarboidrato={calcularPorcentagemMacro(
-                    item.pesoRefeicao,
+                    item.peso,
                     item.carboidratos
                   )}
                   heightGordura={calcularPorcentagemMacro(
-                    item.pesoRefeicao,
+                    item.peso,
                     item.gorduras
                   )}
-                  kcal={item.kcal}
-                  nome={item.nome}
-                  pesoRefeicao={item.pesoRefeicao}
+                  kcal={item.calorias}
+                  nome={item.nomeAlimento}
+                  pesoRefeicao={item.peso}
                   proteinas={item.proteinas}
                   carboidratos={item.carboidratos}
                   gorduras={item.gorduras}
                   onPressDeletar={() => {
                     //retorna pro array de alimentos só os alimentos que não forem clicados
-                    setAlimentos(alimentos.filter((x) => x.id !== item.id));
+                    setAlimentos(
+                      alimentos.filter((x) => x.idAlimento !== item.idAlimento)
+                    );
                   }}
                   onPress={() => {}}
                 />
@@ -230,9 +276,13 @@ const MonteSuaRefeiçãoScreen = () => {
               <ButtonComponentDefault
                 statusButton
                 text="confirmar"
-                onPress={() => {
-                  navigation.replace("Main", { indice: 0 });
-                }}
+                onPress={cadastrarRefeicao}
+              />
+              <ButtonComponentDefault
+                isDeleteButton
+                statusButton
+                text="Excluir refeição"
+                onPress={excluirRefeicao}
               />
             </View>
           </MainContent>
