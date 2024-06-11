@@ -25,12 +25,12 @@ namespace FitTrack_API.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //     // pc do Senai
-            //     // optionsBuilder.UseSqlServer("Server=NOTE14-S14; Database=FitTrackBD; User Id= sa; pwd=Senai@134; TrustServerCertificate=true;");
-            //     // base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer("Server=NOTE14-SALA19; Database=FitTrackBD; User Id= sa; pwd=Senai@134; TrustServerCertificate=true;");
+            //base.OnConfiguring(optionsBuilder);
 
             //     // pc de casa
-            optionsBuilder.UseSqlServer("Server=NOTE14-SALA19; Database=FitTrackBD; User Id= sa; pwd=Senai@134; TrustServerCertificate=true;");
-            base.OnConfiguring(optionsBuilder);
+            //optionsBuilder.UseSqlServer("Server=FilipeDesktop\\SQLEXPRESS; Database=FitTrackBD; User Id= sa; pwd=Xtringer28700; TrustServerCertificate=true;");
+            //base.OnConfiguring(optionsBuilder);
         }
     }
 }

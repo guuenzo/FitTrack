@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FitTrack_API.Domains
 {
     [Table("Alimento")]
-    [Index(nameof(NomeAlimento), IsUnique = true)]
+
     public class Alimento
     {
         [Key]

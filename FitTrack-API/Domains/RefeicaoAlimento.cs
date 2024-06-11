@@ -20,9 +20,6 @@ namespace FitTrack_API.Domains
         public Guid IdAlimento { get; set; }
 
 
-        public RefeicaoAlimento()
-        {
-            IdRefeicaoAlimento = IdRefeicao;
-        }
+
     }
 }

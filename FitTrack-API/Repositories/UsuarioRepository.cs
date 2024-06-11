@@ -121,6 +121,7 @@ namespace API_FitTrack.Repositories
 
                 UsuarioMidia usuarioMidia = new()
                 {
+                    IdUsuarioMidia = usuario.IdUsuario,
                     FotoUsuario = "https://blobvitalhubg16enzo.blob.core.windows.net/containerfittrack/default_image.png"
                 };
 
@@ -142,12 +143,18 @@ namespace API_FitTrack.Repositories
             try
             {
                 //retorna null se nao achar o usuario
-                var user = ctx.Usuario.Select(u => new Usuario
+                var user = ctx.Usuario.Include(x => x.UsuarioMidia).Select(u => new Usuario
                 {
                     IdUsuario = u.IdUsuario,
                     Email = u.Email,
                     Senha = u.Senha,
                     Nome = u.Nome,
+
+                    UsuarioMidia = new UsuarioMidia
+                    {
+                        IdUsuarioMidia = u.UsuarioMidia!.IdUsuarioMidia,
+                        FotoUsuario = u.UsuarioMidia!.FotoUsuario
+                    }
                 }).FirstOrDefault
                 (x => x.Email == email) ?? throw new Exception("Usuário não encontrado!");
 
@@ -176,7 +183,7 @@ namespace API_FitTrack.Repositories
                 }
 
                 // Atualizar Status
-                usuarioBuscado.UsuarioObjetivo!.Objetivo = usuario.Status ?? usuarioBuscado.UsuarioObjetivo.Objetivo;
+                usuarioBuscado.IdUsuarioObjetivo = usuario.IdUsuarioObjetivo ?? usuarioBuscado.IdUsuarioObjetivo;
 
                 // Atualizar Altura
                 if (usuario.Altura.HasValue && usuario.Altura != 0m)

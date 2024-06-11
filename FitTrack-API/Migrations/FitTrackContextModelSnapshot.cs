@@ -196,9 +196,6 @@ namespace FitTrack_API.Migrations
 
                     b.HasKey("IdAlimento");
 
-                    b.HasIndex("NomeAlimento")
-                        .IsUnique();
-
                     b.ToTable("Alimento");
                 });
 

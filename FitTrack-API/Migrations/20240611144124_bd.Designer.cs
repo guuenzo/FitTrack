@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitTrack_API.Migrations
 {
     [DbContext(typeof(FitTrackContext))]
-    [Migration("20240610024524_BD")]
-    partial class BD
+    [Migration("20240611144124_bd")]
+    partial class bd
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -198,9 +198,6 @@ namespace FitTrack_API.Migrations
                         .HasColumnType("DECIMAL(5,2)");
 
                     b.HasKey("IdAlimento");
-
-                    b.HasIndex("NomeAlimento")
-                        .IsUnique();
 
                     b.ToTable("Alimento");
                 });

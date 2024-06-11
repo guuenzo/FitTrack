@@ -1,30 +1,38 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\",
+  "WorkspaceRootPath": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\controllers\\refeicaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:controllers\\refeicaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\repositories\\refeicaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:repositories\\refeicaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\utils\\blobstorage\\azureblobstoragehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:utils\\blobstorage\\azureblobstoragehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\viewmodels\\refeicaoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:viewmodels\\refeicaoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\domains\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:domains\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\domains\\refeicaoalimento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:domains\\refeicaoalimento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Migrations\\20240610024524_BD.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20240610024524_BD.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\viewmodels\\alimentoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:viewmodels\\alimentoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\domains\\usuarioobjetivo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:domains\\usuarioobjetivo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\interfaces\\irefeicaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:interfaces\\irefeicaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\domains\\refeicao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:domains\\refeicao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,80 +47,100 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "AzureBlobStorageHelper.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Utils\\BlobStorage\\AzureBlobStorageHelper.cs",
-              "RelativeDocumentMoniker": "Utils\\BlobStorage\\AzureBlobStorageHelper.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Utils\\BlobStorage\\AzureBlobStorageHelper.cs",
-              "RelativeToolTip": "Utils\\BlobStorage\\AzureBlobStorageHelper.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAAAAsAAAAtAAAA",
+              "Title": "RefeicaoViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\ViewModels\\RefeicaoViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\RefeicaoViewModel.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\ViewModels\\RefeicaoViewModel.cs",
+              "RelativeToolTip": "ViewModels\\RefeicaoViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T02:49:08.464Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-11T00:34:28.09Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "20240610024524_BD.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Migrations\\20240610024524_BD.cs",
-              "RelativeDocumentMoniker": "Migrations\\20240610024524_BD.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Migrations\\20240610024524_BD.cs",
-              "RelativeToolTip": "Migrations\\20240610024524_BD.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "AlimentoViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\ViewModels\\AlimentoViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\AlimentoViewModel.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\ViewModels\\AlimentoViewModel.cs",
+              "RelativeToolTip": "ViewModels\\AlimentoViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T02:45:24.696Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-10T18:06:47.612Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Domains\\Usuario.cs",
-              "RelativeDocumentMoniker": "Domains\\Usuario.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Domains\\Usuario.cs",
-              "RelativeToolTip": "Domains\\Usuario.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAAADIAAAABAAAA",
+              "Title": "RefeicaoAlimento.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Domains\\RefeicaoAlimento.cs",
+              "RelativeDocumentMoniker": "Domains\\RefeicaoAlimento.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Domains\\RefeicaoAlimento.cs",
+              "RelativeToolTip": "Domains\\RefeicaoAlimento.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T02:41:36.735Z",
+              "WhenOpened": "2024-06-10T17:43:11.034Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RefeicaoRepository.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Repositories\\RefeicaoRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\RefeicaoRepository.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Repositories\\RefeicaoRepository.cs",
+              "RelativeToolTip": "Repositories\\RefeicaoRepository.cs",
+              "ViewState": "AQIAALQAAAAAAAAAAAAowLkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-10T17:40:07.593Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "UsuarioObjetivo.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Domains\\UsuarioObjetivo.cs",
-              "RelativeDocumentMoniker": "Domains\\UsuarioObjetivo.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Domains\\UsuarioObjetivo.cs",
-              "RelativeToolTip": "Domains\\UsuarioObjetivo.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "Title": "IRefeicaoRepository.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Interfaces\\IRefeicaoRepository.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IRefeicaoRepository.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Interfaces\\IRefeicaoRepository.cs",
+              "RelativeToolTip": "Interfaces\\IRefeicaoRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T02:26:39.569Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UsuarioController.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Controllers\\UsuarioController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UsuarioController.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Controllers\\UsuarioController.cs",
-              "RelativeToolTip": "Controllers\\UsuarioController.cs",
-              "ViewState": "AQIAAEYAAAAAAAAAAAAAAFUAAABJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T02:22:33.083Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-10T17:25:01.716Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UsuarioRepository.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\UsuarioRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\UsuarioRepository.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\UsuarioRepository.cs",
-              "RelativeToolTip": "Repositories\\UsuarioRepository.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAAADAAAAAAAAAA",
+              "Title": "RefeicaoController.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Controllers\\RefeicaoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RefeicaoController.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Controllers\\RefeicaoController.cs",
+              "RelativeToolTip": "Controllers\\RefeicaoController.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAxwFgAAAB9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T02:19:53.857Z",
+              "WhenOpened": "2024-06-10T18:27:11.853Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Refeicao.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Domains\\Refeicao.cs",
+              "RelativeDocumentMoniker": "Domains\\Refeicao.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Domains\\Refeicao.cs",
+              "RelativeToolTip": "Domains\\Refeicao.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-10T17:40:27.612Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "Controllers\\LoginController.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAACYAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T01:14:42.066Z"
             }
           ]
         }
