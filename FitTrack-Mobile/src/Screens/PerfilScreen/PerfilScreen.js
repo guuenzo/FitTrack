@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Container,
   GridLayout,
@@ -22,6 +22,7 @@ import { CommonActions, useNavigation } from "@react-navigation/native";
 const PerfilScreen = () => {
   const navigation = useNavigation();
   const { userGlobalData, setUserGlobalData } = useContext(AuthContext);
+  const [dados, setDados] = useState(false)
 
   const logout = () => {
     //reseta a pilha de telas do navigation e manda pra login
@@ -36,17 +37,17 @@ const PerfilScreen = () => {
     setUserGlobalData({});
   };
   useEffect(() => {
-    return (cleanUp = () => {});
+    return (cleanUp = () => { });
   }, []);
   return (
     <Container>
       <GridLayout>
-        <TouchableOpacity style={{ width:"max-content", height:"max-content"}} onPress={logout}>
+        <TouchableOpacity style={{ width: "max-content", height: "max-content" }} onPress={logout}>
           <Ionicons
             name="exit-outline"
             size={30}
             color={Theme.colors.red.v1}
-            style={{ marginTop: 61, alignSelf: "flex-end", width:"max-content" }}
+            style={{ marginTop: 61, alignSelf: "flex-end", width: "max-content" }}
           />
         </TouchableOpacity>
         <View style={{ alignItems: "center" }}>
@@ -67,86 +68,159 @@ const PerfilScreen = () => {
             marginTop: 20,
           }}
         >
+
+
           {
-            //fazer um ternario para so exobir se tiver a altura e o peso
-            <CardPerfil>
-              <MaterialCommunityIcons
-                name="heart-pulse"
-                size={24}
-                color={Theme.colors.secondaryScale.V1}
-              />
-              <View>
-                <TextMABold
-                  color={Theme.colors.secondaryScale.V1}
-                  fontSize="16px"
-                >
-                  23.5
-                </TextMABold>
-                <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
-                  IMC
-                </TextQuickSandSemiBold>
-              </View>
-            </CardPerfil>
+            dados == false ?
+              <>
+                {/* Card de peso */}
+                <CardPerfil>
+                  <MaterialIcons
+                    name="scale"
+                    size={24}
+                    color={Theme.colors.secondaryScale.V1}
+                  />
+
+                  <TextMABold
+                    color={Theme.colors.secondaryScale.V1}
+                    fontSize="16px"
+                  >
+                    Peso
+                  </TextMABold>
+
+                </CardPerfil>
+
+
+                {/* Card de altura */}
+                <CardPerfil>
+                  <FontAwesome
+                    name="arrows-v"
+                    size={24}
+                    color={Theme.colors.secondaryScale.V1}
+                  />
+                  <TextMABold
+                    color={Theme.colors.secondaryScale.V1}
+                    fontSize="16px"
+                  >
+                    Altura
+                  </TextMABold>
+
+                </CardPerfil>
+
+
+                {/* Card de objetivo */}
+                <CardPerfil>
+                  <FontAwesome
+                    name="line-chart"
+                    size={24}
+                    color={Theme.colors.secondaryScale.V1}
+                  />
+
+                  <TextMABold
+                    color={Theme.colors.secondaryScale.V1}
+                    fontSize="16px"
+                  >
+                    Objetivo
+                  </TextMABold>
+
+
+                </CardPerfil>
+              </>
+
+              :
+
+              <>
+
+                {/* Cards caso tenha todos os dados necessarios */}
+
+                {/* Card de peso */}
+                <CardPerfil>
+                  <MaterialIcons
+                    name="scale"
+                    size={24}
+                    color={Theme.colors.secondaryScale.V1}
+                  />
+                  <View>
+                    <TextMABold
+                      color={Theme.colors.secondaryScale.V1}
+                      fontSize="16px"
+                    >
+                      60.0KG
+                    </TextMABold>
+                    <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
+                      Peso
+                    </TextQuickSandSemiBold>
+                  </View>
+                </CardPerfil>
+
+
+                {/* Card de altura */}
+                <CardPerfil>
+                  <FontAwesome
+                    name="arrows-v"
+                    size={24}
+                    color={Theme.colors.secondaryScale.V1}
+                  />
+
+                  <View>
+                    <TextMABold
+                      color={Theme.colors.secondaryScale.V1}
+                      fontSize="16px"
+                    >
+                      1,7 m
+                    </TextMABold>
+                    <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
+                      Altura
+                    </TextQuickSandSemiBold>
+                  </View>
+                </CardPerfil>
+
+
+                {/* Card de objetivo */}
+                <CardPerfil>
+                  <FontAwesome
+                    name="line-chart"
+                    size={24}
+                    color={Theme.colors.secondaryScale.V1}
+                  />
+                  <View>
+                    <TextMABold
+                      color={Theme.colors.secondaryScale.V1}
+                      fontSize="16px"
+                    >
+                      Bulking
+                    </TextMABold>
+
+                    <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
+                      Objetivo
+                    </TextQuickSandSemiBold>
+                  </View>
+                </CardPerfil>
+
+
+                {/* Card de IMC */}
+                <CardPerfil>
+                  <MaterialCommunityIcons
+                    name="heart-pulse"
+                    size={24}
+                    color={Theme.colors.secondaryScale.V1}
+                  />
+                  <View>
+                    <TextMABold
+                      color={Theme.colors.secondaryScale.V1}
+                      fontSize="16px"
+                    >
+                      23.5
+                    </TextMABold>
+                    <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
+                      IMC
+                    </TextQuickSandSemiBold>
+                  </View>
+                </CardPerfil>
+              </>
+
           }
 
-          <CardPerfil>
-            <MaterialIcons
-              name="scale"
-              size={24}
-              color={Theme.colors.secondaryScale.V1}
-            />
-            <View>
-              <TextMABold
-                color={Theme.colors.secondaryScale.V1}
-                fontSize="16px"
-              >
-                60.0KG
-              </TextMABold>
-              <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
-                Peso
-              </TextQuickSandSemiBold>
-            </View>
-          </CardPerfil>
-
-          <CardPerfil>
-            <FontAwesome
-              name="line-chart"
-              size={24}
-              color={Theme.colors.secondaryScale.V1}
-            />
-
-            <View>
-              <TextMABold
-                color={Theme.colors.secondaryScale.V1}
-                fontSize="16px"
-              >
-                Bulking
-              </TextMABold>
-
-              <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
-                Objetivo
-              </TextQuickSandSemiBold>
-            </View>
-          </CardPerfil>
-          <CardPerfil>
-            <FontAwesome
-              name="arrows-v"
-              size={24}
-              color={Theme.colors.secondaryScale.V1}
-            />
-
-            <View>
-              <TextMABold
-                color={Theme.colors.secondaryScale.V1}
-                fontSize="16px"
-              >
-                1,7 m
-              </TextMABold>
-              <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
-                Altura
-              </TextQuickSandSemiBold>
-            </View>
-          </CardPerfil>
         </View>
       </GridLayout>
     </Container>

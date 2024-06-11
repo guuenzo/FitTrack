@@ -27,8 +27,30 @@ import { TextQuickSandMedium } from "../../Components/Text/style";
 import { LeftArrowAOrXComponent } from "../../Components/LeftArrowAOrX";
 
 const RedefinirSenhaScreen = ({
-  navigation
+  navigation,
+  route
 }) => {
+  const [senha, setSenha] = useState("")
+    const [confirmar, setConfirmar] = useState("")
+
+
+    async function AlterarSenha() {
+      if (senha === confirmar) {
+          await api.put(`/Usuario/AlterarSenha?email=${route.params.emailRecuperacao}`, {
+              senhaNova: senha
+          }).then(() => {
+              navigation.replace("Login")
+          }).catch(error => {
+              console.log(error);
+          })
+      } else {
+          console.log("Senha errada");
+         
+      }
+
+
+  }
+
   return (
     <Container>
       <LinearGradientTelasIniciais>
@@ -43,13 +65,13 @@ const RedefinirSenhaScreen = ({
           <View style={{ marginTop: 42, gap: 20 }} >
             <InputComponent
               placeholder="Senha"
-            // value={user.email}
-            // onChangeText={(txt) => setUser({ email: txt })}
+            value={senha}
+            onChangeText={(txt) => setSenha(txt)}
             />
             <InputComponent
               placeholder="Confirmar senha"
-            // value={user.email}
-            // onChangeText={(txt) => setUser({ email: txt })}
+            value={confirmar}
+            onChangeText={(txt) => setConfirmar(txt)}
             />
 
           </View>
@@ -59,7 +81,7 @@ const RedefinirSenhaScreen = ({
             <ButtonComponentDefault
               text="Continuar"
               statusButton={true}
-              onPress={() => navigation.navigate("Login")}
+              onPress={() => AlterarSenha()}
             />
           </View>
 

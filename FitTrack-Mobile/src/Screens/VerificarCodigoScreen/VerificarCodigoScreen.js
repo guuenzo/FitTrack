@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   InputComponent,
   InputData,
@@ -28,9 +28,49 @@ import { LeftArrowAOrXComponent } from "../../Components/LeftArrowAOrX";
 import { BlurViewComponent, InputCode, LinearGradientInputView } from "../../Components/Input/style";
 
 const VerificarCodigoScreen = ({
-  navigation
+  navigation,
+  route
 }) => {
   const [email, setEmail] = useState("fulano@gmail.com")
+  const inputs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+  const [codigo, setCodigo] = useState("");
+
+
+
+
+
+
+  function focusNextInput(index) {
+    //Verificar se o index e menor que a quantidade de campos
+    if (index < inputs.length - 1) {
+      inputs[index + 1].current.focus();
+    }
+  }
+
+  function focusPrevInput(index) {
+    if (index > 0) {
+      inputs[index - 1].current.focus();
+    }
+  }
+
+
+
+  async function ValidarCodigo() {
+    console.log("Vamos ver");
+    await api
+      .post(
+       
+        `/RecuperarSenha/ValidarCodigo?email=${route.params.emailRecuperacao}&codigo=${codigo}`
+      )
+      .then(() => {
+        navigation.replace("RedefinirSenha", {
+          emailRecuperacao: route.params.emailRecuperacao,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   return (
     <Container>
       <LinearGradientTelasIniciais>
@@ -56,15 +96,29 @@ const VerificarCodigoScreen = ({
             {[0, 1, 2, 3].map((index) => (
 
 
-              
+
               <BlurViewComponent>
                 <LinearGradientInputView>
                   <InputCode
                     key={index}
-                    keyboardType="numeric"
+                    ref={inputs[index]}
                     placeholder="0"
+                    placeholderTextColor="#FFF"
                     maxLength={1}
-                    caretHidden={true}
+                    keyboardType="numeric"
+                    onChangeText={(txt) => {
+                      //Verificar se o campo e vazio
+                      if (txt === "") {
+                        focusPrevInput(index);
+                      } else {
+                        //Verificar se o campo foi preenchido
+                        const codigoInformado = [...codigo];
+                        codigoInformado[index] = txt;
+                        setCodigo(codigoInformado.join(""));
+
+                        focusNextInput(index);
+                      }
+                    }}
                   />
                 </LinearGradientInputView>
               </BlurViewComponent>
@@ -78,7 +132,7 @@ const VerificarCodigoScreen = ({
             <ButtonComponentDefault
               text="Continuar"
               statusButton={true}
-              onPress={() => navigation.navigate("RedefinirSenha")}
+              onPress={() => ValidarCodigo()}
             />
           </View>
 

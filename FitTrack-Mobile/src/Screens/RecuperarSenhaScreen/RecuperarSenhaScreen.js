@@ -38,12 +38,10 @@ const RecuperarSenhaScreen = () => {
   const navigation = useNavigation();
 
   const EnviarEmail = async () => {
-    console.log("AAAAKA");
     await api
       .post(`${recuperarSenhaResource}?email=${email}`)
       .then(() => {
-        console.log("a");
-        // navigation.replace("VerificarCodigo")
+        navigation.replace("VerificarCodigo", {emailRecuperacao : email})
       })
       .catch((error) => {
         console.log(error);

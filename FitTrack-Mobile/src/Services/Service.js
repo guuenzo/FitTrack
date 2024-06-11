@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const ip = "192.168.15.61";
+const ip = "172.16.39.118";
 
 const apiPort = ":5179";
 
-const apiUrlLocal = `http://${ip}${apiPort}/api`;
+const apiUrlLocal =`http://172.16.39.118:5179/api`;
 
-const appIdFoodDataBaseEdaman = "ab174771";
+const appIdFoodDataBaseEdaman ="ab174771";
 
 const appKeyFoodDataBaseEdaman = "b94417960a939f69dded74d48aa01cde";
 
