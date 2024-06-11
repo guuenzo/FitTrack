@@ -28,3 +28,4 @@ export const api = axios.create({
 export const loginResource = `/Login`;
 export const usuarioResource = `/Usuario`;
 export const recuperarSenhaResource = `/RecuperarSenha`;
+export const exercicioResource = `/Exercicio`;

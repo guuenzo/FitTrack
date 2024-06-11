@@ -4,6 +4,7 @@ using System.Linq;
 using API_FitTrack.Domains;
 using API_FitTrack.Interfaces;
 using FitTrack_API.Contexts;
+using FitTrack_API.Domains;
 using Microsoft.EntityFrameworkCore;
 
 namespace API_FitTrack.Repositories

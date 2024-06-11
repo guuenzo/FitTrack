@@ -1,5 +1,5 @@
 import { View, Text, StatusBar } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LeftArrowAOrXComponent } from "../../Components/LeftArrowAOrX";
 import Title from "../../Components/Title/Title";
 import { ButtonComponentDefault } from "../../Components/Button/Button";
@@ -10,6 +10,7 @@ import {
   CardGrupoTreino,
 } from "../../Components/CardTreino/CardTreino";
 import FlatListComponent from "../../Components/FlatList/FlatList";
+import { api, exercicioResource } from "../../Services/Service";
 
 const SelecioneOsExerciciosScreen = () => {
   const heightStatusBar = StatusBar.currentHeight;
@@ -22,11 +23,30 @@ const SelecioneOsExerciciosScreen = () => {
     { id: 4, exercicio: "Triceps Francesa", grupo: "Triceps" },
     { id: 5, exercicio: "Triceps Testa", grupo: "Triceps" },
   ]);
+  const [exercicioApi, setExercicioApi] = useState([])
 
   const conjuntoUnico = new Set(exercicios.map((objeto) => objeto["grupo"]));
 
   // Converter o Set de volta para um array se necessário
   const arrayUnico = [...conjuntoUnico];
+
+  async function GetExercicios() {
+    //Chamando o metodo da api
+    await api.get(exercicioResource).then(async (response) => {
+      const exercicioApi = response.data.map(exercicio => ({
+        exercicio: exercicio.nomeExercicio,
+        grupo: exercicio.idGrupoMuscular
+
+      }));
+      setExercicioApi(exercicioApi);
+      console.log(exercicioApi);
+    })
+  }
+
+  //   useEffect(() => {
+  //     GetExercicios();
+  // }, []);
+
 
   return (
     <ContainerPesonalizeTreino>
@@ -63,7 +83,7 @@ const SelecioneOsExerciciosScreen = () => {
         statusButton={true}
         marginBottom={"7%"}
         text="Confirmar"
-        onPress={() => console.log(exeSelecionado)}
+        onPress={() => GetExercicios()}
       />
     </ContainerPesonalizeTreino>
   );

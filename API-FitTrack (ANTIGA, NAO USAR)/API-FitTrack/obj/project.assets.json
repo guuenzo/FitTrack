@@ -4955,19 +4955,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\fytho\\.nuget\\packages\\": {}
+    "C:\\Users\\39905572899\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\API-FitTrack\\API-FitTrack\\API-FitTrack.csproj",
+      "projectUniqueName": "C:\\Users\\39905572899\\Desktop\\FitTrack\\API-FitTrack (ANTIGA, NAO USAR)\\API-FitTrack\\API-FitTrack.csproj",
       "projectName": "API-FitTrack",
-      "projectPath": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\API-FitTrack\\API-FitTrack\\API-FitTrack.csproj",
-      "packagesPath": "C:\\Users\\fytho\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\API-FitTrack\\API-FitTrack\\obj\\",
+      "projectPath": "C:\\Users\\39905572899\\Desktop\\FitTrack\\API-FitTrack (ANTIGA, NAO USAR)\\API-FitTrack\\API-FitTrack.csproj",
+      "packagesPath": "C:\\Users\\39905572899\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\39905572899\\Desktop\\FitTrack\\API-FitTrack (ANTIGA, NAO USAR)\\API-FitTrack\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\fytho\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\39905572899\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5064,7 +5064,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
