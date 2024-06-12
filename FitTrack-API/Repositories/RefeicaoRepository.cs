@@ -23,6 +23,16 @@ namespace FitTrack_API.Repositories
             {
                 try
                 {
+
+                    Refeicao refeicaoBuscada = ctx.Refeicao.FirstOrDefault(x => x.IdRefeicao == idRefeicao)! ?? throw new Exception("Nenhuma refeição encontrada!");
+
+                    refeicaoBuscada.NomeRefeicao = refeicaoViewModel.NomeRefeicao;
+
+                    if (refeicaoViewModel.NomeRefeicao!.Trim() == "")
+                    {
+                        throw new Exception("Dê um nome a refeição!");
+                    }
+
                     RefeicaoViewModel refeicao = BuscarRefeicaoPorId(idRefeicao);
 
                     foreach (var item in refeicaoViewModel.Alimentos)
@@ -32,6 +42,7 @@ namespace FitTrack_API.Repositories
                             throw new Exception("O macro não pode ser maior que o peso do alimento!");
                         }
                     }
+
 
                     // Atualiza os campos da refeição
                     refeicao.NomeRefeicao = refeicaoViewModel.NomeRefeicao;
@@ -71,6 +82,8 @@ namespace FitTrack_API.Repositories
 
                         ctx.RefeicaoAlimento.Add(refeicaoAlimento);
                     }
+
+                    ctx.Refeicao.Update(refeicaoBuscada);
 
                     ctx.SaveChanges();
                     transaction.Commit();
@@ -130,6 +143,11 @@ namespace FitTrack_API.Repositories
                     if (refeicaoViewModel.Alimentos.Count == 0)
                     {
                         throw new Exception("Adicione alimentos a refeição!");
+                    }
+
+                    if (refeicaoViewModel.NomeRefeicao!.Trim() == "")
+                    {
+                        throw new Exception("Dê um nome a refeição!");
                     }
 
                     foreach (var item in refeicaoViewModel.Alimentos)

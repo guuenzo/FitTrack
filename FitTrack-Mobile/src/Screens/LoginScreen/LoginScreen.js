@@ -30,7 +30,8 @@ const LoginScreen = () => {
 
   const [user, setUser] = useState({
     nome: "",
-    email: "f@f.com",
+    // email: "f@f.com",
+    email: "fythoy@gmail.com",
     senha: "12345",
   });
 
@@ -84,11 +85,6 @@ const LoginScreen = () => {
     }
     await criarConta();
   };
-
-  useEffect(() => {
-    console.log("userGlobalData", userGlobalData);
-    return (cleanUp = () => {});
-  }, []);
 
   return (
     <Container>

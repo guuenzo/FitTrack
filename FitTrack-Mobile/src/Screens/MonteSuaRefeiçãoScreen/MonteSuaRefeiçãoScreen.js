@@ -8,10 +8,10 @@ import {
 } from "../../Components/Container/style";
 import FlatListComponent from "../../Components/FlatList/FlatList";
 import CardRefeicao from "../../Components/CardRefeicao/CardRefeicao";
-import { useNavigation } from "@react-navigation/native";
+import { CommonActions, useNavigation } from "@react-navigation/native";
 import Title from "../../Components/Title/Title";
 import { LeftArrowAOrXComponent } from "../../Components/LeftArrowAOrX";
-import { StatusBar, View } from "react-native";
+import { Alert, StatusBar, View } from "react-native";
 import { DropDownComponent } from "../../Components/Input/Input";
 import InfoGlobalBoxComponent, {
   MacronutrientesRefeicaoBox,
@@ -20,6 +20,11 @@ import { ButtonComponentDefault } from "../../Components/Button/Button";
 import { ModalAlimentacao } from "../../Components/Modal/Modal";
 import { api, refeicaoResource } from "../../Services/Service";
 import { AuthContext } from "../../Contexts/AuthContext";
+import {
+  calcularMacroAoAumentarPeso,
+  calcularPorcentagemMacro,
+  calcularQuantidadeMacrosRefeicao,
+} from "../../utils/StringFunctions";
 
 const MonteSuaRefeiçãoScreen = ({ route }) => {
   const navigation = useNavigation();
@@ -59,71 +64,26 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
   };
 
   //soma o valor de cada macro de cada alimento e atribui a um único valor na refeição
-  const calcularQuantidadeMacrosRefeicao = (macro = "".toLowerCase()) => {
-    let total = 0;
-
-    switch (macro.toLowerCase()) {
-      case "proteinas":
-        alimentos.forEach((alimento) => (total += alimento.proteinas));
-        //caso o total seja === 0, valida se é um numero inteiro, se for, o retorna, se nao, só exibe o total com 1 casa decimal
-        return total !== 0
-          ? Number.isInteger(total)
-            ? total
-            : total.toFixed(1)
-          : 0;
-
-      case "carboidratos":
-        alimentos.forEach((alimento) => (total += alimento.carboidratos));
-        //caso o total seja === 0, valida se é um numero inteiro, se for, o retorna, se nao, só exibe o total com 1 casa decimal
-        return total !== 0
-          ? Number.isInteger(total)
-            ? total
-            : total.toFixed(1)
-          : 0;
-
-      case "gorduras":
-        alimentos.forEach((alimento) => (total += alimento.gorduras));
-        return total !== 0
-          ? Number.isInteger(total)
-            ? total
-            : total.toFixed(1)
-          : 0;
-
-      case "calorias":
-        alimentos.forEach((alimento) => (total += alimento.calorias));
-
-        return total !== 0
-          ? Number.isInteger(total)
-            ? total
-            : total.toFixed(1)
-          : 0;
-
-      case "pesorefeicao":
-        alimentos.forEach((alimento) => {
-          total += alimento.peso;
-        });
-
-        return total !== 0 ? total : 0;
-    }
-  };
-
-  const calcularPorcentagemMacro = (pesoRefeicao, quantidadeMacro) => {
-    if (pesoRefeicao === 0 || quantidadeMacro === 0) {
-      return 0;
-    }
-    return (quantidadeMacro / pesoRefeicao) * 100;
-  };
 
   const atualizarNomeRefeicao = (txt) => {
     setIsEditNameModal(true);
     setExibeModal(!exibeModal);
   };
 
-  const alterarPesoAlimento = (pesoAlimento) => {
+  const alterarPesoAlimento = (
+    valorOriginalMacro,
+    novoPesoAlimento,
+    pesoAntigo
+  ) => {
+    calcularMacroAoAumentarPeso(
+      valorOriginalMacro,
+      pesoAntigo,
+      novoPesoAlimento
+    );
     // Altera o peso do alimento
     const novoAlimentoSelecionado = {
       ...alimentoSelecionado,
-      peso: peso,
+      peso: novoPesoAlimento,
     };
     setAlimentoSelecionado(novoAlimentoSelecionado);
 
@@ -138,6 +98,11 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
 
   const cadastrarRefeicao = async () => {
     try {
+      if (nomeRefeicao.trim() === "") {
+        Alert.alert("Ops", "O nome da refeição é obrigatório");
+        return;
+      }
+
       const { data, status } = await api.post(
         `${refeicaoResource}/CadastrarRefeicao`,
         {
@@ -155,17 +120,31 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
 
   const atualizarRefeicao = async () => {
     try {
-      const { data, status } = api.put(
-        `${refeicaoResource}/AtualizarRefeicao?idRefeicao=${route.params.idRefeicao}`,
+      if (nomeRefeicao.trim() === "") {
+        Alert.alert("Ops", "O nome da refeição é obrigatório");
+        return;
+      }
+
+      if (alimentos.length === 0) {
+        await excluirRefeicao();
+        return;
+      }
+
+      api.put(
+        `${refeicaoResource}/AtualizarRefeicao?idRefeicao=${route.params.refeicao.idRefeicao}`,
         {
           nomeRefeicao,
           idUsuario: userGlobalData.id,
           alimentos,
         }
       );
-      console.log(status);
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "Main", params: { indice: 0 } }],
+        })
+      );
     } catch (error) {
-
       console.log(error);
     }
   };
@@ -183,9 +162,9 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
   };
 
   useEffect(() => {
-    console.log("route.params.refeicao:", route.params.refeicao);
+    console.log(alimentoSelecionado)
     return (cleanUp = () => {});
-  }, [route.params]);
+  }, [route.params, alimentoSelecionado]);
 
   return (
     <Container>
@@ -200,6 +179,13 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
                 exibeModal={exibeModal}
                 setTexto={setNomeRefeicao}
                 alterarPesoAlimento={alterarPesoAlimento}
+                macroNutrientes={{
+                  proteinas: alimentoSelecionado.proteinas,
+                  carboidratos: alimentoSelecionado.carboidratos,
+                  gorduras: alimentoSelecionado.gorduras,
+                  calorias: alimentoSelecionado.calorias,
+                  peso: alimentoSelecionado.peso,
+                }}
               />
             )}
 
@@ -214,29 +200,37 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
             <InfoGlobalBoxComponent
               nomeRefeicao={nomeRefeicao}
               onPressAtualizarNome={atualizarNomeRefeicao}
-              pesoRefeicao={calcularQuantidadeMacrosRefeicao("pesorefeicao")}
-              caloriasRefeicao={calcularQuantidadeMacrosRefeicao("calorias")}
+              pesoRefeicao={calcularQuantidadeMacrosRefeicao(alimentos, "peso")}
+              caloriasRefeicao={calcularQuantidadeMacrosRefeicao(
+                alimentos,
+                "calorias"
+              )}
             />
 
             <MacronutrientesRefeicaoBox
               quantidadeProteinas={calcularQuantidadeMacrosRefeicao(
+                alimentos,
                 "proteinas"
               )}
               widthProteinas={calcularPorcentagemMacro(
-                calcularQuantidadeMacrosRefeicao("pesorefeicao"),
-                calcularQuantidadeMacrosRefeicao("proteinas")
+                calcularQuantidadeMacrosRefeicao(alimentos, "peso"),
+                calcularQuantidadeMacrosRefeicao(alimentos, "proteinas")
               )}
               quantidadeCarboidratos={calcularQuantidadeMacrosRefeicao(
+                alimentos,
                 "carboidratos"
               )}
               widthCarboidratos={calcularPorcentagemMacro(
-                calcularQuantidadeMacrosRefeicao("pesorefeicao"),
-                calcularQuantidadeMacrosRefeicao("carboidratos")
+                calcularQuantidadeMacrosRefeicao(alimentos, "peso"),
+                calcularQuantidadeMacrosRefeicao(alimentos, "carboidratos")
               )}
-              quantidadeGorduras={calcularQuantidadeMacrosRefeicao("gorduras")}
+              quantidadeGorduras={calcularQuantidadeMacrosRefeicao(
+                alimentos,
+                "gorduras"
+              )}
               widthGorduras={calcularPorcentagemMacro(
-                calcularQuantidadeMacrosRefeicao("pesorefeicao"),
-                calcularQuantidadeMacrosRefeicao("gorduras")
+                calcularQuantidadeMacrosRefeicao(alimentos, "peso"),
+                calcularQuantidadeMacrosRefeicao(alimentos, "gorduras")
               )}
             />
 
@@ -247,6 +241,7 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
               renderItem={({ item }) => (
                 <CardRefeicao
                   onPressEditar={() => {
+                    console.log(item);
                     setIsEditNameModal(false);
                     setAlimentoSelecionado(item);
                     setExibeModal(true);
@@ -264,7 +259,7 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
                     item.peso,
                     item.gorduras
                   )}
-                  kcal={item.calorias}
+                  kcal={calcularMacroAoAumentarPeso(item.calorias, item.peso)}
                   nome={item.nomeAlimento}
                   pesoRefeicao={item.peso}
                   proteinas={item.proteinas}

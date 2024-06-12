@@ -14,14 +14,19 @@ export const ModalAlimentacao = ({
   setTexto,
   texto = "",
   isEditName = true,
+  peso = 0,
+  setPeso,
+
   alterarPesoAlimento = () => {},
+  macroNutrientes: {},
 }) => {
+  const [pesoState, setPesoState] = useState(peso);
   const [textoState, setTextoState] = useState(texto);
   const hideModal = () => setExibeModal(false);
 
   useEffect(() => {
     return (cleanUp = () => {});
-  }, [textoState]);
+  }, [textoState, macroNutrientes]);
   return (
     <Portal>
       <ModalStyle visible={exibeModal} onDismiss={hideModal}>
@@ -38,7 +43,7 @@ export const ModalAlimentacao = ({
 
           <InputDefault
             keyboardType={isEditName ? "default" : "numeric"}
-            value={textoState}
+            value={isEditName ? textoState : peso}
             placeholder={isEditName ? "Nome" : "Peso"}
             onChangeText={(txt) => setTextoState(txt)}
           />
@@ -52,7 +57,8 @@ export const ModalAlimentacao = ({
                   setTexto(textoState);
                   setExibeModal(false);
                 } else {
-                  alterarPesoAlimento(textoState);
+                  setPeso(pesoState);
+                  alterarPesoAlimento(valorOriginalMacro, texto, peso);
                   setExibeModal(false);
                 }
               }}

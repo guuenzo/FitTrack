@@ -1,6 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { mask, unMask } from "remask";
 import { api, usuarioResource } from "../Services/Service";
+import { Alert } from "react-native";
 
 export const unMasked = (data) => unMask(data);
 
@@ -60,4 +61,68 @@ export const userDecodeToken = async (token) => {
     token: token,
     foto: decoded.foto,
   };
+};
+
+export const calcularPorcentagemMacro = (pesoRefeicao, quantidadeMacro) => {
+  if (pesoRefeicao === 0 || quantidadeMacro === 0) {
+    return 0;
+  }
+  return (quantidadeMacro / pesoRefeicao) * 100;
+};
+
+export const calcularQuantidadeMacrosRefeicao = (array, macro) => {
+  let total = 0;
+
+  switch (macro.toLowerCase()) {
+    case "proteinas":
+      array.forEach((alimento) => (total += alimento.proteinas));
+      return total !== 0
+        ? Number.isInteger(total)
+          ? total
+          : total.toFixed(1)
+        : 0;
+
+    case "carboidratos":
+      array.forEach((alimento) => (total += alimento.carboidratos));
+      return total !== 0
+        ? Number.isInteger(total)
+          ? total
+          : total.toFixed(1)
+        : 0;
+
+    case "gorduras":
+      array.forEach((alimento) => (total += alimento.gorduras));
+      return total !== 0
+        ? Number.isInteger(total)
+          ? total
+          : total.toFixed(1)
+        : 0;
+
+    case "calorias":
+      array.forEach((alimento) => (total += alimento.calorias));
+      return total !== 0
+        ? Number.isInteger(total)
+          ? total
+          : total.toFixed(1)
+        : 0;
+
+    case "peso":
+      array.forEach((alimento) => (total += alimento.peso));
+      return total !== 0 ? total : 0;
+
+    default:
+      return 0;
+  }
+};
+
+export const calcularMacroAoAumentarPeso = (
+  valorOriginal,
+  pesoOriginal,
+  novoPeso
+) => {
+  if (pesoOriginal === 0) {
+    Alert.alert("Ops", "O peso original deve ser maior que zero.");
+    return;
+  }
+  return (valorOriginal * novoPeso) / pesoOriginal;
 };
