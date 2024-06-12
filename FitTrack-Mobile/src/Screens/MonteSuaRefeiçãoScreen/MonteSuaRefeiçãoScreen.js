@@ -18,13 +18,16 @@ import InfoGlobalBoxComponent, {
 } from "./InfoGlobal";
 import { ButtonComponentDefault } from "../../Components/Button/Button";
 import { ModalAlimentacao } from "../../Components/Modal/Modal";
-import { api, refeicaoResource } from "../../Services/Service";
+import { api, apiAlimentos, refeicaoResource } from "../../Services/Service";
 import { AuthContext } from "../../Contexts/AuthContext";
 import {
   calcularMacroAoAumentarPeso,
   calcularPorcentagemMacro,
   calcularQuantidadeMacrosRefeicao,
 } from "../../utils/StringFunctions";
+import { TextInput } from "react-native-paper";
+import { getAlimentoExterno } from "../../Services/ServiceFood";
+import { traduzirTexto } from "../../Services/I18n";
 
 const MonteSuaRefeiçãoScreen = ({ route }) => {
   const navigation = useNavigation();
@@ -48,6 +51,8 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
   const [alimentos, setAlimentos] = useState(
     route.params.refeicao.alimentos || []
   );
+
+  const [alimentoEdaman, setAlimentoEdaman] = useState("");
 
   //adiona um alimento pesquisado à refeição
   //item: pega o item selecionado no componente de dropdown e passa aqui pra tela "MonteSuaRefeiçãoScreen"
@@ -121,12 +126,19 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
         return;
       }
 
+      let alimentosSemId = [];
+
+      alimentos.map((element) => {
+        alimentosSemId.push({ ...element, idAlimento: null });
+      });
+
+      //é preciso passar os aliementos sem um id para o back end, pois o id é criado lá
       const { data, status } = await api.post(
         `${refeicaoResource}/CadastrarRefeicao`,
         {
           nomeRefeicao,
           idUsuario: userGlobalData.id,
-          alimentos,
+          alimentos: alimentosSemId,
         }
       );
       navigation.replace("Main", { indice: 0 });
@@ -147,16 +159,21 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
         return;
       }
 
+      let alimentosSemId = [];
+
+      alimentos.map((element) => {
+        alimentosSemId.push({ ...element, idAlimento: null });
+      });
+
       api.put(
         `${refeicaoResource}/AtualizarRefeicao?idRefeicao=${route.params.refeicao.idRefeicao}`,
         {
           nomeRefeicao,
           idUsuario: userGlobalData.id,
-          alimentos,
+          alimentos: alimentosSemId,
         }
       );
 
-      console.log(alimentos)
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
@@ -180,10 +197,28 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
     }
   };
 
+  const adicionarAlimentoVindoDoEdaman = async (alimento) => {
+    const response = await traduzirTexto();
+
+    // let existeEsseAlimento = false;
+
+    // alimentos.forEach((element) => {
+    //   if (element.nomeAlimento === response.nomeAlimento) {
+    //     existeEsseAlimento = true;
+    //     return;
+    //   }
+    // });
+    // if (!existeEsseAlimento) {
+    //   setAlimentos([...alimentos, response]);
+    // }
+
+    console.log(response);
+  };
+
   useEffect(() => {
-    console.log(alimentos);
+    adicionarAlimentoVindoDoEdaman("apple");
     return (cleanUp = () => {});
-  }, [route.params, alimentoSelecionado,alimentos]);
+  }, [route.params, alimentoSelecionado, alimentos]);
 
   return (
     <Container>
@@ -210,6 +245,11 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
             <Title fieldMargin={"0 0 30px 0"} text={"Monte sua refeição"} />
 
             <DropDownComponent addAlimento={addAlimentoARefeicao} />
+
+            <TextInput
+              onChangeText={(txt) => setAlimentoEdaman(txt)}
+              value={alimentoEdaman}
+            />
 
             <InfoGlobalBoxComponent
               nomeRefeicao={nomeRefeicao}
