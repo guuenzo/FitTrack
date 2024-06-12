@@ -49,11 +49,11 @@ namespace API_FitTrack.Repositories
 
         public List<Exercicio> ListarTodos()
         {
-            return _context.Exercicio.Include(x => x.GrupoMuscular).ToList();
+            return _context.Exercicio.Include(x => x.GrupoMuscular).Include(x => x.MidiaExercicio).ToList();
         }
 
         public Exercicio BuscarExercicioPorIdGrupoMuscular(Guid idGrupoMuscular) {
-            return _context.Exercicio.FirstOrDefault(x => x.IdGrupoMuscular == idGrupoMuscular);
+            return _context.Exercicio.Include(x => x.MidiaExercicio).FirstOrDefault(x => x.IdGrupoMuscular == idGrupoMuscular);
         }
     }
 }
