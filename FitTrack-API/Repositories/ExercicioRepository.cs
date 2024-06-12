@@ -52,8 +52,8 @@ namespace API_FitTrack.Repositories
             return _context.Exercicio.Include(x => x.GrupoMuscular).Include(x => x.MidiaExercicio).ToList();
         }
 
-        public Exercicio BuscarExercicioPorIdGrupoMuscular(Guid idGrupoMuscular) {
-            return _context.Exercicio.Include(x => x.MidiaExercicio).FirstOrDefault(x => x.IdGrupoMuscular == idGrupoMuscular);
+        public List<Exercicio> BuscarExercicioPorIdGrupoMuscular(Guid idGrupoMuscular) {
+            return _context.Exercicio.Include(x => x.MidiaExercicio).Where(x => x.IdGrupoMuscular == idGrupoMuscular).ToList();
         }
     }
 }

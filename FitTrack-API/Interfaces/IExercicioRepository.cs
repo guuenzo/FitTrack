@@ -8,7 +8,7 @@ namespace API_FitTrack.Interfaces
     {
         void Cadastrar(Exercicio exercicio);
         Exercicio BuscarPorId(Guid id);
-        public Exercicio BuscarExercicioPorIdGrupoMuscular(Guid idGrupoMuscular);
+        public List<Exercicio> BuscarExercicioPorIdGrupoMuscular(Guid idGrupoMuscular);
         void Atualizar(Exercicio exercicio);
         void Deletar(Guid id);
         List<Exercicio> ListarTodos();
