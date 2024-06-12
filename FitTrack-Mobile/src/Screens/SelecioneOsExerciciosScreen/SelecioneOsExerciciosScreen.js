@@ -11,6 +11,7 @@ import {
 } from "../../Components/CardTreino/CardTreino";
 import FlatListComponent from "../../Components/FlatList/FlatList";
 import { api, exercicioResource } from "../../Services/Service";
+import { ModalVideoExercicio } from "../../Components/Modal/Modal";
 
 const SelecioneOsExerciciosScreen = () => {
   const heightStatusBar = StatusBar.currentHeight;
@@ -23,6 +24,11 @@ const SelecioneOsExerciciosScreen = () => {
     { id: 4, exercicio: "Triceps Francesa", grupo: "Triceps" },
     { id: 5, exercicio: "Triceps Testa", grupo: "Triceps" },
   ]);
+
+  //Modais
+  const [modalVideo, setModalVideo] = useState({ nomeExe: "", video: "", modal: false })
+  const [modalCarga, setmodalCarga] = useState(false)
+
   const [exercicioApi, setExercicioApi] = useState([])
 
   const conjuntoUnico = new Set(exercicioApi.map((objeto) => objeto["grupo"]));
@@ -35,7 +41,8 @@ const SelecioneOsExerciciosScreen = () => {
     await api.get(exercicioResource).then(async (response) => {
       const exercicioApi = response.data.map(exercicio => ({
         exercicio: exercicio.nomeExercicio,
-        grupo: exercicio.grupoMuscular.nomeGrupoMuscular
+        grupo: exercicio.grupoMuscular.nomeGrupoMuscular,
+        video: exercicio.midiaExercicio.videoExercicio
 
       }));
       setExercicioApi(exercicioApi);
@@ -72,7 +79,11 @@ const SelecioneOsExerciciosScreen = () => {
                 keyExtractor={(itemEx) => itemEx.id}
                 renderItem={(itemExercicio) =>
                   itemExercicio.item.grupo === item && (exercicioApi &&
-                    <CardExercicio exercicio={itemExercicio.item.exercicio} setExeSelecionado={setExeSelecionado} />
+                    <CardExercicio
+                      exercicio={itemExercicio.item}
+                      setModalVideo={setModalVideo}
+                      setExeSelecionado={setExeSelecionado}
+                    />
                   )
                 }
               />
@@ -87,6 +98,13 @@ const SelecioneOsExerciciosScreen = () => {
         text="Confirmar"
 
       />
+
+      <ModalVideoExercicio
+        visible={modalVideo.modal}
+        setModalVideo={setModalVideo}
+        modalVideo={modalVideo}
+      />
+
     </ContainerPesonalizeTreino>
   );
 };

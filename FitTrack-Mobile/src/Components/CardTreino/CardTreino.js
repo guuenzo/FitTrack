@@ -50,20 +50,20 @@ export const CardGrupoTreino = ({ onPress, grupo }) => {
 
     );
 };
-export const CardExercicio = ({ onPress, grupo, exercicio, img, setExeSelecionado }) => {
+export const CardExercicio = ({ onPress, grupo, exercicio, img, setExeSelecionado, setModalVideo }) => {
     const [isSelected, setSelection] = useState(false)
 
     return (
 
         <ContainerCardExercicio onPress={() => console.log(exercicio, isSelected)}>
 
-            <ImgExercicio>
-                <ImgExe source={{ uri: "https://blog.damamaefitness.com.br/wp-content/uploads/2020/07/Como-se-acostumar-a-ir-na-academia-frequentemente.jpg" }} />
+            <ImgExercicio onPress={(x) => setModalVideo({ ...x, nomeExe: exercicio.exercicio, video: exercicio.video, modal: true })}>
+                <ImgExe source={{ uri: exercicio.video }} />
                 <StyledFontAwesome name="play" size={34} color="black" />
             </ImgExercicio>
 
             <TextExercicio>
-                <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1} >{exercicio}</TextMABold>
+                <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1} >{exercicio.exercicio}</TextMABold>
             </TextExercicio>
 
             <ContainerCheckBox>

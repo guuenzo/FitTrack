@@ -1,11 +1,12 @@
-import { ModalContent, ModalStyle } from "./style";
+import { ContainerClose, ContainerModalVideo, ContainerVideo, ContentModalvideo, ImgVideo, ModalContent, ModalStyle } from "./style";
 import { useEffect, useState } from "react";
 import { Portal } from "react-native-paper";
 import Title from "../Title/Title";
 import { ButtonComponentDefault, ButtonSecondary } from "../Button/Button";
 import Theme from "../../Styles/Theme";
 import { InputDefault } from "../Input/Input";
-import { View } from "react-native";
+import { ActivityIndicator, Image, Modal, View } from "react-native";
+import { AntDesign } from '@expo/vector-icons';
 
 export const ModalAlimentacao = ({
   exibeModal = false,
@@ -14,13 +15,13 @@ export const ModalAlimentacao = ({
   setTexto,
   texto = "",
   isEditName = true,
-  alterarPesoAlimento = () => {},
+  alterarPesoAlimento = () => { },
 }) => {
   const [textoState, setTextoState] = useState(texto);
   const hideModal = () => setExibeModal(false);
 
   useEffect(() => {
-    return (cleanUp = () => {});
+    return (cleanUp = () => { });
   }, [textoState]);
   return (
     <Portal>
@@ -68,3 +69,49 @@ export const ModalAlimentacao = ({
     </Portal>
   );
 };
+
+
+export const ModalVideoExercicio = ({
+  visible,
+  setModalVideo,
+  modalVideo,
+  ...rest
+}) => {
+  return (
+
+    <Modal
+      {...rest}
+      visible={visible}
+      transparent={true}
+      animationType="fade">
+      <ContainerModalVideo>
+        <ContentModalvideo>
+
+          <ContainerClose>
+            <AntDesign name="close" size={30} color="#2B3C64" onPress={() => setModalVideo({ modal: false })} />
+          </ContainerClose>
+
+          <Title
+            fieldMargin={"0px"}
+            text={modalVideo.nomeExe
+
+            }
+          />
+
+          <ContainerVideo>
+            {modalVideo.video ? <ImgVideo source={{ uri: modalVideo.video }} /> : <ActivityIndicator size="large" color="#2B3C64" />}
+
+          </ContainerVideo>
+
+        </ContentModalvideo>
+      </ContainerModalVideo>
+    </Modal>
+
+  )
+}
+export const ModalCargaExercicio = ({ }) => {
+  return (
+    <>
+    </>
+  )
+}
