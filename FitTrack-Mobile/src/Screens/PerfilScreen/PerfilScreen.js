@@ -19,12 +19,16 @@ import { FontAwesome } from "@expo/vector-icons";
 import Theme from "../../Styles/Theme";
 import { CommonActions, useNavigation } from "@react-navigation/native";
 import { ModalObejetivo } from "../../Components/ModalObjetivo/ModalObjetivo";
+import { ModalAltura } from "../../Components/ModalAltura/ModalAltura";
+import { ModalPeso } from "../../Components/ModalPeso/ModalPeso";
 
 const PerfilScreen = () => {
   const navigation = useNavigation();
   const { userGlobalData, setUserGlobalData } = useContext(AuthContext);
   const [dados, setDados] = useState(false)
   const [exibeModalObj, setExibeModalObj] = useState(false)
+  const [exibeModalPeso, setExibeModalPeso] = useState(false)
+  const [exibeModalAltura, setExibeModalAltura] = useState(false)
 
   const logout = () => {
     //reseta a pilha de telas do navigation e manda pra login
@@ -38,8 +42,13 @@ const PerfilScreen = () => {
     //limpa os dados do usuario no state global
     setUserGlobalData({});
   };
+
+  async function getProfile(token) {
+    const promise = await api.get(
+     `/Usuarios/BuscarPorId?id=2B24DC93-F62C-4E7F-BD66-A3F42CEE2E43`
+    );
+  }
   useEffect(() => {
-    return (cleanUp = () => { });
   }, []);
   return (
     <Container>
@@ -76,7 +85,7 @@ const PerfilScreen = () => {
             dados == false ?
               <>
                 {/* Card de peso */}
-                <CardPerfil>
+                <CardPerfil onPress={()=> setExibeModalPeso(true)}>
                   <MaterialIcons
                     name="scale"
                     size={24}
@@ -94,7 +103,7 @@ const PerfilScreen = () => {
 
 
                 {/* Card de altura */}
-                <CardPerfil>
+                <CardPerfil onPress={()=> setExibeModalAltura(true)}>
                   <FontAwesome
                     name="arrows-v"
                     size={24}
@@ -226,7 +235,14 @@ const PerfilScreen = () => {
           <ModalObejetivo
           exibeModal={exibeModalObj}
           setExibeModal={setExibeModalObj}
-
+          />
+          <ModalAltura
+          exibeModal={exibeModalAltura}
+          setExibeModal={setExibeModalAltura}
+          />
+          <ModalPeso
+          exibeModal={exibeModalPeso}
+          setExibeModal={setExibeModalPeso}
           />
 
         </View>

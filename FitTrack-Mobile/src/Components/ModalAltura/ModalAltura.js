@@ -9,46 +9,33 @@ import { ModalContent, ModalStyle } from "../Modal/style";
 import { Picker } from '@react-native-picker/picker';
 
 
-export const ModalObejetivo = ({
+export const ModalAltura = ({
     exibeModal = false,
     setExibeModal,
 }) => {
     const hideModal = () => setExibeModal(false);
-    const [objetivoSelecionado, setObjetivoSelecionado] = useState("")
-    const objetivos = [
-        { label: "Objetivo", value: null },
-        { label: "Bulking", value: "bulking" },
-        { label: "Cutting", value: "cutting" },
-        { label: "Manter Peso", value: "manter_peso" },
-    ];
-
-    
+    const [alturaSelecionada, setAlturaSelecionada] = useState("0")
+    const alturas = Array.from({ length: 121 }, (_, i) => (1.10 + i * 0.01).toFixed(2));
     return (
         <Portal>
             <ModalStyle visible={exibeModal} onDismiss={hideModal}>
-                <ModalContent gap={"20px"} aligItems={"center"}>
+                <ModalContent gap={"25px"} aligItems={"center"}>
 
-                    <Title text="Selecione seu objetivo" />
+                    <Title text="Indique sua altura" />
 
-                    <View
-                    />
                     <View style={styles.pickerContainer}>
                         <Picker
-                            selectedValue={objetivoSelecionado}
+                            selectedValue={alturaSelecionada}
                             style={styles.picker}
-                            onValueChange={(itemValue) => {
-                                setObjetivoSelecionado(itemValue);
-                            }}
+                            onValueChange={(itemValue) => setAlturaSelecionada(itemValue)}
                         >
-                            {objetivos.map((objetivo) => (
-                                <Picker.Item
-                                    key={objetivo.value}
-                                    label={objetivo.label}
-                                    value={objetivo.value}
-                                />
+                            {alturas.map((altura) => (
+                                <Picker.Item key={altura} label={`${altura} m`} value={altura} />
                             ))}
                         </Picker>
                     </View>
+
+
 
                     <ButtonComponent
                         text="Salvar"
@@ -73,32 +60,30 @@ export const ModalObejetivo = ({
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5F5F5',
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#F5F5F5',
     },
     label: {
-        fontSize: 18,
-        color: '#2B3C64',
-        marginBottom: 10,
+      fontSize: 18,
+      color: '#2B3C64',
+      marginBottom: 10,
     },
     pickerContainer: {
-        borderWidth: 1,
-        borderColor: '#2B3C64',
-        borderRadius: 8,
-        overflow: 'hidden',
-        padding: 5,
-        width: 200,
+      borderWidth: 1,
+      borderColor: '#2B3C64',
+      borderRadius: 8,
+      overflow: 'hidden',
     },
     picker: {
-        height: 50,
-        width: 200,
-        color: '#2B3C64',
+      height: 50,
+      width: 200,
+      color: '#2B3C64',
     },
-    selectedObjetivo: {
-        marginTop: 20,
-        fontSize: 18,
-        color: '#2B3C64',
+    selectedHeight: {
+      marginTop: 20,
+      fontSize: 18,
+      color: '#2B3C64',
     },
-});
+  });

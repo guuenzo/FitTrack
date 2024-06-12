@@ -11,6 +11,7 @@ export const ButtonStyle = styled(TouchableOpacity)`
     props.statusButton ? "#2B3C64" : "transparent"};
   align-items: center;
   justify-content: center;
+  border-radius: 20px;
 `;
 
 export const ButtonStyleText = styled(Text)`
