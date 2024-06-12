@@ -6,6 +6,7 @@ using API_FitTrack.Interfaces;
 using FitTrack_API.Contexts;
 using FitTrack_API.Domains;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Crypto.Signers;
 
 namespace API_FitTrack.Repositories
 {
@@ -49,6 +50,10 @@ namespace API_FitTrack.Repositories
         public List<Exercicio> ListarTodos()
         {
             return _context.Exercicio.Include(x => x.GrupoMuscular).ToList();
+        }
+
+        public Exercicio BuscarExercicioPorIdGrupoMuscular(Guid idGrupoMuscular) {
+            return _context.Exercicio.FirstOrDefault(x => x.IdGrupoMuscular == idGrupoMuscular);
         }
     }
 }
