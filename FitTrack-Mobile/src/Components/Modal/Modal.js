@@ -12,26 +12,28 @@ export const ModalAlimentacao = ({
   setExibeModal,
   titulo = "Dê um nome para sua refeição:",
   setTexto,
-  texto = "",
+  texto,
   isEditName = true,
-  peso = 0,
+  peso,
   setPeso,
-
+  valorOriginalMacro,
   alterarPesoAlimento = () => {},
-  macroNutrientes: {},
 }) => {
   const [pesoState, setPesoState] = useState(peso);
   const [textoState, setTextoState] = useState(texto);
   const hideModal = () => setExibeModal(false);
 
   useEffect(() => {
-    return (cleanUp = () => {});
-  }, [textoState, macroNutrientes]);
+    if (exibeModal) {
+      setPesoState(peso);
+      setTextoState(texto);
+    }
+  }, [exibeModal, peso, texto]);
+
   return (
     <Portal>
       <ModalStyle visible={exibeModal} onDismiss={hideModal}>
         <ModalContent gap={"50px"} aligItems={"center"}>
-          {/* <View style={{}}> */}
           <Title
             textAling={"center"}
             text={
@@ -43,11 +45,12 @@ export const ModalAlimentacao = ({
 
           <InputDefault
             keyboardType={isEditName ? "default" : "numeric"}
-            value={isEditName ? textoState : peso}
+            value={isEditName ? textoState : pesoState.toString()}
             placeholder={isEditName ? "Nome" : "Peso"}
-            onChangeText={(txt) => setTextoState(txt)}
+            onChangeText={(txt) =>
+              isEditName ? setTextoState(txt) : setPesoState(Number(txt))
+            }
           />
-          {/* </View> */}
           <View>
             <ButtonComponentDefault
               statusButton
@@ -58,7 +61,7 @@ export const ModalAlimentacao = ({
                   setExibeModal(false);
                 } else {
                   setPeso(pesoState);
-                  alterarPesoAlimento(valorOriginalMacro, texto, peso);
+                  alterarPesoAlimento(valorOriginalMacro, pesoState, peso);
                   setExibeModal(false);
                 }
               }}

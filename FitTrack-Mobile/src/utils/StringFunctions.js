@@ -117,8 +117,8 @@ export const calcularQuantidadeMacrosRefeicao = (array, macro) => {
 
 export const calcularMacroAoAumentarPeso = (
   valorOriginal,
-  pesoOriginal,
-  novoPeso
+  novoPeso,
+  pesoOriginal
 ) => {
   if (pesoOriginal === 0) {
     Alert.alert("Ops", "O peso original deve ser maior que zero.");

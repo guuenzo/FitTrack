@@ -147,7 +147,7 @@ export const InputData = ({
 export const DropDownComponent = ({
   data = [
     {
-      id: "1",
+      idAlimento: "1",
       nomeAlimento: "Banana",
       peso: 100,
       calorias: 89,
@@ -156,7 +156,7 @@ export const DropDownComponent = ({
       gorduras: 0.3,
     },
     {
-      id: "2",
+      idAlimento: "2",
       nomeAlimento: "Maçã",
       peso: 116,
       calorias: 52,
@@ -165,7 +165,7 @@ export const DropDownComponent = ({
       gorduras: 0.2,
     },
     {
-      id: "3",
+      idAlimento: "3",
       nomeAlimento: "Pera",
       peso: 100,
       calorias: 57,
@@ -174,7 +174,7 @@ export const DropDownComponent = ({
       gorduras: 0.1,
     },
     {
-      id: "4",
+      idAlimento: "4",
       nomeAlimento: "Uva",
       peso: 100,
       calorias: 69,
@@ -183,7 +183,7 @@ export const DropDownComponent = ({
       gorduras: 0.2,
     },
     {
-      id: "5",
+      idAlimento: "5",
       nomeAlimento: "Laranja",
       peso: 100,
       calorias: 47,
@@ -192,7 +192,7 @@ export const DropDownComponent = ({
       gorduras: 0.1,
     },
     {
-      id: "6",
+      idAlimento: "6",
       nomeAlimento: "Morango",
       peso: 100,
       calorias: 32,
@@ -201,7 +201,7 @@ export const DropDownComponent = ({
       gorduras: 0.3,
     },
     {
-      id: "7",
+      idAlimento: "7",
       nomeAlimento: "Abacaxi",
       peso: 100,
       calorias: 50,
@@ -210,7 +210,7 @@ export const DropDownComponent = ({
       gorduras: 0.1,
     },
     {
-      id: "8",
+      idAlimento: "8",
       nomeAlimento: "Melancia",
       peso: 100,
       calorias: 30,
@@ -238,7 +238,7 @@ export const DropDownComponent = ({
       data={data}
       maxHeight={300}
       labelField="nomeAlimento"
-      valueField="id"
+      valueField="idAlimento"
       search
       placeholder={!isFocus ? "Encontre um alimento" : "..."}
       searchPlaceholder="Pesquisar..."

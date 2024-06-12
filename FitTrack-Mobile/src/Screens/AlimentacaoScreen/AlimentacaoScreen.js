@@ -36,8 +36,6 @@ const AlimentacaoScreen = () => {
       );
 
       setRefeicoes(data);
-
-      console.log("data", data[0].alimentos);
     } catch (error) {}
   };
 
@@ -102,7 +100,6 @@ const AlimentacaoScreen = () => {
                   )}
                   isRefeicao
                   onPress={() => {
-                    console.log("item", item);
                     navigation.navigate("MonteSuaRefeição", {
                       refeicao: item,
                     });

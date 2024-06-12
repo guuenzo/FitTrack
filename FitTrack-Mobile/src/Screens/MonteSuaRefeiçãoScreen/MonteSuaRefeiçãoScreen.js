@@ -43,6 +43,8 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
 
   const [isEditNameModal, setIsEditNameModal] = useState(false);
 
+  const [pesoAlimentoSelecionado, setPesoAlimentoSelecionado] = useState(0);
+
   const [alimentos, setAlimentos] = useState(
     route.params.refeicao.alimentos || []
   );
@@ -53,7 +55,7 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
     let existeEsseAlimento = false;
 
     alimentos.forEach((element) => {
-      if (element.id === item.id) {
+      if (element.idAlimento === item.idAlimento) {
         existeEsseAlimento = true;
         return;
       }
@@ -75,21 +77,37 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
     novoPesoAlimento,
     pesoAntigo
   ) => {
-    calcularMacroAoAumentarPeso(
-      valorOriginalMacro,
-      pesoAntigo,
-      novoPesoAlimento
-    );
     // Altera o peso do alimento
     const novoAlimentoSelecionado = {
       ...alimentoSelecionado,
       peso: novoPesoAlimento,
+      carboidratos: calcularMacroAoAumentarPeso(
+        alimentoSelecionado.carboidratos,
+        novoPesoAlimento,
+        pesoAntigo
+      ),
+      gorduras: calcularMacroAoAumentarPeso(
+        alimentoSelecionado.gorduras,
+        novoPesoAlimento,
+        pesoAntigo
+      ),
+      proteinas: calcularMacroAoAumentarPeso(
+        alimentoSelecionado.proteinas,
+        novoPesoAlimento,
+        pesoAntigo
+      ),
+      calorias: calcularMacroAoAumentarPeso(
+        alimentoSelecionado.calorias,
+        novoPesoAlimento,
+        pesoAntigo
+      ),
     };
+
     setAlimentoSelecionado(novoAlimentoSelecionado);
 
     // Remove o alimento que teve o peso alterado
     const alimentosFiltrados = alimentos.filter(
-      (x) => x.id !== novoAlimentoSelecionado.id
+      (x) => x.idAlimento !== novoAlimentoSelecionado.idAlimento
     );
 
     // Atualiza o estado dos alimentos com o novo alimento selecionado
@@ -111,7 +129,6 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
           alimentos,
         }
       );
-      console.log("status", status);
       navigation.replace("Main", { indice: 0 });
     } catch (error) {
       console.log(error);
@@ -138,6 +155,8 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
           alimentos,
         }
       );
+
+      console.log(alimentos)
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
@@ -162,9 +181,9 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
   };
 
   useEffect(() => {
-    console.log(alimentoSelecionado)
+    console.log(alimentos);
     return (cleanUp = () => {});
-  }, [route.params, alimentoSelecionado]);
+  }, [route.params, alimentoSelecionado,alimentos]);
 
   return (
     <Container>
@@ -174,18 +193,13 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
             {exibeModal && (
               <ModalAlimentacao
                 isEditName={isEditNameModal}
-                texto={alimentoSelecionado.peso}
+                texto={nomeRefeicao}
+                peso={pesoAlimentoSelecionado}
+                setPeso={setPesoAlimentoSelecionado}
                 setExibeModal={setExibeModal}
                 exibeModal={exibeModal}
                 setTexto={setNomeRefeicao}
                 alterarPesoAlimento={alterarPesoAlimento}
-                macroNutrientes={{
-                  proteinas: alimentoSelecionado.proteinas,
-                  carboidratos: alimentoSelecionado.carboidratos,
-                  gorduras: alimentoSelecionado.gorduras,
-                  calorias: alimentoSelecionado.calorias,
-                  peso: alimentoSelecionado.peso,
-                }}
               />
             )}
 
@@ -241,7 +255,7 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
               renderItem={({ item }) => (
                 <CardRefeicao
                   onPressEditar={() => {
-                    console.log(item);
+                    setPesoAlimentoSelecionado(item.peso);
                     setIsEditNameModal(false);
                     setAlimentoSelecionado(item);
                     setExibeModal(true);
@@ -259,12 +273,42 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
                     item.peso,
                     item.gorduras
                   )}
-                  kcal={calcularMacroAoAumentarPeso(item.calorias, item.peso)}
+                  kcal={
+                    item.calorias !== 0
+                      ? Number.isInteger(item.calorias)
+                        ? item.calorias
+                        : item.calorias.toFixed(1)
+                      : 0
+                  }
                   nome={item.nomeAlimento}
-                  pesoRefeicao={item.peso}
-                  proteinas={item.proteinas}
-                  carboidratos={item.carboidratos}
-                  gorduras={item.gorduras}
+                  pesoRefeicao={
+                    item.peso !== 0
+                      ? Number.isInteger(item.peso)
+                        ? item.peso
+                        : item.peso.toFixed(1)
+                      : 0
+                  }
+                  proteinas={
+                    item.proteinas !== 0
+                      ? Number.isInteger(item.proteinas)
+                        ? item.proteinas
+                        : item.proteinas.toFixed(1)
+                      : 0
+                  }
+                  carboidratos={
+                    item.carboidratos !== 0
+                      ? Number.isInteger(item.carboidratos)
+                        ? item.carboidratos
+                        : item.carboidratos.toFixed(1)
+                      : 0
+                  }
+                  gorduras={
+                    item.gorduras !== 0
+                      ? Number.isInteger(item.gorduras)
+                        ? item.gorduras
+                        : item.gorduras.toFixed(1)
+                      : 0
+                  }
                   onPressDeletar={() => {
                     //retorna pro array de alimentos só os alimentos que não forem clicados
                     setAlimentos(
