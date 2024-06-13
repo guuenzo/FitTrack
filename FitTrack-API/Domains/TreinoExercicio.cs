@@ -21,10 +21,6 @@ namespace API_FitTrack.Domains
         public Exercicio? Exercicio { get; set; }
         public Guid IdExercicio { get; set; }
 
-        public TreinoExercicio()
-        {
-            IdTreinoExercicio = IdTreino;
-        }
 
     }
 }

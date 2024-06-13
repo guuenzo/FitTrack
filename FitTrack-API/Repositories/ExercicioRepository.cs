@@ -5,6 +5,7 @@ using API_FitTrack.Domains;
 using API_FitTrack.Interfaces;
 using FitTrack_API.Contexts;
 using FitTrack_API.Domains;
+using FitTrack_API.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Crypto.Signers;
 
@@ -20,30 +21,75 @@ namespace API_FitTrack.Repositories
         }
 
 
-        public void Cadastrar(Exercicio exercicio)
+        public void Cadastrar(ExercicioViewModel exercicioViewModel)
         {
-            _context.Exercicio.Add(exercicio);
-            _context.SaveChanges();
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    Exercicio exercicio = new()
+                    {
+                        NomeExercicio = exercicioViewModel.NomeExercicio,
+                        Descricao = exercicioViewModel.Descricao,
+                        IdGrupoMuscular = exercicioViewModel.GrupoMuscular.IdGrupoMuscular,
+                    };
+
+                    exercicio.IdMidiaExercicio = exercicio.IdExercicio;
+
+                    MidiaExercicio midiaExercicio = new()
+                    {
+                        IdMidiaExercicio = exercicio.IdExercicio,
+                        VideoExercicio = exercicioViewModel.MidiaExercicio.VideoExercicio,
+                        BlobNameVideoExercicio = exercicioViewModel.MidiaExercicio.BlobNameVideoExercicio,
+                    };
+
+
+                    _context.Exercicio.Add(exercicio);
+                    _context.MidiaExercicio.Add(midiaExercicio);
+                    _context.SaveChanges();
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback(); // Reverte a transação em caso de exceção
+                    throw new Exception("Erro ao cadastrar exercício.", ex);
+                }
+
+            }
         }
 
-        public Exercicio BuscarPorId(Guid id)
+        public ExercicioViewModel BuscarPorId(Guid id)
         {
-            return _context.Exercicio.FirstOrDefault(e => e.IdExercicio == id)!;
+            throw new NotImplementedException();
         }
 
-        public void Atualizar(Exercicio exercicio)
+        public void Atualizar(ExercicioViewModel exercicio)
         {
-            _context.Exercicio.Update(exercicio);
-            _context.SaveChanges();
+            throw new NotImplementedException();
         }
 
         public void Deletar(Guid id)
         {
-            var exercicio = _context.Exercicio.Find(id);
-            if (exercicio != null)
+            using (var transaction = _context.Database.BeginTransaction())
             {
-                _context.Exercicio.Remove(exercicio);
-                _context.SaveChanges();
+                try
+                {
+                    Exercicio exercicioBuscado = _context.Exercicio.FirstOrDefault(x => x.IdExercicio == id)! ?? throw new Exception("Exercício não encontrado!");
+
+                    MidiaExercicio midiaExercicio = _context.MidiaExercicio.FirstOrDefault(x => x.IdMidiaExercicio == exercicioBuscado.IdMidiaExercicio)! ?? throw new Exception("Mídia de Exercício não encontrada!");
+
+                    _context.Exercicio.Remove(exercicioBuscado);
+                    _context.MidiaExercicio.Remove(midiaExercicio);
+                    _context.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback(); // Reverte a transação em caso de exceção
+                    throw new Exception("Erro ao excluir exercício.", ex);
+                }
+
             }
         }
 
@@ -52,9 +98,13 @@ namespace API_FitTrack.Repositories
             return _context.Exercicio.Include(x => x.GrupoMuscular).Include(x => x.MidiaExercicio).ToList();
         }
 
-        public List<Exercicio> BuscarExercicioPorIdGrupoMuscular(Guid idGrupoMuscular)
+        public List<Exercicio> BuscarExercicioPorIdGrupoMuscular(List<Guid> idGruposMusculares)
         {
-            return _context.Exercicio.Include(x => x.MidiaExercicio).Where(x => x.IdGrupoMuscular == idGrupoMuscular).ToList();
+            return _context.Exercicio
+                .Include(x => x.GrupoMuscular)
+                .Include(x => x.MidiaExercicio)
+                .Where(x => idGruposMusculares.Contains(x.IdGrupoMuscular))
+                .ToList();
         }
     }
 }

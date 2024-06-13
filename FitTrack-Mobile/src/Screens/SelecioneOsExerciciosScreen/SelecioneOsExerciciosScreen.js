@@ -13,7 +13,7 @@ import FlatListComponent from "../../Components/FlatList/FlatList";
 import { api, exercicioResource } from "../../Services/Service";
 import { ModalVideoExercicio } from "../../Components/Modal/Modal";
 
-const SelecioneOsExerciciosScreen = () => {
+const SelecioneOsExerciciosScreen = ({ route }) => {
   const heightStatusBar = StatusBar.currentHeight;
   const [exeSelecionado, setExeSelecionado] = useState([{ exe: "", selecionado: false }])
   const [exercicios, setExercicios] = useState([
@@ -28,7 +28,7 @@ const SelecioneOsExerciciosScreen = () => {
   //Modais
   const [modalVideo, setModalVideo] = useState({ nomeExe: "", video: "", modal: false })
   const [modalCarga, setmodalCarga] = useState(false)
-
+  const [grupos, setGrupos] = useState()
   const [exercicioApi, setExercicioApi] = useState([])
 
   const conjuntoUnico = new Set(exercicioApi.map((objeto) => objeto["grupo"]));
@@ -38,7 +38,7 @@ const SelecioneOsExerciciosScreen = () => {
 
   async function GetExercicios() {
     //Chamando o metodo da api
-    await api.get(exercicioResource).then(async (response) => {
+    await api.get(exercicioResource + `?ids=${route.params.gruposSelecionados.id1}${route.params.gruposSelecionados.id2 ? `&ids=${route.params.gruposSelecionados.id2}` : ''}${route.params.gruposSelecionados.id3 ? `&ids=${route.params.gruposSelecionados.id3}` : ''}`).then(async (response) => {
       const exercicioApi = response.data.map(exercicio => ({
         exercicio: exercicio.nomeExercicio,
         grupo: exercicio.grupoMuscular.nomeGrupoMuscular,
@@ -46,6 +46,7 @@ const SelecioneOsExerciciosScreen = () => {
 
       }));
       setExercicioApi(exercicioApi);
+      // console.log(response.data)
       // console.log(exercicioApi);
     }).catch(error => {
       console.log(error)
@@ -54,6 +55,10 @@ const SelecioneOsExerciciosScreen = () => {
 
   useEffect(() => {
     GetExercicios();
+
+  }, []);
+  useEffect(() => {
+    setGrupos(route.params.gruposSelecionados)
   }, []);
 
 
@@ -95,6 +100,7 @@ const SelecioneOsExerciciosScreen = () => {
       <ButtonComponentDefault
         statusButton={true}
         marginBottom={"7%"}
+        onPress={() => console.log(grupos)}
         text="Confirmar"
 
       />

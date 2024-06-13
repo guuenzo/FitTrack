@@ -5,6 +5,7 @@ using System.Linq;
 using API_FitTrack.Domains;
 using API_FitTrack.Interfaces;
 using FitTrack_API.Contexts;
+using FitTrack_API.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace API_FitTrack.Repositories
@@ -20,10 +21,48 @@ namespace API_FitTrack.Repositories
 
 
 
-        public void Cadastrar(Treino treino)
+        public void Cadastrar(TreinoViewModel treinoViewModel)
         {
-            _context.Treino.Add(treino);
-            _context.SaveChanges();
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+
+                    Treino treino = new()
+                    {
+                        IdUsuario = treinoViewModel.IdUsuario,
+
+                    };
+
+                    List<TreinoExercicio> treinoExerciciosASeremAdicionados = [];
+
+                    foreach (var exercicio in treinoViewModel.Exercicios)
+                    {
+                        TreinoExercicio treinoExercicio = new()
+                        {
+                            IdTreino = treino.IdTreino,
+                            IdExercicio = exercicio.IdExercicio,
+                        };
+
+
+                        treinoExerciciosASeremAdicionados.Add(treinoExercicio);
+
+                    }
+                    _context.Treino.Add(treino);
+                    _context.TreinoExercicio.AddRange(treinoExerciciosASeremAdicionados);
+                    _context.SaveChanges();
+
+
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+
+                    transaction.Rollback(); // Reverte a transação em caso de exceção
+                    throw new Exception("Erro ao cadastrar exercício.", ex);
+                }
+            }
         }
 
         public Treino BuscarPorId(Guid id)
@@ -53,6 +92,11 @@ namespace API_FitTrack.Repositories
             return _context.Treino
 
                 .ToList();
+        }
+
+        public List<TreinoViewModel> ListarTreinosDoUsuario(Guid idUsuario)
+        {
+            throw new NotImplementedException();
         }
     }
 }

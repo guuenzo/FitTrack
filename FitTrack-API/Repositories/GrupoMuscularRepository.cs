@@ -15,7 +15,7 @@ namespace FitTrack_API.Repositories
 
         public List<GrupoMuscular> ListarTodos()
         {
-            return _context.GrupoMuscular.OrderBy(x => x.NomeGrupoMuscular).ToList();
+            return _context.GrupoMuscular.ToList();
         }
     }
 }

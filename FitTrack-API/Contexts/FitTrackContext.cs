@@ -8,7 +8,6 @@ namespace FitTrack_API.Contexts
     {
         public FitTrackContext(DbContextOptions<FitTrackContext> options) : base(options) { }
 
-
         public DbSet<Alimento> Alimento { get; set; }
         public DbSet<Exercicio> Exercicio { get; set; }
         public DbSet<GrupoMuscular> GrupoMuscular { get; set; }
@@ -21,6 +20,9 @@ namespace FitTrack_API.Contexts
         public DbSet<UsuarioMidia> UsuarioMidia { get; set; }
         public DbSet<UsuarioObjetivo> UsuarioObjetivo { get; set; }
 
-       
+
+
+
+
     }
 }

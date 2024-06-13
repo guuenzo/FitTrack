@@ -28,27 +28,18 @@ namespace FitTrack_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("Carga")
-                        .HasColumnType("DECIMAL(5,2)");
-
                     b.Property<string>("Descricao")
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("IdGrupoMuscular")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("IdMidiaExercicio")
+                    b.Property<Guid?>("IdMidiaExercicio")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("NomeExercicio")
                         .IsRequired()
                         .HasColumnType("VARCHAR(40)");
-
-                    b.Property<int>("Repeticoes")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("Series")
-                        .HasColumnType("INT");
 
                     b.HasKey("IdExercicio");
 
@@ -91,9 +82,11 @@ namespace FitTrack_API.Migrations
                     b.Property<Guid>("IdUsuario")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("NomeTreino")
-                        .IsRequired()
+                    b.Property<int>("IntNomeTreino")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INT");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IntNomeTreino"));
 
                     b.HasKey("IdTreino");
 
@@ -130,7 +123,7 @@ namespace FitTrack_API.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal?>("Altura")
-                        .HasColumnType("DECIMAL(5,2)");
+                        .HasColumnType("DECIMAL(7,2)");
 
                     b.Property<int?>("CodigoRecuperacaoSenha")
                         .HasColumnType("INT");
@@ -150,7 +143,7 @@ namespace FitTrack_API.Migrations
                         .HasColumnType("VARCHAR(100)");
 
                     b.Property<decimal?>("Peso")
-                        .HasColumnType("DECIMAL(5,2)");
+                        .HasColumnType("DECIMAL(7,2)");
 
                     b.Property<string>("Senha")
                         .IsRequired()
@@ -176,23 +169,23 @@ namespace FitTrack_API.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal?>("Calorias")
-                        .HasColumnType("DECIMAL(5,2)");
+                        .HasColumnType("DECIMAL(7,2)");
 
                     b.Property<decimal?>("Carboidratos")
-                        .HasColumnType("DECIMAL(5,2)");
+                        .HasColumnType("DECIMAL(7,2)");
 
                     b.Property<decimal?>("Gorduras")
-                        .HasColumnType("DECIMAL(5,2)");
+                        .HasColumnType("DECIMAL(7,2)");
 
                     b.Property<string>("NomeAlimento")
                         .IsRequired()
                         .HasColumnType("VARCHAR(60)");
 
                     b.Property<decimal?>("Peso")
-                        .HasColumnType("DECIMAL(5,2)");
+                        .HasColumnType("DECIMAL(7,2)");
 
                     b.Property<decimal?>("Proteinas")
-                        .HasColumnType("DECIMAL(5,2)");
+                        .HasColumnType("DECIMAL(7,2)");
 
                     b.HasKey("IdAlimento");
 
@@ -223,7 +216,7 @@ namespace FitTrack_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("FotoExercicio")
+                    b.Property<string>("BlobNameVideoExercicio")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("VideoExercicio")
@@ -300,9 +293,7 @@ namespace FitTrack_API.Migrations
 
                     b.HasOne("FitTrack_API.Domains.MidiaExercicio", "MidiaExercicio")
                         .WithMany()
-                        .HasForeignKey("IdMidiaExercicio")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdMidiaExercicio");
 
                     b.Navigation("GrupoMuscular");
 

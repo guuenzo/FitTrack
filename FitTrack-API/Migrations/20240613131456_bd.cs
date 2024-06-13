@@ -17,11 +17,11 @@ namespace FitTrack_API.Migrations
                 {
                     IdAlimento = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     NomeAlimento = table.Column<string>(type: "VARCHAR(60)", nullable: false),
-                    Peso = table.Column<decimal>(type: "DECIMAL(5,2)", nullable: true),
-                    Proteinas = table.Column<decimal>(type: "DECIMAL(5,2)", nullable: true),
-                    Calorias = table.Column<decimal>(type: "DECIMAL(5,2)", nullable: true),
-                    Carboidratos = table.Column<decimal>(type: "DECIMAL(5,2)", nullable: true),
-                    Gorduras = table.Column<decimal>(type: "DECIMAL(5,2)", nullable: true)
+                    Peso = table.Column<decimal>(type: "DECIMAL(7,2)", nullable: true),
+                    Proteinas = table.Column<decimal>(type: "DECIMAL(7,2)", nullable: true),
+                    Calorias = table.Column<decimal>(type: "DECIMAL(7,2)", nullable: true),
+                    Carboidratos = table.Column<decimal>(type: "DECIMAL(7,2)", nullable: true),
+                    Gorduras = table.Column<decimal>(type: "DECIMAL(7,2)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -45,7 +45,7 @@ namespace FitTrack_API.Migrations
                 columns: table => new
                 {
                     IdMidiaExercicio = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FotoExercicio = table.Column<string>(type: "TEXT", nullable: true),
+                    BlobNameVideoExercicio = table.Column<string>(type: "TEXT", nullable: true),
                     VideoExercicio = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -85,11 +85,8 @@ namespace FitTrack_API.Migrations
                     IdExercicio = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     NomeExercicio = table.Column<string>(type: "VARCHAR(40)", nullable: false),
                     Descricao = table.Column<string>(type: "TEXT", nullable: true),
-                    Repeticoes = table.Column<int>(type: "INT", nullable: false),
-                    Series = table.Column<int>(type: "INT", nullable: false),
-                    Carga = table.Column<decimal>(type: "DECIMAL(5,2)", nullable: false),
                     IdGrupoMuscular = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdMidiaExercicio = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    IdMidiaExercicio = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -104,8 +101,7 @@ namespace FitTrack_API.Migrations
                         name: "FK_Exercicio_MidiaExercicio_IdMidiaExercicio",
                         column: x => x.IdMidiaExercicio,
                         principalTable: "MidiaExercicio",
-                        principalColumn: "IdMidiaExercicio",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdMidiaExercicio");
                 });
 
             migrationBuilder.CreateTable(
@@ -116,8 +112,8 @@ namespace FitTrack_API.Migrations
                     Nome = table.Column<string>(type: "VARCHAR(100)", nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(100)", nullable: false),
                     Senha = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: false),
-                    Peso = table.Column<decimal>(type: "DECIMAL(5,2)", nullable: true),
-                    Altura = table.Column<decimal>(type: "DECIMAL(5,2)", nullable: true),
+                    Peso = table.Column<decimal>(type: "DECIMAL(7,2)", nullable: true),
+                    Altura = table.Column<decimal>(type: "DECIMAL(7,2)", nullable: true),
                     CodigoRecuperacaoSenha = table.Column<int>(type: "INT", nullable: true),
                     IdUsuarioMidia = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdUsuarioObjetivo = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
@@ -162,7 +158,8 @@ namespace FitTrack_API.Migrations
                 columns: table => new
                 {
                     IdTreino = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    NomeTreino = table.Column<int>(type: "INT", nullable: false),
+                    IntNomeTreino = table.Column<int>(type: "INT", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>

@@ -41,10 +41,10 @@ export const CardPersonalizeTreino = ({ onPress, selected, letra, grupo = "Vazio
 
     );
 };
-export const CardGrupoTreino = ({ onPress, grupo }) => {
+export const CardGrupoTreino = ({ onPress, grupo, selected }) => {
     return (
 
-        <CardTreinoUpdate onPress={onPress}>
+        <CardTreinoUpdate onPress={onPress} selected={selected}>
             <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1} >{grupo}</TextMABold>
         </CardTreinoUpdate>
 

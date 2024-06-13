@@ -15,19 +15,19 @@ namespace FitTrack_API.Domains
         [Required(ErrorMessage = "O Nome é obrigatório!")]
         public string? NomeAlimento { get; set; }
 
-        [Column(TypeName = "DECIMAL(5,2)")]
+        [Column(TypeName = "DECIMAL(7,2)")]
         public decimal? Peso { get; set; }
 
-        [Column(TypeName = "DECIMAL(5,2)")]
+        [Column(TypeName = "DECIMAL(7,2)")]
         public decimal? Proteinas { get; set; }
 
-        [Column(TypeName = "DECIMAL(5,2)")]
+        [Column(TypeName = "DECIMAL(7,2)")]
         public decimal? Calorias { get; set; }
 
-        [Column(TypeName = "DECIMAL(5,2)")]
+        [Column(TypeName = "DECIMAL(7,2)")]
         public decimal? Carboidratos { get; set; }
 
-        [Column(TypeName = "DECIMAL(5,2)")]
+        [Column(TypeName = "DECIMAL(7,2)")]
         public decimal? Gorduras { get; set; }
     }
 }

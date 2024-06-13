@@ -16,19 +16,11 @@ namespace API_FitTrack.Domains
 
         [Column(TypeName = "VARCHAR(40)")]
         [Required(ErrorMessage = "O Nome é obrigatório!")]
-        public string NomeExercicio { get; set; } = null!;
+        public string? NomeExercicio { get; set; }
 
         [Column(TypeName = "TEXT")]
         public string? Descricao { get; set; }
 
-        [Column(TypeName = "INT")]
-        public int Repeticoes { get; set; }
-
-        [Column(TypeName = "INT")]
-        public int Series { get; set; }
-
-        [Column(TypeName = "DECIMAL(5,2)")]
-        public decimal Carga { get; set; }
 
 
 
@@ -40,6 +32,6 @@ namespace API_FitTrack.Domains
 
         [ForeignKey("IdMidiaExercicio")]
         public MidiaExercicio? MidiaExercicio { get; set; }
-        public Guid IdMidiaExercicio { get; set; }
+        public Guid? IdMidiaExercicio { get; set; }
     }
 }
