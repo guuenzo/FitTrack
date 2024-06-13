@@ -32,5 +32,37 @@ namespace API_FitTrack.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpDelete("ExcluirTreino")]
+        public IActionResult ExcluirTreino(Guid id)
+        {
+
+            try
+            {
+                _treinoRepository.Deletar(id);
+                return StatusCode(204);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut("AtulizarTreino")]
+        public IActionResult AtulizarTreino(Guid idTreino, List<ExercicioViewModel> exerciciosViewModel)
+        {
+
+            try
+            {
+                _treinoRepository.Atualizar(idTreino, exerciciosViewModel);
+                return StatusCode(204);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

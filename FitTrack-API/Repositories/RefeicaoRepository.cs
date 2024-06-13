@@ -169,6 +169,10 @@ namespace FitTrack_API.Repositories
                     ctx.Refeicao.Add(refeicao);
                     ctx.SaveChanges();
 
+                    List<Alimento> alimentosASeremCadastrados = [];
+
+                    List<RefeicaoAlimento> refeicaoAlimentosASeremCadastrados = [];
+
                     // Create and add Alimento entities, and create RefeicaoAlimento associations
                     foreach (var alimentoViewModel in refeicaoViewModel.Alimentos)
                     {
@@ -182,17 +186,20 @@ namespace FitTrack_API.Repositories
                             Gorduras = alimentoViewModel.Gorduras
                         };
 
-                        ctx.Alimento.Add(alimento);
-                        ctx.SaveChanges();
+                        alimentosASeremCadastrados.Add(alimento);
+
 
                         RefeicaoAlimento refeicaoAlimento = new()
                         {
                             IdRefeicao = refeicao.IdRefeicao,
                             IdAlimento = alimento.IdAlimento
                         };
-                        ctx.RefeicaoAlimento.Add(refeicaoAlimento);
-                    }
 
+                        refeicaoAlimentosASeremCadastrados.Add(refeicaoAlimento);
+
+                    }
+                    ctx.Alimento.AddRange(alimentosASeremCadastrados);
+                    ctx.RefeicaoAlimento.AddRange(refeicaoAlimentosASeremCadastrados);
                     // Save all changes to the context
                     ctx.SaveChanges();
                     transaction.Commit();

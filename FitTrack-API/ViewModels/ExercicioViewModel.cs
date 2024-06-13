@@ -9,8 +9,8 @@ namespace FitTrack_API.ViewModels
         public string? NomeExercicio { get; set; }
         public string? Descricao { get; set; }
 
-        public GrupoMuscular GrupoMuscular { get; set; }
+        public GrupoMuscular? GrupoMuscular { get; set; }
 
-        public MidiaExercicio MidiaExercicio { get; set; }
+        public MidiaExercicio? MidiaExercicio { get; set; }
     }
 }

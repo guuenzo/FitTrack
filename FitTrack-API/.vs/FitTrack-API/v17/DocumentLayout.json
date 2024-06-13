@@ -1,26 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\",
+  "WorkspaceRootPath": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\repositories\\treinorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\repositories\\treinorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:repositories\\treinorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\domains\\treino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:domains\\treino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\repositories\\exerciciorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:repositories\\exerciciorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\interfaces\\itreinorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\interfaces\\itreinorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:interfaces\\itreinorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\controllers\\treinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\controllers\\treinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:controllers\\treinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\viewmodels\\treinoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:viewmodels\\treinoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\viewmodels\\exercicioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:viewmodels\\exercicioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\interfaces\\alimento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:interfaces\\alimento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,69 +34,82 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Treino.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Domains\\Treino.cs",
-              "RelativeDocumentMoniker": "Domains\\Treino.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Domains\\Treino.cs",
-              "RelativeToolTip": "Domains\\Treino.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAAAAAA",
+              "DocumentIndex": 5,
+              "Title": "Alimento.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Interfaces\\Alimento.cs",
+              "RelativeDocumentMoniker": "Interfaces\\Alimento.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Interfaces\\Alimento.cs",
+              "RelativeToolTip": "Interfaces\\Alimento.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-13T14:56:31.259Z",
+              "WhenOpened": "2024-06-13T18:15:53.894Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ExercicioRepository.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\ExercicioRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\ExercicioRepository.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\ExercicioRepository.cs",
-              "RelativeToolTip": "Repositories\\ExercicioRepository.cs",
-              "ViewState": "AQIAACAAAAAAAAAAAAAAADIAAAARAAAA",
+              "DocumentIndex": 4,
+              "Title": "ExercicioViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\ViewModels\\ExercicioViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\ExercicioViewModel.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\ViewModels\\ExercicioViewModel.cs",
+              "RelativeToolTip": "ViewModels\\ExercicioViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-13T14:48:07.526Z",
+              "WhenOpened": "2024-06-13T18:01:06.228Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TreinoViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\ViewModels\\TreinoViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\TreinoViewModel.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\ViewModels\\TreinoViewModel.cs",
+              "RelativeToolTip": "ViewModels\\TreinoViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T18:01:03.87Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "TreinoRepository.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\TreinoRepository.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Repositories\\TreinoRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\TreinoRepository.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\TreinoRepository.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Repositories\\TreinoRepository.cs",
               "RelativeToolTip": "Repositories\\TreinoRepository.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAAAAABgAAAAJAAAA",
+              "ViewState": "AQIAAI4AAAAAAAAAAAAAAKIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-13T14:47:45.453Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "ITreinoRepository.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Interfaces\\ITreinoRepository.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Interfaces\\ITreinoRepository.cs",
               "RelativeDocumentMoniker": "Interfaces\\ITreinoRepository.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Interfaces\\ITreinoRepository.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Interfaces\\ITreinoRepository.cs",
               "RelativeToolTip": "Interfaces\\ITreinoRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-13T14:47:28.305Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "TreinoController.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Controllers\\TreinoController.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Controllers\\TreinoController.cs",
               "RelativeDocumentMoniker": "Controllers\\TreinoController.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Controllers\\TreinoController.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Controllers\\TreinoController.cs",
               "RelativeToolTip": "Controllers\\TreinoController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAABDAAAA",
+              "ViewState": "AQIAACkAAAAAAAAAAAAkwDkAAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-13T14:45:45.026Z",
               "EditorCaption": ""
