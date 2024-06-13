@@ -16,7 +16,7 @@ namespace API_FitTrack.Domains
 
         [Column(TypeName = "VARCHAR(40)")]
         [Required(ErrorMessage = "O Nome é obrigatório!")]
-        public string NomeExercicio { get; set; } = null!;
+        public string? NomeExercicio { get; set; }
 
         [Column(TypeName = "TEXT")]
         public string? Descricao { get; set; }

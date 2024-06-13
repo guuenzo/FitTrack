@@ -4,10 +4,10 @@
     "slug": "FitTrack",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/Images/LogoFitTrack.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/Images/LogoFitTrack.png",
       "resizeMode": "contain",
       "backgroundColor": "#2B3C64"
     },
@@ -16,12 +16,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./src/Images/LogoFitTrack.png",
         "backgroundColor": "#2B3C64"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./src/Images/LogoFitTrack.png"
     },
     "plugins": [
       "expo-font"

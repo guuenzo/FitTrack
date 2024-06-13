@@ -13,7 +13,7 @@ namespace API_FitTrack.Domains
 
         [Column(TypeName = "INT")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int? IntNomeTreino { get; set; }
+        public int IntNomeTreino { get; set; }
 
 
 

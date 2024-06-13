@@ -21,10 +21,48 @@ namespace API_FitTrack.Repositories
 
 
 
-        public void Cadastrar(Treino treino)
+        public void Cadastrar(TreinoViewModel treinoViewModel)
         {
-            _context.Treino.Add(treino);
-            _context.SaveChanges();
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+
+                    Treino treino = new()
+                    {
+                        IdUsuario = treinoViewModel.IdUsuario,
+
+                    };
+
+                    List<TreinoExercicio> treinoExerciciosASeremAdicionados = [];
+
+                    foreach (var exercicio in treinoViewModel.Exercicios)
+                    {
+                        TreinoExercicio treinoExercicio = new()
+                        {
+                            IdTreino = treino.IdTreino,
+                            IdExercicio = exercicio.IdExercicio,
+                        };
+
+
+                        treinoExerciciosASeremAdicionados.Add(treinoExercicio);
+
+                    }
+                    _context.Treino.Add(treino);
+                    _context.TreinoExercicio.AddRange(treinoExerciciosASeremAdicionados);
+                    _context.SaveChanges();
+
+
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+
+                    transaction.Rollback(); // Reverte a transação em caso de exceção
+                    throw new Exception("Erro ao cadastrar exercício.", ex);
+                }
+            }
         }
 
         public Treino BuscarPorId(Guid id)
@@ -58,37 +96,7 @@ namespace API_FitTrack.Repositories
 
         public List<TreinoViewModel> ListarTreinosDoUsuario(Guid idUsuario)
         {
-            var treinosExercicios = _context.TreinoExercicio
-                .Include(x => x.Treino)
-                .Include(x => x.Exercicio)
-                .Where(x => x.Treino!.IdUsuario == idUsuario)
-                .ToList();
-
-            if (treinosExercicios.Count == 0)
-            {
-                throw new Exception("Nenhuma treino encontrado!");
-            }
-
-            var treinos = treinosExercicios
-                .GroupBy(x => new { x.Treino!.IdTreino, x.Treino.NomeTreino, x.Treino.IdUsuario })
-                .Select(g => new TreinoViewModel
-                {
-                    IdTreino = g.Key.IdTreino,
-                    NomeTreino = g.Key.NomeTreino.ToString(),
-                    IdUsuario = g.Key.IdUsuario,
-                    Exercicios = g.Select(a => new ExercicioViewModel
-                    {
-                        IdExercicio = a.Exercicio!.IdExercicio,
-                        NomeExercicio = a.Exercicio.NomeExercicio,
-                        Descricao = a.Exercicio.Descricao,
-                        Repeticoes = a.Exercicio.Repeticoes,
-                        Series = a.Exercicio.Series,
-                        Carga = a.Exercicio.Carga,
-                        
-                    }).ToList()
-                }).ToList();
-
-            return treinos;
+            throw new NotImplementedException();
         }
     }
 }

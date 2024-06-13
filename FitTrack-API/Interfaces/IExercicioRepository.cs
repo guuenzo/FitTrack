@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using API_FitTrack.Domains;
+using FitTrack_API.ViewModels;
 
 namespace API_FitTrack.Interfaces
 {
     public interface IExercicioRepository
     {
-        void Cadastrar(Exercicio exercicio);
-        Exercicio BuscarPorId(Guid id);
+        void Cadastrar(ExercicioViewModel exercicio);
+        ExercicioViewModel BuscarPorId(Guid id);
         public List<Exercicio> BuscarExercicioPorIdGrupoMuscular(Guid idGrupoMuscular);
-        void Atualizar(Exercicio exercicio);
+        void Atualizar(ExercicioViewModel exercicio);
         void Deletar(Guid id);
         List<Exercicio> ListarTodos();
     }

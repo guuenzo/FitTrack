@@ -18,7 +18,7 @@ namespace FitTrack_API.Domains
         [Column(TypeName = "INT")]
         public int? Repeticoes { get; set; }
 
-        [Column(TypeName = "DECIMAL(5,2)")]
+        [Column(TypeName = "DECIMAL(7,2)")]
         public decimal? Carga { get; set; }
 
 

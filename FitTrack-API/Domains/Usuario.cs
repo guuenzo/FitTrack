@@ -28,10 +28,10 @@ namespace API_FitTrack.Domains
         [StringLength(60, MinimumLength = 5, ErrorMessage = "A senha deve conter entre 5 e 30 caracteres.")]
         public string? Senha { get; set; }
 
-        [Column(TypeName = "DECIMAL(5,2)")]
+        [Column(TypeName = "DECIMAL(7,2)")]
         public decimal? Peso { get; set; }
 
-        [Column(TypeName = "DECIMAL(5,2)")]
+        [Column(TypeName = "DECIMAL(7,2)")]
         public decimal? Altura { get; set; }
 
         [Column(TypeName = "INT")]
