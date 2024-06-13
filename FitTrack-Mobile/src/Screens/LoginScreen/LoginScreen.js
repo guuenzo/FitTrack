@@ -42,6 +42,8 @@ const LoginScreen = () => {
     try {
       const { data, status } = await api.post(loginResource, { email, senha });
 
+      console.log(data, status);
+
       if (status === 200) {
         setUserGlobalData(await userDecodeToken(data.token));
         navigation.replace("Main");

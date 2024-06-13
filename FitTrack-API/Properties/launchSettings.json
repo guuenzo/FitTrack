@@ -17,7 +17,7 @@
       //casa
       //"applicationUrl": "http://172.16.39.125:5179",
       //senai
-      "applicationUrl": "http://172.16.39.125:5179",
+      "applicationUrl": "http://192.168.21.136:5179",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -27,7 +27,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://172.16.39.125:5179",
+      "applicationUrl": "https://192.168.21.136:5179",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
