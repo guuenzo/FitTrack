@@ -137,6 +137,7 @@ builder.Services.AddScoped<IExercicioRepository, ExercicioRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 builder.Services.AddScoped<IRefeicaoRepository, RefeicaoRepository>();
+
 builder.Services.AddScoped<IGrupoMuscularRepository, GrupoMuscularRepository>();
 
 // Registra a interface ITreinoRepository e sua implementa��o TreinoRepository

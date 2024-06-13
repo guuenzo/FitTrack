@@ -21,16 +21,6 @@ namespace FitTrack_API.Contexts
         public DbSet<UsuarioMidia> UsuarioMidia { get; set; }
         public DbSet<UsuarioObjetivo> UsuarioObjetivo { get; set; }
 
-        // Você pode remover o método OnConfiguring se não precisar dele
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //     // pc do Senai
-            optionsBuilder.UseSqlServer("Server=NOTE03-S21; Database=FitTrackBD; User Id= sa; pwd=Senai@134; TrustServerCertificate=true;");
-            //base.OnConfiguring(optionsBuilder);
-
-            //     // pc de casa
-            //optionsBuilder.UseSqlServer("Server=FilipeDesktop\\SQLEXPRESS; Database=FitTrackBD; User Id= sa; pwd=Xtringer28700; TrustServerCertificate=true;");
-            //base.OnConfiguring(optionsBuilder);
-        }
+       
     }
 }
