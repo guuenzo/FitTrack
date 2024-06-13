@@ -4,7 +4,9 @@ using System.Linq;
 using API_FitTrack.Domains;
 using API_FitTrack.Interfaces;
 using FitTrack_API.Contexts;
+using FitTrack_API.Domains;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Crypto.Signers;
 
 namespace API_FitTrack.Repositories
 {
@@ -47,7 +49,11 @@ namespace API_FitTrack.Repositories
 
         public List<Exercicio> ListarTodos()
         {
-            return _context.Exercicio.ToList();
+            return _context.Exercicio.Include(x => x.GrupoMuscular).Include(x => x.MidiaExercicio).ToList();
+        }
+
+        public List<Exercicio> BuscarExercicioPorIdGrupoMuscular(Guid idGrupoMuscular) {
+            return _context.Exercicio.Include(x => x.MidiaExercicio).Where(x => x.IdGrupoMuscular == idGrupoMuscular).ToList();
         }
     }
 }

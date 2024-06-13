@@ -50,5 +50,18 @@ namespace API_FitTrack.Controllers
             _exercicioRepository.Deletar(id);
             return StatusCode(204);
         }
+
+        [HttpGet("BuscarExercicioPorIdGrupoMuscular")]
+        public IActionResult GetByIdMuscularGroup(Guid id)
+        {
+            try
+            {
+                return Ok(_exercicioRepository.BuscarExercicioPorIdGrupoMuscular(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.InnerException.Message);
+            }
+        }
     }
 }
