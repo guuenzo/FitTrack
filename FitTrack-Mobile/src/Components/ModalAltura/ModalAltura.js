@@ -12,6 +12,7 @@ import { Picker } from '@react-native-picker/picker';
 export const ModalAltura = ({
     exibeModal = false,
     setExibeModal,
+    alturaInicial
 }) => {
     const hideModal = () => setExibeModal(false);
     const [alturaSelecionada, setAlturaSelecionada] = useState("0")
