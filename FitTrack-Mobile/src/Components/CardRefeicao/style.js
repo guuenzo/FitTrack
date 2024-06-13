@@ -2,6 +2,26 @@ import { Image, TouchableOpacity, View } from "react-native";
 import { styled } from "styled-components";
 import Theme from "../../Styles/Theme";
 
+export const CardStyleView = styled(View)`
+  width: 95%;
+  height: 140px;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  border-radius: 10px;
+  background-color: ${Theme.colors.white.v1};
+  align-self: center;
+  margin: ${(props) => (props.isLast ? "25px 0 50px" : "25px 0")};
+  padding: 15px;
+
+  /* box-shadow para android */
+  shadow-color: "black";
+  shadow-opacity: 0.25;
+  shadow-offset: 0px 4px;
+  shadow-radius: 4px;
+  elevation: 10;
+`;
+
 export const CardStyle = styled(TouchableOpacity)`
   width: 95%;
   height: 140px;
@@ -107,6 +127,6 @@ export const IndiceMacro = styled(View)`
     props.macro === "Proteina"
       ? Theme.colors.green.v1
       : props.macro === "Carboidrato"
-        ? Theme.colors.yellow.v1
-        : Theme.colors.purple.v1};
+      ? Theme.colors.yellow.v1
+      : Theme.colors.purple.v1};
 `;

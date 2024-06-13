@@ -7,7 +7,7 @@ import {
 } from "../../Components/Container/style";
 import Header from "../../Components/Header/Header";
 import Title from "../../Components/Title/Title";
-import CardRefeicao, {
+import CardRefeicaoButton, {
   CardAdicionarRefeicao,
 } from "../../Components/CardRefeicao/CardRefeicao";
 import { useNavigation } from "@react-navigation/native";
@@ -58,7 +58,7 @@ const AlimentacaoScreen = () => {
               data={refeicoes}
               keyExtractor={(item) => item.idRefeicao}
               renderItem={({ item }) => (
-                <CardRefeicao
+                <CardRefeicaoButton
                   kcal={calcularQuantidadeMacrosRefeicao(
                     item.alimentos,
                     "calorias"

@@ -2,12 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import {
   Container,
   GridLayout,
-  GridLayoutFilipe,
   MainContent,
   MainContentScroll,
 } from "../../Components/Container/style";
 import FlatListComponent from "../../Components/FlatList/FlatList";
-import CardRefeicao from "../../Components/CardRefeicao/CardRefeicao";
+import { CardRefeicaoView } from "../../Components/CardRefeicao/CardRefeicao";
 import { CommonActions, useNavigation } from "@react-navigation/native";
 import Title from "../../Components/Title/Title";
 import { LeftArrowAOrXComponent } from "../../Components/LeftArrowAOrX";
@@ -18,7 +17,7 @@ import InfoGlobalBoxComponent, {
 } from "./InfoGlobal";
 import { ButtonComponentDefault } from "../../Components/Button/Button";
 import { ModalAlimentacao } from "../../Components/Modal/Modal";
-import { api, apiAlimentos, refeicaoResource } from "../../Services/Service";
+import { api, refeicaoResource } from "../../Services/Service";
 import { AuthContext } from "../../Contexts/AuthContext";
 import {
   calcularMacroAoAumentarPeso,
@@ -27,7 +26,6 @@ import {
 } from "../../utils/StringFunctions";
 import { TextInput } from "react-native-paper";
 import { getAlimentoExterno } from "../../Services/ServiceFood";
-import { traduzirTexto } from "../../Services/I18n";
 
 const MonteSuaRefeiçãoScreen = ({ route }) => {
   const navigation = useNavigation();
@@ -52,7 +50,7 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
     route.params.refeicao.alimentos || []
   );
 
-  const [alimentoEdaman, setAlimentoEdaman] = useState("");
+  const [alimentoPesquisado, setAlimentoPesquisado] = useState("");
 
   //adiona um alimento pesquisado à refeição
   //item: pega o item selecionado no componente de dropdown e passa aqui pra tela "MonteSuaRefeiçãoScreen"
@@ -133,7 +131,7 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
       });
 
       //é preciso passar os aliementos sem um id para o back end, pois o id é criado lá
-      const { data, status } = await api.post(
+      const { status } = await api.post(
         `${refeicaoResource}/CadastrarRefeicao`,
         {
           nomeRefeicao,
@@ -141,7 +139,10 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
           alimentos: alimentosSemId,
         }
       );
-      navigation.replace("Main", { indice: 0 });
+      if (status === 201) {
+        Alert.alert("Sucesso");
+        navigation.replace("Main", { indice: 0 });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -197,28 +198,26 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
     }
   };
 
-  const adicionarAlimentoVindoDoEdaman = async (alimento) => {
-    const response = await traduzirTexto();
+  const adicionarAlimento = async (alimento) => {
+    const response = await getAlimentoExterno(alimento);
+    let existeEsseAlimento = false;
 
-    // let existeEsseAlimento = false;
-
-    // alimentos.forEach((element) => {
-    //   if (element.nomeAlimento === response.nomeAlimento) {
-    //     existeEsseAlimento = true;
-    //     return;
-    //   }
-    // });
-    // if (!existeEsseAlimento) {
-    //   setAlimentos([...alimentos, response]);
-    // }
+    alimentos.forEach((element) => {
+      if (element.nomeAlimento === response.nomeAlimento) {
+        existeEsseAlimento = true;
+        return;
+      }
+    });
+    if (!existeEsseAlimento) {
+      setAlimentos([...alimentos, response]);
+    }
 
     console.log(response);
   };
 
-  useEffect(() => {
-    adicionarAlimentoVindoDoEdaman("apple");
-    return (cleanUp = () => {});
-  }, [route.params, alimentoSelecionado, alimentos]);
+  // useEffect(() => {
+  //   return (cleanUp = () => {});
+  // }, [route.params, alimentoSelecionado, alimentos]);
 
   return (
     <Container>
@@ -244,12 +243,7 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
             />
             <Title fieldMargin={"0 0 30px 0"} text={"Monte sua refeição"} />
 
-            <DropDownComponent addAlimento={addAlimentoARefeicao} />
-
-            <TextInput
-              onChangeText={(txt) => setAlimentoEdaman(txt)}
-              value={alimentoEdaman}
-            />
+            <DropDownComponent addAlimento={adicionarAlimento} />
 
             <InfoGlobalBoxComponent
               nomeRefeicao={nomeRefeicao}
@@ -293,7 +287,7 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
               data={alimentos.sort((a, b) => b.kcal - a.kcal)}
               keyExtractor={(item) => item.idAlimento}
               renderItem={({ item }) => (
-                <CardRefeicao
+                <CardRefeicaoView
                   onPressEditar={() => {
                     setPesoAlimentoSelecionado(item.peso);
                     setIsEditNameModal(false);
@@ -352,10 +346,11 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
                   onPressDeletar={() => {
                     //retorna pro array de alimentos só os alimentos que não forem clicados
                     setAlimentos(
-                      alimentos.filter((x) => x.idAlimento !== item.idAlimento)
+                      alimentos.filter(
+                        (x) => x.nomeAlimento !== item.nomeAlimento
+                      )
                     );
                   }}
-                  onPress={() => {}}
                 />
               )}
             />
@@ -363,7 +358,11 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
             <View style={{ marginBottom: 80, marginTop: 30, gap: 30 }}>
               <ButtonComponentDefault
                 statusButton
-                text="confirmar"
+                text={
+                  route.params.refeicao.idRefeicao
+                    ? "Atualizar refeição"
+                    : "Cadastrar refeição"
+                }
                 onPress={
                   !route.params.refeicao.idRefeicao
                     ? cadastrarRefeicao

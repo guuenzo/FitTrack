@@ -146,82 +146,84 @@ export const InputData = ({
 
 export const DropDownComponent = ({
   data = [
-    {
-      idAlimento: "1",
-      nomeAlimento: "Banana",
-      peso: 100,
-      calorias: 89,
-      proteinas: 20,
-      carboidratos: 23,
-      gorduras: 0.3,
-    },
-    {
-      idAlimento: "2",
-      nomeAlimento: "Maçã",
-      peso: 116,
-      calorias: 52,
-      proteinas: 0.3,
-      carboidratos: 14,
-      gorduras: 0.2,
-    },
-    {
-      idAlimento: "3",
-      nomeAlimento: "Pera",
-      peso: 100,
-      calorias: 57,
-      proteinas: 0.4,
-      carboidratos: 15,
-      gorduras: 0.1,
-    },
-    {
-      idAlimento: "4",
-      nomeAlimento: "Uva",
-      peso: 100,
-      calorias: 69,
-      proteinas: 0.7,
-      carboidratos: 18,
-      gorduras: 0.2,
-    },
-    {
-      idAlimento: "5",
-      nomeAlimento: "Laranja",
-      peso: 100,
-      calorias: 47,
-      proteinas: 0.9,
-      carboidratos: 12,
-      gorduras: 0.1,
-    },
-    {
-      idAlimento: "6",
-      nomeAlimento: "Morango",
-      peso: 100,
-      calorias: 32,
-      proteinas: 0.7,
-      carboidratos: 8,
-      gorduras: 0.3,
-    },
-    {
-      idAlimento: "7",
-      nomeAlimento: "Abacaxi",
-      peso: 100,
-      calorias: 50,
-      proteinas: 0.5,
-      carboidratos: 13,
-      gorduras: 0.1,
-    },
-    {
-      idAlimento: "8",
-      nomeAlimento: "Melancia",
-      peso: 100,
-      calorias: 30,
-      proteinas: 0.6,
-      carboidratos: 8,
-      gorduras: 0.2,
-    },
+    // {
+    //   idAlimento: "1",
+    //   nomeAlimento: "Banana",
+    //   peso: 100,
+    //   calorias: 89,
+    //   proteinas: 20,
+    //   carboidratos: 23,
+    //   gorduras: 0.3,
+    // },
+    // {
+    //   idAlimento: "2",
+    //   nomeAlimento: "Maçã",
+    //   peso: 116,
+    //   calorias: 52,
+    //   proteinas: 0.3,
+    //   carboidratos: 14,
+    //   gorduras: 0.2,
+    // },
+    // {
+    //   idAlimento: "3",
+    //   nomeAlimento: "Pera",
+    //   peso: 100,
+    //   calorias: 57,
+    //   proteinas: 0.4,
+    //   carboidratos: 15,
+    //   gorduras: 0.1,
+    // },
+    // {
+    //   idAlimento: "4",
+    //   nomeAlimento: "Uva",
+    //   peso: 100,
+    //   calorias: 69,
+    //   proteinas: 0.7,
+    //   carboidratos: 18,
+    //   gorduras: 0.2,
+    // },
+    // {
+    //   idAlimento: "5",
+    //   nomeAlimento: "Laranja",
+    //   peso: 100,
+    //   calorias: 47,
+    //   proteinas: 0.9,
+    //   carboidratos: 12,
+    //   gorduras: 0.1,
+    // },
+    // {
+    //   idAlimento: "6",
+    //   nomeAlimento: "Morango",
+    //   peso: 100,
+    //   calorias: 32,
+    //   proteinas: 0.7,
+    //   carboidratos: 8,
+    //   gorduras: 0.3,
+    // },
+    // {
+    //   idAlimento: "7",
+    //   nomeAlimento: "Abacaxi",
+    //   peso: 100,
+    //   calorias: 50,
+    //   proteinas: 0.5,
+    //   carboidratos: 13,
+    //   gorduras: 0.1,
+    // },
+    // {
+    //   idAlimento: "8",
+    //   nomeAlimento: "Melancia",
+    //   peso: 100,
+    //   calorias: 30,
+    //   proteinas: 0.6,
+    //   carboidratos: 8,
+    //   gorduras: 0.2,
+    // },
   ],
+  setValue,
+
   addAlimento = () => {},
 }) => {
-  const [item, setItem] = useState(null);
+  const [item, setItem] = useState("");
   const [isFocus, setIsFocus] = useState(false);
 
   return (
@@ -244,12 +246,19 @@ export const DropDownComponent = ({
       searchPlaceholder="Pesquisar..."
       value={item}
       onFocus={() => setIsFocus(true)}
-      onBlur={() => setIsFocus(false)}
+      onBlur={() => {
+        setIsFocus(false);
+        if (item.trim() !== "") {
+          addAlimento(item);
+        }
+      }}
       onChange={(item) => {
         setItem(item);
+        setValue(item);
         addAlimento(item);
         setIsFocus(false);
       }}
+      onChangeText={(txt) => setItem(txt)}
       renderLeftIcon={() => (
         <FontAwesome
           name="search-plus"
