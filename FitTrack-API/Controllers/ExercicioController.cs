@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using API_FitTrack.Domains;
 using API_FitTrack.Interfaces;
+using FitTrack_API.ViewModels.ExerciciosViewModel;
 
 namespace API_FitTrack.Controllers
 {
@@ -17,38 +18,74 @@ namespace API_FitTrack.Controllers
             _exercicioRepository = exercicioRepository;
         }
 
-        [HttpGet]
-        public ActionResult<List<Exercicio>> Get()
+
+        [HttpPost("CadastrarExercicio")]
+        public IActionResult CadastrarExercicio(ExibirExercicioViewModel exercicio)
         {
-            return _exercicioRepository.ListarTodos();
+            try
+            {
+                _exercicioRepository.Cadastrar(exercicio);
+                return StatusCode(201);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<Exercicio> Get(Guid id)
+        [HttpDelete("ExcluirExercicio")]
+
+        public IActionResult ExcluirExercicio(Guid id)
         {
-            return _exercicioRepository.BuscarPorId(id);
+
+            try
+            {
+                _exercicioRepository.Deletar(id);
+                return StatusCode(204);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
         }
 
-        [HttpPost]
-        public ActionResult Post(Exercicio exercicio)
+        [HttpGet("ListarTodos")]
+
+        public IActionResult ListarTodos()
         {
-            _exercicioRepository.Cadastrar(exercicio);
-            return StatusCode(201);
+
+            try
+            {
+
+                return StatusCode(200, _exercicioRepository.ListarTodos());
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
         }
 
-        [HttpPut("{id}")]
-        public ActionResult Put(Guid id, Exercicio exercicio)
-        {
-            exercicio.IdExercicio = id;
-            _exercicioRepository.Atualizar(exercicio);
-            return StatusCode(204);
-        }
 
-        [HttpDelete("{id}")]
-        public ActionResult Delete(Guid id)
+        [HttpGet("ListarPorGrupoMuscular")]
+        public IActionResult ListarPorGrupoMuscular([FromQuery] List<Guid> ids)
         {
-            _exercicioRepository.Deletar(id);
-            return StatusCode(204);
+            try
+            {
+                if (ids == null || ids.Count == 0)
+                {
+                    return BadRequest("A lista de IDs de grupos musculares não pode estar vazia.");
+                }
+
+                return StatusCode(200, _exercicioRepository.BuscarExercicioPorIdGrupoMuscular(ids));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

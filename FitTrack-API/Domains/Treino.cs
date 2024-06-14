@@ -11,9 +11,9 @@ namespace API_FitTrack.Domains
         [Key]
         public Guid IdTreino { get; set; } = Guid.NewGuid();
 
-        [Column(TypeName = "INT")]
+        [Column(TypeName = "CHAR(1)")]
         [Required(ErrorMessage = "O Nome é obrigatório!")]
-        public int? NomeTreino { get; set; }
+        public char LetraNomeTreino { get; set; }
 
 
 

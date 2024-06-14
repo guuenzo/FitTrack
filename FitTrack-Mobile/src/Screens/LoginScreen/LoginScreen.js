@@ -30,8 +30,8 @@ const LoginScreen = () => {
 
   const [user, setUser] = useState({
     nome: "",
-    email: "fernandinnn145@gmail.com",
-    senha: "pinto",
+    email: "f@f.com",
+    senha: "12345",
   });
 
   const [dataNascimento, setDataNascimento] = useState(new Date());

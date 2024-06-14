@@ -14,6 +14,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
+      //casa
       "applicationUrl": "http://172.16.39.118:5179",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

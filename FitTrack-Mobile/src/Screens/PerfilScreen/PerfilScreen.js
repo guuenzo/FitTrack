@@ -70,7 +70,7 @@ const PerfilScreen = () => {
     else if (modal == "objetivo") {
       setExibeModalObj(true);
     }
-    else{
+    else {
       setExibeModalImc(true)
     }
   }
@@ -255,16 +255,33 @@ const PerfilScreen = () => {
             exibeModal={exibeModalObj}
             setExibeModal={setExibeModalObj}
           />
-          <ModalAltura
-            exibeModal={exibeModalAltura}
-            setExibeModal={setExibeModalAltura}
-            alturaInicial={altura.toString()}
-          />
-          <ModalPeso
-            exibeModal={exibeModalPeso}
-            setExibeModal={setExibeModalPeso}
-            pesoInicial={peso.toString()}
-          />
+          {
+            altura != null ?
+              <ModalAltura
+                exibeModal={exibeModalAltura}
+                setExibeModal={setExibeModalAltura}
+                alturaInicial={altura.toString()}
+              /> :
+              <ModalAltura
+                exibeModal={exibeModalAltura}
+                setExibeModal={setExibeModalAltura}
+              />
+          }
+
+          {
+            peso != null ?
+              <ModalPeso
+                exibeModal={exibeModalPeso}
+                setExibeModal={setExibeModalPeso}
+                pesoInicial={peso.toString()}
+              />
+              :
+              <ModalPeso
+                exibeModal={exibeModalPeso}
+                setExibeModal={setExibeModalPeso}
+              />
+          }
+          
 
         </View>
       </GridLayout>

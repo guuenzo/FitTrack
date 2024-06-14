@@ -4,7 +4,7 @@ import Title from "../Title/Title";
 import { ButtonComponent, ButtonComponentDefault, ButtonSecondary } from "../Button/Button";
 import Theme from "../../Styles/Theme";
 import { InputDefault } from "../Input/Input";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
 import { ModalContent, ModalStyle } from "../Modal/style";
 import { Picker } from '@react-native-picker/picker';
 
@@ -15,8 +15,30 @@ export const ModalAltura = ({
     alturaInicial
 }) => {
     const hideModal = () => setExibeModal(false);
-    const [alturaSelecionada, setAlturaSelecionada] = useState("0")
-    const alturas = Array.from({ length: 121 }, (_, i) => (1.10 + i * 0.01).toFixed(2));
+    const [altura, setAltura] = useState('');
+
+    const formatAltura = (text) => {
+        // Remove non-numeric characters
+        let cleaned = ('' + text).replace(/[^0-9]/g, '');
+
+        // Format the number as X.XX
+        if (cleaned.length <= 1) {
+            return cleaned;
+        } else if (cleaned.length <= 3) {
+            return cleaned.slice(0, 1) + '.' + cleaned.slice(1);
+        } else {
+            return cleaned.slice(0, 1) + '.' + cleaned.slice(1, 3);
+        }
+    };
+
+    const handleChange = (text) => {
+        const formatted = formatAltura(text);
+        setAltura(formatted);
+    };
+
+    useEffect(() => {
+        setAltura(alturaInicial)
+    }, [exibeModal]);
     return (
         <Portal>
             <ModalStyle visible={exibeModal} onDismiss={hideModal}>
@@ -24,16 +46,15 @@ export const ModalAltura = ({
 
                     <Title text="Indique sua altura" />
 
-                    <View style={styles.pickerContainer}>
-                        <Picker
-                            selectedValue={alturaSelecionada}
-                            style={styles.picker}
-                            onValueChange={(itemValue) => setAlturaSelecionada(itemValue)}
-                        >
-                            {alturas.map((altura) => (
-                                <Picker.Item key={altura} label={`${altura} m`} value={altura} />
-                            ))}
-                        </Picker>
+                    <View style={styles.container}>
+                    <TextInput
+                            style={styles.input}
+                            placeholder="Digite a altura"
+                            placeholderTextColor="#2B3C64"
+                            value={altura}
+                            onChangeText={handleChange}
+                            keyboardType="numeric"
+                        />
                     </View>
 
 
@@ -61,30 +82,18 @@ export const ModalAltura = ({
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#F5F5F5',
+        marginTop: 20,
+        borderWidth: 1,
+        borderColor: '#2B3C64',
+        borderRadius: 8,
+        padding: 10,
     },
-    label: {
-      fontSize: 18,
-      color: '#2B3C64',
-      marginBottom: 10,
-    },
-    pickerContainer: {
-      borderWidth: 1,
-      borderColor: '#2B3C64',
-      borderRadius: 8,
-      overflow: 'hidden',
-    },
-    picker: {
-      height: 50,
-      width: 200,
-      color: '#2B3C64',
-    },
-    selectedHeight: {
-      marginTop: 20,
-      fontSize: 18,
-      color: '#2B3C64',
+    input: {
+        height: 40,
+        borderColor: 'gray',
+        width: '100%',
+        textAlign: 'center',
+        borderRadius: 8,
+        color: '#2B3C64',
     },
   });

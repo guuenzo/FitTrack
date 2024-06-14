@@ -10,7 +10,7 @@ namespace FitTrack_API.Domains
         public Guid IdMidiaExercicio { get; set; } = Guid.NewGuid();
 
         [Column(TypeName = "TEXT")]
-        public string? FotoExercicio { get; set; }
+        public string? BlobNameVideoExercicio { get; set; }
 
         [Column(TypeName = "TEXT")]
         public string? VideoExercicio { get; set; }
