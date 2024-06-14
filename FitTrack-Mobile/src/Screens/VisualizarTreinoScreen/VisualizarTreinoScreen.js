@@ -1,7 +1,12 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const VisualizarTreinoScreen = () => {
+const VisualizarTreinoScreen = ({ route }) => {
+
+  useEffect(() => {
+    console.log(route.params);
+  }, [])
+
   return (
     <View>
       <Text>VisualizarTreinoScreen</Text>

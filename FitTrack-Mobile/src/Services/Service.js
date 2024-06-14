@@ -2,7 +2,7 @@ import axios from "axios";
 
 // const ip = "192.168.15.61";
 
-const ip = "172.16.39.113";
+const ip = "192.168.21.125";
 
 const apiPort = ":5179";
 
@@ -24,3 +24,4 @@ export const translateEnToPtResource = `${translateResource}/TranslateENToPT?tex
 export const translatePtToEnResource = `${translateResource}/TranslatePTToEN?textToTranslate=`;
 export const exercicioResource = `/Exercicio/ListarPorGrupoMuscular`;
 export const grupoMuscularResource = `/GrupoMuscular`;
+export const treinosGetResource = `/Treino/ListarTodosOsTreinosDoUsuario?idUsuario=`;
