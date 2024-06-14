@@ -104,19 +104,13 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
         return;
       }
 
-      let alimentosSemId = [];
-
-      alimentos.map((element) => {
-        alimentosSemId.push({ ...element, idAlimento: null });
-      });
-
       //é preciso passar os aliementos sem um id para o back end, pois o id é criado lá
       const { status } = await api.post(
         `${refeicaoResource}/CadastrarRefeicao`,
         {
           nomeRefeicao,
           idUsuario: userGlobalData.id,
-          alimentos: alimentosSemId,
+          alimentos,
         }
       );
       if (status === 201) {
@@ -146,12 +140,11 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
         alimentosSemId.push({ ...element, idAlimento: null });
       });
 
-      api.put(
+      await api.put(
         `${refeicaoResource}/AtualizarRefeicao?idRefeicao=${route.params.refeicao.idRefeicao}`,
         {
           nomeRefeicao,
-          idUsuario: userGlobalData.id,
-          alimentos: alimentosSemId,
+          alimentos,
         }
       );
 
@@ -194,10 +187,6 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
 
     console.log(response);
   };
-
-  // useEffect(() => {
-  //   return (cleanUp = () => {});
-  // }, [route.params, alimentoSelecionado, alimentos]);
 
   return (
     <Container>

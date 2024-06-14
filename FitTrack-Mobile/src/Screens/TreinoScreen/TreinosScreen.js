@@ -15,9 +15,13 @@ import { ContainerTreino } from "./style";
 import { ContainerCardTreino } from "../../Components/CardTreino/style";
 import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../../Contexts/AuthContext";
+import { api, treinoResource } from "../../Services/Service";
 
 const TreinosScreen = () => {
   const navigation = useNavigation();
+
+  const [treinoSelecionado, setTreinoSelecionado] = useState({});
+
   const [treinos, setTreinos] = useState([
     { id: "A", grupo: "Peito, Triceps" },
     { id: "B", grupo: "Costas" },
@@ -31,7 +35,25 @@ const TreinosScreen = () => {
     navigation.navigate("PersonalizeSeusTreinos");
   };
 
+  const visualizarTreino = () => {
+
+    navigation.navigate("VisualizarTreino");
+  };
+
+  const getTreinosUsuario = async () => {
+    try {
+      const { data, status } = await api.get(
+        `${treinoResource}/ListarTodosOsTreinosDoUsuario?idUsuario=${userGlobalData.id}`
+      );
+      console.log(data)
+      setTreinos(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
+    getTreinosUsuario();
     return (cleanUp = () => {});
   }, []);
   return (
@@ -52,7 +74,9 @@ const TreinosScreen = () => {
               alignItems: "center",
             }}
             numColumns={2}
-            renderItem={({ item }) => <CardTreino text={item} />}
+            renderItem={({ item }) => (
+              <CardTreino text={item.letraNomeTreino} key={item.idTreino} onPress={visualizarTreino} />
+            )}
           />
           {treinos.length < 6 && <CardAddTreino onPress={AddTreino} />}
         </ContainerCardTreino>

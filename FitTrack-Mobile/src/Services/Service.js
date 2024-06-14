@@ -24,3 +24,4 @@ export const translateEnToPtResource = `${translateResource}/TranslateENToPT?tex
 export const translatePtToEnResource = `${translateResource}/TranslatePTToEN?textToTranslate=`;
 export const exercicioResource = `/Exercicio/ListarPorGrupoMuscular`;
 export const grupoMuscularResource = `/GrupoMuscular`;
+export const treinoResource = `/Treino`;

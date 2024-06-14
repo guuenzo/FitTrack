@@ -12,8 +12,8 @@ const CardTreino = ({ onPress, text }) => {
     return (
 
         <CardTreinoStyle onPress={onPress}>
-            <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V2} >{text.id}</TextMABold>
-            <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1}>{text.grupo}</TextMABold>
+            <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V2} >{text}</TextMABold>
+            {/* <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1}>{text.grupo}</TextMABold> */}
 
         </CardTreinoStyle>
 
