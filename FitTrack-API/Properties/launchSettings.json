@@ -15,15 +15,7 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       //casa
-<<<<<<< HEAD
-      //"applicationUrl": "http://192.168.15.61:5179",
-      //senai
-      "applicationUrl": "http://172.16.39.113:5179",
-=======
-      "applicationUrl": "http://192.168.21.125:5179",
-      //senai
-      //"applicationUrl": "http://172.16.39.113:5179",
->>>>>>> guilherme
+      "applicationUrl": "http://172.16.39.118:5179",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
