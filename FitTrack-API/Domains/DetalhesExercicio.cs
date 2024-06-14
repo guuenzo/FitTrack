@@ -25,8 +25,15 @@ namespace FitTrack_API.Domains
 
 
         [ForeignKey("IdExercicio")]
+
         public Exercicio? Exercicio { get; set; }
 
         public Guid IdExercicio { get; set; }
+
+
+
+        [ForeignKey("IdUsuario")]
+        public Usuario? Usuario { get; set; }
+        public Guid? IdUsuario { get; set; }
     }
 }

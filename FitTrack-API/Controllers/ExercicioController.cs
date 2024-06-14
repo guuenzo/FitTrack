@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using API_FitTrack.Domains;
 using API_FitTrack.Interfaces;
-using FitTrack_API.ViewModels;
+using FitTrack_API.ViewModels.ExerciciosViewModel;
 
 namespace API_FitTrack.Controllers
 {
@@ -20,7 +20,7 @@ namespace API_FitTrack.Controllers
 
 
         [HttpPost("CadastrarExercicio")]
-        public IActionResult CadastrarExercicio(ExercicioViewModel exercicio)
+        public IActionResult CadastrarExercicio(ExibirExercicioViewModel exercicio)
         {
             try
             {
@@ -68,6 +68,8 @@ namespace API_FitTrack.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+
         [HttpGet("ListarPorGrupoMuscular")]
         public IActionResult ListarPorGrupoMuscular([FromQuery] List<Guid> ids)
         {

@@ -4,6 +4,7 @@ using FitTrack_API.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitTrack_API.Migrations
 {
     [DbContext(typeof(FitTrackContext))]
-    partial class FitTrackContextModelSnapshot : ModelSnapshot
+    [Migration("20240613225837_adicionadatabeladedetalhesexercicio")]
+    partial class adicionadatabeladedetalhesexercicio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -202,9 +205,6 @@ namespace FitTrack_API.Migrations
                     b.Property<Guid>("IdExercicio")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("IdUsuario")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int?>("Repeticoes")
                         .HasColumnType("INT");
 
@@ -214,8 +214,6 @@ namespace FitTrack_API.Migrations
                     b.HasKey("IdDetalhesExercicio");
 
                     b.HasIndex("IdExercicio");
-
-                    b.HasIndex("IdUsuario");
 
                     b.ToTable("DetalhesExercicio");
                 });
@@ -394,13 +392,7 @@ namespace FitTrack_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("API_FitTrack.Domains.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("IdUsuario");
-
                     b.Navigation("Exercicio");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("FitTrack_API.Domains.RefeicaoAlimento", b =>

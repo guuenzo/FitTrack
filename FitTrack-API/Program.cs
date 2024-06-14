@@ -136,6 +136,8 @@ builder.Services.AddScoped<IExercicioRepository, ExercicioRepository>();
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
+builder.Services.AddScoped<IDetalhesExercicioRepository, DetalhesExercicioRepository>();
+
 builder.Services.AddScoped<IRefeicaoRepository, RefeicaoRepository>();
 
 builder.Services.AddScoped<IGrupoMuscularRepository, GrupoMuscularRepository>();

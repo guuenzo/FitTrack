@@ -158,7 +158,7 @@ namespace FitTrack_API.Migrations
                 columns: table => new
                 {
                     IdTreino = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IntNomeTreino = table.Column<int>(type: "INT", nullable: false)
+                    LetraNomeTreino = table.Column<int>(type: "CHAR(1)", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },

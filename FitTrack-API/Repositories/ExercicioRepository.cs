@@ -5,7 +5,7 @@ using API_FitTrack.Domains;
 using API_FitTrack.Interfaces;
 using FitTrack_API.Contexts;
 using FitTrack_API.Domains;
-using FitTrack_API.ViewModels;
+using FitTrack_API.ViewModels.ExerciciosViewModel;
 using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Crypto.Signers;
 
@@ -21,7 +21,7 @@ namespace API_FitTrack.Repositories
         }
 
 
-        public void Cadastrar(ExercicioViewModel exercicioViewModel)
+        public void Cadastrar(ExibirExercicioViewModel exercicioViewModel)
         {
             using (var transaction = _context.Database.BeginTransaction())
             {
@@ -59,12 +59,12 @@ namespace API_FitTrack.Repositories
             }
         }
 
-        public ExercicioViewModel BuscarPorId(Guid id)
+        public ExibirExercicioViewModel BuscarPorId(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public void Atualizar(ExercicioViewModel exercicio)
+        public void Atualizar(ExibirExercicioViewModel exercicio)
         {
             throw new NotImplementedException();
         }
@@ -106,5 +106,6 @@ namespace API_FitTrack.Repositories
                 .Where(x => idGruposMusculares.Contains(x.IdGrupoMuscular))
                 .ToList();
         }
+
     }
 }
