@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\39905572899\\Desktop\\FitTrack\\FitTrack-API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\39905572899\\desktop\\fittrack\\fittrack-api\\controllers\\treinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:controllers\\treinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\39905572899\\desktop\\fittrack\\fittrack-api\\controllers\\exerciciocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:controllers\\exerciciocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\39905572899\\desktop\\fittrack\\fittrack-api\\repositories\\exerciciorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:repositories\\exerciciorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\39905572899\\desktop\\fittrack\\fittrack-api\\interfaces\\iexerciciorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:interfaces\\iexerciciorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\39905572899\\desktop\\fittrack\\fittrack-api\\controllers\\exerciciocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:controllers\\exerciciocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,43 +26,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ExercicioController.cs",
-              "DocumentMoniker": "C:\\Users\\39905572899\\Desktop\\FitTrack\\FitTrack-API\\Controllers\\ExercicioController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ExercicioController.cs",
-              "ToolTip": "C:\\Users\\39905572899\\Desktop\\FitTrack\\FitTrack-API\\Controllers\\ExercicioController.cs",
-              "RelativeToolTip": "Controllers\\ExercicioController.cs",
-              "ViewState": "AQIAAEAAAAAAAAAAAAAkwEcAAAA+AAAA",
+              "DocumentIndex": 0,
+              "Title": "TreinoController.cs",
+              "DocumentMoniker": "C:\\Users\\39905572899\\Desktop\\FitTrack\\FitTrack-API\\Controllers\\TreinoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TreinoController.cs",
+              "ToolTip": "C:\\Users\\39905572899\\Desktop\\FitTrack\\FitTrack-API\\Controllers\\TreinoController.cs*",
+              "RelativeToolTip": "Controllers\\TreinoController.cs*",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGIAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-13T18:09:25.603Z"
+              "WhenOpened": "2024-06-14T17:44:30.381Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "IExercicioRepository.cs",
               "DocumentMoniker": "C:\\Users\\39905572899\\Desktop\\FitTrack\\FitTrack-API\\Interfaces\\IExercicioRepository.cs",
               "RelativeDocumentMoniker": "Interfaces\\IExercicioRepository.cs",
               "ToolTip": "C:\\Users\\39905572899\\Desktop\\FitTrack\\FitTrack-API\\Interfaces\\IExercicioRepository.cs",
               "RelativeToolTip": "Interfaces\\IExercicioRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAABLAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAABdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-13T18:04:37.13Z"
+              "WhenOpened": "2024-06-14T17:42:35.346Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "ExercicioRepository.cs",
               "DocumentMoniker": "C:\\Users\\39905572899\\Desktop\\FitTrack\\FitTrack-API\\Repositories\\ExercicioRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\ExercicioRepository.cs",
               "ToolTip": "C:\\Users\\39905572899\\Desktop\\FitTrack\\FitTrack-API\\Repositories\\ExercicioRepository.cs",
               "RelativeToolTip": "Repositories\\ExercicioRepository.cs",
-              "ViewState": "AQIAAFsAAAAAAAAAAAAowGkAAAAQAAAA",
+              "ViewState": "AQIAAFsAAAAAAAAAAAAowGsAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-13T17:55:40.799Z",
+              "WhenOpened": "2024-06-14T17:41:36.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ExercicioController.cs",
+              "DocumentMoniker": "C:\\Users\\39905572899\\Desktop\\FitTrack\\FitTrack-API\\Controllers\\ExercicioController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ExercicioController.cs",
+              "ToolTip": "C:\\Users\\39905572899\\Desktop\\FitTrack\\FitTrack-API\\Controllers\\ExercicioController.cs",
+              "RelativeToolTip": "Controllers\\ExercicioController.cs",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAkwFAAAABdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T17:40:27.756Z",
               "EditorCaption": ""
             }
           ]
