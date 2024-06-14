@@ -1,28 +1,56 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Portal } from "react-native-paper";
 import Title from "../Title/Title";
 import { ButtonComponent, ButtonComponentDefault, ButtonSecondary } from "../Button/Button";
 import Theme from "../../Styles/Theme";
 import { InputDefault } from "../Input/Input";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import { ModalContent, ModalStyle } from "../Modal/style";
 import { Picker } from '@react-native-picker/picker';
+import { AuthContext } from "../../Contexts/AuthContext";
+import { api } from "../../Services/Service";
 
 
 export const ModalObejetivo = ({
     exibeModal = false,
     setExibeModal,
+    objetivoInicial
 }) => {
     const hideModal = () => setExibeModal(false);
-    const [objetivoSelecionado, setObjetivoSelecionado] = useState("")
+    const [objetivo, setObjetivo] = useState("")
+    const { userGlobalData, setUserGlobalData } = useContext(AuthContext);
+
     const objetivos = [
-        { label: "Objetivo", value: null },
-        { label: "Bulking", value: "bulking" },
-        { label: "Cutting", value: "cutting" },
-        { label: "Manter Peso", value: "manter_peso" },
+        { label: "Bulking", value: "65b5c834-a90e-4abc-876e-9033d7193f7d" },
+        { label: "Cutting", value: "d786dc80-eef0-4f81-bced-0df2e53080ff" },
+        { label: "Manter", value: "11b0f4c1-a4d6-4793-8763-3368a0923dd4" },
     ];
 
-    
+    const updateObjetivo = async (objetivo) => {
+        try {
+            await api.patch(
+                `/Usuario/AlterarDadosPerfil?idUsuario=${userGlobalData.id}`,
+                {
+                    idUsuarioObjetivo: objetivo
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json-patch+json',
+                        'Accept': '*/*'
+                    }
+                }
+            );
+            console.log('Objetivo atualizado com sucesso');
+            setExibeModal(false); 
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+
+    useEffect(() => {
+        setObjetivo(objetivoInicial)
+    }, [exibeModal])
     return (
         <Portal>
             <ModalStyle visible={exibeModal} onDismiss={hideModal}>
@@ -32,30 +60,36 @@ export const ModalObejetivo = ({
 
                     <View
                     />
-                    <View style={styles.pickerContainer}>
-                        <Picker
-                            selectedValue={objetivoSelecionado}
-                            style={styles.picker}
-                            onValueChange={(itemValue) => {
-                                setObjetivoSelecionado(itemValue);
-                            }}
-                        >
-                            {objetivos.map((objetivo) => (
-                                <Picker.Item
-                                    key={objetivo.value}
-                                    label={objetivo.label}
-                                    value={objetivo.value}
-                                />
-                            ))}
-                        </Picker>
+                    <View style={styles.objectiveContainer}>
+                        {objetivos.map((obj) => (
+                            <TouchableOpacity
+                                key={obj.value}
+                                style={[
+                                    styles.objectiveButton,
+                                    objetivo === obj.value && styles.selectedObjectiveButton
+                                ]}
+                                onPress={() => setObjetivo(obj.value)}
+                            >
+                                <Text
+                                    style={[
+                                        styles.objectiveButtonText,
+                                        objetivo === obj.value && styles.selectedObjectiveButtonText
+                                    ]}
+                                >
+                                    {obj.label}
+                                </Text>
+                            </TouchableOpacity>
+                        ))}
                     </View>
+
+
 
                     <ButtonComponent
                         text="Salvar"
                         statusButton={true}
 
 
-                    // onPress={}
+                    onPress={()=> updateObjetivo(objetivo)}
                     />
 
                     <ButtonSecondary
@@ -72,33 +106,26 @@ export const ModalObejetivo = ({
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
+    objectiveContainer: {
+        marginTop: 20,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5F5F5',
     },
-    label: {
-        fontSize: 18,
-        color: '#2B3C64',
-        marginBottom: 10,
-    },
-    pickerContainer: {
+    objectiveButton: {
+        padding: 10,
         borderWidth: 1,
         borderColor: '#2B3C64',
         borderRadius: 8,
-        overflow: 'hidden',
-        padding: 5,
-        width: 200,
+        margin: 5,
     },
-    picker: {
-        height: 50,
-        width: 200,
+    selectedObjectiveButton: {
+        backgroundColor: '#2B3C64',
+    },
+    objectiveButtonText: {
         color: '#2B3C64',
     },
-    selectedObjetivo: {
-        marginTop: 20,
-        fontSize: 18,
-        color: '#2B3C64',
+    selectedObjectiveButtonText: {
+        color: '#FFF',
     },
 });

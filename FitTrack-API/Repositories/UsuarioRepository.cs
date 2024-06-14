@@ -68,7 +68,7 @@ namespace API_FitTrack.Repositories
         {
             try
             {
-                return ctx.Usuario.Include(x => x.UsuarioMidia).Select(u => new Usuario
+                return ctx.Usuario.Include(x => x.UsuarioMidia).Include(x => x.UsuarioObjetivo).Select(u => new Usuario
                 {
 
                     IdUsuario = u.IdUsuario,
@@ -78,6 +78,11 @@ namespace API_FitTrack.Repositories
                     Altura = u.Altura,
                     CodigoRecuperacaoSenha = u.CodigoRecuperacaoSenha,
 
+                    UsuarioObjetivo = new UsuarioObjetivo
+                    {
+                        IdUsuarioObjetivo = u.UsuarioObjetivo.IdUsuarioObjetivo,
+                        Objetivo = u.UsuarioObjetivo.Objetivo
+                    },
 
 
                     UsuarioMidia = new UsuarioMidia
@@ -92,13 +97,15 @@ namespace API_FitTrack.Repositories
 
 
 
-                }).FirstOrDefault(x => x.IdUsuario == id)! ?? throw new Exception("Usuário não encontrado!");
+                }).FirstOrDefault(x => x.IdUsuario == id)!;
             }
             catch (Exception)
             {
                 throw;
             }
         }
+    
+        
 
         public void Cadastrar(Usuario usuario)
         {

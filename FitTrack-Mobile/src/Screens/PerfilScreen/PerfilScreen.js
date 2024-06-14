@@ -22,6 +22,7 @@ import { ModalObejetivo } from "../../Components/ModalObjetivo/ModalObjetivo";
 import { ModalAltura } from "../../Components/ModalAltura/ModalAltura";
 import { ModalPeso } from "../../Components/ModalPeso/ModalPeso";
 import { api } from "../../Services/Service";
+import { imcCalculator } from "../../utils/StringFunctions";
 
 const PerfilScreen = () => {
   const navigation = useNavigation();
@@ -51,10 +52,11 @@ const PerfilScreen = () => {
     const promise = await api.get(
       `/Usuario/BuscarPorId?id=${userGlobalData.id}`
     )
-    console.log(promise.data.peso);
+    console.log("Aqui esta");
+    console.log(promise.data);
     setAltura(promise.data.altura)
     setPeso(promise.data.peso)
-    setObjetivo(promise.data.objetivo)
+    setObjetivo(promise.data.usuarioObjetivo.objetivo)
 
 
   }
@@ -78,7 +80,7 @@ const PerfilScreen = () => {
 
   useEffect(() => {
     getProfile()
-  }, []);
+  }, [exibeModalAltura, exibeModalObj, exibeModalPeso]);
   return (
     <Container>
       <GridLayout>
@@ -195,7 +197,7 @@ const PerfilScreen = () => {
                       color={Theme.colors.secondaryScale.V1}
                       fontSize="16px"
                     >
-                      Bulking
+                      {objetivo}
                     </TextMABold>
 
                     <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
@@ -232,7 +234,7 @@ const PerfilScreen = () => {
                       color={Theme.colors.secondaryScale.V1}
                       fontSize="16px"
                     >
-                      23.5
+                      {imcCalculator(peso, altura)}
                     </TextMABold>
                     <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
                       IMC
@@ -250,11 +252,20 @@ const PerfilScreen = () => {
 
 
 
+          {
+            objetivo != null ?
+              <ModalObejetivo
+                exibeModal={exibeModalObj}
+                setExibeModal={setExibeModalObj}
+                objetivoInicial={objetivo}
+              />
+              :
+              <ModalObejetivo
+                exibeModal={exibeModalObj}
+                setExibeModal={setExibeModalObj}
+              />
+          }
 
-          <ModalObejetivo
-            exibeModal={exibeModalObj}
-            setExibeModal={setExibeModalObj}
-          />
           {
             altura != null ?
               <ModalAltura
@@ -281,7 +292,7 @@ const PerfilScreen = () => {
                 setExibeModal={setExibeModalPeso}
               />
           }
-          
+
 
         </View>
       </GridLayout>

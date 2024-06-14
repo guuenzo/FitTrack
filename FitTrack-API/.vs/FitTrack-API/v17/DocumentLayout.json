@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\43869817801\\Desktop\\FitTrack\\FitTrack-API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\43869817801\\desktop\\fittrack\\fittrack-api\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\43869817801\\desktop\\fittrack\\fittrack-api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
@@ -35,6 +39,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "UsuarioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\43869817801\\Desktop\\FitTrack\\FitTrack-API\\Repositories\\UsuarioRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\UsuarioRepository.cs",
+              "ToolTip": "C:\\Users\\43869817801\\Desktop\\FitTrack\\FitTrack-API\\Repositories\\UsuarioRepository.cs",
+              "RelativeToolTip": "Repositories\\UsuarioRepository.cs",
+              "ViewState": "AQIAAEYAAAAAAAAAAAAIwGMAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T18:50:47.181Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\43869817801\\Desktop\\FitTrack\\FitTrack-API\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
@@ -47,7 +64,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "EmailSendingService.cs",
               "DocumentMoniker": "C:\\Users\\43869817801\\Desktop\\FitTrack\\FitTrack-API\\Utils\\Mail\\EmailSendingService.cs",
               "RelativeDocumentMoniker": "Utils\\Mail\\EmailSendingService.cs",
@@ -55,12 +72,11 @@
               "RelativeToolTip": "Utils\\Mail\\EmailSendingService.cs",
               "ViewState": "AQIAABoAAAAAAAAAAAAmwCkAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T17:24:13.249Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-14T17:24:13.249Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "RefeicaoController.cs",
               "DocumentMoniker": "C:\\Users\\43869817801\\Desktop\\FitTrack\\FitTrack-API\\Controllers\\RefeicaoController.cs",
               "RelativeDocumentMoniker": "Controllers\\RefeicaoController.cs",
@@ -72,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "RefeicaoRepository.cs",
               "DocumentMoniker": "C:\\Users\\43869817801\\Desktop\\FitTrack\\FitTrack-API\\Repositories\\RefeicaoRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\RefeicaoRepository.cs",
@@ -84,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "IRefeicaoRepository.cs",
               "DocumentMoniker": "C:\\Users\\43869817801\\Desktop\\FitTrack\\FitTrack-API\\Interfaces\\IRefeicaoRepository.cs",
               "RelativeDocumentMoniker": "Interfaces\\IRefeicaoRepository.cs",

@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
 import { Portal } from 'react-native-paper';
 import Title from '../Title/Title';
 import { ButtonComponent, ButtonSecondary } from '../Button/Button';
 import Theme from '../../Styles/Theme';
 import { ModalContent, ModalStyle } from '../Modal/style';
+import { api } from '../../Services/Service';
+import { AuthContext } from '../../Contexts/AuthContext';
 
 export const ModalPeso = ({
     exibeModal = false,
@@ -13,6 +15,7 @@ export const ModalPeso = ({
 }) => {
     const [peso, setPeso] = useState("");
     const hideModal = () => setExibeModal(false);
+    const { userGlobalData, setUserGlobalData } = useContext(AuthContext);
 
     const formatPeso = (text) => {
         let cleaned = ('' + text).replace(/[^0-9]/g, '');
@@ -30,10 +33,31 @@ export const ModalPeso = ({
         setPeso(formatted);
     };
 
+    async function updatePeso(novoPeso) {
+        try {
+            const response = await api.patch(
+                `/Usuario/AlterarDadosPerfil?idUsuario=${userGlobalData.id}`, {
+                peso : novoPeso
+            },
+                {
+                    headers: {
+                        'Content-Type': 'application/json-patch+json',
+                        'Accept': '*/*'
+                    }
+                }
+            )
+            
+            setExibeModal(false)
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+
     useEffect(() => {
         setPeso(pesoInicial)
     }, [exibeModal])
-    
+
     return (
         <Portal>
 
@@ -55,7 +79,7 @@ export const ModalPeso = ({
                     <ButtonComponent
                         text="Salvar"
                         statusButton={true}
-                    // onPress={}
+                        onPress={()=> updatePeso(peso)}
                     />
 
                     <ButtonSecondary

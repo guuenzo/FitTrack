@@ -19,7 +19,7 @@ export const dateDbToViewFull = (date) => {
 export const dateViewToDb = (date) => date.split("/").reverse().join("-");
 
 //peso: KG, altura: metros
-export const imcCalculator = (peso, altura) => peso / altura ** 2;
+export const imcCalculator = (peso, altura) => (peso / altura ** 2).toFixed(2);
 
 export const calcularIdadeDoUsuario = (dataNascimento) => {
   // Cria uma nova instância de Date com a data de nascimento

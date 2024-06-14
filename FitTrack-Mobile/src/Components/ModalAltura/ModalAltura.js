@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Portal } from "react-native-paper";
 import Title from "../Title/Title";
 import { ButtonComponent, ButtonComponentDefault, ButtonSecondary } from "../Button/Button";
@@ -7,6 +7,8 @@ import { InputDefault } from "../Input/Input";
 import { StyleSheet, TextInput, View } from "react-native";
 import { ModalContent, ModalStyle } from "../Modal/style";
 import { Picker } from '@react-native-picker/picker';
+import { AuthContext } from "../../Contexts/AuthContext";
+import { api } from "../../Services/Service";
 
 
 export const ModalAltura = ({
@@ -16,6 +18,7 @@ export const ModalAltura = ({
 }) => {
     const hideModal = () => setExibeModal(false);
     const [altura, setAltura] = useState('');
+    const { userGlobalData, setUserGlobalData } = useContext(AuthContext);
 
     const formatAltura = (text) => {
         // Remove non-numeric characters
@@ -36,6 +39,27 @@ export const ModalAltura = ({
         setAltura(formatted);
     };
 
+
+    async function updateAltura(novaAltura) {
+        try {
+            const response = await api.patch(
+                `/Usuario/AlterarDadosPerfil?idUsuario=${userGlobalData.id}`, {
+                altura: novaAltura
+            },
+                {
+                    headers: {
+                        'Content-Type': 'application/json-patch+json',
+                        'Accept': '*/*'
+                    }
+                }
+            )
+            setExibeModal(false)
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+
     useEffect(() => {
         setAltura(alturaInicial)
     }, [exibeModal]);
@@ -47,7 +71,7 @@ export const ModalAltura = ({
                     <Title text="Indique sua altura" />
 
                     <View style={styles.container}>
-                    <TextInput
+                        <TextInput
                             style={styles.input}
                             placeholder="Digite a altura"
                             placeholderTextColor="#2B3C64"
@@ -64,7 +88,7 @@ export const ModalAltura = ({
                         statusButton={true}
 
 
-                    // onPress={}
+                        onPress={() => updateAltura(altura)}
                     />
 
                     <ButtonSecondary
@@ -96,4 +120,4 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         color: '#2B3C64',
     },
-  });
+});
