@@ -34,8 +34,6 @@ const LoginScreen = () => {
     senha: "gui123",
   });
 
-  const [dataNascimento, setDataNascimento] = useState(new Date());
-
   const [isLoginForm, setIsLoginForm] = useState(true);
 
   const logar = async (email, senha) => {
@@ -87,11 +85,6 @@ const LoginScreen = () => {
     await criarConta();
   };
 
-  useEffect(() => {
-    console.log("userGlobalData", userGlobalData);
-    return (cleanUp = () => { });
-  }, []);
-
   return (
     <Container>
       <LinearGradientTelasIniciais>
@@ -133,7 +126,7 @@ const LoginScreen = () => {
             <ButtonLoginCriarContaBox
               statusButton={isLoginForm}
               handleCriarConta={handleCriarConta}
-              handleLogar={(handleLogar)}
+              handleLogar={handleLogar}
             />
           </MainContent>
         </GridLayout>

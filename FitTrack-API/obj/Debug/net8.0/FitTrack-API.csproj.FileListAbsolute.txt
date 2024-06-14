@@ -300,6 +300,8 @@ C:\Users\46633783825\Desktop\GitHub\FitTrack\FitTrack-API\obj\Debug\net8.0\refin
 C:\Users\46633783825\Desktop\GitHub\FitTrack\FitTrack-API\obj\Debug\net8.0\FitTrack-API.pdb
 C:\Users\46633783825\Desktop\GitHub\FitTrack\FitTrack-API\obj\Debug\net8.0\FitTrack-API.genruntimeconfig.cache
 C:\Users\46633783825\Desktop\GitHub\FitTrack\FitTrack-API\obj\Debug\net8.0\ref\FitTrack-API.dll
+<<<<<<< HEAD
+=======
 C:\Users\39905572899\Desktop\FitTrack\FitTrack-API\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\39905572899\Desktop\FitTrack\FitTrack-API\bin\Debug\net8.0\appsettings.json
 C:\Users\39905572899\Desktop\FitTrack\FitTrack-API\bin\Debug\net8.0\FitTrack-API.exe
@@ -451,3 +453,4 @@ C:\Users\39905572899\Desktop\FitTrack\FitTrack-API\obj\Debug\net8.0\refint\FitTr
 C:\Users\39905572899\Desktop\FitTrack\FitTrack-API\obj\Debug\net8.0\FitTrack-API.pdb
 C:\Users\39905572899\Desktop\FitTrack\FitTrack-API\obj\Debug\net8.0\FitTrack-API.genruntimeconfig.cache
 C:\Users\39905572899\Desktop\FitTrack\FitTrack-API\obj\Debug\net8.0\ref\FitTrack-API.dll
+>>>>>>> guilherme

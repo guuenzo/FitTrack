@@ -15,6 +15,7 @@ import {
   withTiming,
 } from "react-native-reanimated";
 import Theme from "../../Styles/Theme";
+import { ActivityIndicator } from "react-native-paper";
 
 //Tela de login
 export const ButtonComponent = ({
@@ -36,14 +37,27 @@ export const ButtonComponentDefault = ({
   onPress,
   marginBottom,
   statusButton = false,
+  isLoading = false,
+  isDeleteButton = false,
 }) => {
   return (
     <ButtonDefault
+      disabled={isLoading}
       onPress={onPress}
       statusButton={statusButton}
       marginBottom={marginBottom}
+      isDeleteButton={isDeleteButton}
     >
-      <ButtonStyleText statusButton={statusButton}>{text}</ButtonStyleText>
+      {!isLoading ? (
+        <ButtonStyleText
+          
+          statusButton={statusButton}
+        >
+          {text}
+        </ButtonStyleText>
+      ) : (
+        <ActivityIndicator size={"small"} color="white" />
+      )}
     </ButtonDefault>
   );
 };

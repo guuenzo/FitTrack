@@ -1,47 +1,48 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Container,
   GridLayout,
-  GridLayoutFilipe,
   MainContent,
   MainContentScroll,
 } from "../../Components/Container/style";
 import Header from "../../Components/Header/Header";
 import Title from "../../Components/Title/Title";
-import CardRefeicao, {
+import CardRefeicaoButton, {
   CardAdicionarRefeicao,
 } from "../../Components/CardRefeicao/CardRefeicao";
 import { useNavigation } from "@react-navigation/native";
 import FlatListComponent from "../../Components/FlatList/FlatList";
+import { api, refeicaoResource } from "../../Services/Service";
+import { AuthContext } from "../../Contexts/AuthContext";
+import {
+  calcularPorcentagemMacro,
+  calcularQuantidadeMacrosRefeicao,
+} from "../../utils/StringFunctions";
 
 const AlimentacaoScreen = () => {
+  const { userGlobalData } = useContext(AuthContext);
   const navigation = useNavigation();
-  const [refeicoes, setRefeicoes] = useState([
-    {
-      id: 1,
-      nome: "Refeição 1",
-    },
-    {
-      id: 2,
-      nome: "Refeição 2",
-    },
-    {
-      id: 3,
-      nome: "Refeição 3",
-    },
-    {
-      id: 4,
-      nome: "Refeição 4",
-    },
-    {
-      id: 5,
-      nome: "Refeição 5",
-    },
-    // {
-    //   id: 6,
-    //   nome: "Refeição 6",
-    // },
-  ]);
+  const [refeicoes, setRefeicoes] = useState([]);
+
+  const getRefeicoes = async () => {
+    try {
+      const { data, status } = await api.get(
+        `${refeicaoResource}/ListarRefeicoesDoUsuario`,
+        {
+          headers: {
+            Authorization: `Bearer ${userGlobalData.token}`,
+          },
+        }
+      );
+
+      setRefeicoes(data);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getRefeicoes();
+  }, []);
+
   return (
     <Container>
       <MainContentScroll>
@@ -55,19 +56,62 @@ const AlimentacaoScreen = () => {
 
             <FlatListComponent
               data={refeicoes}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) =>
-                refeicoes.length < 6 && (
-                  <CardRefeicao
-                    isRefeicao
-                    onPress={() => navigation.navigate("MonteSuaRefeição")}
-                  />
-                )
-              }
+              keyExtractor={(item) => item.idRefeicao}
+              renderItem={({ item }) => (
+                <CardRefeicaoButton
+                  kcal={calcularQuantidadeMacrosRefeicao(
+                    item.alimentos,
+                    "calorias"
+                  )}
+                  pesoRefeicao={calcularQuantidadeMacrosRefeicao(
+                    item.alimentos,
+                    "peso"
+                  )}
+                  proteinas={calcularQuantidadeMacrosRefeicao(
+                    item.alimentos,
+                    "proteinas"
+                  )}
+                  carboidratos={calcularQuantidadeMacrosRefeicao(
+                    item.alimentos,
+                    "carboidratos"
+                  )}
+                  gorduras={calcularQuantidadeMacrosRefeicao(
+                    item.alimentos,
+                    "gorduras"
+                  )}
+                  nome={item.nomeRefeicao}
+                  heightCarboidrato={calcularPorcentagemMacro(
+                    calcularQuantidadeMacrosRefeicao(item.alimentos, "peso"),
+                    calcularQuantidadeMacrosRefeicao(
+                      item.alimentos,
+                      "carboidratos"
+                    )
+                  )}
+                  heightProteina={calcularPorcentagemMacro(
+                    calcularQuantidadeMacrosRefeicao(item.alimentos, "peso"),
+                    calcularQuantidadeMacrosRefeicao(
+                      item.alimentos,
+                      "proteinas"
+                    )
+                  )}
+                  heightGordura={calcularPorcentagemMacro(
+                    calcularQuantidadeMacrosRefeicao(item.alimentos, "peso"),
+                    calcularQuantidadeMacrosRefeicao(item.alimentos, "gorduras")
+                  )}
+                  isRefeicao
+                  onPress={() => {
+                    navigation.navigate("MonteSuaRefeição", {
+                      refeicao: item,
+                    });
+                  }}
+                />
+              )}
             />
 
             <CardAdicionarRefeicao
-              onPress={() => navigation.navigate("MonteSuaRefeição")}
+              onPress={() =>
+                navigation.navigate("MonteSuaRefeição", { refeicao: {} })
+              }
             />
           </MainContent>
         </GridLayout>

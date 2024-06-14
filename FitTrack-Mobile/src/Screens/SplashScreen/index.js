@@ -1,4 +1,4 @@
-import { View, Text, Dimensions } from "react-native";
+import { Dimensions } from "react-native";
 import React, { useEffect } from "react";
 import SplashAnimation from "../../Assets/Animations/SplashAnimationFitTrack.json";
 import LottieView from "lottie-react-native";

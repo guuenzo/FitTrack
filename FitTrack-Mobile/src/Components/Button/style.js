@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import { Button } from "react-native-paper";
-import {styled} from "styled-components";
+import { css, styled } from "styled-components";
 import Theme from "../../Styles/Theme";
 import Animated from "react-native-reanimated";
 
@@ -63,4 +63,9 @@ export const ButtonDefault = styled(ButtonStyle)`
   width: 200px;
   border-radius: 20px;
   margin-bottom: ${(props) => props.marginBottom || "0px"};
+  ${(props) =>
+    props.isDeleteButton &&
+    css `
+      background-color: ${Theme.colors.red.v1};
+    `}
 `;

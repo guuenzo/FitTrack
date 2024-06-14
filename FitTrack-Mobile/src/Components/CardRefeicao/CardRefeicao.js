@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import {
   BotaoExcluir,
   CardStyle,
+  CardStyleView,
   ImageRefeicao,
   IndiceMacro,
   IndiceMacroBox,
@@ -81,7 +82,7 @@ const CardInfoRefeicao = ({
                   style={{
                     alignItems: "center",
                     justifyContent: "center",
-                    marginLeft: 5,
+                    width: 35,
                   }}
                 >
                   <FontAwesome5
@@ -156,7 +157,7 @@ const CardMacros = ({
   );
 };
 
-const CardRefeicao = ({
+const CardRefeicaoButton = ({
   nome = "Default",
   pesoRefeicao = 100,
   kcal = 100,
@@ -199,4 +200,46 @@ const CardRefeicao = ({
   );
 };
 
-export default CardRefeicao;
+export const CardRefeicaoView = ({
+  nome = "Default",
+  pesoRefeicao = 100,
+  kcal = 100,
+  proteinas = 25,
+  carboidratos = 25,
+  gorduras = 25,
+  onPressDeletar,
+  isRefeicao = false,
+  heightProteina = 0,
+  heightCarboidrato = 0,
+  heightGordura = 0,
+  hasImage,
+  isEditGramas,
+  isClickable = false,
+  onPressEditar = () => {},
+}) => {
+  return (
+    //isLast: se for o último card de um flatList, aplica 50px de margin bottom, ao invés de 25px
+    <CardStyleView isClickable={isClickable} isLast={false}>
+      <CardInfoRefeicao
+        onPressEditar={onPressEditar}
+        isEditGramas={isEditGramas}
+        hasImage={hasImage}
+        onPressDeletar={onPressDeletar}
+        nome={nome}
+        pesoRefeicao={pesoRefeicao}
+        kcal={kcal}
+        isRefeicao={isRefeicao}
+      />
+      <CardMacros
+        heightProteina={heightProteina}
+        heightCarboidrato={heightCarboidrato}
+        heightGordura={heightGordura}
+        carboidratos={carboidratos}
+        gorduras={gorduras}
+        proteinas={proteinas}
+      />
+    </CardStyleView>
+  );
+};
+
+export default CardRefeicaoButton;
