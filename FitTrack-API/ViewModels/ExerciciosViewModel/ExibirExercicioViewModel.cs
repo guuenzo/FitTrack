@@ -1,9 +1,9 @@
 ﻿using FitTrack_API.Domains;
 using Org.BouncyCastle.Bcpg.OpenPgp;
 
-namespace FitTrack_API.ViewModels
+namespace FitTrack_API.ViewModels.ExerciciosViewModel
 {
-    public class ExercicioViewModel
+    public class ExibirExercicioViewModel
     {
         public Guid IdExercicio { get; set; }
         public string? NomeExercicio { get; set; }

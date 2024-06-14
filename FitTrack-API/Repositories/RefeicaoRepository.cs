@@ -3,6 +3,8 @@ using FitTrack_API.Contexts;
 using FitTrack_API.Domains;
 using FitTrack_API.Interfaces;
 using FitTrack_API.ViewModels;
+using FitTrack_API.ViewModels.AlimentosViewModel;
+using FitTrack_API.ViewModels.RefeicoesViewModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace FitTrack_API.Repositories
@@ -17,7 +19,7 @@ namespace FitTrack_API.Repositories
         }
 
 
-        public void AtualizarRefeicao(Guid idRefeicao, RefeicaoViewModel refeicaoViewModel)
+        public void AtualizarRefeicao(Guid idRefeicao, AtualizarRefeicaoViewModel atualizarRefeicaoViewModel)
         {
             using (var transaction = ctx.Database.BeginTransaction())
             {
@@ -26,16 +28,16 @@ namespace FitTrack_API.Repositories
 
                     Refeicao refeicaoBuscada = ctx.Refeicao.FirstOrDefault(x => x.IdRefeicao == idRefeicao)! ?? throw new Exception("Nenhuma refeição encontrada!");
 
-                    refeicaoBuscada.NomeRefeicao = refeicaoViewModel.NomeRefeicao;
+                    refeicaoBuscada.NomeRefeicao = atualizarRefeicaoViewModel.NomeRefeicao;
 
-                    if (refeicaoViewModel.NomeRefeicao!.Trim() == "")
+                    if (atualizarRefeicaoViewModel.NomeRefeicao!.Trim() == "")
                     {
                         throw new Exception("Dê um nome a refeição!");
                     }
 
-                    RefeicaoViewModel refeicao = BuscarRefeicaoPorId(idRefeicao);
+                    ExibirRefeicaoViewModel refeicao = BuscarRefeicaoPorId(idRefeicao);
 
-                    foreach (var item in refeicaoViewModel.Alimentos)
+                    foreach (var item in atualizarRefeicaoViewModel.Alimentos)
                     {
                         if (item.Proteinas + item.Carboidratos + item.Gorduras > item.Peso)
                         {
@@ -45,7 +47,7 @@ namespace FitTrack_API.Repositories
 
 
                     // Atualiza os campos da refeição
-                    refeicao.NomeRefeicao = refeicaoViewModel.NomeRefeicao;
+                    refeicao.NomeRefeicao = atualizarRefeicaoViewModel.NomeRefeicao;
 
                     // Remove os alimentos antigos
                     List<RefeicaoAlimento> refeicaoAlimentosExistentes = ctx.RefeicaoAlimento.Where(ra => ra.IdRefeicao == idRefeicao).ToList();
@@ -59,7 +61,7 @@ namespace FitTrack_API.Repositories
 
 
                     // Adiciona os novos alimentos
-                    foreach (var alimentoViewModel in refeicaoViewModel.Alimentos)
+                    foreach (var alimentoViewModel in atualizarRefeicaoViewModel.Alimentos)
                     {
                         Alimento novoAlimento = new()
                         {
@@ -97,7 +99,7 @@ namespace FitTrack_API.Repositories
         }
 
 
-        public RefeicaoViewModel BuscarRefeicaoPorId(Guid id)
+        public ExibirRefeicaoViewModel BuscarRefeicaoPorId(Guid id)
         {
             var refeicaoAlimentos = ctx.RefeicaoAlimento
                 .Include(x => x.Refeicao)
@@ -110,14 +112,14 @@ namespace FitTrack_API.Repositories
                 throw new Exception("Nenhuma refeição encontrada!");
             }
 
-            var refeicao = refeicaoAlimentos
+            ExibirRefeicaoViewModel refeicao = refeicaoAlimentos
                 .GroupBy(x => new { x.Refeicao!.IdRefeicao, x.Refeicao.NomeRefeicao, x.Refeicao.IdUsuario })
-                .Select(g => new RefeicaoViewModel
+                .Select(g => new ExibirRefeicaoViewModel
                 {
                     IdRefeicao = g.Key.IdRefeicao,
                     NomeRefeicao = g.Key.NomeRefeicao,
                     IdUsuario = g.Key.IdUsuario,
-                    Alimentos = g.Select(a => new AlimentoViewModel
+                    Alimentos = g.Select(a => new ExibirAlimentoViewModel
                     {
                         IdAlimento = a.Alimento!.IdAlimento,
                         NomeAlimento = a.Alimento.NomeAlimento,
@@ -128,29 +130,29 @@ namespace FitTrack_API.Repositories
                         Gorduras = a.Alimento.Gorduras
                     }).ToList()
                 })
-                .FirstOrDefault();
+                .FirstOrDefault()!;
 
             return refeicao!;
         }
 
 
-        public void CadastrarRefeicao(RefeicaoViewModel refeicaoViewModel)
+        public void CadastrarRefeicao(CadastrarRefeicaoViewModel cadastrarRefeicaoViewModel)
         {
             using (var transaction = ctx.Database.BeginTransaction())
             {
                 try
                 {
-                    if (refeicaoViewModel.Alimentos.Count == 0)
+                    if (cadastrarRefeicaoViewModel.Alimentos.Count == 0)
                     {
                         throw new Exception("Adicione alimentos a refeição!");
                     }
 
-                    if (refeicaoViewModel.NomeRefeicao!.Trim() == "")
+                    if (cadastrarRefeicaoViewModel.NomeRefeicao!.Trim() == "")
                     {
                         throw new Exception("Dê um nome a refeição!");
                     }
 
-                    foreach (var item in refeicaoViewModel.Alimentos)
+                    foreach (var item in cadastrarRefeicaoViewModel.Alimentos)
                     {
                         if (item.Proteinas + item.Carboidratos + item.Gorduras > item.Peso)
                         {
@@ -161,8 +163,8 @@ namespace FitTrack_API.Repositories
                     // Create a new Refeicao entity
                     Refeicao refeicao = new()
                     {
-                        NomeRefeicao = refeicaoViewModel.NomeRefeicao,
-                        IdUsuario = refeicaoViewModel.IdUsuario
+                        NomeRefeicao = cadastrarRefeicaoViewModel.NomeRefeicao,
+                        IdUsuario = cadastrarRefeicaoViewModel.IdUsuario
                     };
 
                     // Add the Refeicao entity to the context
@@ -174,7 +176,7 @@ namespace FitTrack_API.Repositories
                     List<RefeicaoAlimento> refeicaoAlimentosASeremCadastrados = [];
 
                     // Create and add Alimento entities, and create RefeicaoAlimento associations
-                    foreach (var alimentoViewModel in refeicaoViewModel.Alimentos)
+                    foreach (var alimentoViewModel in cadastrarRefeicaoViewModel.Alimentos)
                     {
                         Alimento alimento = new()
                         {
@@ -249,9 +251,9 @@ namespace FitTrack_API.Repositories
             }
         }
 
-        public List<RefeicaoViewModel> ListarRefeicoesDoUsuario(Guid idUsuario)
+        public List<ExibirRefeicaoViewModel> ListarRefeicoesDoUsuario(Guid idUsuario)
         {
-            var refeicoesAlimentos = ctx.RefeicaoAlimento
+            List<RefeicaoAlimento> refeicoesAlimentos = ctx.RefeicaoAlimento
                 .Include(x => x.Refeicao)
                 .Include(x => x.Alimento)
                 .Where(x => x.Refeicao!.IdUsuario == idUsuario)
@@ -263,14 +265,14 @@ namespace FitTrack_API.Repositories
                 throw new Exception("Nenhuma dieta encontrada!");
             }
 
-            var refeicoes = refeicoesAlimentos
+            List<ExibirRefeicaoViewModel> refeicoes = refeicoesAlimentos
                 .GroupBy(x => new { x.Refeicao!.IdRefeicao, x.Refeicao.NomeRefeicao, x.Refeicao.IdUsuario })
-                .Select(g => new RefeicaoViewModel
+                .Select(g => new ExibirRefeicaoViewModel
                 {
                     IdRefeicao = g.Key.IdRefeicao,
                     NomeRefeicao = g.Key.NomeRefeicao,
                     IdUsuario = g.Key.IdUsuario,
-                    Alimentos = g.Select(a => new AlimentoViewModel
+                    Alimentos = g.Select(a => new ExibirAlimentoViewModel
                     {
                         IdAlimento = a.Alimento!.IdAlimento,
                         NomeAlimento = a.Alimento.NomeAlimento,

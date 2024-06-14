@@ -1,8 +1,7 @@
-﻿namespace FitTrack_API.ViewModels
+﻿namespace FitTrack_API.ViewModels.AlimentosViewModel
 {
-    public class AlimentoViewModel
+    public class CadastrarAlimentoViewModel
     {
-        public Guid IdAlimento { get; set; }
         public string? NomeAlimento { get; set; }
         public decimal? Peso { get; set; }
         public decimal? Proteinas { get; set; }

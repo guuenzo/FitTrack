@@ -1,6 +1,7 @@
 ﻿using API_FitTrack.Interfaces;
 using FitTrack_API.Interfaces;
 using FitTrack_API.ViewModels;
+using FitTrack_API.ViewModels.RefeicoesViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
@@ -34,11 +35,11 @@ namespace FitTrack_API.Controllers
         }
 
         [HttpPut("AtualizarRefeicao")]
-        public IActionResult AtualizarRefeicao(Guid idRefeicao, RefeicaoViewModel refeicaoViewModel)
+        public IActionResult AtualizarRefeicao(Guid idRefeicao, AtualizarRefeicaoViewModel atualizarRefeicaoViewModel)
         {
             try
             {
-                _refeicaoRepository.AtualizarRefeicao(idRefeicao, refeicaoViewModel);
+                _refeicaoRepository.AtualizarRefeicao(idRefeicao, atualizarRefeicaoViewModel);
                 return StatusCode(200);
             }
             catch (Exception e)
@@ -66,12 +67,12 @@ namespace FitTrack_API.Controllers
 
 
         [HttpPost("CadastrarRefeicao")]
-        public IActionResult CadastrarRefeicao(RefeicaoViewModel RefeicaoViewModel)
+        public IActionResult CadastrarRefeicao(CadastrarRefeicaoViewModel cadastrarRefeicaoViewModel)
         {
 
             try
             {
-                _refeicaoRepository.CadastrarRefeicao(RefeicaoViewModel);
+                _refeicaoRepository.CadastrarRefeicao(cadastrarRefeicaoViewModel);
                 return StatusCode(201);
             }
             catch (Exception e)

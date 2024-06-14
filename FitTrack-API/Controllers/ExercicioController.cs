@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using API_FitTrack.Domains;
 using API_FitTrack.Interfaces;
-using FitTrack_API.ViewModels;
+using FitTrack_API.ViewModels.ExerciciosViewModel;
 
 namespace API_FitTrack.Controllers
 {
@@ -20,7 +20,7 @@ namespace API_FitTrack.Controllers
 
 
         [HttpPost("CadastrarExercicio")]
-        public IActionResult CadastrarExercicio(ExercicioViewModel exercicio)
+        public IActionResult CadastrarExercicio(ExibirExercicioViewModel exercicio)
         {
             try
             {
@@ -68,19 +68,22 @@ namespace API_FitTrack.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+
         [HttpGet("ListarPorGrupoMuscular")]
-
-        public IActionResult ListarPorGrupoMuscular(Guid id)
+        public IActionResult ListarPorGrupoMuscular([FromQuery] List<Guid> ids)
         {
-
             try
             {
+                if (ids == null || ids.Count == 0)
+                {
+                    return BadRequest("A lista de IDs de grupos musculares não pode estar vazia.");
+                }
 
-                return StatusCode(200, _exercicioRepository.BuscarExercicioPorIdGrupoMuscular(id));
+                return StatusCode(200, _exercicioRepository.BuscarExercicioPorIdGrupoMuscular(ids));
             }
             catch (Exception e)
             {
-
                 return BadRequest(e.Message);
             }
         }

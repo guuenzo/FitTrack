@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Reflection.Metadata.Ecma335;
 using API_FitTrack.Domains;
 using API_FitTrack.Interfaces;
 using FitTrack_API.Contexts;
-using FitTrack_API.ViewModels;
+using FitTrack_API.Domains;
+using FitTrack_API.Utils;
+using FitTrack_API.ViewModels.ExerciciosViewModel;
+using FitTrack_API.ViewModels.TreinosViewModel;
 using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Crypto.Signers;
 
@@ -20,24 +23,7 @@ namespace API_FitTrack.Repositories
             _context = context;
         }
 
-        public bool ExisteItemDuplicado<T>(List<T> lista)
-        {
-            Dictionary<T, int> dicionario = new();
 
-            foreach (T item in lista)
-            {
-                if (dicionario.ContainsKey(item))
-                {
-                    return true; // Encontrado um item duplicado
-                }
-                else
-                {
-                    dicionario[item] = 1;
-                }
-            }
-
-            return false; // Nenhum item duplicado encontrado
-        }
 
 
         /// <summary>
@@ -45,28 +31,20 @@ namespace API_FitTrack.Repositories
         /// </summary>
         /// <param name="treinoViewModel"></param>
         /// <exception cref="Exception"></exception>
-        public void Cadastrar(TreinoViewModel treinoViewModel)
+        public void Cadastrar(CadastrarTreinoViewModel treinoViewModel)
         {
             using (var transaction = _context.Database.BeginTransaction())
             {
                 try
                 {
-                    List<Treino> treinosBuscados = _context.Treino.Where(x => x.IdUsuario == treinoViewModel.IdUsuario).ToList() ?? throw new Exception("Nenhum treino encontrado!");
+                    List<TreinoExercicio> treinoExerciciosASeremAdicionados = [];
+                    List<DetalhesExercicio> detalhesExercicioASeremAdicionados = [];
 
-                    //armazena o id de todos os exercicios
-                    List<Guid> idsExercicios = [];
+                    List<Treino> treinosBuscados = _context.Treino.Where(x => x.IdUsuario == treinoViewModel.IdUsuario).ToList()
+                        //?? throw new Exception("Nenhum treino encontrado!")
+                        ;
 
-                    foreach (var item in treinoViewModel.Exercicios)
-                    {
-                        idsExercicios.Add(item.IdExercicio);
-                    }
-                    //valida se tem algum exercicio duplicado
-                    bool temExerciciosDuplicados = ExisteItemDuplicado(idsExercicios);
-
-                    if (temExerciciosDuplicados)
-                    {
-                        throw new Exception("Há treinos duplicados!");
-                    }
+                    GlobalFunctions.ValidarListaDeExerciciosSeTemDuplicados(treinoViewModel.ListaIdExercicios);
 
                     Treino novoTreino = new()
                     {
@@ -84,11 +62,7 @@ namespace API_FitTrack.Repositories
                         }
                     };
 
-
-
-                    List<TreinoExercicio> treinoExerciciosASeremAdicionados = [];
-
-                    foreach (var exercicio in treinoViewModel.Exercicios)
+                    foreach (var exercicio in treinoViewModel.ListaIdExercicios)
                     {
                         TreinoExercicio treinoExercicio = new()
                         {
@@ -96,10 +70,16 @@ namespace API_FitTrack.Repositories
                             IdExercicio = exercicio.IdExercicio,
                         };
 
+                        DetalhesExercicio detalhesExercicio = new()
+                        {
+                            IdExercicio = exercicio.IdExercicio,
+                            IdUsuario = treinoViewModel.IdUsuario,
+                        };
 
                         treinoExerciciosASeremAdicionados.Add(treinoExercicio);
-
+                        detalhesExercicioASeremAdicionados.Add(detalhesExercicio);
                     }
+                    _context.DetalhesExercicio.AddRange(detalhesExercicioASeremAdicionados);
                     _context.Treino.Add(novoTreino);
                     _context.TreinoExercicio.AddRange(treinoExerciciosASeremAdicionados);
                     _context.SaveChanges();
@@ -112,69 +92,83 @@ namespace API_FitTrack.Repositories
                 {
 
                     transaction.Rollback(); // Reverte a transação em caso de exceção
-                    throw new Exception("Erro ao cadastrar exercício.", ex);
+                    throw new Exception(ex.Message);
                 }
             }
         }
 
-        public Treino BuscarPorId(Guid id)
+        public ExibirTreinoViewModel BuscarPorId(Guid id)
         {
-            return _context.Treino
-                .FirstOrDefault(t => t.IdTreino == id)!;
+            throw new NotImplementedException();
         }
 
-        public void Atualizar(Guid idTreino, List<ExercicioViewModel> exerciciosViewModel)
+        public void Atualizar(Guid idTreino, List<CadastrarExercicioViewModel> cadastrarExercicioViewModel)
         {
             using (var transaction = _context.Database.BeginTransaction())
             {
                 try
                 {
-                    List<TreinoExercicio> treinoExercicioBuscado = _context.TreinoExercicio.Include(x => x.Treino).Include(x => x.Exercicio).Where(t => t.IdTreino == idTreino).ToList()! ?? throw new Exception("Nenhum treino encontrado");
+                    // Valida se há exercícios duplicados na lista
+                    GlobalFunctions.ValidarListaDeExerciciosSeTemDuplicados(cadastrarExercicioViewModel);
 
-                    //armazena o id de todos os exercicios
-                    List<Guid> idsExercicios = [];
+                    // Busca os registros atuais de TreinoExercicio e DetalhesExercicio para o treino especificado
+                    List<TreinoExercicio> treinoExercicioExistente = _context.TreinoExercicio
+                        .Include(te => te.Treino)
+                        .Include(te => te.Exercicio)
+                        .Where(te => te.IdTreino == idTreino)
+                        .ToList();
 
-                    foreach (var exercicioNovo in exerciciosViewModel)
+                    List<DetalhesExercicio> detalhesExercicioExistente = _context.DetalhesExercicio
+                        .Where(de => de.IdUsuario == treinoExercicioExistente.FirstOrDefault()!.Treino!.IdUsuario)
+                        .ToList();
+
+                    // Determina os exercícios a serem mantidos e removidos
+                    var idsExerciciosExistentes = treinoExercicioExistente.Select(te => te.IdExercicio).ToList();
+                    var idsExerciciosNovos = cadastrarExercicioViewModel.Select(e => e.IdExercicio).ToList();
+
+                    var idsExerciciosParaRemover = idsExerciciosExistentes.Except(idsExerciciosNovos).ToList();
+                    var idsExerciciosParaAdicionar = idsExerciciosNovos.Except(idsExerciciosExistentes).ToList();
+
+                    // Remove os TreinoExercicio e DetalhesExercicio que não são mais necessários
+                    List<TreinoExercicio> treinoExercicioParaRemover = treinoExercicioExistente
+                        .Where(te => idsExerciciosParaRemover.Contains(te.IdExercicio))
+                        .ToList();
+
+                    List<DetalhesExercicio> detalhesExercicioParaRemover = detalhesExercicioExistente
+                        .Where(de => idsExerciciosParaRemover.Contains(de.IdExercicio))
+                        .ToList();
+
+                    _context.TreinoExercicio.RemoveRange(treinoExercicioParaRemover);
+                    _context.DetalhesExercicio.RemoveRange(detalhesExercicioParaRemover);
+
+                    // Adiciona novos TreinoExercicio e DetalhesExercicio
+                    var treinoExercicioParaAdicionar = idsExerciciosParaAdicionar.Select(idExercicio => new TreinoExercicio
                     {
-                        idsExercicios.Add(exercicioNovo.IdExercicio);
+                        IdTreino = idTreino,
+                        IdExercicio = idExercicio
+                    }).ToList();
 
-                        foreach (var exercicioAntigo in treinoExercicioBuscado)
-                        {
-                            treinoExercicioBuscado.Remove(exercicioAntigo);
-                        }
-
-                    }
-                    //valida se tem algum exercicio duplicado
-                    bool temExerciciosDuplicados = ExisteItemDuplicado(idsExercicios);
-
-                    if (temExerciciosDuplicados)
+                    List<DetalhesExercicio> detalhesExercicioParaAdicionar = idsExerciciosParaAdicionar.Select(idExercicio => new DetalhesExercicio
                     {
-                        throw new Exception("Há treinos duplicados!");
-                    }
+                        IdExercicio = idExercicio,
+                        IdUsuario = treinoExercicioExistente.First().Treino!.IdUsuario,
 
+                    }).ToList();
 
-                    //foreach (var exercicioNovo in exerciciosViewModel)
-                    //{
-                    //    foreach (var exercicioAntigo in treinoExercicioBuscado)
-                    //    {
-                    //        exercicioAntigo = exercicioNovo;
-                    //    }
-                    //}
-
-
-                    _context.TreinoExercicio.UpdateRange(treinoExercicioBuscado);
+                    _context.TreinoExercicio.AddRange(treinoExercicioParaAdicionar);
+                    _context.DetalhesExercicio.AddRange(detalhesExercicioParaAdicionar);
 
                     _context.SaveChanges();
                     transaction.Commit();
                 }
                 catch (Exception ex)
                 {
-
                     transaction.Rollback(); // Reverte a transação em caso de exceção
-                    throw new Exception("Erro ao cadastrar exercício.", ex);
+                    throw new Exception("Erro ao atualizar os exercícios do treino: " + ex.Message);
                 }
             }
         }
+
 
         public void Deletar(Guid id)
         {
@@ -185,6 +179,10 @@ namespace API_FitTrack.Repositories
                     Treino treino = _context.Treino.FirstOrDefault(t => t.IdTreino == id)! ?? throw new Exception("Nenhum treino encontrado");
                     TreinoExercicio treinoExercicio = _context.TreinoExercicio.FirstOrDefault(t => t.IdTreino == id)! ?? throw new Exception("Nenhum treinoExercicio encontrado");
 
+                    List<DetalhesExercicio> detalhesExercicio = _context.DetalhesExercicio.Where(x => x.IdExercicio == treinoExercicio.IdExercicio && x.IdUsuario == treino.IdUsuario).ToList()! ?? throw new Exception("Nenhum detalhe encontrado");
+
+
+                    _context.DetalhesExercicio.RemoveRange(detalhesExercicio);
                     _context.Treino.Remove(treino);
                     _context.TreinoExercicio.Remove(treinoExercicio);
                     _context.SaveChanges();
@@ -194,21 +192,58 @@ namespace API_FitTrack.Repositories
                 {
 
                     transaction.Rollback(); // Reverte a transação em caso de exceção
-                    throw new Exception("Erro ao cadastrar exercício.", ex);
+                    throw new Exception("Erro ao excluir exercício.", ex);
                 }
             }
         }
 
-        public List<Treino> ListarTodos()
+        public List<ExibirTreinoViewModel> ListarTodosOsTreinosDoUsuario(Guid idUsuario)
         {
-            return _context.Treino
-
+            List<TreinoExercicio> treinoExercicioBuscado = _context.TreinoExercicio
+                .Include(te => te.Treino)
+                .Include(te => te.Exercicio)
+                .ThenInclude(e => e.MidiaExercicio)
+                .Include(te => te.Exercicio)
+                .ThenInclude(e => e.GrupoMuscular)
+                .Where(te => te.Treino!.IdUsuario == idUsuario).OrderBy(x => x.Treino!.LetraNomeTreino)
                 .ToList();
+
+            if (treinoExercicioBuscado.Count == 0)
+            {
+                throw new Exception("Nenhum treino encontrado!");
+            }
+
+            List<ExibirTreinoViewModel> treinos = treinoExercicioBuscado
+                .GroupBy(te => new { te.Treino!.IdTreino, te.Treino.LetraNomeTreino, te.Treino.IdUsuario })
+                .Select(t => new ExibirTreinoViewModel
+                {
+                    IdTreino = t.Key.IdTreino,
+                    LetraNomeTreino = t.Key.LetraNomeTreino,
+                    IdUsuario = t.Key.IdUsuario,
+                    Exercicios = t.Select(e => new ExibirExercicioViewModel
+                    {
+                        IdExercicio = e.IdExercicio,
+                        NomeExercicio = e.Exercicio!.NomeExercicio,
+                        Descricao = e.Exercicio.Descricao,
+                        GrupoMuscular = e.Exercicio.GrupoMuscular != null
+                            ? new GrupoMuscular
+                            {
+                                IdGrupoMuscular = e.Exercicio.GrupoMuscular.IdGrupoMuscular,
+                                NomeGrupoMuscular = e.Exercicio.GrupoMuscular.NomeGrupoMuscular
+                            }
+                            : null,
+                        MidiaExercicio = e.Exercicio.MidiaExercicio != null
+                            ? new MidiaExercicio
+                            {
+                                IdMidiaExercicio = e.Exercicio.MidiaExercicio.IdMidiaExercicio,
+                                VideoExercicio = e.Exercicio.MidiaExercicio.VideoExercicio
+                            }
+                            : null
+                    }).ToList()
+                }).ToList();
+
+            return treinos;
         }
 
-        public List<TreinoViewModel> ListarTreinosDoUsuario(Guid idUsuario)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

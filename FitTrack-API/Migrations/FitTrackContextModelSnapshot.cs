@@ -82,11 +82,9 @@ namespace FitTrack_API.Migrations
                     b.Property<Guid>("IdUsuario")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("IntNomeTreino")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IntNomeTreino"));
+                    b.Property<string>("LetraNomeTreino")
+                        .IsRequired()
+                        .HasColumnType("CHAR(1)");
 
                     b.HasKey("IdTreino");
 
@@ -190,6 +188,36 @@ namespace FitTrack_API.Migrations
                     b.HasKey("IdAlimento");
 
                     b.ToTable("Alimento");
+                });
+
+            modelBuilder.Entity("FitTrack_API.Domains.DetalhesExercicio", b =>
+                {
+                    b.Property<Guid>("IdDetalhesExercicio")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal?>("Carga")
+                        .HasColumnType("DECIMAL(7,2)");
+
+                    b.Property<Guid>("IdExercicio")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("IdUsuario")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("Repeticoes")
+                        .HasColumnType("INT");
+
+                    b.Property<int?>("Series")
+                        .HasColumnType("INT");
+
+                    b.HasKey("IdDetalhesExercicio");
+
+                    b.HasIndex("IdExercicio");
+
+                    b.HasIndex("IdUsuario");
+
+                    b.ToTable("DetalhesExercicio");
                 });
 
             modelBuilder.Entity("FitTrack_API.Domains.GrupoMuscular", b =>
@@ -356,6 +384,23 @@ namespace FitTrack_API.Migrations
                     b.Navigation("UsuarioMidia");
 
                     b.Navigation("UsuarioObjetivo");
+                });
+
+            modelBuilder.Entity("FitTrack_API.Domains.DetalhesExercicio", b =>
+                {
+                    b.HasOne("API_FitTrack.Domains.Exercicio", "Exercicio")
+                        .WithMany()
+                        .HasForeignKey("IdExercicio")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API_FitTrack.Domains.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("IdUsuario");
+
+                    b.Navigation("Exercicio");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("FitTrack_API.Domains.RefeicaoAlimento", b =>

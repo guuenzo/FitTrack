@@ -10,6 +10,7 @@ namespace FitTrack_API.Contexts
 
         public DbSet<Alimento> Alimento { get; set; }
         public DbSet<Exercicio> Exercicio { get; set; }
+        public DbSet<DetalhesExercicio> DetalhesExercicio { get; set; }
         public DbSet<GrupoMuscular> GrupoMuscular { get; set; }
         public DbSet<MidiaExercicio> MidiaExercicio { get; set; }
         public DbSet<Refeicao> Refeicao { get; set; }
