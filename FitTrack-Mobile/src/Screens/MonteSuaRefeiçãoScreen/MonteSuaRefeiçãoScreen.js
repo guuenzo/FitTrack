@@ -50,26 +50,6 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
     route.params.refeicao.alimentos || []
   );
 
-  const [alimentoPesquisado, setAlimentoPesquisado] = useState("");
-
-  //adiona um alimento pesquisado à refeição
-  //item: pega o item selecionado no componente de dropdown e passa aqui pra tela "MonteSuaRefeiçãoScreen"
-  const addAlimentoARefeicao = (item) => {
-    let existeEsseAlimento = false;
-
-    alimentos.forEach((element) => {
-      if (element.idAlimento === item.idAlimento) {
-        existeEsseAlimento = true;
-        return;
-      }
-    });
-    if (!existeEsseAlimento) {
-      setAlimentos([...alimentos, item]);
-    }
-  };
-
-  //soma o valor de cada macro de cada alimento e atribui a um único valor na refeição
-
   const atualizarNomeRefeicao = (txt) => {
     setIsEditNameModal(true);
     setExibeModal(!exibeModal);

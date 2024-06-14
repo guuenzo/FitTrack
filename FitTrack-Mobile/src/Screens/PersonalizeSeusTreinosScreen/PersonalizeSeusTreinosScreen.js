@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, StatusBar } from "react-native";
 import React, { useState } from "react";
 import { LeftArrowAOrXComponent } from "../../Components/LeftArrowAOrX";
 import Title from "../../Components/Title/Title";
@@ -11,8 +11,10 @@ import {
 import { ContainerCard, ContainerPesonalizeTreino } from "./style";
 import { useNavigation } from "@react-navigation/native";
 import FlatListComponent from "../../Components/FlatList/FlatList";
+import { GridLayout } from "../../Components/Container/style";
 
 const PersonalizeSeusTreinosScreen = () => {
+  const heightStatusBar = StatusBar.currentHeight;
   const navigation = useNavigation();
   const [selected, setSelected] = useState(false);
   const [treinos, setTreinos] = useState([
@@ -29,7 +31,11 @@ const PersonalizeSeusTreinosScreen = () => {
 
   return (
     <ContainerPesonalizeTreino>
-      <LeftArrowAOrXComponent fieldMargin={"50px 0 0 0"} />
+
+      <LeftArrowAOrXComponent
+        isBlue
+        fieldMargin={`${heightStatusBar + 20}px 0 0 15px`}
+      />
 
       <Title text="Personalize seus treinos" />
 

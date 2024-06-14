@@ -30,9 +30,8 @@ const LoginScreen = () => {
 
   const [user, setUser] = useState({
     nome: "",
-    email: "f@f.com",
-    // email: "fythoy@gmail.com",
-    senha: "12345",
+    email: "gui@gui.com",
+    senha: "gui123",
   });
 
   const [isLoginForm, setIsLoginForm] = useState(true);
@@ -40,7 +39,6 @@ const LoginScreen = () => {
   const logar = async (email, senha) => {
     try {
       const { data, status } = await api.post(loginResource, { email, senha });
-
       if (status === 200) {
         setUserGlobalData(await userDecodeToken(data.token));
         navigation.replace("Main");
@@ -75,6 +73,7 @@ const LoginScreen = () => {
       setIsLoginForm(!isLoginForm);
       return;
     }
+
     await logar(user.email, user.senha);
   };
 

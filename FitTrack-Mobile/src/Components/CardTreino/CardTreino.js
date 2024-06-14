@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, Text } from 'react-native';
 import { CardAddTreinoStyle, CardTreinoStyle, CardTreinoUpdate, ContainerCardExercicio, ContainerCheckBox, ContainerTreino, ImgExe, ImgExercicio, StyledFontAwesome, TextExercicio } from './style';
 import { TextMABold, TextQuickSandBold, TextTreinoBold } from '../Text/style';
 import Theme from '../../Styles/Theme';
 import { Ionicons } from "@expo/vector-icons";
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { CheckExercicios } from '../Checkbox/checkbox';
+
+
 
 const CardTreino = ({ onPress, text }) => {
     return (
@@ -39,30 +41,34 @@ export const CardPersonalizeTreino = ({ onPress, selected, letra, grupo = "Vazio
 
     );
 };
-export const CardGrupoTreino = ({ onPress, grupo }) => {
+export const CardGrupoTreino = ({ onPress, grupo, selected }) => {
     return (
 
-        <CardTreinoUpdate onPress={onPress}>
+        <CardTreinoUpdate onPress={onPress} selected={selected}>
             <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1} >{grupo}</TextMABold>
         </CardTreinoUpdate>
 
     );
 };
-export const CardExercicio = ({ onPress, grupo, exercicio, img }) => {
+export const CardExercicio = ({ onPress, grupo, exercicio, img, setExeSelecionado, setModalVideo }) => {
+    const [isSelected, setSelection] = useState(false)
+
     return (
 
-        <ContainerCardExercicio onPress={onPress}>
+        <ContainerCardExercicio onPress={() => console.log(exercicio, isSelected)}>
 
-            <ImgExercicio>
-                <ImgExe source={{ uri: "https://blog.damamaefitness.com.br/wp-content/uploads/2020/07/Como-se-acostumar-a-ir-na-academia-frequentemente.jpg" }} />
+            <ImgExercicio onPress={(x) => setModalVideo({ ...x, nomeExe: exercicio.exercicio, video: exercicio.video, modal: true })}>
+                <ImgExe source={{ uri: exercicio.video }} />
                 <StyledFontAwesome name="play" size={34} color="black" />
             </ImgExercicio>
 
             <TextExercicio>
-                <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1} >{exercicio}</TextMABold>
+                <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1} >{exercicio.exercicio}</TextMABold>
             </TextExercicio>
 
-            <ContainerCheckBox></ContainerCheckBox>
+            <ContainerCheckBox>
+                <CheckExercicios setSelection={setSelection} setExeSelecionado={setExeSelecionado} />
+            </ContainerCheckBox>
         </ContainerCardExercicio>
 
     );
