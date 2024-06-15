@@ -18,7 +18,7 @@ export const CardTreinoStyle = styled(TouchableOpacity)`
   background-color: ${Theme.colors.white.v1};
   align-self: center;
   margin: ${(props) => (props.isLast ? "25px 0 50px" : "25px 0")};
-  padding: 15px;
+  padding: 15px 0;
   margin-left: 15px;
 
   /* flex-direction: row; */
@@ -74,8 +74,8 @@ export const ContainerCardExercicio = styled.TouchableOpacity`
 `;
 
 export const ImgExercicio = styled.TouchableOpacity`
-  width: 83px;
-  height: 69px;
+  width: 30%;
+  height: 100%;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
@@ -87,6 +87,7 @@ export const ContainerCheckBox = styled.View`
   align-items: center;
   justify-content: center;
   border-radius: 5px;
+  /* background-color: red; */
 `;
 
 export const ImgExe = styled(Image)`
@@ -102,8 +103,8 @@ export const StyledFontAwesome = styled(FontAwesome)`
   opacity: 0.7;
 `;
 export const TextExercicio = styled.View`
-  width: 110px;
-  height: 46px;
+  width: 40%;
+  height: 100%;
   justify-content: center;
   margin-right: 27px;
   /* border: 1px solid green; */

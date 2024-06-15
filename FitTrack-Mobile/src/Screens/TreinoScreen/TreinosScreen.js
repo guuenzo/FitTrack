@@ -24,21 +24,30 @@ const TreinosScreen = () => {
 
   const [treinos, setTreinos] = useState([]);
 
-  // const [treinos, setTreinos] = useState([
-  //   { id: "A", grupo: "Peito, Triceps" },
-  //   { id: "B", grupo: "Costas" },
-  //   { id: "C", grupo: "Peito, Triceps" },
-  //   { id: "D", grupo: "Costas" },
-  // ]);
-
   const { userGlobalData, setUserGlobalData } = useContext(AuthContext);
 
   const AddTreino = async () => {
-    navigation.navigate("PersonalizeSeusTreinos");
+    // navigation.navigate("PersonalizeSeusTreinos");
+    navigation.navigate("SelecioneOsGruposMusculares");
   };
 
   const visualizarTreino = (item) => {
-    navigation.navigate("VisualizarTreino", { treino: { ...item } });
+    let exerciciosMapeados = item.exercicios.map((element) => ({
+      idExercicio: element.idExercicio,
+      nomeExercicio: element.nomeExercicio,
+      descricao: element.descricao,
+      videoExercicio: element.midiaExercicio.videoExercicio,
+      grupoMuscular: element.grupoMuscular,
+    }));
+
+    let treinoAserVisualizado = {
+      idTreino: item.idTreino,
+      letraNomeTreino: item.letraNomeTreino,
+      exercicios: exerciciosMapeados,
+      listaGruposMusculares: item.listaGruposMusculares,
+    };
+
+    navigation.navigate("VisualizarTreino", { treino: treinoAserVisualizado });
   };
 
   const getTreinosUsuario = async () => {
@@ -47,13 +56,29 @@ const TreinosScreen = () => {
         `${treinoResource}/ListarTodosOsTreinosDoUsuario?idUsuario=${userGlobalData.id}`
       );
 
-      // let gruposMuscularesStrings = [];
-      // data.forEach((element, index) => {
-      //   gruposMuscularesStrings.push(element.grupoMuscular);
-      //   data.push([...data], gruposMuscularesStrings);
-      // });
-      // console.log(data[0]);
-      setTreinos(data);
+      // Processar os dados recebidos para incluir o campo "textoGruposMusculares"
+      const processedData = data.map((treino) => {
+        const nomesGruposMusculares = treino.listaGruposMusculares.map(
+          (grupo) => grupo.nomeGrupoMuscular
+        );
+
+        let textoGruposMusculares;
+        if (nomesGruposMusculares.length > 1) {
+          textoGruposMusculares =
+            nomesGruposMusculares.slice(0, -1).join(", ") +
+            " e " +
+            nomesGruposMusculares.slice(-1);
+        } else {
+          textoGruposMusculares = nomesGruposMusculares[0];
+        }
+
+        return {
+          ...treino,
+          textoGruposMusculares,
+        };
+      });
+
+      setTreinos(processedData);
     } catch (error) {
       console.log(error);
     }
@@ -83,6 +108,7 @@ const TreinosScreen = () => {
             numColumns={2}
             renderItem={({ item }) => (
               <CardTreino
+                grupoMuscular={item.textoGruposMusculares}
                 letraNomeTreino={item.letraNomeTreino}
                 key={item.idTreino}
                 onPress={() => visualizarTreino(item)}

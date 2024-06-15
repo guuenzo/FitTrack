@@ -17,6 +17,7 @@ export const ContainerTextGrupo = styled.View`
   border-bottom-color: ${Theme.colors.secondaryScale.V1};
   margin-bottom: 30px;
   margin-left: 2.5%;
+  margin-top: 30px;
 `;
 export const TextGrupo = styled.Text`
   font-family: ${Theme.fonts.montserratAlternates.MontserratAlternates_700Bold};

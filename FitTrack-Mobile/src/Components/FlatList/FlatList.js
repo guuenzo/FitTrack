@@ -7,9 +7,11 @@ const FlatListComponent = ({
   keyExtractor,
   style,
   contentContainerStyle,
+  fieldMargin,
 }) => {
   return (
     <FlatListStyle
+      fieldMargin={fieldMargin}
       style={style}
       data={data}
       renderItem={renderItem}

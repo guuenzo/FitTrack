@@ -22,6 +22,6 @@ export const refeicaoResource = `/Refeicao`;
 export const translateResource = `/Translate`;
 export const translateEnToPtResource = `${translateResource}/TranslateENToPT?textToTranslate=`;
 export const translatePtToEnResource = `${translateResource}/TranslatePTToEN?textToTranslate=`;
-export const exercicioResource = `/Exercicio/ListarPorGrupoMuscular`;
+export const exercicioResource = `/Exercicio`;
 export const grupoMuscularResource = `/GrupoMuscular`;
 export const treinoResource = `/Treino`;

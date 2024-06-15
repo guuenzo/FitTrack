@@ -39,9 +39,11 @@ export const ButtonComponentDefault = ({
   statusButton = false,
   isLoading = false,
   isDeleteButton = false,
+  fieldMargin,
 }) => {
   return (
     <ButtonDefault
+      fieldMargin={fieldMargin}
       disabled={isLoading}
       onPress={onPress}
       statusButton={statusButton}
@@ -49,12 +51,7 @@ export const ButtonComponentDefault = ({
       isDeleteButton={isDeleteButton}
     >
       {!isLoading ? (
-        <ButtonStyleText
-          
-          statusButton={statusButton}
-        >
-          {text}
-        </ButtonStyleText>
+        <ButtonStyleText statusButton={statusButton}>{text}</ButtonStyleText>
       ) : (
         <ActivityIndicator size={"small"} color="white" />
       )}

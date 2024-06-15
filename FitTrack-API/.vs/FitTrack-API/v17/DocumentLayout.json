@@ -36,7 +36,7 @@
               "RelativeDocumentMoniker": "Domains\\GrupoMuscular.cs",
               "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Domains\\GrupoMuscular.cs",
               "RelativeToolTip": "Domains\\GrupoMuscular.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAwBwAAAAJAAAA",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAYwCEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-15T00:50:31.59Z",
               "EditorCaption": ""
@@ -51,8 +51,7 @@
               "RelativeToolTip": "ViewModels\\ExerciciosViewModel\\ExibirExercicioViewModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T00:40:46.158Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-15T00:40:46.158Z"
             },
             {
               "$type": "Document",
@@ -64,8 +63,7 @@
               "RelativeToolTip": "Repositories\\TreinoRepository.cs",
               "ViewState": "AQIAAMAAAAAAAAAAAAAAAPMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T00:37:00.109Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-15T00:37:00.109Z"
             },
             {
               "$type": "Document",
@@ -77,8 +75,7 @@
               "RelativeToolTip": "ViewModels\\TreinosViewModel\\ExibirTreinoViewModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T00:36:22.528Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-15T00:36:22.528Z"
             }
           ]
         }

@@ -155,10 +155,7 @@ const VisualizarTreinoScreen = ({ route }) => {
               isBlue
               fieldMargin={`${heightStatusBar + 20}px 0 0 0`}
             />
-            <Title
-              fieldMargin={"0 0 30px 0"}
-              text={"Treino " + treino.letraNomeTreino}
-            />
+            <Title text={"Treino " + treino.letraNomeTreino} />
 
             {/* <ContainerExercicios
               fieldWidth={"100%"}
@@ -184,7 +181,7 @@ const VisualizarTreinoScreen = ({ route }) => {
                           isCheckCard={false}
                           exercicio={itemExercicio.item}
                           setModalVideo={setModalVideo}
-                          setExeSelecionado={setExeSelecionado}
+                          onPress={() => console.log("first")}
                         />
                       )
                     }
@@ -201,14 +198,12 @@ const VisualizarTreinoScreen = ({ route }) => {
                 onPress={atualizarTreino}
               />
 
-              {
-                <ButtonComponentDefault
-                  isDeleteButton
-                  statusButton
-                  text="Excluir treino"
-                  onPress={excluirTreino}
-                />
-              }
+              <ButtonComponentDefault
+                isDeleteButton
+                statusButton
+                text="Excluir treino"
+                onPress={excluirTreino}
+              />
             </View>
           </MainContent>
         </GridLayout>

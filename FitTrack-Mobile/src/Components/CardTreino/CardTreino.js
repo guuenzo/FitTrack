@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CardAddTreinoStyle,
   CardTreinoStyle,
@@ -68,28 +68,23 @@ export const CardGrupoTreino = ({ onPress, grupo, selected }) => {
 };
 export const CardExercicio = ({
   onPress,
-  grupo,
   exercicio,
-  img,
-  setExeSelecionado,
   setModalVideo,
+  selected,
   isCheckCard = true,
 }) => {
-  const [isSelected, setSelection] = useState(false);
-
   return (
-    <ContainerCardExercicio onPress={() => console.log(exercicio, isSelected)}>
+    <ContainerCardExercicio onPress={onPress}>
       <ImgExercicio
-        onPress={(x) =>
+        onPress={() =>
           setModalVideo({
-            ...x,
             nomeExe: exercicio.nomeExercicio,
-            video: exercicio.midiaExercicio.videoExercicio,
+            video: exercicio.videoExercicio,
             modal: true,
           })
         }
       >
-        <ImgExe source={{ uri: exercicio.midiaExercicio.videoExercicio }} />
+        <ImgExe source={{ uri: exercicio.videoExercicio }} />
         <StyledFontAwesome
           name="play"
           size={34}
@@ -97,7 +92,6 @@ export const CardExercicio = ({
           style={{ opacity: 0.5 }}
         />
       </ImgExercicio>
-
       <TextExercicio>
         <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1}>
           {exercicio.nomeExercicio}
@@ -106,10 +100,7 @@ export const CardExercicio = ({
 
       {isCheckCard && (
         <ContainerCheckBox>
-          <CheckExercicios
-            setSelection={setSelection}
-            setExeSelecionado={setExeSelecionado}
-          />
+          <CheckExercicios checked={selected} />
         </ContainerCheckBox>
       )}
     </ContainerCardExercicio>
