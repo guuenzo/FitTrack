@@ -22,12 +22,14 @@ const TreinosScreen = () => {
 
   const [treinoSelecionado, setTreinoSelecionado] = useState({});
 
-  const [treinos, setTreinos] = useState([
-    { id: "A", grupo: "Peito, Triceps" },
-    { id: "B", grupo: "Costas" },
-    { id: "C", grupo: "Peito, Triceps" },
-    { id: "D", grupo: "Costas" },
-  ]);
+  const [treinos, setTreinos] = useState([]);
+
+  // const [treinos, setTreinos] = useState([
+  //   { id: "A", grupo: "Peito, Triceps" },
+  //   { id: "B", grupo: "Costas" },
+  //   { id: "C", grupo: "Peito, Triceps" },
+  //   { id: "D", grupo: "Costas" },
+  // ]);
 
   const { userGlobalData, setUserGlobalData } = useContext(AuthContext);
 
@@ -35,9 +37,8 @@ const TreinosScreen = () => {
     navigation.navigate("PersonalizeSeusTreinos");
   };
 
-  const visualizarTreino = () => {
-
-    navigation.navigate("VisualizarTreino");
+  const visualizarTreino = (item) => {
+    navigation.navigate("VisualizarTreino", { treino: { ...item } });
   };
 
   const getTreinosUsuario = async () => {
@@ -45,7 +46,13 @@ const TreinosScreen = () => {
       const { data, status } = await api.get(
         `${treinoResource}/ListarTodosOsTreinosDoUsuario?idUsuario=${userGlobalData.id}`
       );
-      console.log(data)
+
+      // let gruposMuscularesStrings = [];
+      // data.forEach((element, index) => {
+      //   gruposMuscularesStrings.push(element.grupoMuscular);
+      //   data.push([...data], gruposMuscularesStrings);
+      // });
+      // console.log(data[0]);
       setTreinos(data);
     } catch (error) {
       console.log(error);
@@ -68,14 +75,18 @@ const TreinosScreen = () => {
         <ContainerCardTreino>
           <FlatListComponent
             data={treinos}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.idTreino}
             contentContainerStyle={{
               justifyContent: "center",
               alignItems: "center",
             }}
             numColumns={2}
             renderItem={({ item }) => (
-              <CardTreino text={item.letraNomeTreino} key={item.idTreino} onPress={visualizarTreino} />
+              <CardTreino
+                letraNomeTreino={item.letraNomeTreino}
+                key={item.idTreino}
+                onPress={() => visualizarTreino(item)}
+              />
             )}
           />
           {treinos.length < 6 && <CardAddTreino onPress={AddTreino} />}

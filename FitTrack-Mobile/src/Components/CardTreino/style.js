@@ -57,13 +57,14 @@ export const CardTreinoUpdate = styled(TouchableOpacity)`
 `;
 
 export const ContainerCardExercicio = styled.TouchableOpacity`
-  width: 288px;
+  width: 95%;
   height: 69px;
   border-radius: 8px;
   margin-bottom: 20px;
   /* border: 1px solid black; */
   flex-direction: row;
   align-items: center;
+  align-self: center;
   background-color: ${Theme.colors.white.v1};
   shadow-color: "black";
   shadow-opacity: 0.25;

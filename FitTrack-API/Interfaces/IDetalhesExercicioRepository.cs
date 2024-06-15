@@ -1,5 +1,5 @@
 ﻿using FitTrack_API.Domains;
-using FitTrack_API.ViewModels;
+using FitTrack_API.ViewModels.DetalhesExercicioViewModel;
 
 namespace FitTrack_API.Interfaces
 {

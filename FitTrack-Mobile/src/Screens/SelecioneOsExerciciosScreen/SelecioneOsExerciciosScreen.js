@@ -15,52 +15,58 @@ import { ModalVideoExercicio } from "../../Components/Modal/Modal";
 
 const SelecioneOsExerciciosScreen = ({ route }) => {
   const heightStatusBar = StatusBar.currentHeight;
-  const [exeSelecionado, setExeSelecionado] = useState([{ exe: "", selecionado: false }])
-  const [exercicios, setExercicios] = useState([
-    { id: 0, exercicio: "supino", grupo: "Peito" },
-    { id: 1, exercicio: "supino reto", grupo: "Peito" },
-    { id: 2, exercicio: "supino inclinado", grupo: "Peito" },
-    { id: 3, exercicio: "Triceps corda", grupo: "Triceps" },
-    { id: 4, exercicio: "Triceps Francesa", grupo: "Triceps" },
-    { id: 5, exercicio: "Triceps Testa", grupo: "Triceps" },
+  const [exeSelecionado, setExeSelecionado] = useState([
+    { exe: "", selecionado: false },
   ]);
 
-  //Modais
-  const [modalVideo, setModalVideo] = useState({ nomeExe: "", video: "", modal: false })
-  const [modalCarga, setmodalCarga] = useState(false)
-  const [grupos, setGrupos] = useState()
-  const [exercicioApi, setExercicioApi] = useState([])
+  const [exercicios, setExercicios] = useState([]);
 
-  const conjuntoUnico = new Set(exercicioApi.map((objeto) => objeto["grupo"]));
+  //Modais
+  const [modalVideo, setModalVideo] = useState({
+    nomeExe: "",
+    video: "",
+    modal: false,
+  });
+  const [modalCarga, setmodalCarga] = useState(false);
+  const [grugruposMuscularespos, setGruposMusculares] = useState([]);
+
+  const conjuntoUnico = new Set(exercicios.map((objeto) => objeto["grupo"]));
 
   // Converter o Set de volta para um array se necessário
   const arrayUnico = [...conjuntoUnico];
 
-  async function GetExercicios() {
-    //Chamando o metodo da api
-    await api.get(exercicioResource + `?ids=${route.params.gruposSelecionados.id1}${route.params.gruposSelecionados.id2 ? `&ids=${route.params.gruposSelecionados.id2}` : ''}${route.params.gruposSelecionados.id3 ? `&ids=${route.params.gruposSelecionados.id3}` : ''}`).then(async (response) => {
-      const exercicioApi = response.data.map(exercicio => ({
-        exercicio: exercicio.nomeExercicio,
-        grupo: exercicio.grupoMuscular.nomeGrupoMuscular,
-        video: exercicio.midiaExercicio.videoExercicio
+  const getExercicios = async () => {
+    try {
+      const { data, status } = await api.get(
+        `${exercicioResource}?ids=${route.params.gruposSelecionados.id1}=${
+          route.params.gruposSelecionados.id2
+            ? route.params.gruposSelecionados.id2
+            : ""
+        }=${
+          route.params.gruposSelecionados.id3
+            ? route.params.gruposSelecionados.id3
+            : ""
+        }`
+      );
+      console.log(data);
 
+      let exerciciosFormatados = data.map((element) => ({
+        exercicio: element.nomeExercicio,
+        grupo: element.grupoMuscular.nomeGrupoMuscular,
+        video: element.midiaExercicio.videoExercicio,
       }));
-      setExercicioApi(exercicioApi);
-      // console.log(response.data)
-      // console.log(exercicioApi);
-    }).catch(error => {
-      console.log(error)
-    })
-  }
+      setExercicios(exerciciosFormatados);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    GetExercicios();
-
+    getExercicios();
   }, []);
   useEffect(() => {
-    setGrupos(route.params.gruposSelecionados)
+    console.log(route.params.treino.gruposSelecionados);
   }, []);
-
 
   return (
     <ContainerPesonalizeTreino>
@@ -83,7 +89,8 @@ const SelecioneOsExerciciosScreen = ({ route }) => {
                 data={exercicioApi}
                 keyExtractor={(itemEx) => itemEx.id}
                 renderItem={(itemExercicio) =>
-                  itemExercicio.item.grupo === item && (exercicioApi &&
+                  itemExercicio.item.grupo === item &&
+                  exercicioApi && (
                     <CardExercicio
                       exercicio={itemExercicio.item}
                       setModalVideo={setModalVideo}
@@ -100,9 +107,8 @@ const SelecioneOsExerciciosScreen = ({ route }) => {
       <ButtonComponentDefault
         statusButton={true}
         marginBottom={"7%"}
-        onPress={() => console.log(grupos)}
+        onPress={() => console.log(gruposMusculares)}
         text="Confirmar"
-
       />
 
       <ModalVideoExercicio
@@ -110,7 +116,6 @@ const SelecioneOsExerciciosScreen = ({ route }) => {
         setModalVideo={setModalVideo}
         modalVideo={modalVideo}
       />
-
     </ContainerPesonalizeTreino>
   );
 };

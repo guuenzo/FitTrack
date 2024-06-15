@@ -1,5 +1,5 @@
 ﻿using API_FitTrack.Domains;
-using API_FitTrack.ViewModels;
+using FitTrack_API.ViewModels.UsuariosViewModel;
 
 namespace API_FitTrack.Interfaces
 {
@@ -15,6 +15,6 @@ namespace API_FitTrack.Interfaces
 
         Task AtualizarFoto(Guid id, Usuario user);
 
-        Usuario AtualizarDadosPerfil(Guid id, AlterarDadosPerfilViewModel usuario);
+        void AtualizarDadosPerfil(Guid id, AlterarDadosPerfilViewModel usuario);
     }
 }

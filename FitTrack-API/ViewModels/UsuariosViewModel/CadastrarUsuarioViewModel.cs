@@ -1,4 +1,4 @@
-﻿namespace API_FitTrack.ViewModels
+﻿namespace FitTrack_API.ViewModels.UsuariosViewModel
 {
     public class CadastrarUsuarioViewModel
     {

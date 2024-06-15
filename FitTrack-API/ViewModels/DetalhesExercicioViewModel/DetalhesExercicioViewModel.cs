@@ -1,13 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FitTrack_API.ViewModels
+namespace FitTrack_API.ViewModels.DetalhesExercicioViewModel
 {
     public class DetalhesExercicioViewModel
     {
 
         public Guid IdDetalhesExercicio { get; set; }
-        //public Guid IdExercicio { get; set; }
-        //public Guid IdUsuario { get; set; }
 
         public int? Series { get; set; }
 

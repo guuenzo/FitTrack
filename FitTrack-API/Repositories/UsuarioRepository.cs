@@ -1,9 +1,9 @@
 ﻿using API_FitTrack.Domains;
 using API_FitTrack.Interfaces;
 using API_FitTrack.Utils;
-using API_FitTrack.ViewModels;
 using FitTrack_API.Contexts;
 using FitTrack_API.Domains;
+using FitTrack_API.ViewModels.UsuariosViewModel;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Utils.BlobStorage;
 
@@ -78,12 +78,11 @@ namespace API_FitTrack.Repositories
                     Altura = u.Altura,
                     CodigoRecuperacaoSenha = u.CodigoRecuperacaoSenha,
 
-                    UsuarioObjetivo = new UsuarioObjetivo
+                    UsuarioObjetivo = u.UsuarioObjetivo != null ? new UsuarioObjetivo
                     {
-                        IdUsuarioObjetivo = u.UsuarioObjetivo.IdUsuarioObjetivo,
+                        IdUsuarioObjetivo = u.UsuarioObjetivo!.IdUsuarioObjetivo,
                         Objetivo = u.UsuarioObjetivo.Objetivo
-                    },
-
+                    } : null,
 
                     UsuarioMidia = new UsuarioMidia
                     {
@@ -92,10 +91,6 @@ namespace API_FitTrack.Repositories
                         BlobNameFotoUsuario = u.UsuarioMidia.BlobNameFotoUsuario
 
                     }
-
-
-
-
 
                 }).FirstOrDefault(x => x.IdUsuario == id)! ?? throw new Exception("Usuário não encontrado!");
             }
@@ -175,7 +170,7 @@ namespace API_FitTrack.Repositories
         }
 
 
-        public Usuario AtualizarDadosPerfil(Guid id, AlterarDadosPerfilViewModel usuario)
+        public void AtualizarDadosPerfil(Guid id, AlterarDadosPerfilViewModel usuario)
         {
             try
             {
@@ -199,8 +194,6 @@ namespace API_FitTrack.Repositories
                 // Persistir mudanças no banco de dados
                 ctx.Usuario.Update(usuarioBuscado);
                 ctx.SaveChanges();
-
-                return usuarioBuscado;
             }
             catch (Exception)
             {

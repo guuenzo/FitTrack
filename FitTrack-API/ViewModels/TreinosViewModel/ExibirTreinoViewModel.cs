@@ -1,4 +1,5 @@
-﻿using FitTrack_API.ViewModels.ExerciciosViewModel;
+﻿using FitTrack_API.Domains;
+using FitTrack_API.ViewModels.ExerciciosViewModel;
 
 namespace FitTrack_API.ViewModels.TreinosViewModel
 {
@@ -8,5 +9,7 @@ namespace FitTrack_API.ViewModels.TreinosViewModel
         public char LetraNomeTreino { get; set; }
         public Guid IdUsuario { get; set; }
         public List<ExibirExercicioViewModel>? Exercicios { get; set; }
+
+        public List<GrupoMuscular>? ListaGruposMusculares { get; set; }
     }
 }

@@ -14,5 +14,20 @@ namespace FitTrack_API.Domains
         [Column(TypeName = "VARCHAR(40)")]
         [Required(ErrorMessage = "O Nome é obrigatório!")]
         public string? NomeGrupoMuscular { get; set; }
+
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is GrupoMuscular other)
+            {
+                return IdGrupoMuscular.Equals(other.IdGrupoMuscular);
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return IdGrupoMuscular.GetHashCode();
+        }
     }
 }

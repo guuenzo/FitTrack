@@ -2,7 +2,7 @@
 using API_FitTrack.Interfaces;
 using API_FitTrack.Repositories;
 using API_FitTrack.Utils.Mail;
-using API_FitTrack.ViewModels;
+using FitTrack_API.ViewModels.UsuariosViewModel;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Utils.BlobStorage;
 using WebAPI.ViewModels;
@@ -76,12 +76,14 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("AlterarFotoPerfil")]
-        public async Task<IActionResult> UploadProfileImage(Guid id, [FromForm] UsuarioViewModel user)
+        public async Task<IActionResult> UploadProfileImage(Guid id, [FromForm] AtualizarFotoPerfilViewModel user)
         {
             try
             {
-                Usuario userPreenchido = new();
-                userPreenchido.UsuarioMidia = await AzureBlobStorageHelper.UploadImageBlobAsync(user.Arquivo!);
+                Usuario userPreenchido = new()
+                {
+                    UsuarioMidia = await AzureBlobStorageHelper.UploadImageBlobAsync(user.Arquivo!)
+                };
 
                 await _usuarioRepository.AtualizarFoto(id, userPreenchido);
 
@@ -98,7 +100,8 @@ namespace WebAPI.Controllers
         {
             try
             {
-                return Ok(_usuarioRepository.AtualizarDadosPerfil(idUsuario, usuario));
+                _usuarioRepository.AtualizarDadosPerfil(idUsuario, usuario);
+                return Ok();
             }
             catch (Exception ex)
             {

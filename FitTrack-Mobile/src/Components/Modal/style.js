@@ -2,13 +2,13 @@ import { Image, View } from "react-native";
 import { Modal } from "react-native-paper";
 import { styled } from "styled-components";
 
-export const ModalStyle = styled(Modal).attrs({
+export const ModalStyle = styled(Modal).attrs((props) => ({
   contentContainerStyle: {
     backgroundColor: "white",
-    padding: 20,
+    ...(props.fieldPadding !== undefined && { padding: props.fieldPadding }), // Adiciona padding somente se fieldPadding estiver definido
     borderRadius: 10,
   },
-})`
+}))`
   padding: 5%;
 `;
 
@@ -22,44 +22,42 @@ export const ModalContent = styled(View)`
 `;
 
 export const ContainerModalVideo = styled.View`
-flex: 1;
-/* border: 1px solid black; */
-padding: 30px;
-align-items: center;
-justify-content: center;
-background-color: rgba(0, 0, 0, 0.60);
-
-`
+  flex: 1;
+  /* border: 1px solid black; */
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+`;
 export const ContentModalvideo = styled.View`
-padding: 15px 20px;
-width: 100%;
-height: 58%;
+  padding: 15px 20px;
+  width: 100%;
+  height: max-content;
 
-border-radius: 10px;
-/* border: 1px solid black; */
+  border-radius: 10px;
+  /* border: 1px solid black; */
 
-
-background-color: #fff;
-justify-content: flex-start;
-gap: 10px;
-align-items: center;
-`
+  background-color: #fff;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: center;
+`;
 
 export const ContainerVideo = styled.View`
-width: 267px;
-height: 283px;
-/* border: 1px solid black; */
-align-items: center;
-justify-content: center;
-margin-top: 15px;
-background-color: #D9D9D9;
-`
+  width: 267px;
+  height: 283px;
+  /* border: 1px solid black; */
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  background-color: #d9d9d9;
+`;
 
 export const ContainerClose = styled.View`
-justify-content: flex-start;
-width: 100%;
-/* border: 1px solid black; */
-`
+  justify-content: flex-start;
+  width: 100%;
+  /* border: 1px solid black; */
+`;
 
 export const ImgVideo = styled(Image)`
   width: 100%;

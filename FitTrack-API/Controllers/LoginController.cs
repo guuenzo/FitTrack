@@ -1,11 +1,11 @@
 ﻿using API_FitTrack.Domains;
 using API_FitTrack.Interfaces;
 using API_FitTrack.Repositories;
+using FitTrack_API.ViewModels.UsuariosViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using WebAPI.ViewModels;
 
 namespace WebAPI.Controllers
 {

@@ -1,29 +1,24 @@
-import { View, Text, StyleSheet, StatusBar } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 import React, { useState } from "react";
 import { LeftArrowAOrXComponent } from "../../Components/LeftArrowAOrX";
 import Title from "../../Components/Title/Title";
 import { CardPersonalizeTreino } from "../../Components/CardTreino/CardTreino";
-import {
-  ButtonComponent,
-  ButtonComponentDefault,
-  ButtonLoginCriarContaBox,
-} from "../../Components/Button/Button";
+import { ButtonComponentDefault } from "../../Components/Button/Button";
 import { ContainerCard, ContainerPesonalizeTreino } from "./style";
 import { useNavigation } from "@react-navigation/native";
 import FlatListComponent from "../../Components/FlatList/FlatList";
-import { GridLayout } from "../../Components/Container/style";
 
 const PersonalizeSeusTreinosScreen = () => {
   const heightStatusBar = StatusBar.currentHeight;
   const navigation = useNavigation();
-  const [selected, setSelected] = useState(false);
+  const [letraTreinoSelecionada, setLetraTreinoSelecionada] = useState({});
   const [treinos, setTreinos] = useState([
-    { letra: "A", grupo: "" },
-    { letra: "B", grupo: "" },
-    { letra: "C", grupo: "" },
-    { letra: "D", grupo: "" },
-    { letra: "E", grupo: "" },
-    { letra: "F", grupo: "" },
+    { letra: "A" },
+    { letra: "B" },
+    { letra: "C" },
+    { letra: "D" },
+    { letra: "E" },
+    { letra: "F" },
   ]);
   async function AddGrupo() {
     navigation.navigate("SelecioneOsGruposMusculares");
@@ -31,7 +26,6 @@ const PersonalizeSeusTreinosScreen = () => {
 
   return (
     <ContainerPesonalizeTreino>
-
       <LeftArrowAOrXComponent
         isBlue
         fieldMargin={`${heightStatusBar + 20}px 0 0 15px`}
@@ -40,20 +34,9 @@ const PersonalizeSeusTreinosScreen = () => {
       <Title text="Personalize seus treinos" />
 
       <ContainerCard marginbottom={"130px"} margintop={"150px"}>
-        {/* <View style={styles.column} >
-          <CardPersonalizeTreino letra={"A"} onPress={() => selected ? setSelected(false) : setSelected(true)} selected={selected} />
-          <CardPersonalizeTreino letra={"C"} />
-          <CardPersonalizeTreino letra={"E"} />
-        </View>
-
-        <View style={styles.column} >
-          <CardPersonalizeTreino letra={"B"} />
-          <CardPersonalizeTreino letra={"D"} />
-          <CardPersonalizeTreino letra={"F"} />
-        </View> */}
         <FlatListComponent
           data={treinos}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => Math.random()}
           contentContainerStyle={{
             alignItems: "space-evenly",
             gap: 30,
@@ -62,7 +45,11 @@ const PersonalizeSeusTreinosScreen = () => {
           }}
           numColumns={2}
           renderItem={({ item }) => (
-            <CardPersonalizeTreino letra={item.letra} />
+            <CardPersonalizeTreino
+              selected={item === letraTreinoSelecionada}
+              onPress={() => setLetraTreinoSelecionada(item)}
+              letra={item.letra}
+            />
           )}
         />
       </ContainerCard>

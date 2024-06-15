@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebAPI.ViewModels
+namespace FitTrack_API.ViewModels.UsuariosViewModel
 {
     public class AlterarSenhaViewModel
     {

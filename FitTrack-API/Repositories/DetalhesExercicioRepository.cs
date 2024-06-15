@@ -2,18 +2,14 @@
 using FitTrack_API.Contexts;
 using FitTrack_API.Domains;
 using FitTrack_API.Interfaces;
-using FitTrack_API.ViewModels;
+using FitTrack_API.ViewModels.DetalhesExercicioViewModel;
 
 namespace FitTrack_API.Repositories
 {
-    public class DetalhesExercicioRepository : IDetalhesExercicioRepository
+    public class DetalhesExercicioRepository(FitTrackContext context) : IDetalhesExercicioRepository
     {
-        private readonly FitTrackContext _context;
+        private readonly FitTrackContext _context = context;
 
-        public DetalhesExercicioRepository(FitTrackContext context)
-        {
-            _context = context;
-        }
         public void Atualizar(DetalhesExercicioViewModel detalhesExercicioViewModel)
         {
             using (var transaction = _context.Database.BeginTransaction())

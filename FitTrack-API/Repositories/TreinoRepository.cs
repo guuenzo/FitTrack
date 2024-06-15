@@ -215,12 +215,9 @@ namespace API_FitTrack.Repositories
 
             List<ExibirTreinoViewModel> treinos = treinoExercicioBuscado
                 .GroupBy(te => new { te.Treino!.IdTreino, te.Treino.LetraNomeTreino, te.Treino.IdUsuario })
-                .Select(t => new ExibirTreinoViewModel
+                .Select(t =>
                 {
-                    IdTreino = t.Key.IdTreino,
-                    LetraNomeTreino = t.Key.LetraNomeTreino,
-                    IdUsuario = t.Key.IdUsuario,
-                    Exercicios = t.Select(e => new ExibirExercicioViewModel
+                    var exercicios = t.Select(e => new ExibirExercicioViewModel
                     {
                         IdExercicio = e.IdExercicio,
                         NomeExercicio = e.Exercicio!.NomeExercicio,
@@ -239,11 +236,25 @@ namespace API_FitTrack.Repositories
                                 VideoExercicio = e.Exercicio.MidiaExercicio.VideoExercicio
                             }
                             : null
-                    }).ToList()
+                    }).ToList();
+
+                    var gruposMusculares = new HashSet<GrupoMuscular>(exercicios
+                        .Where(e => e.GrupoMuscular != null)
+                        .Select(e => e.GrupoMuscular!));
+
+                    return new ExibirTreinoViewModel
+                    {
+                        IdTreino = t.Key.IdTreino,
+                        LetraNomeTreino = t.Key.LetraNomeTreino,
+                        IdUsuario = t.Key.IdUsuario,
+                        Exercicios = exercicios,
+                        ListaGruposMusculares = gruposMusculares.ToList()
+                    };
                 }).ToList();
 
             return treinos;
         }
+
 
     }
 }

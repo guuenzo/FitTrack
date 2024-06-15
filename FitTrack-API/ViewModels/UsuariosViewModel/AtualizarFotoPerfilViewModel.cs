@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace WebAPI.ViewModels
 {
-    public class UsuarioViewModel
+    public class AtualizarFotoPerfilViewModel
     {
         [JsonIgnore]
         [NotMapped]

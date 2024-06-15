@@ -2,7 +2,7 @@
 using API_FitTrack.Interfaces;
 using API_FitTrack.Repositories;
 using FitTrack_API.Interfaces;
-using FitTrack_API.ViewModels;
+using FitTrack_API.ViewModels.DetalhesExercicioViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
