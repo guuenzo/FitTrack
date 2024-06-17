@@ -85,7 +85,7 @@ const PerfilScreen = () => {
       />
       <GridLayout>
         <TouchableOpacity
-          style={{ width: "max-content", height: "max-content" }}
+          style={{ width: 30, height: 30, gap: 1, justifyContent: "center", alignItems: "center", flexDirection: 'row' , right: -315}}
           onPress={logout}
         >
           <Ionicons
@@ -95,7 +95,9 @@ const PerfilScreen = () => {
             style={{
               marginTop: 61,
               alignSelf: "flex-end",
-              width: "max-content",
+              width: "100%",
+              height: "100%",
+              // backgroundColor: "#fff",
             }}
           />
         </TouchableOpacity>

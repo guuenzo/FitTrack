@@ -74,6 +74,9 @@ namespace API_FitTrack.Repositories
                         {
                             IdExercicio = exercicio.IdExercicio,
                             IdUsuario = treinoViewModel.IdUsuario,
+                            Carga = 0,
+                            Repeticoes = 0,
+                            Series = 0,
                         };
 
                         treinoExerciciosASeremAdicionados.Add(treinoExercicio);

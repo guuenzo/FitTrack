@@ -91,36 +91,38 @@ const TreinosScreen = () => {
     return (cleanUp = () => {});
   }, []);
   return (
-    <ContainerTreino>
-      <GridLayout height="100%" padding="0">
-        <Header />
+    <Container>
+      <MainContentScroll>
+        <GridLayout height="100%" padding="0">
+          <Header />
 
-        <Title
-          textAling="center"
-          text={treinos.length !== 0 ? "Meus treinos" : "Monte seu treino"}
-        />
-        <ContainerCardTreino>
-          <FlatListComponent
-            data={treinos}
-            keyExtractor={(item) => item.idTreino}
-            contentContainerStyle={{
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            numColumns={2}
-            renderItem={({ item }) => (
-              <CardTreino
-                grupoMuscular={item.textoGruposMusculares}
-                letraNomeTreino={item.letraNomeTreino}
-                key={item.idTreino}
-                onPress={() => visualizarTreino(item)}
-              />
-            )}
+          <Title
+            textAling="center"
+            text={treinos.length !== 0 ? "Meus treinos" : "Monte seu treino"}
           />
-          {treinos.length < 6 && <CardAddTreino onPress={AddTreino} />}
-        </ContainerCardTreino>
-      </GridLayout>
-    </ContainerTreino>
+          <ContainerCardTreino>
+            <FlatListComponent
+              data={treinos}
+              keyExtractor={(item) => item.idTreino}
+              contentContainerStyle={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              numColumns={2}
+              renderItem={({ item }) => (
+                <CardTreino
+                  grupoMuscular={item.textoGruposMusculares}
+                  letraNomeTreino={item.letraNomeTreino}
+                  key={item.idTreino}
+                  onPress={() => visualizarTreino(item)}
+                />
+              )}
+            />
+            {treinos.length < 6 && <CardAddTreino onPress={AddTreino} />}
+          </ContainerCardTreino>
+        </GridLayout>
+      </MainContentScroll>
+    </Container>
   );
 };
 

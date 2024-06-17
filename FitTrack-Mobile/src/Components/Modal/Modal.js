@@ -134,10 +134,10 @@ export const ModalDetalhesExercicio = ({
   const { userGlobalData } = useContext(AuthContext);
   const hideModal = () => setExibeModal(false);
   const [detalhesExercicio, setDetalhesExercicio] = useState({
-    // idDetalhesExercicio: "",
-    // series: 0,
-    // repeticoes: 0,
-    // carga: 0,
+    idDetalhesExercicio: "",
+    series: 0,
+    repeticoes: 0,
+    carga: 0,
   });
 
   const getDetalhesExercicio = async () => {
@@ -145,6 +145,9 @@ export const ModalDetalhesExercicio = ({
       const { data, status } = await api.get(
         `${detalhesExercicioResource}/ListarDetalhesDeUmExercicio?idUsuario=${userGlobalData.id}&idExercicio=${idExercicio}`
       );
+      console.log(status);
+      console.log("data");
+      console.log(data);
 
       if (status === 200) {
         setDetalhesExercicio(data);
@@ -156,15 +159,15 @@ export const ModalDetalhesExercicio = ({
 
   const atualizarDetalhesExercicio = async () => {
     try {
-      // const { status } = await api.put(
-      //   `${detalhesExercicioResource}/Atualizar`,
-      //   detalhesExercicio
-      // );
-      // if (status === 204) {
-      //   alert("Atualizado!");
+      const { status } = await api.put(
+        `${detalhesExercicioResource}/Atualizar`,
+        detalhesExercicio
+      );
+      if (status === 204) {
+        alert("Atualizado!");
 
-      //   hideModal();
-      // }
+        hideModal();
+      }
       console.log(idExercicio);
       console.log(detalhesExercicio);
     } catch (error) {
@@ -172,14 +175,18 @@ export const ModalDetalhesExercicio = ({
     }
   };
 
-  useEffect(() => {
-    if (!idExercicio) {
-      getDetalhesExercicio();
-      console.log(idExercicio);
-    }
+  // useEffect(() => {
+  //   if (!idExercicio) {
+  //     getDetalhesExercicio();
+  //     console.log(idExercicio);
+  //   }
 
-    console.log(detalhesExercicio);
-  }, [idExercicio]);
+  //   console.log(detalhesExercicio);
+  // }, [idExercicio]);
+
+  useEffect(() => {
+    getDetalhesExercicio();
+  }, []);
 
   return (
     <Portal>
@@ -200,7 +207,11 @@ export const ModalDetalhesExercicio = ({
             <TextGrupo>Séries</TextGrupo>
           </ContainerTextGrupo>
           <InputDefault
-            value={detalhesExercicio ? detalhesExercicio.series : "123"}
+            value={
+              detalhesExercicio.series.toString()
+                ? detalhesExercicio.series.toString()
+                : 20
+            }
             keyboardType="numeric"
             onChangeText={(txt) =>
               setDetalhesExercicio({ ...detalhesExercicio, series: txt })
@@ -211,9 +222,7 @@ export const ModalDetalhesExercicio = ({
           </ContainerTextGrupo>
           <InputDefault
             value={
-              detalhesExercicio.repeticoes
-                ? detalhesExercicio.repeticoes
-                : "123"
+              detalhesExercicio ? detalhesExercicio.repeticoes.toString() : 20
             }
             onChangeText={(txt) =>
               setDetalhesExercicio({ ...detalhesExercicio, repeticoes: txt })
@@ -224,7 +233,11 @@ export const ModalDetalhesExercicio = ({
             <TextGrupo>Peso</TextGrupo>
           </ContainerTextGrupo>
           <InputDefault
-            value={detalhesExercicio ? detalhesExercicio.carga : "123"}
+            value={
+              detalhesExercicio.carga.toString()
+                ? detalhesExercicio.carga.toString()
+                : 0
+            }
             onChangeText={(txt) =>
               setDetalhesExercicio({ ...detalhesExercicio, carga: txt })
             }
