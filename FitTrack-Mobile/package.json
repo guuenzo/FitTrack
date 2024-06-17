@@ -15,6 +15,7 @@
     "@expo-google-fonts/quicksand": "^0.2.3",
     "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-native-community/datetimepicker": "8.0.1",
+    "@react-native-picker/picker": "^2.7.7",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
@@ -44,6 +45,7 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "^15.3.0",
     "react-native-walkthrough-tooltip": "^1.6.0",
+    "react-native-text-input-mask": "^3.2.0",
     "remask": "^1.2.2",
     "styled-components": "^6.1.11"
   },

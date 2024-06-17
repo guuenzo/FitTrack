@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Container,
   GridLayout,
@@ -18,10 +18,22 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import Theme from "../../Styles/Theme";
 import { CommonActions, useNavigation } from "@react-navigation/native";
+import { ModalObejetivo } from "../../Components/ModalObjetivo/ModalObjetivo";
+import { ModalAltura } from "../../Components/ModalAltura/ModalAltura";
+import { ModalPeso } from "../../Components/ModalPeso/ModalPeso";
+import { api } from "../../Services/Service";
+import { imcCalculator } from "../../utils/StringFunctions";
 
 const PerfilScreen = () => {
   const navigation = useNavigation();
   const { userGlobalData, setUserGlobalData } = useContext(AuthContext);
+  const [exibeModalObj, setExibeModalObj] = useState(false)
+  const [exibeModalPeso, setExibeModalPeso] = useState(false)
+  const [exibeModalAltura, setExibeModalAltura] = useState(false)
+  const [exibeModalImc, setExibeModalImc] = useState(false)
+  const [peso, setPeso] = useState("")
+  const [altura, setAltura] = useState("")
+  const [objetivo, setObjetivo] = useState("")
 
   const logout = () => {
     //reseta a pilha de telas do navigation e manda pra login
@@ -35,18 +47,49 @@ const PerfilScreen = () => {
     //limpa os dados do usuario no state global
     setUserGlobalData({});
   };
+
+  async function getProfile() {
+    const promise = await api.get(
+      `/Usuario/BuscarPorId?id=${userGlobalData.id}`
+    )
+    console.log("Aqui esta");
+    console.log(promise.data);
+    setAltura(promise.data.altura)
+    setPeso(promise.data.peso)
+    setObjetivo(promise.data.usuarioObjetivo.objetivo)
+
+
+  }
+
+
+  //Funcao para os modais
+  function MostrarModal(modal, valor) {
+    if (modal == "peso") {
+      setExibeModalPeso(true);
+    } else if (modal == "altura") {
+      setExibeModalAltura(true);
+    }
+    else if (modal == "objetivo") {
+      setExibeModalObj(true);
+    }
+    else {
+      setExibeModalImc(true)
+    }
+  }
+
+
   useEffect(() => {
-    return (cleanUp = () => {});
-  }, []);
+    getProfile()
+  }, [exibeModalAltura, exibeModalObj, exibeModalPeso]);
   return (
     <Container>
       <GridLayout>
-        <TouchableOpacity style={{ width:"max-content", height:"max-content"}} onPress={logout}>
+        <TouchableOpacity style={{ width: "max-content", height: "max-content" }} onPress={logout}>
           <Ionicons
             name="exit-outline"
             size={30}
             color={Theme.colors.red.v1}
-            style={{ marginTop: 61, alignSelf: "flex-end", width:"max-content" }}
+            style={{ marginTop: 61, alignSelf: "flex-end", width: "max-content" }}
           />
         </TouchableOpacity>
         <View style={{ alignItems: "center" }}>
@@ -67,86 +110,190 @@ const PerfilScreen = () => {
             marginTop: 20,
           }}
         >
-          {
-            //fazer um ternario para so exobir se tiver a altura e o peso
-            <CardPerfil>
-              <MaterialCommunityIcons
-                name="heart-pulse"
-                size={24}
-                color={Theme.colors.secondaryScale.V1}
-              />
-              <View>
-                <TextMABold
-                  color={Theme.colors.secondaryScale.V1}
-                  fontSize="16px"
-                >
-                  23.5
-                </TextMABold>
-                <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
-                  IMC
-                </TextQuickSandSemiBold>
-              </View>
-            </CardPerfil>
-          }
 
-          <CardPerfil>
+          {/* Card de peso */}
+          <CardPerfil onPress={() => MostrarModal("peso")}>
             <MaterialIcons
               name="scale"
               size={24}
               color={Theme.colors.secondaryScale.V1}
             />
-            <View>
-              <TextMABold
-                color={Theme.colors.secondaryScale.V1}
-                fontSize="16px"
-              >
-                60.0KG
-              </TextMABold>
-              <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
-                Peso
-              </TextQuickSandSemiBold>
-            </View>
+            {
+              peso != null ?
+                <>
+                  <View>
+                    <TextMABold
+                      color={Theme.colors.secondaryScale.V1}
+                      fontSize="16px"
+                    >
+                      {`${peso} Kg`}
+                    </TextMABold>
+                    <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
+                      Peso
+                    </TextQuickSandSemiBold>
+                  </View>
+                </>
+                :
+                <>
+                  <TextMABold
+                    color={Theme.colors.secondaryScale.V1}
+                    fontSize="16px"
+                  >
+                    Peso
+                  </TextMABold>
+                </>
+            }
+
           </CardPerfil>
 
-          <CardPerfil>
-            <FontAwesome
-              name="line-chart"
-              size={24}
-              color={Theme.colors.secondaryScale.V1}
-            />
 
-            <View>
-              <TextMABold
-                color={Theme.colors.secondaryScale.V1}
-                fontSize="16px"
-              >
-                Bulking
-              </TextMABold>
-
-              <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
-                Objetivo
-              </TextQuickSandSemiBold>
-            </View>
-          </CardPerfil>
-          <CardPerfil>
+          {/* Card de altura */}
+          <CardPerfil onPress={() => MostrarModal("altura")}>
             <FontAwesome
               name="arrows-v"
               size={24}
               color={Theme.colors.secondaryScale.V1}
             />
-
-            <View>
-              <TextMABold
-                color={Theme.colors.secondaryScale.V1}
-                fontSize="16px"
-              >
-                1,7 m
-              </TextMABold>
-              <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
-                Altura
-              </TextQuickSandSemiBold>
-            </View>
+            {altura != null ?
+              <>
+                <View>
+                  <TextMABold
+                    color={Theme.colors.secondaryScale.V1}
+                    fontSize="16px"
+                  >
+                    {`${altura} m`}
+                  </TextMABold>
+                  <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
+                    Altura
+                  </TextQuickSandSemiBold>
+                </View>
+              </>
+              :
+              <>
+                <TextMABold
+                  color={Theme.colors.secondaryScale.V1}
+                  fontSize="16px"
+                >
+                  Altura
+                </TextMABold>
+              </>
+            }
           </CardPerfil>
+
+
+
+          {/* Card de objetivo */}
+          <CardPerfil onPress={() => MostrarModal("objetivo")}>
+            <FontAwesome
+              name="line-chart"
+              size={24}
+              color={Theme.colors.secondaryScale.V1}
+            />
+            {
+              objetivo != null ?
+                <>
+                  <View>
+                    <TextMABold
+                      color={Theme.colors.secondaryScale.V1}
+                      fontSize="16px"
+                    >
+                      {objetivo}
+                    </TextMABold>
+
+                    <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
+                      Objetivo
+                    </TextQuickSandSemiBold>
+                  </View>
+                </>
+                :
+                <>
+                  <TextMABold
+                    color={Theme.colors.secondaryScale.V1}
+                    fontSize="16px"
+                  >
+                    Objetivo
+                  </TextMABold>
+                </>
+            }
+
+          </CardPerfil>
+
+
+          {/* Card de IMC */}
+          {
+            peso != null && altura != null ?
+              <>
+                <CardPerfil>
+                  <MaterialCommunityIcons
+                    name="heart-pulse"
+                    size={24}
+                    color={Theme.colors.secondaryScale.V1}
+                  />
+                  <View>
+                    <TextMABold
+                      color={Theme.colors.secondaryScale.V1}
+                      fontSize="16px"
+                    >
+                      {imcCalculator(peso, altura)}
+                    </TextMABold>
+                    <TextQuickSandSemiBold color={Theme.colors.secondaryScale.V5}>
+                      IMC
+                    </TextQuickSandSemiBold>
+                  </View>
+                </CardPerfil>
+
+
+              </>
+              :
+              <>
+              </>
+          }
+
+
+
+
+          {
+            objetivo != null ?
+              <ModalObejetivo
+                exibeModal={exibeModalObj}
+                setExibeModal={setExibeModalObj}
+                objetivoInicial={objetivo}
+              />
+              :
+              <ModalObejetivo
+                exibeModal={exibeModalObj}
+                setExibeModal={setExibeModalObj}
+              />
+          }
+
+          {
+            altura != null ?
+              <ModalAltura
+                exibeModal={exibeModalAltura}
+                setExibeModal={setExibeModalAltura}
+                alturaInicial={altura.toString()}
+              /> :
+              <ModalAltura
+                exibeModal={exibeModalAltura}
+                setExibeModal={setExibeModalAltura}
+              />
+          }
+
+          {
+            peso != null ?
+              <ModalPeso
+                exibeModal={exibeModalPeso}
+                setExibeModal={setExibeModalPeso}
+                pesoInicial={peso.toString()}
+              />
+              :
+              <ModalPeso
+                exibeModal={exibeModalPeso}
+                setExibeModal={setExibeModalPeso}
+              />
+          }
+
+
         </View>
       </GridLayout>
     </Container>

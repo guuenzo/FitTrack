@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "Repositories\\DetalhesExercicioRepository.cs",
               "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\DetalhesExercicioRepository.cs",
               "RelativeToolTip": "Repositories\\DetalhesExercicioRepository.cs",
-              "ViewState": "AQIAACgAAAAAAAAAAAAAADEAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-17T00:55:48.822Z",
               "EditorCaption": ""
@@ -47,8 +47,7 @@
               "RelativeToolTip": "Interfaces\\IDetalhesExercicioRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T00:54:07.832Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-17T00:54:07.832Z"
             },
             {
               "$type": "Document",
@@ -60,8 +59,7 @@
               "RelativeToolTip": "Controllers\\DetalhesExercicioController.cs",
               "ViewState": "AQIAABwAAAAAAAAAAAAAADQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T00:52:30.291Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-17T00:52:30.291Z"
             }
           ]
         }
