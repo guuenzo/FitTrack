@@ -25,5 +25,5 @@ export const CardPerfil = styled(TouchableOpacity)`
   shadow-opacity: 0.25;
   shadow-offset: 0px 4px;
   shadow-radius: 4px;
-  elevation: 10px;
+  elevation: 10;
 `

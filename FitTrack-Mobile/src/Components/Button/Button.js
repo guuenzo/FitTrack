@@ -22,10 +22,19 @@ export const ButtonComponent = ({
   text = "",
   onPress,
   statusButton = false,
+  disabled = false,
 }) => {
   return (
-    <ButtonStyle onPress={onPress} statusButton={statusButton}>
-      <ButtonStyleText statusButton={statusButton}>{text}</ButtonStyleText>
+    <ButtonStyle
+      disabled={disabled}
+      onPress={onPress}
+      statusButton={statusButton}
+    >
+      {!disabled ? (
+        <ButtonStyleText statusButton={statusButton}>{text}</ButtonStyleText>
+      ) : (
+        <ActivityIndicator size={"small"} color={Theme.colors.white.v1} />
+      )}
     </ButtonStyle>
   );
 };
@@ -37,20 +46,20 @@ export const ButtonComponentDefault = ({
   onPress,
   marginBottom,
   statusButton = false,
-  isLoading = false,
   isDeleteButton = false,
   fieldMargin,
+  disabled = false,
 }) => {
   return (
     <ButtonDefault
       fieldMargin={fieldMargin}
-      disabled={isLoading}
+      disabled={disabled}
       onPress={onPress}
       statusButton={statusButton}
       marginBottom={marginBottom}
       isDeleteButton={isDeleteButton}
     >
-      {!isLoading ? (
+      {!disabled ? (
         <ButtonStyleText statusButton={statusButton}>{text}</ButtonStyleText>
       ) : (
         <ActivityIndicator size={"small"} color="white" />
@@ -77,6 +86,8 @@ export const ButtonLoginCriarContaBox = ({
   handleLogar,
   handleCriarConta,
   fieldMargin = "0px",
+  loadingLogin = false,
+  loadingCriarConta = false,
 }) => {
   const translateX = useSharedValue(0);
   const backgroundColor = useSharedValue(statusButton ? 0 : 1); // 0 para login, 1 para criar conta
@@ -126,6 +137,7 @@ export const ButtonLoginCriarContaBox = ({
           statusButton={statusButton}
         >
           <ButtonComponent
+            disabled={loadingLogin}
             onPress={() => handlePress(true)}
             statusButton={statusButton}
             text="Entrar"
@@ -136,6 +148,7 @@ export const ButtonLoginCriarContaBox = ({
           style={signUpButtonStyle}
         >
           <ButtonComponent
+            disabled={loadingCriarConta}
             onPress={() => handlePress(false)}
             statusButton={!statusButton}
             text="Criar conta"

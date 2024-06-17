@@ -40,7 +40,7 @@ namespace FitTrack_API.Controllers
             try
             {
                 _refeicaoRepository.AtualizarRefeicao(idRefeicao, atualizarRefeicaoViewModel);
-                return StatusCode(200);
+                return StatusCode(204);
             }
             catch (Exception e)
             {

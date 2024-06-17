@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Container,
   GridLayout,
@@ -24,13 +24,19 @@ import {
   calcularPorcentagemMacro,
   calcularQuantidadeMacrosRefeicao,
 } from "../../utils/StringFunctions";
-import { TextInput } from "react-native-paper";
 import { getAlimentoExterno } from "../../Services/ServiceFood";
+import DialogComponent from "../../Components/Dialog/Dialog";
 
 const MonteSuaRefeiçãoScreen = ({ route }) => {
   const navigation = useNavigation();
 
   const { userGlobalData } = useContext(AuthContext);
+
+  const [dialog, setDialog] = useState({});
+
+  const [showDialog, setShowDialog] = useState(false);
+
+  const [loading, setLoading] = useState(false);
 
   const heightStatusBar = StatusBar.currentHeight;
 
@@ -98,9 +104,25 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
   };
 
   const cadastrarRefeicao = async () => {
+    setLoading(true);
     try {
       if (nomeRefeicao.trim() === "") {
-        Alert.alert("Ops", "O nome da refeição é obrigatório");
+        setDialog({
+          status: "alerta",
+          contentMessage: "Dê um nome para a refeição!",
+        });
+        setShowDialog(true);
+        setLoading(false);
+        return;
+      }
+
+      if (alimentos.length === 0) {
+        setDialog({
+          status: "alerta",
+          contentMessage: "Adicione alimentos à sua refeição!",
+        });
+        setShowDialog(true);
+        setLoading(false);
         return;
       }
 
@@ -114,23 +136,45 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
         }
       );
       if (status === 201) {
-        Alert.alert("Sucesso");
-        navigation.replace("Main", { indice: 0 });
+        setDialog({
+          status: "sucesso",
+          contentMessage: "Refeição criada com sucesso!!",
+        });
+        setShowDialog(true);
+        setLoading(false);
+        return;
       }
     } catch (error) {
-      console.log(error);
+      setDialog({
+        status: "erro",
+        contentMessage: "Erro ao cadastrar refeição!",
+      });
+      setShowDialog(true);
+      setLoading(false);
+      return;
     }
   };
 
   const atualizarRefeicao = async () => {
+    setLoading(true);
     try {
       if (nomeRefeicao.trim() === "") {
-        Alert.alert("Ops", "O nome da refeição é obrigatório");
+        setDialog({
+          status: "alerta",
+          contentMessage: "Dê um nome para a refeição!",
+        });
+        setShowDialog(true);
+        setLoading(false);
         return;
       }
 
       if (alimentos.length === 0) {
-        await excluirRefeicao();
+        setDialog({
+          status: "alerta",
+          contentMessage: "Adicione alimentos à sua refeição!",
+        });
+        setShowDialog(true);
+        setLoading(false);
         return;
       }
 
@@ -140,7 +184,7 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
         alimentosSemId.push({ ...element, idAlimento: null });
       });
 
-      await api.put(
+      const { status } = await api.put(
         `${refeicaoResource}/AtualizarRefeicao?idRefeicao=${route.params.refeicao.idRefeicao}`,
         {
           nomeRefeicao,
@@ -148,27 +192,55 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
         }
       );
 
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{ name: "Main", params: { indice: 0 } }],
-        })
-      );
+      if (status === 204) {
+        setDialog({
+          status: "sucesso",
+          contentMessage: "Refeição atualizada com sucesso!",
+        });
+        setShowDialog(true);
+        setLoading(false);
+      }
     } catch (error) {
-      console.log(error);
+      setDialog({
+        status: "erro",
+        contentMessage: "Erro ao atualizar refeição!",
+      });
+      setShowDialog(true);
+      setLoading(false);
     }
   };
 
   const excluirRefeicao = async () => {
+    setLoading(true);
     try {
-      const { data, status } = await api.delete(
+      const { status } = await api.delete(
         `${refeicaoResource}/ExcluirRefeicao?idRefeicao=${route.params.refeicao.idRefeicao}`
       );
 
-      navigation.replace("Main", { indice: 0 });
+      if (status === 204) {
+        setDialog({
+          status: "sucesso",
+          contentMessage: "Refeição excluída com sucesso!",
+        });
+        setShowDialog(true);
+        setLoading(false);
+
+        // navigation.dispatch(
+        //   CommonActions.reset({
+        //     index: 0,
+        //     routes: [{ name: "Main", params: { indice: 0 } }],
+        //   })
+        // );
+      }
     } catch (error) {
-      console.log(error);
+      setDialog({
+        status: "erro",
+        contentMessage: "Erro ao excluir refeição!",
+      });
+      setShowDialog(true);
+      setLoading(false);
     }
+    setLoading(false);
   };
 
   const adicionarAlimento = async (alimento) => {
@@ -184,26 +256,27 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
     if (!existeEsseAlimento) {
       setAlimentos([...alimentos, response]);
     }
-
-    console.log(response);
   };
-
-  async function getFoodEdamamApi() {
-    const promise = await apiAlimentos.get();
-    // console.log(promise.data);
-    console.log(promise.data.parsed[0].food);
-    // console.log(promise.data.nutrients);
-  }
-
-  useEffect(() => {
-    getFoodEdamamApi();
-  }, []);
 
   return (
     <Container>
       <MainContentScroll>
         <GridLayout height="100%" padding="0">
           <MainContent>
+            <DialogComponent
+              onClose={() => {
+                navigation.dispatch(
+                  CommonActions.reset({
+                    index: 0,
+                    routes: [{ name: "Main", params: { indice: 0 } }],
+                  })
+                );
+              }}
+              {...dialog}
+              visible={showDialog}
+              setVisible={setShowDialog}
+              setDialog={setDialog}
+            />
             {exibeModal && (
               <ModalAlimentacao
                 isEditName={isEditNameModal}
@@ -337,6 +410,7 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
 
             <View style={{ marginBottom: 80, marginTop: 30, gap: 30 }}>
               <ButtonComponentDefault
+                disabled={loading}
                 statusButton
                 text={
                   route.params.refeicao.idRefeicao
@@ -352,6 +426,7 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
 
               {route.params.refeicao.idRefeicao && (
                 <ButtonComponentDefault
+                  disabled={loading}
                   isDeleteButton
                   statusButton
                   text="Excluir refeição"

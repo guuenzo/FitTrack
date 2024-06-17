@@ -1,27 +1,13 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import {
-  InputComponent,
-  InputData,
-  InputPassword,
-} from "../../Components/Input/Input";
+import { useRef, useState } from "react";
 import {
   Container,
   GridLayout,
-  MainContent,
   LinearGradientTelasIniciais,
-  InputBox,
 } from "../../Components/Container/style";
 import ImageLogo from "../../Components/Image/Image";
-import {
-  ButtonComponent,
-  ButtonComponentDefault,
-  ButtonLoginCriarContaBox,
-  ButtonSecondary,
-} from "../../Components/Button/Button";
-import { api, loginResource, usuarioResource } from "../../Services/Service";
-import { AuthContext } from "../../Contexts/AuthContext";
-import { Alert, View } from "react-native";
-import { userDecodeToken } from "../../utils/StringFunctions";
+import { ButtonComponentDefault } from "../../Components/Button/Button";
+import { api } from "../../Services/Service";
+import { View } from "react-native";
 import { TitleLogins } from "../../Components/Title/style";
 import { TextMarcado, TextQuickSandMedium } from "../../Components/Text/style";
 import { LeftArrowAOrXComponent } from "../../Components/LeftArrowAOrX";
@@ -30,6 +16,7 @@ import {
   InputCode,
   LinearGradientInputView,
 } from "../../Components/Input/style";
+import DialogComponent from "../../Components/Dialog/Dialog";
 
 const VerificarCodigoScreen = ({ navigation, route }) => {
   const [email, setEmail] = useState(
@@ -37,6 +24,12 @@ const VerificarCodigoScreen = ({ navigation, route }) => {
       ? route.params.emailRecuperacao
       : "email@email.com"
   );
+
+  const [dialog, setDialog] = useState({});
+
+  const [showDialog, setShowDialog] = useState(false);
+
+  const [loading, setLoading] = useState(false);
 
   const inputs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const [codigo, setCodigo] = useState("");
@@ -55,7 +48,7 @@ const VerificarCodigoScreen = ({ navigation, route }) => {
   }
 
   async function ValidarCodigo() {
-    console.log("Vamos ver");
+    setLoading(true);
     await api
       .post(
         `/RecuperarSenha/ValidarCodigo?email=${route.params.emailRecuperacao}&codigo=${codigo}`
@@ -66,14 +59,29 @@ const VerificarCodigoScreen = ({ navigation, route }) => {
         });
       })
       .catch((error) => {
-        console.log(error);
+        setDialog({
+          status: "erro",
+          contentMessage: "Código inválido!",
+        });
+        setShowDialog(true);
+        setLoading(false);
+        return;
       });
+
+    setLoading(false);
   }
 
   return (
     <Container>
       <LinearGradientTelasIniciais>
         <GridLayout>
+          <DialogComponent
+            {...dialog}
+            visible={showDialog}
+            setVisible={setShowDialog}
+            setDialog={setDialog}
+          />
+
           <LeftArrowAOrXComponent />
           <View style={{ alignItems: "center" }}>
             <ImageLogo fieldMargin={"55px 0px 50px 0px"} />
@@ -126,6 +134,7 @@ const VerificarCodigoScreen = ({ navigation, route }) => {
 
           <View style={{ marginTop: 72, alignItems: "center" }}>
             <ButtonComponentDefault
+              disabled={loading}
               text="Continuar"
               statusButton={true}
               onPress={() => ValidarCodigo()}
