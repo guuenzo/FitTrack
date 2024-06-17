@@ -50,10 +50,11 @@ export const ModalObejetivo = ({
 
     useEffect(() => {
         setObjetivo(objetivoInicial)
+        console.log(objetivo);
     }, [exibeModal])
     return (
         <Portal>
-            <ModalStyle visible={exibeModal} onDismiss={hideModal}>
+            <ModalStyle fieldPadding={20} visible={exibeModal} onDismiss={hideModal}>
                 <ModalContent gap={"20px"} aligItems={"center"}>
 
                     <Title text="Selecione seu objetivo" />

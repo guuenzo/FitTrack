@@ -4955,11 +4955,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\46633783825\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\43869817801\\.nuget\\packages\\": {}
+>>>>>>> fernando
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\FitTrack-API.csproj",
       "projectName": "FitTrack-API",
       "projectPath": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\FitTrack-API.csproj",
@@ -4968,6 +4973,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\46633783825\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+      "projectUniqueName": "C:\\Users\\43869817801\\Desktop\\FitTrack\\FitTrack-API\\FitTrack-API.csproj",
+      "projectName": "FitTrack-API",
+      "projectPath": "C:\\Users\\43869817801\\Desktop\\FitTrack\\FitTrack-API\\FitTrack-API.csproj",
+      "packagesPath": "C:\\Users\\43869817801\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\43869817801\\Desktop\\FitTrack\\FitTrack-API\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\43869817801\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> fernando
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -65,7 +65,7 @@ export const ModalAltura = ({
     }, [exibeModal]);
     return (
         <Portal>
-            <ModalStyle visible={exibeModal} onDismiss={hideModal}>
+            <ModalStyle fieldPadding={20} visible={exibeModal} onDismiss={hideModal}>
                 <ModalContent gap={"25px"} aligItems={"center"}>
 
                     <Title text="Indique sua altura" />
