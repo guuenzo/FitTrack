@@ -7,6 +7,19 @@ export const unMasked = (data) => unMask(data);
 
 //Formatações de data
 
+//máscara para input que receber cep
+export const pesoMask = (data) => {
+  let maskPattern;
+  if (data.length >= 6) {
+    // Se o valor tem 6 ou mais dígitos, usa o padrão "999.99"
+    maskPattern = "999.99";
+  } else {
+    // Se o valor tem menos de 6 dígitos, usa o padrão "99.99"
+    maskPattern = "99.99";
+  }
+  return mask(unMask(data), maskPattern);
+};
+
 export const dateMaskedFull = (data) => mask(unMask(data), ["99/99/9999"]);
 
 export const dateDbToViewFull = (date) => {

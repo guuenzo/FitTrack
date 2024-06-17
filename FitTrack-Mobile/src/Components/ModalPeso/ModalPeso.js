@@ -7,6 +7,7 @@ import Theme from '../../Styles/Theme';
 import { ModalContent, ModalStyle } from '../Modal/style';
 import { api } from '../../Services/Service';
 import { AuthContext } from '../../Contexts/AuthContext';
+import { pesoMask } from '../../utils/StringFunctions';
 
 export const ModalPeso = ({
     exibeModal = false,
@@ -17,27 +18,35 @@ export const ModalPeso = ({
     const hideModal = () => setExibeModal(false);
     const { userGlobalData, setUserGlobalData } = useContext(AuthContext);
 
-    const formatPeso = (text) => {
-        let cleaned = ('' + text).replace(/[^0-9]/g, '');
-        if (cleaned.length <= 2) {
-            return cleaned;
-        } else if (cleaned.length <= 4) {
-            return cleaned.slice(0, 2) + '.' + cleaned.slice(2);
+    const handleChange = (text) => {
+        let cleaned = ('' + text).replace(/[^0-9.]/g, ''); // Permite pontos além dos números
+        if (cleaned === '') {
+            setPeso('');
         } else {
-            return cleaned.slice(0, 2) + '.' + cleaned.slice(2, 4);
+            let formatted = formatPeso(cleaned);
+            setPeso(formatted);
         }
     };
-
-    const handleChange = (text) => {
-        const formatted = formatPeso(text);
-        setPeso(formatted);
+    
+    const formatPeso = (text) => {
+        let cleaned = ('' + text).replace(/[^0-9.]/g, ''); // Permite pontos além dos números
+        if (cleaned === '') {
+            return '';
+        } else if (cleaned.length <= 2) {
+            return cleaned; // Para valores inteiros ou até 99
+        } else if (cleaned.length <= 5) {
+            return cleaned.slice(0, 2) + '.' + cleaned.slice(2); // Para valores até 999
+        } else {
+            return cleaned.slice(0, 2) + '.' + cleaned.slice(2, 4); // Para valores acima de 999
+        }
     };
+    
 
     async function updatePeso(novoPeso) {
         try {
             const response = await api.patch(
                 `/Usuario/AlterarDadosPerfil?idUsuario=${userGlobalData.id}`, {
-                peso : novoPeso
+                peso: novoPeso
             },
                 {
                     headers: {
@@ -46,7 +55,7 @@ export const ModalPeso = ({
                     }
                 }
             )
-            
+
             setExibeModal(false)
         } catch (error) {
             console.error(error);
@@ -61,7 +70,7 @@ export const ModalPeso = ({
     return (
         <Portal>
 
-            <ModalStyle visible={exibeModal} onDismiss={hideModal}>
+            <ModalStyle fieldPadding={20} visible={exibeModal} onDismiss={hideModal}>
                 <ModalContent gap={"25px"} aligItems={"center"}>
                     <Title text="Indique seu peso" />
 
@@ -71,7 +80,7 @@ export const ModalPeso = ({
                             placeholder="Digite seu peso"
                             value={peso}
                             placeholderTextColor="#2B3C64"
-                            onChangeText={handleChange}
+                            onChangeText={(text)=> setPeso(pesoMask(text))}
                             keyboardType="numeric"
                         />
                     </View>
@@ -79,7 +88,7 @@ export const ModalPeso = ({
                     <ButtonComponent
                         text="Salvar"
                         statusButton={true}
-                        onPress={()=> updatePeso(peso)}
+                        onPress={() => updatePeso(peso)}
                     />
 
                     <ButtonSecondary
