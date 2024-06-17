@@ -17,9 +17,14 @@ const SelecioneOsGruposMuscularesScreen = ({ route }) => {
   const navigation = useNavigation();
   const [gruposMusculares, setGruposMusculares] = useState([]);
   const [gruposMuscularesSelecionados, setGruposMuscularesSelecionados] =
-    useState([]);
+    useState(
+      route.params.treinoAserAtualizado.idTreino
+        ? route.params.treinoAserAtualizado.gruposMusculares
+        : []
+    );
 
   const handleSelect = (item) => {
+    console.log(item);
     const isSelected = includesObject(gruposMuscularesSelecionados, item);
 
     if (isSelected) {
@@ -46,6 +51,7 @@ const SelecioneOsGruposMuscularesScreen = ({ route }) => {
 
     navigation.navigate("SelecioneOsExercicios", {
       treino: { gruposMuscularesSelecionados: gruposMuscularesSelecionados },
+      treinoAserAtualizado: { ...route.params.treinoAserAtualizado },
     });
   };
 
@@ -67,7 +73,7 @@ const SelecioneOsGruposMuscularesScreen = ({ route }) => {
     arr.some((element) => isEqual(element, obj));
 
   useEffect(() => {
-    console.log(gruposMuscularesSelecionados);
+    console.log(route.params.treinoAserAtualizado);
     getGruposMusculares();
   }, [gruposMuscularesSelecionados]);
 
@@ -108,6 +114,7 @@ const SelecioneOsGruposMuscularesScreen = ({ route }) => {
     </ContainerPesonalizeTreino>
   );
 };
+
 // const SelecioneOsGruposMuscularesScreen = ({ route }) => {
 //   const heightStatusBar = StatusBar.currentHeight;
 

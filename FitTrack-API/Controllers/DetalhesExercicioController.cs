@@ -34,5 +34,19 @@ namespace FitTrack_API.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpGet("ListarDetalhesDeUmExercicio")]
+        public IActionResult Listar(Guid idUsuario, Guid idExercicio)
+        {
+            try
+            {
+                return StatusCode(200, _detalhesExercicioRepository.ListarDetalhesDeUmExercicio(idUsuario, idExercicio));
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

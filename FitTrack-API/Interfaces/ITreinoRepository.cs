@@ -10,7 +10,7 @@ namespace API_FitTrack.Interfaces
     {
         void Cadastrar(CadastrarTreinoViewModel treino);
         ExibirTreinoViewModel BuscarPorId(Guid id);
-        void Atualizar(Guid idTreino, List<CadastrarExercicioViewModel> cadastrarExercicioViewModel);
+        void Atualizar(Guid idTreino, AtualizarTreinoViewModel atualizarTreinoViewModel);
         void Deletar(Guid id);
         List<ExibirTreinoViewModel> ListarTodosOsTreinosDoUsuario(Guid idUsuario);
     }

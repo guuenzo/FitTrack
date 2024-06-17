@@ -15,7 +15,7 @@ import {
   MainContentScroll,
 } from "../../Components/Container/style";
 import { AuthContext } from "../../Contexts/AuthContext";
-import { useNavigation } from "@react-navigation/native";
+import { CommonActions, useNavigation } from "@react-navigation/native";
 
 const SelecioneOsExerciciosScreen = ({ route }) => {
   const heightStatusBar = StatusBar.currentHeight;
@@ -24,12 +24,29 @@ const SelecioneOsExerciciosScreen = ({ route }) => {
 
   const [checado, setChecado] = useState({});
   const [exercicios, setExercicios] = useState([]);
-  const [exerciciosSelecionados, setExerciciosSelecionados] = useState([]);
+  const [exerciciosSelecionados, setExerciciosSelecionados] = useState(
+    route.params.treinoAserAtualizado.idTreino
+      ? route.params.treinoAserAtualizado.idsExercicios
+      : []
+  );
   const [modalVideo, setModalVideo] = useState({
     nomeExe: "",
     video: "",
     modal: false,
   });
+
+  useEffect(() => {
+    // Inicializa o estado 'checado' com base nos exercícios selecionados vindos do route.params
+    const inicializarChecado = () => {
+      const checadoInicial = {};
+      exerciciosSelecionados.forEach((idExercicio) => {
+        checadoInicial[idExercicio] = true;
+      });
+      setChecado(checadoInicial);
+    };
+
+    inicializarChecado();
+  }, [exerciciosSelecionados]);
 
   const handleSelect = (item) => {
     const isSelected = exerciciosSelecionados.includes(item.idExercicio);
@@ -45,15 +62,16 @@ const SelecioneOsExerciciosScreen = ({ route }) => {
     }
   };
 
+  const extrairIdDosExercicios = (array = []) =>
+    array.map((element) => ({
+      idExercicio: element,
+    }));
+
   const cadastrarTreino = async () => {
     try {
-      let idsExerciciosSelecionados = exerciciosSelecionados.map((element) => ({
-        idExercicio: element,
-      }));
-
       const { status } = await api.post(`${treinoResource}/CadastrarTreino`, {
         idUsuario: userGlobalData.id,
-        listaIdExercicios: idsExerciciosSelecionados,
+        listaIdExercicios: extrairIdDosExercicios(exerciciosSelecionados),
       });
 
       if (status === 201) {
@@ -91,7 +109,39 @@ const SelecioneOsExerciciosScreen = ({ route }) => {
     }
   };
 
+  const atualizarTreino = async () => {
+    try {
+      const { status } = await api.put(
+        `${treinoResource}/AtulizarTreino?idTreino=${route.params.treinoAserAtualizado.idTreino}`,
+        {
+          listaExercicios: extrairIdDosExercicios(exerciciosSelecionados),
+        }
+      );
+
+      if (status === 204) {
+        Alert.alert("Atualizado!");
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{ name: "Main", params: { indice: 1 } }],
+          })
+        );
+      }
+      console.log("...extrairIdDosExercicios(exerciciosSelecionados)");
+      console.log(route.params.treinoAserAtualizado.idTreino);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
+    // console.log("route.params.treinoAserAtualizado");
+    // console.log(route.params.treinoAserAtualizado);
+    // console.log("route.params.treino");
+    // console.log(route.params.treino);
+
+    // console.log("exerciciosSelecionados");
+    // console.log(exerciciosSelecionados);
     getExercicios();
   }, []);
 
@@ -142,8 +192,16 @@ const SelecioneOsExerciciosScreen = ({ route }) => {
               statusButton={true}
               fieldMargin={"15px 0"}
               marginBottom={"60px"}
-              onPress={cadastrarTreino}
-              text="Cadastrar"
+              onPress={
+                route.params.treinoAserAtualizado.idTreino
+                  ? atualizarTreino
+                  : cadastrarTreino
+              }
+              text={
+                route.params.treinoAserAtualizado.idTreino
+                  ? "Atualizar treino"
+                  : "Cadastrar treino"
+              }
             />
           </MainContent>
         </GridLayout>

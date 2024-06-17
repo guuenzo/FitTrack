@@ -47,5 +47,35 @@ namespace FitTrack_API.Repositories
                 }
             }
         }
+
+        public DetalhesExercicioViewModel ListarDetalhesDeUmExercicio(Guid idUsuario, Guid idExercicio)
+        {
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    DetalhesExercicio detalhesExercicio = _context.DetalhesExercicio.FirstOrDefault(x => x.IdUsuario == idUsuario && x.IdExercicio == idExercicio)! ?? throw new Exception("Detalhes não encontrados!") ?? throw new Exception("Nada encontrado!");
+
+                    DetalhesExercicioViewModel detalhesExercicioViewModel = new()
+                    {
+                        IdDetalhesExercicio = detalhesExercicio.IdDetalhesExercicio,
+                        Carga = detalhesExercicio.Carga,
+                        Repeticoes = detalhesExercicio.Repeticoes,
+                        Series = detalhesExercicio.Series,
+                    };
+
+                    return detalhesExercicioViewModel;
+
+
+                }
+                catch (Exception e)
+                {
+
+                    transaction.Rollback(); // Reverte a transação em caso de exceção
+                    throw new Exception(e.Message);
+
+                }
+            }
+        }
     }
 }

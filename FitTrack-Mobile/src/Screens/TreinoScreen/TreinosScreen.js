@@ -28,7 +28,9 @@ const TreinosScreen = () => {
 
   const AddTreino = async () => {
     // navigation.navigate("PersonalizeSeusTreinos");
-    navigation.navigate("SelecioneOsGruposMusculares");
+    navigation.navigate("SelecioneOsGruposMusculares", {
+      treinoAserAtualizado: {},
+    });
   };
 
   const visualizarTreino = (item) => {

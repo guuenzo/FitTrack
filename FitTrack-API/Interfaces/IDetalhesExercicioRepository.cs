@@ -6,5 +6,7 @@ namespace FitTrack_API.Interfaces
     public interface IDetalhesExercicioRepository
     {
         void Atualizar(DetalhesExercicioViewModel detalhesExercicioViewModel);
+
+        DetalhesExercicioViewModel ListarDetalhesDeUmExercicio(Guid idUsuario, Guid idExercicio);
     }
 }

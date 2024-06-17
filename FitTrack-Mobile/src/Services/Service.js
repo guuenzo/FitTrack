@@ -25,3 +25,4 @@ export const translatePtToEnResource = `${translateResource}/TranslatePTToEN?tex
 export const exercicioResource = `/Exercicio`;
 export const grupoMuscularResource = `/GrupoMuscular`;
 export const treinoResource = `/Treino`;
+export const detalhesExercicioResource = `/DetalhesExercicio`;

@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\domains\\grupomuscular.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:domains\\grupomuscular.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\repositories\\detalhesexerciciorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:repositories\\detalhesexerciciorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\repositories\\treinorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:repositories\\treinorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\controllers\\detalhesexerciciocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:controllers\\detalhesexerciciocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\viewmodels\\exerciciosviewmodel\\exibirexercicioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:viewmodels\\exerciciosviewmodel\\exibirexercicioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\viewmodels\\treinosviewmodel\\exibirtreinoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:viewmodels\\treinosviewmodel\\exibirtreinoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\interfaces\\idetalhesexerciciorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:interfaces\\idetalhesexerciciorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,51 +27,41 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GrupoMuscular.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Domains\\GrupoMuscular.cs",
-              "RelativeDocumentMoniker": "Domains\\GrupoMuscular.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Domains\\GrupoMuscular.cs",
-              "RelativeToolTip": "Domains\\GrupoMuscular.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAYwCEAAAAAAAAA",
+              "Title": "DetalhesExercicioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\DetalhesExercicioRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\DetalhesExercicioRepository.cs",
+              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\DetalhesExercicioRepository.cs",
+              "RelativeToolTip": "Repositories\\DetalhesExercicioRepository.cs",
+              "ViewState": "AQIAACgAAAAAAAAAAAAAADEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T00:50:31.59Z",
+              "WhenOpened": "2024-06-17T00:55:48.822Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ExibirExercicioViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\ViewModels\\ExerciciosViewModel\\ExibirExercicioViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\ExerciciosViewModel\\ExibirExercicioViewModel.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\ViewModels\\ExerciciosViewModel\\ExibirExercicioViewModel.cs",
-              "RelativeToolTip": "ViewModels\\ExerciciosViewModel\\ExibirExercicioViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAABAAAA",
+              "Title": "IDetalhesExercicioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Interfaces\\IDetalhesExercicioRepository.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IDetalhesExercicioRepository.cs",
+              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Interfaces\\IDetalhesExercicioRepository.cs",
+              "RelativeToolTip": "Interfaces\\IDetalhesExercicioRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T00:40:46.158Z"
+              "WhenOpened": "2024-06-17T00:54:07.832Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "TreinoRepository.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\TreinoRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\TreinoRepository.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\TreinoRepository.cs",
-              "RelativeToolTip": "Repositories\\TreinoRepository.cs",
-              "ViewState": "AQIAAMAAAAAAAAAAAAAAAPMAAAAAAAAA",
+              "Title": "DetalhesExercicioController.cs",
+              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Controllers\\DetalhesExercicioController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DetalhesExercicioController.cs",
+              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Controllers\\DetalhesExercicioController.cs",
+              "RelativeToolTip": "Controllers\\DetalhesExercicioController.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAAAADQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T00:37:00.109Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ExibirTreinoViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\ViewModels\\TreinosViewModel\\ExibirTreinoViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\TreinosViewModel\\ExibirTreinoViewModel.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\ViewModels\\TreinosViewModel\\ExibirTreinoViewModel.cs",
-              "RelativeToolTip": "ViewModels\\TreinosViewModel\\ExibirTreinoViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T00:36:22.528Z"
+              "WhenOpened": "2024-06-17T00:52:30.291Z",
+              "EditorCaption": ""
             }
           ]
         }

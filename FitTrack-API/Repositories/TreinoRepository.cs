@@ -102,14 +102,14 @@ namespace API_FitTrack.Repositories
             throw new NotImplementedException();
         }
 
-        public void Atualizar(Guid idTreino, List<CadastrarExercicioViewModel> cadastrarExercicioViewModel)
+        public void Atualizar(Guid idTreino, AtualizarTreinoViewModel atualizarTreinoViewModel)
         {
             using (var transaction = _context.Database.BeginTransaction())
             {
                 try
                 {
                     // Valida se há exercícios duplicados na lista
-                    GlobalFunctions.ValidarListaDeExerciciosSeTemDuplicados(cadastrarExercicioViewModel);
+                    GlobalFunctions.ValidarListaDeExerciciosSeTemDuplicados(atualizarTreinoViewModel.ListaExercicios);
 
                     // Busca os registros atuais de TreinoExercicio e DetalhesExercicio para o treino especificado
                     List<TreinoExercicio> treinoExercicioExistente = _context.TreinoExercicio
@@ -124,7 +124,7 @@ namespace API_FitTrack.Repositories
 
                     // Determina os exercícios a serem mantidos e removidos
                     var idsExerciciosExistentes = treinoExercicioExistente.Select(te => te.IdExercicio).ToList();
-                    var idsExerciciosNovos = cadastrarExercicioViewModel.Select(e => e.IdExercicio).ToList();
+                    var idsExerciciosNovos = atualizarTreinoViewModel.ListaExercicios.Select(e => e.IdExercicio).ToList();
 
                     var idsExerciciosParaRemover = idsExerciciosExistentes.Except(idsExerciciosNovos).ToList();
                     var idsExerciciosParaAdicionar = idsExerciciosNovos.Except(idsExerciciosExistentes).ToList();

@@ -1,20 +1,25 @@
 import {
   ContainerClose,
-  ContainerModalVideo,
   ContainerVideo,
   ContentModalvideo,
   ImgVideo,
   ModalContent,
   ModalStyle,
 } from "./style";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Portal } from "react-native-paper";
 import Title from "../Title/Title";
 import { ButtonComponentDefault, ButtonSecondary } from "../Button/Button";
 import Theme from "../../Styles/Theme";
 import { InputDefault } from "../Input/Input";
-import { ActivityIndicator, Image, Modal, View } from "react-native";
+import { ActivityIndicator, Image, Modal, TextInput, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { api, detalhesExercicioResource } from "../../Services/Service";
+import { AuthContext } from "../../Contexts/AuthContext";
+import {
+  ContainerTextGrupo,
+  TextGrupo,
+} from "../../Screens/SelecioneOsExerciciosScreen/style";
 
 export const ModalAlimentacao = ({
   exibeModal = false,
@@ -119,6 +124,121 @@ export const ModalVideoExercicio = ({ visible, setModalVideo, modalVideo }) => {
     </Portal>
   );
 };
-export const ModalCargaExercicio = ({}) => {
-  return <></>;
+
+export const ModalDetalhesExercicio = ({
+  exibeModal = false,
+  setExibeModal,
+  onPress = () => {},
+  idExercicio = "",
+}) => {
+  const { userGlobalData } = useContext(AuthContext);
+  const hideModal = () => setExibeModal(false);
+  const [detalhesExercicio, setDetalhesExercicio] = useState({
+    // idDetalhesExercicio: "",
+    // series: 0,
+    // repeticoes: 0,
+    // carga: 0,
+  });
+
+  const getDetalhesExercicio = async () => {
+    try {
+      const { data, status } = await api.get(
+        `${detalhesExercicioResource}/ListarDetalhesDeUmExercicio?idUsuario=${userGlobalData.id}&idExercicio=${idExercicio}`
+      );
+
+      if (status === 200) {
+        setDetalhesExercicio(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const atualizarDetalhesExercicio = async () => {
+    try {
+      // const { status } = await api.put(
+      //   `${detalhesExercicioResource}/Atualizar`,
+      //   detalhesExercicio
+      // );
+      // if (status === 204) {
+      //   alert("Atualizado!");
+
+      //   hideModal();
+      // }
+      console.log(idExercicio);
+      console.log(detalhesExercicio);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (!idExercicio) {
+      getDetalhesExercicio();
+      console.log(idExercicio);
+    }
+
+    console.log(detalhesExercicio);
+  }, [idExercicio]);
+
+  return (
+    <Portal>
+      <ModalStyle fieldPadding={20} visible={exibeModal} onDismiss={hideModal}>
+        <ModalContent gap={"0px"}>
+          <ContainerClose>
+            <AntDesign
+              name="close"
+              size={30}
+              color="#2B3C64"
+              onPress={hideModal}
+            />
+          </ContainerClose>
+
+          <Title textAling={"center"} text={"Supino"} />
+
+          <ContainerTextGrupo>
+            <TextGrupo>Séries</TextGrupo>
+          </ContainerTextGrupo>
+          <InputDefault
+            value={detalhesExercicio ? detalhesExercicio.series : "fefe"}
+            keyboardType="numeric"
+            onChangeText={(txt) =>
+              setDetalhesExercicio({ ...detalhesExercicio, series: txt })
+            }
+          />
+          <ContainerTextGrupo>
+            <TextGrupo>Repetições</TextGrupo>
+          </ContainerTextGrupo>
+          <InputDefault
+            value={
+              detalhesExercicio.repeticoes
+                ? detalhesExercicio.repeticoes
+                : "fefe"
+            }
+            onChangeText={(txt) =>
+              setDetalhesExercicio({ ...detalhesExercicio, repeticoes: txt })
+            }
+            keyboardType="numeric"
+          />
+          <ContainerTextGrupo>
+            <TextGrupo>Peso</TextGrupo>
+          </ContainerTextGrupo>
+          <InputDefault
+            value={detalhesExercicio ? detalhesExercicio.carga : "fefe"}
+            onChangeText={(txt) =>
+              setDetalhesExercicio({ ...detalhesExercicio, carga: txt })
+            }
+            keyboardType="numeric"
+          />
+          <View style={{ alignItems: "center", marginTop: 30 }}>
+            <ButtonComponentDefault
+              statusButton
+              text="Confirmar"
+              onPress={atualizarDetalhesExercicio}
+            />
+          </View>
+        </ModalContent>
+      </ModalStyle>
+    </Portal>
+  );
 };

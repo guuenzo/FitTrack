@@ -51,12 +51,12 @@ namespace API_FitTrack.Controllers
         }
 
         [HttpPut("AtulizarTreino")]
-        public IActionResult AtulizarTreino(Guid idTreino, List<CadastrarExercicioViewModel> cadastrarExercicioViewModel)
+        public IActionResult AtulizarTreino(Guid idTreino, AtualizarTreinoViewModel atualizarTreinoViewModel)
         {
 
             try
             {
-                _treinoRepository.Atualizar(idTreino, cadastrarExercicioViewModel);
+                _treinoRepository.Atualizar(idTreino, atualizarTreinoViewModel);
                 return StatusCode(204);
             }
             catch (Exception e)
