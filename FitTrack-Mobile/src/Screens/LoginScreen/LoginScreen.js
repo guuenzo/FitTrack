@@ -1,9 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import {
-  InputComponent,
-  InputData,
-  InputPassword,
-} from "../../Components/Input/Input";
+import React, { useContext, useState } from "react";
+import { InputComponent, InputPassword } from "../../Components/Input/Input";
 import {
   Container,
   GridLayout,
@@ -30,8 +26,8 @@ const LoginScreen = () => {
 
   const [user, setUser] = useState({
     nome: "",
-    email: "gui@gui.com",
-    senha: "gui123",
+    email: "fythoy@gmail.com",
+    senha: "123456",
   });
 
   const [isLoginForm, setIsLoginForm] = useState(true);

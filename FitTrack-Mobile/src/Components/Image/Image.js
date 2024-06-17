@@ -1,7 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { ImageLogoStyle, ImageProfileStyle, ImageProfileUserStyle } from "./style";
-import { MaterialIcons } from '@expo/vector-icons';
+import {
+  ImageLogoStyle,
+  ImageProfileStyle,
+  ImageProfileUserStyle,
+} from "./style";
+import { MaterialIcons } from "@expo/vector-icons";
+// import CameraComponent from "../CameraComponent/CameraComponent";
 
 export const ImageProfileUser = ({ uriImageProfile, isHeader = true }) => {
   return (
@@ -11,16 +16,20 @@ export const ImageProfileUser = ({ uriImageProfile, isHeader = true }) => {
     />
   );
 };
-export const ImageProfile = ({ uriImageProfile, isHeader = true, onPress = () => { } }) => {
+export const ImageProfile = ({
+  setShowModalCamera,
+  uriImageProfile,
+  isHeader = true,
+  onPress = () => {},
+}) => {
   return (
-    <View style={{ position: 'relative' }}>
+    <View style={{ position: "relative" }}>
       <ImageProfileUserStyle
         isHeader={isHeader}
         source={{ uri: uriImageProfile }}
-
       />
-      <TouchableOpacity onPress={onPress} style={styles.btnEditFoto}>
-        <MaterialIcons name="mode-edit-outline" size={22} color="#FFFF" />
+      <TouchableOpacity onPress={() => setShowModalCamera(true)} style={styles.btnEditFoto}>
+        <MaterialIcons name="mode-edit-outline" size={22} color="#FFF" />
       </TouchableOpacity>
     </View>
   );
@@ -40,11 +49,12 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 50,
-    backgroundColor: '#1E91DB',
-    position: 'absolute',
+    backgroundColor: "#1E91DB",
+    position: "absolute",
     top: -5,
-    right: -3, alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 40
-  }
+    right: -3,
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 40,
+  },
 });

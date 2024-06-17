@@ -200,7 +200,7 @@ export const ModalDetalhesExercicio = ({
             <TextGrupo>Séries</TextGrupo>
           </ContainerTextGrupo>
           <InputDefault
-            value={detalhesExercicio ? detalhesExercicio.series : "fefe"}
+            value={detalhesExercicio ? detalhesExercicio.series : "123"}
             keyboardType="numeric"
             onChangeText={(txt) =>
               setDetalhesExercicio({ ...detalhesExercicio, series: txt })
@@ -213,7 +213,7 @@ export const ModalDetalhesExercicio = ({
             value={
               detalhesExercicio.repeticoes
                 ? detalhesExercicio.repeticoes
-                : "fefe"
+                : "123"
             }
             onChangeText={(txt) =>
               setDetalhesExercicio({ ...detalhesExercicio, repeticoes: txt })
@@ -224,7 +224,7 @@ export const ModalDetalhesExercicio = ({
             <TextGrupo>Peso</TextGrupo>
           </ContainerTextGrupo>
           <InputDefault
-            value={detalhesExercicio ? detalhesExercicio.carga : "fefe"}
+            value={detalhesExercicio ? detalhesExercicio.carga : "123"}
             onChangeText={(txt) =>
               setDetalhesExercicio({ ...detalhesExercicio, carga: txt })
             }

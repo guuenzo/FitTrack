@@ -188,6 +188,17 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
     console.log(response);
   };
 
+  async function getFoodEdamamApi() {
+    const promise = await apiAlimentos.get();
+    // console.log(promise.data);
+    console.log(promise.data.parsed[0].food);
+    // console.log(promise.data.nutrients);
+  }
+
+  useEffect(() => {
+    getFoodEdamamApi();
+  }, []);
+
   return (
     <Container>
       <MainContentScroll>
