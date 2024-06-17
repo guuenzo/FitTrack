@@ -244,6 +244,7 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
   };
 
   const adicionarAlimento = async (alimento) => {
+    setLoading(true);
     const response = await getAlimentoExterno(alimento);
     let existeEsseAlimento = false;
 
@@ -256,6 +257,8 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
     if (!existeEsseAlimento) {
       setAlimentos([...alimentos, response]);
     }
+
+    setLoading(false);
   };
 
   return (

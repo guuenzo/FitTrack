@@ -14,6 +14,7 @@ import { TextMABold, TextQuickSandBold, TextTreinoBold } from "../Text/style";
 import Theme from "../../Styles/Theme";
 import { Ionicons } from "@expo/vector-icons";
 import { CheckExercicios } from "../Checkbox/checkbox";
+import TooltipComponent from "../Tooltip/Tooltip";
 
 const CardTreino = ({ onPress, letraNomeTreino = "", grupoMuscular = "" }) => {
   return (
@@ -21,9 +22,14 @@ const CardTreino = ({ onPress, letraNomeTreino = "", grupoMuscular = "" }) => {
       <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V2}>
         {letraNomeTreino}
       </TextMABold>
-      <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1}>
+
+      <TooltipComponent
+        textPrincipal={grupoMuscular}
+        textoTooltip={grupoMuscular}
+      />
+      {/* <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1}>
         {grupoMuscular}
-      </TextMABold>
+      </TextMABold> */}
     </CardTreinoStyle>
   );
 };

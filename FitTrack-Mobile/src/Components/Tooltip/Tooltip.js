@@ -1,27 +1,37 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
-import { Tooltip } from "react-native-walkthrough-tooltip";
-import { Button, Title } from "react-native-paper";
+import { Tooltip, Text } from "react-native-elements";
+import Theme from "../../Styles/Theme";
+import { TextMABold } from "../Text/style";
+import { View } from "react-native";
 
-const TooltipComponent = () => {
-  const [visible, setVisible] = useState(false);
+const TooltipComponent = ({
+  textPrincipal = "textPrincipal",
+  textoTooltip = "textoTooltip",
+}) => {
+  const [open, setOpen] = useState(false);
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Tooltip
-        isVisible={visible}
-        content={<Text>Este é um tooltip</Text>}
-        placement="top"
-        onClose={() => setVisible(false)}
-      >
-        <Title onPress={() => setVisible(true)}>
-          Pressione aqui para ver o tooltip
-        </Title>
-      </Tooltip>
-      <Button mode="contained" onPress={() => setVisible(true)}>
-        Mostrar Tooltip
-      </Button>
-    </View>
+    <Tooltip
+      backgroundColor={Theme.colors.secondaryScale.V1}
+      overlayColor="transparent"
+      containerStyle={{}}
+      visible={open}
+      onOpen={() => setOpen(true)}
+      onClose={() => setOpen(false)}
+      height={"max-content"}
+      popover={
+        <View>
+          <TextMABold fontSize={"16px"} style={{ color: "white" }}>
+            {textoTooltip}
+          </TextMABold>
+        </View>
+      }
+    >
+      <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V1}>
+        {textPrincipal.substring(0, 6)}
+        {textPrincipal.length > 6 && "..."}
+      </TextMABold>
+    </Tooltip>
   );
 };
 

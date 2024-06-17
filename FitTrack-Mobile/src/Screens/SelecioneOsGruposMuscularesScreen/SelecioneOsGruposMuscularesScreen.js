@@ -44,15 +44,17 @@ const SelecioneOsGruposMuscularesScreen = ({ route }) => {
   };
 
   const addExercicios = () => {
-    if (gruposMuscularesSelecionados.length === 0) {
-      Alert.alert("Selecione 1 grupo pelo menos");
-      return;
-    }
+    // if (gruposMuscularesSelecionados.length === 0) {
+    //   Alert.alert("Selecione 1 grupo pelo menos");
+    //   return;
+    // }
 
-    navigation.navigate("SelecioneOsExercicios", {
-      treino: { gruposMuscularesSelecionados: gruposMuscularesSelecionados },
-      treinoAserAtualizado: { ...route.params.treinoAserAtualizado },
-    });
+    // navigation.navigate("SelecioneOsExercicios", {
+    //   treino: { gruposMuscularesSelecionados: gruposMuscularesSelecionados },
+    //   treinoAserAtualizado: { ...route.params.treinoAserAtualizado },
+    // });
+
+    console.log(gruposMuscularesSelecionados)
   };
 
   const getGruposMusculares = async () => {

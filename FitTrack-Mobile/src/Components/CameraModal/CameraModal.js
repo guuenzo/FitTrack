@@ -40,31 +40,6 @@ export const CameraModal = ({
   const [permissionMedia, requestMediaPermission] =
     MediaLibrary.usePermissions();
 
-  useEffect(() => {
-    (async () => {
-      if (permission && !permission.granted) {
-        await requestPermission();
-      }
-
-      // const { status: mediaStatus } = await MediaLibrary.requestPermissionsAsync()
-      if (MediaLibrary.PermissionStatus.DENIED) {
-        await requestMediaPermission();
-      }
-    })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      const { status: cameraStatus } =
-        await CameraView.requestCameraPermissionsAsync();
-
-      const { status: mediaStatus } =
-        await MediaLibrary.requestPermissionsAsync();
-    })();
-
-    GetLatestPhoto();
-  }, []);
-
   async function CapturePhoto() {
     if (cameraRef) {
       const photo = await cameraRef.current.takePictureAsync();
@@ -109,7 +84,7 @@ export const CameraModal = ({
     setUserGlobalData({ ...userGlobalData, foto: salvarPhoto });
     setShowCameraModal(false) || setOpenModal(false);
   }
-  async function GetLatestPhoto() {
+  async function getLatestPhoto() {
     const { assets } = await MediaLibrary.getAssetsAsync({
       sortBy: [[MediaLibrary.SortBy.creationTime, false]],
       first: 1,
@@ -133,6 +108,12 @@ export const CameraModal = ({
       setOpenModal(true);
     }
   }
+
+  useEffect(() => {
+    if (getMediaLibrary) {
+      getLatestPhoto();
+    }
+  }, [visible]);
 
   return (
     <Modal style={styles.container} visible={visible}>

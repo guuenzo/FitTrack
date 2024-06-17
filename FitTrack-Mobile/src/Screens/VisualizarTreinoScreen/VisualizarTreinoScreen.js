@@ -66,16 +66,31 @@ const VisualizarTreinoScreen = ({ route }) => {
     idsExercicios.push(element.idExercicio);
   });
 
+  let exerciciosEGruposMusculares = [];
+  treino.exercicios.map((element) => {
+    {
+      exerciciosEGruposMusculares.push(element.idExercicio);
+    }
+  });
+
   const atualizarTreino = async () => {
     try {
       navigation.navigate("SelecioneOsGruposMusculares", {
         treinoAserAtualizado: {
           idTreino: treino.idTreino,
           letraNomeTreino: treino.letraNomeTreino,
-          idsExercicios: [...idsExercicios],
+          exercicios: [...idsExercicios],
           gruposMusculares: treino.listaGruposMusculares,
         },
       });
+      // navigation.navigate("SelecioneOsGruposMusculares", {
+      //   treinoAserAtualizado: {
+      //     idTreino: treino.idTreino,
+      //     letraNomeTreino: treino.letraNomeTreino,
+      //     idsExercicios: [...idsExercicios],
+      //     gruposMusculares: treino.listaGruposMusculares,
+      //   },
+      // });
     } catch (error) {
       console.log(error);
     }
@@ -133,11 +148,12 @@ const VisualizarTreinoScreen = ({ route }) => {
                           isCheckCard={false}
                           exercicio={itemExercicio.item}
                           setModalVideo={setModalVideo}
-                          onPress={() =>
+                          onPress={() => {
+                            console.log(itemExercicio.item);
                             verDetalhesDoExercicio(
                               itemExercicio.item.idExercicio
-                            )
-                          }
+                            );
+                          }}
                         />
                       )
                     }

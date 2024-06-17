@@ -16,6 +16,7 @@ import { ContainerCardTreino } from "../../Components/CardTreino/style";
 import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { api, treinoResource } from "../../Services/Service";
+import TooltipComponent from "../../Components/Tooltip/Tooltip";
 
 const TreinosScreen = () => {
   const navigation = useNavigation();
@@ -105,7 +106,7 @@ const TreinosScreen = () => {
             keyExtractor={(item) => item.idTreino}
             contentContainerStyle={{
               justifyContent: "center",
-              alignItems: "center",
+              alignItems: "end",
             }}
             numColumns={2}
             renderItem={({ item }) => (
