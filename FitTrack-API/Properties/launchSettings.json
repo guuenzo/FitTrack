@@ -15,9 +15,9 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       //casa
-      "applicationUrl": "http://192.168.15.61:5179",
+      //"applicationUrl": "http://192.168.15.61:5179",
       //senai
-      //"applicationUrl": "http://192.168.21.102:5179",
+      "applicationUrl": "http://172.16.3.165:5179",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

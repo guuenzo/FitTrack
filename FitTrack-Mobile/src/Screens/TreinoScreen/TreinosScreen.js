@@ -146,7 +146,8 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "space-around",
     alignItems: "center",
-    marginTop: 20,
+    // marginTop: 20,
+    gap: 10,
     // backgroundColor: "red",
   },
 });

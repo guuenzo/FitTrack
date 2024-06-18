@@ -1,13 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\",
+  "WorkspaceRootPath": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\repositories\\treinorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\controllers\\translatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:controllers\\translatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\utils\\translate\\azuretranslateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:utils\\translate\\azuretranslateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\repositories\\treinorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:repositories\\treinorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\fytho\\documents\\github\\fittrack\\fittrack-api\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|c:\\users\\46633783825\\desktop\\github\\fittrack\\fittrack-api\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A21F2122-863A-4CEE-8BB7-9E445CB46AA5}|FitTrack-API.csproj|solutionrelative:repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -18,15 +30,54 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TranslateController.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Controllers\\TranslateController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TranslateController.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Controllers\\TranslateController.cs",
+              "RelativeToolTip": "Controllers\\TranslateController.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwBkAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T20:02:14.341Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "AzureTranslateService.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Utils\\Translate\\AzureTranslateService.cs",
+              "RelativeDocumentMoniker": "Utils\\Translate\\AzureTranslateService.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Utils\\Translate\\AzureTranslateService.cs",
+              "RelativeToolTip": "Utils\\Translate\\AzureTranslateService.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAwBEAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T20:01:33.457Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-06-18T17:34:28.34Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "UsuarioRepository.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\UsuarioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Repositories\\UsuarioRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\UsuarioRepository.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\UsuarioRepository.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Repositories\\UsuarioRepository.cs",
               "RelativeToolTip": "Repositories\\UsuarioRepository.cs",
               "ViewState": "AQIAAGsAAAAAAAAAAAAAAIEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -34,13 +85,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "TreinoRepository.cs",
-              "DocumentMoniker": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\TreinoRepository.cs",
+              "DocumentMoniker": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Repositories\\TreinoRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\TreinoRepository.cs",
-              "ToolTip": "C:\\Users\\fytho\\Documents\\Github\\FitTrack\\FitTrack-API\\Repositories\\TreinoRepository.cs",
+              "ToolTip": "C:\\Users\\46633783825\\Desktop\\GitHub\\FitTrack\\FitTrack-API\\Repositories\\TreinoRepository.cs",
               "RelativeToolTip": "Repositories\\TreinoRepository.cs",
-              "ViewState": "AQIAAIoAAAAAAAAAAAAgwKAAAAAnAAAA",
+              "ViewState": "AQIAAIoAAAAAAAAAAAAgwJkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-18T00:21:35.19Z",
               "EditorCaption": ""
