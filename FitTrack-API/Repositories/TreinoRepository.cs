@@ -74,6 +74,10 @@ namespace API_FitTrack.Repositories
                         {
                             IdExercicio = exercicio.IdExercicio,
                             IdUsuario = treinoViewModel.IdUsuario,
+                            Carga = 0,
+                            Repeticoes = 0,
+                            Series = 0,
+
                         };
 
                         treinoExerciciosASeremAdicionados.Add(treinoExercicio);
@@ -152,6 +156,9 @@ namespace API_FitTrack.Repositories
                     {
                         IdExercicio = idExercicio,
                         IdUsuario = treinoExercicioExistente.First().Treino!.IdUsuario,
+                        Carga = 0,
+                        Series = 0,
+                        Repeticoes = 0,
 
                     }).ToList();
 
@@ -176,26 +183,38 @@ namespace API_FitTrack.Repositories
             {
                 try
                 {
-                    Treino treino = _context.Treino.FirstOrDefault(t => t.IdTreino == id)! ?? throw new Exception("Nenhum treino encontrado");
-                    TreinoExercicio treinoExercicio = _context.TreinoExercicio.FirstOrDefault(t => t.IdTreino == id)! ?? throw new Exception("Nenhum treinoExercicio encontrado");
-
-                    List<DetalhesExercicio> detalhesExercicio = _context.DetalhesExercicio.Where(x => x.IdExercicio == treinoExercicio.IdExercicio && x.IdUsuario == treino.IdUsuario).ToList()! ?? throw new Exception("Nenhum detalhe encontrado");
-
+                    // Identificar e excluir o treino e seus detalhes associados
+                    Treino treino = _context.Treino.FirstOrDefault(t => t.IdTreino == id) ?? throw new Exception("Nenhum treino encontrado");
+                    TreinoExercicio treinoExercicio = _context.TreinoExercicio.FirstOrDefault(t => t.IdTreino == id) ?? throw new Exception("Nenhum treinoExercicio encontrado");
+                    List<DetalhesExercicio> detalhesExercicio = _context.DetalhesExercicio.Where(x => x.IdExercicio == treinoExercicio.IdExercicio && x.IdUsuario == treino.IdUsuario).ToList() ?? throw new Exception("Nenhum detalhe encontrado");
 
                     _context.DetalhesExercicio.RemoveRange(detalhesExercicio);
-                    _context.Treino.Remove(treino);
                     _context.TreinoExercicio.Remove(treinoExercicio);
+                    _context.Treino.Remove(treino);
+                    _context.SaveChanges();
+
+                    // Reordenar os treinos restantes
+                    List<Treino> treinosRestantes = _context.Treino.Where(t => t.IdUsuario == treino.IdUsuario).OrderBy(t => t.LetraNomeTreino).ToList();
+                    char letraAtual = 'A';
+
+                    foreach (var t in treinosRestantes)
+                    {
+                        t.LetraNomeTreino = letraAtual;
+                        _context.Entry(t).State = EntityState.Modified;
+                        letraAtual++;
+                    }
+
                     _context.SaveChanges();
                     transaction.Commit();
                 }
                 catch (Exception ex)
                 {
-
                     transaction.Rollback(); // Reverte a transação em caso de exceção
-                    throw new Exception("Erro ao excluir exercício.", ex);
+                    throw new Exception("Erro ao excluir treino.", ex);
                 }
             }
         }
+
 
         public List<ExibirTreinoViewModel> ListarTodosOsTreinosDoUsuario(Guid idUsuario)
         {

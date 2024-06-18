@@ -16,9 +16,19 @@ import { Ionicons } from "@expo/vector-icons";
 import { CheckExercicios } from "../Checkbox/checkbox";
 import TooltipComponent from "../Tooltip/Tooltip";
 
-const CardTreino = ({ onPress, letraNomeTreino = "", grupoMuscular = "" }) => {
+const CardTreino = ({
+  onPress,
+  letraNomeTreino = "",
+  grupoMuscular = "",
+  fieldMargin,
+  fieldMarginLeft,
+}) => {
   return (
-    <CardTreinoStyle onPress={onPress}>
+    <CardTreinoStyle
+      fieldMargin={fieldMargin}
+      onPress={onPress}
+      fieldMarginLeft={fieldMarginLeft}
+    >
       <TextMABold fontSize={"16px"} color={Theme.colors.secondaryScale.V2}>
         {letraNomeTreino}
       </TextMABold>

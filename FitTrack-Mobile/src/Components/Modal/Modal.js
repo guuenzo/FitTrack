@@ -20,6 +20,7 @@ import {
   ContainerTextGrupo,
   TextGrupo,
 } from "../../Screens/SelecioneOsExerciciosScreen/style";
+import DialogComponent from "../Dialog/Dialog";
 
 export const ModalAlimentacao = ({
   exibeModal = false,
@@ -130,14 +131,20 @@ export const ModalDetalhesExercicio = ({
   setExibeModal,
   onPress = () => {},
   idExercicio = "",
+  nomeExercicio = "Default",
 }) => {
+  const [dialog, setDialog] = useState({});
+
+  const [showDialog, setShowDialog] = useState(false);
+
+  const [loading, setLoading] = useState(false);
   const { userGlobalData } = useContext(AuthContext);
   const hideModal = () => setExibeModal(false);
   const [detalhesExercicio, setDetalhesExercicio] = useState({
-    // idDetalhesExercicio: "",
-    // series: 0,
-    // repeticoes: 0,
-    // carga: 0,
+    idDetalhesExercicio: "",
+    series: 0,
+    repeticoes: 0,
+    carga: 0,
   });
 
   const getDetalhesExercicio = async () => {
@@ -149,42 +156,52 @@ export const ModalDetalhesExercicio = ({
       if (status === 200) {
         setDetalhesExercicio(data);
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const atualizarDetalhesExercicio = async () => {
+    setLoading(true);
     try {
-      // const { status } = await api.put(
-      //   `${detalhesExercicioResource}/Atualizar`,
-      //   detalhesExercicio
-      // );
-      // if (status === 204) {
-      //   alert("Atualizado!");
+      const { status } = await api.put(
+        `${detalhesExercicioResource}/Atualizar`,
+        detalhesExercicio
+      );
+      if (status === 204) {
+        setDialog({
+          status: "sucesso",
+          contentMessage: "Atualizado com sucesso!",
+        });
+        setShowDialog(true);
+        setLoading(false);
 
-      //   hideModal();
-      // }
-      console.log(idExercicio);
-      console.log(detalhesExercicio);
+        // hideModal();
+        return;
+      }
     } catch (error) {
-      console.log(error);
+      setDialog({
+        status: "erro",
+        contentMessage: "Erro ao atualizar os detalhes do exercício!",
+      });
+      setShowDialog(true);
+      setLoading(false);
+      return;
     }
   };
 
   useEffect(() => {
-    if (!idExercicio) {
-      getDetalhesExercicio();
-      console.log(idExercicio);
-    }
-
-    console.log(detalhesExercicio);
-  }, [idExercicio]);
+    getDetalhesExercicio();
+  }, []);
 
   return (
     <Portal>
       <ModalStyle fieldPadding={20} visible={exibeModal} onDismiss={hideModal}>
         <ModalContent gap={"0px"}>
+          <DialogComponent
+            {...dialog}
+            visible={showDialog}
+            setVisible={setShowDialog}
+            setDialog={setDialog}
+          />
           <ContainerClose>
             <AntDesign
               name="close"
@@ -194,13 +211,17 @@ export const ModalDetalhesExercicio = ({
             />
           </ContainerClose>
 
-          <Title textAling={"center"} text={"Supino"} />
+          <Title textAling={"center"} text={nomeExercicio} />
 
           <ContainerTextGrupo>
             <TextGrupo>Séries</TextGrupo>
           </ContainerTextGrupo>
           <InputDefault
-            value={detalhesExercicio ? detalhesExercicio.series : "123"}
+            value={
+              detalhesExercicio.series.toString()
+                ? detalhesExercicio.series.toString()
+                : 20
+            }
             keyboardType="numeric"
             onChangeText={(txt) =>
               setDetalhesExercicio({ ...detalhesExercicio, series: txt })
@@ -211,9 +232,7 @@ export const ModalDetalhesExercicio = ({
           </ContainerTextGrupo>
           <InputDefault
             value={
-              detalhesExercicio.repeticoes
-                ? detalhesExercicio.repeticoes
-                : "123"
+              detalhesExercicio ? detalhesExercicio.repeticoes.toString() : 20
             }
             onChangeText={(txt) =>
               setDetalhesExercicio({ ...detalhesExercicio, repeticoes: txt })
@@ -224,7 +243,11 @@ export const ModalDetalhesExercicio = ({
             <TextGrupo>Peso</TextGrupo>
           </ContainerTextGrupo>
           <InputDefault
-            value={detalhesExercicio ? detalhesExercicio.carga : "123"}
+            value={
+              detalhesExercicio.carga.toString()
+                ? detalhesExercicio.carga.toString()
+                : 0
+            }
             onChangeText={(txt) =>
               setDetalhesExercicio({ ...detalhesExercicio, carga: txt })
             }
@@ -232,6 +255,7 @@ export const ModalDetalhesExercicio = ({
           />
           <View style={{ alignItems: "center", marginTop: 30 }}>
             <ButtonComponentDefault
+              disabled={loading}
               statusButton
               text="Confirmar"
               onPress={atualizarDetalhesExercicio}

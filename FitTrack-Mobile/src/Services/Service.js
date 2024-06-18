@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// const ip = "172.16.39.118";
+const ip = "192.168.15.61";
 
-const ip = "192.168.21.102";
+// const ip = "192.168.21.102";
 
 const apiPort = ":5179";
 

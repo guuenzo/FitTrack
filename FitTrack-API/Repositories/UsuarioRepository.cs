@@ -125,6 +125,10 @@ namespace API_FitTrack.Repositories
                     FotoUsuario = "https://blobvitalhubg16enzo.blob.core.windows.net/containerfittrack/default_image.png"
                 };
 
+                usuario.Altura = 0;
+                usuario.Peso = 0;
+
+
 
                 usuario.UsuarioMidia = usuarioMidia;
 

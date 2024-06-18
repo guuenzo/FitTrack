@@ -1,4 +1,4 @@
-import { Alert, StatusBar } from "react-native";
+import { StatusBar } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { LeftArrowAOrXComponent } from "../../Components/LeftArrowAOrX";
 import Title from "../../Components/Title/Title";
@@ -16,11 +16,18 @@ import {
 } from "../../Components/Container/style";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { CommonActions, useNavigation } from "@react-navigation/native";
+import DialogComponent from "../../Components/Dialog/Dialog";
 
 const SelecioneOsExerciciosScreen = ({ route }) => {
   const heightStatusBar = StatusBar.currentHeight;
   const { userGlobalData } = useContext(AuthContext);
   const navigation = useNavigation();
+
+  const [dialog, setDialog] = useState({});
+
+  const [showDialog, setShowDialog] = useState(false);
+
+  const [loading, setLoading] = useState(false);
 
   const [checado, setChecado] = useState({});
   const [exercicios, setExercicios] = useState([]);
@@ -69,17 +76,35 @@ const SelecioneOsExerciciosScreen = ({ route }) => {
 
   const cadastrarTreino = async () => {
     try {
+      if (extrairIdDosExercicios(exerciciosSelecionados).length === 0) {
+        setDialog({
+          status: "alerta",
+          contentMessage: "Selecione pelo menos um exercício!",
+        });
+        setShowDialog(true);
+
+        return;
+      }
+
       const { status } = await api.post(`${treinoResource}/CadastrarTreino`, {
         idUsuario: userGlobalData.id,
         listaIdExercicios: extrairIdDosExercicios(exerciciosSelecionados),
       });
 
       if (status === 201) {
-        Alert.alert("Sucesso!");
-        navigation.replace("Main", { indice: 1 });
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{ name: "Main", params: { indice: 1 } }],
+          })
+        );
       }
     } catch (error) {
-      console.log(error);
+      setDialog({
+        status: "erro",
+        contentMessage: "Erro ao cadastrar treino!",
+      });
+      setShowDialog(true);
     }
   };
 
@@ -111,15 +136,33 @@ const SelecioneOsExerciciosScreen = ({ route }) => {
 
   const atualizarTreino = async () => {
     try {
+      const gruposSelecionados =
+        route.params.treino.gruposMuscularesSelecionados.map(
+          (grupo) => grupo.nomeGrupoMuscular
+        );
+      const exerciciosFiltrados = exerciciosSelecionados.filter((id) => {
+        const exercicio = exercicios.find((ex) => ex.idExercicio === id);
+        return exercicio && gruposSelecionados.includes(exercicio.grupo);
+      });
+
+      if (extrairIdDosExercicios(exerciciosFiltrados).length === 0) {
+        setDialog({
+          status: "alerta",
+          contentMessage: "Selecione pelo menos um exercício!",
+        });
+        setShowDialog(true);
+
+        return;
+      }
+
       const { status } = await api.put(
         `${treinoResource}/AtulizarTreino?idTreino=${route.params.treinoAserAtualizado.idTreino}`,
         {
-          listaExercicios: extrairIdDosExercicios(exerciciosSelecionados),
+          listaExercicios: extrairIdDosExercicios(exerciciosFiltrados),
         }
       );
 
       if (status === 204) {
-        Alert.alert("Atualizado!");
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
@@ -127,27 +170,28 @@ const SelecioneOsExerciciosScreen = ({ route }) => {
           })
         );
       }
-      console.log("...extrairIdDosExercicios(exerciciosSelecionados)");
-      console.log(route.params.treinoAserAtualizado.idTreino);
     } catch (error) {
-      console.log(error);
+      setDialog({
+        status: "erro",
+        contentMessage: "Erro ao cadastrar treino!",
+      });
+      setShowDialog(true);
     }
   };
 
   useEffect(() => {
-    // console.log("route.params.treinoAserAtualizado");
-    // console.log(route.params.treinoAserAtualizado);
-    // console.log("route.params.treino");
-    // console.log(route.params.treino);
-
-    // console.log("exerciciosSelecionados");
-    // console.log(exerciciosSelecionados);
     getExercicios();
   }, []);
 
   return (
     <Container>
       <MainContentScroll>
+        <DialogComponent
+          {...dialog}
+          visible={showDialog}
+          setVisible={setShowDialog}
+          setDialog={setDialog}
+        />
         <GridLayout height="100%" padding="0">
           <MainContent>
             <ModalVideoExercicio

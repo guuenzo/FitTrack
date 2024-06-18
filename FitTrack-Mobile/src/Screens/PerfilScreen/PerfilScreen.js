@@ -1,18 +1,12 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Container,
-  GridLayout,
-  MainContent,
-  MainContentScroll,
-} from "../../Components/Container/style";
+import { Container, GridLayout } from "../../Components/Container/style";
 import Title from "../../Components/Title/Title";
 import { ImageProfile, ImageProfileUser } from "../../Components/Image/Image";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { Ionicons } from "@expo/vector-icons";
 import { TextMABold, TextQuickSandSemiBold } from "../../Components/Text/style";
 import { CardPerfil } from "../../Components/CardPerfil/Style";
-import { Feather } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
@@ -24,6 +18,7 @@ import { ModalPeso } from "../../Components/ModalPeso/ModalPeso";
 import { api } from "../../Services/Service";
 import { imcCalculator } from "../../utils/StringFunctions";
 import { CameraModal } from "../../Components/CameraModal/CameraModal";
+import DialogComponent from "../../Components/Dialog/Dialog";
 
 const PerfilScreen = () => {
   const navigation = useNavigation();
@@ -37,8 +32,14 @@ const PerfilScreen = () => {
   const [objetivo, setObjetivo] = useState("");
   const [showModalCamera, setShowModalCamera] = useState(false);
 
+  const [dialog, setDialog] = useState({});
+
+  const [showDialog, setShowDialog] = useState(false);
+
+  const [loading, setLoading] = useState(false);
+
   const logout = () => {
-    //reseta a pilha de telas do navigation e manda pra login
+    // Reseta a pilha de telas do navigation e manda pra login
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
@@ -46,22 +47,22 @@ const PerfilScreen = () => {
       })
     );
 
-    //limpa os dados do usuario no state global
+    // Limpa os dados do usuario no state global
     setUserGlobalData({});
   };
 
-  async function getProfile() {
-    const promise = await api.get(
-      `/Usuario/BuscarPorId?id=${userGlobalData.id}`
-    );
-    console.log("Aqui esta");
-    console.log(promise.data);
-    setAltura(promise.data.altura);
-    setPeso(promise.data.peso);
-    setObjetivo(promise.data.usuarioObjetivo.objetivo);
-  }
+  const getProfile = async () => {
+    try {
+      const { data } = await api.get(
+        `/Usuario/BuscarPorId?id=${userGlobalData.id}`
+      );
+      setAltura(data.altura);
+      setPeso(data.peso);
+      setObjetivo(data.usuarioObjetivo.objetivo);
+    } catch (error) {}
+  };
 
-  //Funcao para os modais
+  // Funcao para os modais
   function MostrarModal(modal, valor) {
     if (modal == "peso") {
       setExibeModalPeso(true);
@@ -77,15 +78,30 @@ const PerfilScreen = () => {
   useEffect(() => {
     getProfile();
   }, [exibeModalAltura, exibeModalObj, exibeModalPeso]);
+
   return (
     <Container>
+      <DialogComponent
+        {...dialog}
+        visible={showDialog}
+        setVisible={setShowDialog}
+        setDialog={setDialog}
+      />
       <CameraModal
         visible={showModalCamera}
         setShowCameraModal={setShowModalCamera}
       />
       <GridLayout>
         <TouchableOpacity
-          style={{ width: "max-content", height: "max-content" }}
+          style={{
+            width: 30,
+            height: 30,
+            gap: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "row",
+            right: -315,
+          }}
           onPress={logout}
         >
           <Ionicons
@@ -95,7 +111,8 @@ const PerfilScreen = () => {
             style={{
               marginTop: 61,
               alignSelf: "flex-end",
-              width: "max-content",
+              width: "100%",
+              height: "100%",
             }}
           />
         </TouchableOpacity>
@@ -110,7 +127,6 @@ const PerfilScreen = () => {
           <TextQuickSandSemiBold>{userGlobalData.email}</TextQuickSandSemiBold>
         </View>
 
-        {/* replicar essa view nos cards de treino   */}
         <View
           style={{
             justifyContent: "space-around",
@@ -220,7 +236,7 @@ const PerfilScreen = () => {
           </CardPerfil>
 
           {/* Card de IMC */}
-          {peso !== null && altura !== null ? (
+          {peso !== 0 && altura !== 0 ? (
             <>
               <CardPerfil>
                 <MaterialCommunityIcons
@@ -258,11 +274,11 @@ const PerfilScreen = () => {
             />
           )}
 
-          {altura != null ? (
+          {altura !== null ? (
             <ModalAltura
               exibeModal={exibeModalAltura}
               setExibeModal={setExibeModalAltura}
-              alturaInicial={altura.toString()}
+              alturaInicial={altura ? altura.toString() : "0"}
             />
           ) : (
             <ModalAltura
@@ -271,11 +287,11 @@ const PerfilScreen = () => {
             />
           )}
 
-          {peso != null ? (
+          {peso !== null ? (
             <ModalPeso
               exibeModal={exibeModalPeso}
               setExibeModal={setExibeModalPeso}
-              pesoInicial={peso.toString()}
+              pesoInicial={peso ? peso.toString() : "0"}
             />
           ) : (
             <ModalPeso

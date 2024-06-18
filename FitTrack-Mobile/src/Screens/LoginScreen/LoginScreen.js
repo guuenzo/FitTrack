@@ -33,7 +33,7 @@ const LoginScreen = () => {
 
   const [user, setUser] = useState({
     nome: "",
-    email: "fythoy@gmail.com",
+    email: "fythoy2@gmail.com",
     senha: "12345",
   });
 

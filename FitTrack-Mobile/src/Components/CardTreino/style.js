@@ -19,7 +19,7 @@ export const CardTreinoStyle = styled(TouchableOpacity)`
   align-self: center;
   margin: ${(props) => (props.isLast ? "25px 0 50px" : "25px 0")};
   padding: 15px 0;
-  margin-left: 15px;
+  /* margin-left: 15px; */
 
   /* flex-direction: row; */
   /* justify-content: space-evenly; */

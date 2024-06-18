@@ -21,10 +21,17 @@ import {
   ModalDetalhesExercicio,
   ModalVideoExercicio,
 } from "../../Components/Modal/Modal";
+import DialogComponent from "../../Components/Dialog/Dialog";
 
 const VisualizarTreinoScreen = ({ route }) => {
   const heightStatusBar = StatusBar.currentHeight;
   const navigation = useNavigation();
+
+  const [dialog, setDialog] = useState({});
+
+  const [showDialog, setShowDialog] = useState(false);
+
+  const [loading, setLoading] = useState(false);
 
   const [modalVideo, setModalVideo] = useState({
     nomeExe: "",
@@ -39,11 +46,21 @@ const VisualizarTreinoScreen = ({ route }) => {
     route.params.treino.idTreino ? route.params.treino : {}
   );
 
+  const [nomeExercicioSelecionado, setNomeExercicioSelecionado] = useState("");
+
   const excluirTreino = async () => {
+    setLoading(true);
     try {
       await api.delete(
         `${treinoResource}/ExcluirTreino?id=${route.params.treino.idTreino}`
       );
+
+      setDialog({
+        status: "sucesso",
+        contentMessage: "Excluído com sucesso!",
+      });
+      setShowDialog(true);
+      setLoading(false);
 
       navigation.dispatch(
         CommonActions.reset({
@@ -52,7 +69,12 @@ const VisualizarTreinoScreen = ({ route }) => {
         })
       );
     } catch (error) {
-      console.log(error);
+      setDialog({
+        status: "erro",
+        contentMessage: "Erro ao excluir exercício!",
+      });
+      setShowDialog(true);
+      setLoading(false);
     }
   };
 
@@ -75,22 +97,22 @@ const VisualizarTreinoScreen = ({ route }) => {
 
   const atualizarTreino = async () => {
     try {
-      navigation.navigate("SelecioneOsGruposMusculares", {
-        treinoAserAtualizado: {
-          idTreino: treino.idTreino,
-          letraNomeTreino: treino.letraNomeTreino,
-          exercicios: [...idsExercicios],
-          gruposMusculares: treino.listaGruposMusculares,
-        },
-      });
       // navigation.navigate("SelecioneOsGruposMusculares", {
       //   treinoAserAtualizado: {
       //     idTreino: treino.idTreino,
       //     letraNomeTreino: treino.letraNomeTreino,
-      //     idsExercicios: [...idsExercicios],
+      //     exercicios: [...idsExercicios],
       //     gruposMusculares: treino.listaGruposMusculares,
       //   },
       // });
+      navigation.navigate("SelecioneOsGruposMusculares", {
+        treinoAserAtualizado: {
+          idTreino: treino.idTreino,
+          letraNomeTreino: treino.letraNomeTreino,
+          idsExercicios: [...idsExercicios],
+          gruposMusculares: treino.listaGruposMusculares,
+        },
+      });
     } catch (error) {
       console.log(error);
     }
@@ -109,6 +131,12 @@ const VisualizarTreinoScreen = ({ route }) => {
     <Container>
       <MainContentScroll>
         <GridLayout height="100%" padding="0">
+          <DialogComponent
+            {...dialog}
+            visible={showDialog}
+            setVisible={setShowDialog}
+            setDialog={setDialog}
+          />
           <MainContent>
             <ModalVideoExercicio
               visible={modalVideo.modal}
@@ -118,6 +146,7 @@ const VisualizarTreinoScreen = ({ route }) => {
 
             {verModalDetalhesExercicio && (
               <ModalDetalhesExercicio
+                nomeExercicio={nomeExercicioSelecionado}
                 exibeModal={verModalDetalhesExercicio}
                 setExibeModal={setVerModalDetalhesExercicio}
                 idExercicio={idExercicioAtual}
@@ -149,7 +178,9 @@ const VisualizarTreinoScreen = ({ route }) => {
                           exercicio={itemExercicio.item}
                           setModalVideo={setModalVideo}
                           onPress={() => {
-                            console.log(itemExercicio.item);
+                            setNomeExercicioSelecionado(
+                              itemExercicio.item.nomeExercicio
+                            );
                             verDetalhesDoExercicio(
                               itemExercicio.item.idExercicio
                             );
@@ -167,6 +198,7 @@ const VisualizarTreinoScreen = ({ route }) => {
                 statusButton
                 text={"Atualizar treino"}
                 onPress={atualizarTreino}
+                disabled={loading}
               />
 
               <ButtonComponentDefault
@@ -174,6 +206,7 @@ const VisualizarTreinoScreen = ({ route }) => {
                 statusButton
                 text="Excluir treino"
                 onPress={excluirTreino}
+                disabled={loading}
               />
             </View>
           </MainContent>

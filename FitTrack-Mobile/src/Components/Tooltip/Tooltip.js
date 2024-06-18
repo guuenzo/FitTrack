@@ -14,11 +14,12 @@ const TooltipComponent = ({
     <Tooltip
       backgroundColor={Theme.colors.secondaryScale.V1}
       overlayColor="transparent"
-      containerStyle={{}}
       visible={open}
-      onOpen={() => setOpen(true)}
+      height={95}
+      onOpen={() => {
+        setOpen(true);
+      }}
       onClose={() => setOpen(false)}
-      height={"max-content"}
       popover={
         <View>
           <TextMABold fontSize={"16px"} style={{ color: "white" }}>

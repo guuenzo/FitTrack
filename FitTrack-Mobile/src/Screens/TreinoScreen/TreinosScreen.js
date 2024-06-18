@@ -4,19 +4,18 @@ import Title from "../../Components/Title/Title";
 import {
   Container,
   GridLayout,
-  MainContent,
   MainContentScroll,
 } from "../../Components/Container/style";
 import FlatListComponent from "../../Components/FlatList/FlatList";
 import CardTreino, {
   CardAddTreino,
 } from "../../Components/CardTreino/CardTreino";
-import { ContainerTreino } from "./style";
 import { ContainerCardTreino } from "../../Components/CardTreino/style";
 import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { api, treinoResource } from "../../Services/Service";
 import TooltipComponent from "../../Components/Tooltip/Tooltip";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
 
 const TreinosScreen = () => {
   const navigation = useNavigation();
@@ -92,37 +91,62 @@ const TreinosScreen = () => {
     return (cleanUp = () => {});
   }, []);
   return (
-    <ContainerTreino>
-      <GridLayout height="100%" padding="0">
-        <Header />
+    <Container>
+      <MainContentScroll>
+        <GridLayout height="100%" padding="0">
+          <Header />
 
-        <Title
-          textAling="center"
-          text={treinos.length !== 0 ? "Meus treinos" : "Monte seu treino"}
-        />
-        <ContainerCardTreino>
-          <FlatListComponent
-            data={treinos}
-            keyExtractor={(item) => item.idTreino}
-            contentContainerStyle={{
-              justifyContent: "center",
-              alignItems: "end",
-            }}
-            numColumns={2}
-            renderItem={({ item }) => (
-              <CardTreino
-                grupoMuscular={item.textoGruposMusculares}
-                letraNomeTreino={item.letraNomeTreino}
-                key={item.idTreino}
-                onPress={() => visualizarTreino(item)}
-              />
-            )}
+          <Title
+            textAling="center"
+            text={treinos.length !== 0 ? "Meus treinos" : "Monte seu treino"}
           />
-          {treinos.length < 6 && <CardAddTreino onPress={AddTreino} />}
-        </ContainerCardTreino>
-      </GridLayout>
-    </ContainerTreino>
+          <ContainerCardTreino>
+            {/* <FlatListComponent
+              data={treinos}
+              keyExtractor={(item) => item.idTreino}
+              contentContainerStyle={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              numColumns={2}
+              renderItem={({ item }) => (
+                <CardTreino
+                  grupoMuscular={item.textoGruposMusculares}
+                  letraNomeTreino={item.letraNomeTreino}
+                  key={item.idTreino}
+                  onPress={() => visualizarTreino(item)}
+                />
+              )}
+            /> */}
+
+            <View style={styles.cardsContainer}>
+              {treinos.map((item) => (
+                <CardTreino
+                  key={item.idTreino}
+                  grupoMuscular={item.textoGruposMusculares}
+                  letraNomeTreino={item.letraNomeTreino}
+                  onPress={() => visualizarTreino(item)}
+                />
+              ))}
+              {treinos.length < 6 && <CardAddTreino onPress={AddTreino} />}
+            </View>
+            {/* {treinos.length < 6 && <CardAddTreino onPress={AddTreino} />} */}
+          </ContainerCardTreino>
+        </GridLayout>
+      </MainContentScroll>
+    </Container>
   );
 };
 
 export default TreinosScreen;
+
+const styles = StyleSheet.create({
+  cardsContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    alignItems: "center",
+    marginTop: 20,
+    // backgroundColor: "red",
+  },
+});

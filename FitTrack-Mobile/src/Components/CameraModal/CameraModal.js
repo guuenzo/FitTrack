@@ -1,17 +1,8 @@
-import {
-  ActivityIndicator,
-  Image,
-  Modal,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, Modal, StyleSheet, TouchableOpacity, View } from "react-native";
 import { CameraView, useCameraPermissions, FlashMode } from "expo-camera";
 import { useEffect, useState, useRef, useContext } from "react";
 import {
   FontAwesome,
-  AntDesign,
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
@@ -36,11 +27,11 @@ export const CameraModal = ({
   const [salvarPhoto, setSalvarPhoto] = useState(null);
   const [lastPhoto, setLastPhoto] = useState(null);
 
-  const [permission, requestPermission] = useCameraPermissions();
-  const [permissionMedia, requestMediaPermission] =
-    MediaLibrary.usePermissions();
+  // const [permission, requestPermission] = useCameraPermissions();
+  // const [permissionMedia, requestMediaPermission] =
+  //   MediaLibrary.usePermissions();
 
-  async function CapturePhoto() {
+  const CapturePhoto = async () => {
     if (cameraRef) {
       const photo = await cameraRef.current.takePictureAsync();
       setSalvarPhoto(photo.uri);
@@ -49,70 +40,75 @@ export const CameraModal = ({
 
       // await setfotoTirada(photo.uri);
     }
-  }
+  };
 
-  function ClearPhoto() {
+  const ClearPhoto = () => {
     setSalvarPhoto(null);
 
     setOpenModal(false);
-  }
+  };
 
   function toggleCameraFacing() {
     setFacing((current) => (current === "back" ? "front" : "back"));
   }
 
-  async function AlterarFotoPerfil() {
-    const formData = new FormData();
-    formData.append("Arquivo", {
-      uri: salvarPhoto,
-      name: `image.${salvarPhoto.split(".").pop()}`,
-      type: `image/${salvarPhoto.split(".").pop()}`,
-    });
-
-    await api
-      .put(`/Usuario/AlterarFotoPerfil?id=${userGlobalData.id}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
+  const AlterarFotoPerfil = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("Arquivo", {
+        uri: salvarPhoto,
+        name: `image.${salvarPhoto.split(".").pop()}`,
+        type: `image/${salvarPhoto.split(".").pop()}`,
       });
-    setUserGlobalData({ ...userGlobalData, foto: salvarPhoto });
-    setShowCameraModal(false) || setOpenModal(false);
-  }
-  async function getLatestPhoto() {
-    const { assets } = await MediaLibrary.getAssetsAsync({
-      sortBy: [[MediaLibrary.SortBy.creationTime, false]],
-      first: 1,
-    });
 
-    if (assets.length > 0) {
-      const photo = await MediaLibrary.getAssetInfoAsync(assets[0].id);
-      // console.log(photo.localUri);
-      setLastPhoto(photo.localUri);
-    }
-  }
+      await api
+        .put(`/Usuario/AlterarFotoPerfil?id=${userGlobalData.id}`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      setUserGlobalData({ ...userGlobalData, foto: salvarPhoto });
+      setShowCameraModal(false) || setOpenModal(false);
+    } catch (error) {}
+  };
 
-  async function SelectImageGallery() {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      quality: 1,
-    });
+  const getLatestPhoto = async () => {
+    try {
+      //busca as fotos da galeria e ordena em ordem decrescente
+      const { assets } = await MediaLibrary.getAssetsAsync({
+        sortBy: [[MediaLibrary.SortBy.creationTime, false]],
+        //indica que só quer o primeiro ícone
+        first: 1,
+      });
 
-    if (!result.canceled) {
-      setSalvarPhoto(result.assets[0].uri);
-      setOpenModal(true);
-    }
-  }
+      if (assets.length > 0) {
+        setLastPhoto(assets[0].uri);
+      }
+    } catch (error) {}
+  };
+
+  const SelectImageGallery = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 1,
+      });
+
+      if (!result.canceled) {
+        setSalvarPhoto(result.assets[0].uri);
+        setOpenModal(true);
+      }
+    } catch (error) {}
+  };
 
   useEffect(() => {
-    if (getMediaLibrary) {
-      getLatestPhoto();
-    }
+    getLatestPhoto();
   }, [visible]);
 
   return (
@@ -156,7 +152,7 @@ export const CameraModal = ({
         <View style={styles.viewFlip}></View>
 
         <ActionsContainer>
-          {lastPhoto != null ? (
+          {lastPhoto !== null ? (
             <TouchableOpacity onPress={() => SelectImageGallery()}>
               <LastPhoto source={{ uri: lastPhoto }} />
             </TouchableOpacity>

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import {
   Container,
   GridLayout,
@@ -142,7 +142,12 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
         });
         setShowDialog(true);
         setLoading(false);
-        return;
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{ name: "Main", params: { indice: 0 } }],
+          })
+        );
       }
     } catch (error) {
       setDialog({
@@ -199,6 +204,13 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
         });
         setShowDialog(true);
         setLoading(false);
+
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{ name: "Main", params: { indice: 0 } }],
+          })
+        );
       }
     } catch (error) {
       setDialog({
@@ -225,12 +237,12 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
         setShowDialog(true);
         setLoading(false);
 
-        // navigation.dispatch(
-        //   CommonActions.reset({
-        //     index: 0,
-        //     routes: [{ name: "Main", params: { indice: 0 } }],
-        //   })
-        // );
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{ name: "Main", params: { indice: 0 } }],
+          })
+        );
       }
     } catch (error) {
       setDialog({
@@ -245,7 +257,11 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
 
   const adicionarAlimento = async (alimento) => {
     setLoading(true);
-    const response = await getAlimentoExterno(alimento);
+    const response = await getAlimentoExterno(alimento, {
+      setLoading,
+      setShowDialog,
+      setDialog,
+    });
     let existeEsseAlimento = false;
 
     alimentos.forEach((element) => {
@@ -267,14 +283,6 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
         <GridLayout height="100%" padding="0">
           <MainContent>
             <DialogComponent
-              onClose={() => {
-                navigation.dispatch(
-                  CommonActions.reset({
-                    index: 0,
-                    routes: [{ name: "Main", params: { indice: 0 } }],
-                  })
-                );
-              }}
               {...dialog}
               visible={showDialog}
               setVisible={setShowDialog}
@@ -341,7 +349,7 @@ const MonteSuaRefeiçãoScreen = ({ route }) => {
             <FlatListComponent
               //coloca os cards em ordem decrescente pelo numero de calorias do alimento
               data={alimentos.sort((a, b) => b.kcal - a.kcal)}
-              keyExtractor={(item) => item.idAlimento}
+              keyExtractor={(item) => item.nomeAlimento}
               renderItem={({ item }) => (
                 <CardRefeicaoView
                   onPressEditar={() => {

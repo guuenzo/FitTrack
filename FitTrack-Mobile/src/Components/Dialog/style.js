@@ -33,4 +33,5 @@ export const DialogContent = styled(Dialog.Content)``;
 
 export const DialogContentText = styled(TextQuickSandBold)`
   text-align: center;
+  font-size: 17px;
 `;
