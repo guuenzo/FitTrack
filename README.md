@@ -34,20 +34,20 @@
             <li>Analisa todas as calorias e macronutrientes consumidos.</li>
         </ul>
     </li>
-   <br/>
+    <br/>
     <li><strong>Análise de Treinos Semanais:</strong>
         <ul>
             <li>Oferece uma visão detalhada dos treinos da semana na academia.</li>
         </ul>
     </li>
-   <br/>
+    <br/>
     <li><strong>API Externa para Macronutrientes:</strong>
         <ul>
             <li>Utiliza uma API externa para retornar informações sobre macronutrientes.</li>
             <li>Integra o serviço de tradução de texto da Azure para lidar com parâmetros em inglês.</li>
         </ul>
     </li>
-   <br/>
+    <br/>
     <li><strong>Perfil Personalizado:</strong>
         <ul>
             <li>Permite a alteração da imagem de perfil do usuário.</li>
@@ -87,6 +87,15 @@
 <ul>
     <li><strong>Componentes de UI:</strong> React Native Paper</li>
     <li><strong>Estilização:</strong> Styled-components</li>
+</ul>
+
+<h2>👥 Integrantes do Projeto</h2>
+<ul>
+    <li><a href="https://www.linkedin.com/in/filipe-góis-841b58206/" target="_blank"><strong>Filipe Góis</strong></a> - Desenvolvedor Full Stack/Tech Lead</li>
+    <li><a href="https://www.linkedin.com/in/fernando-quatrochi-041000277/" target="_blank"><strong>Fernando Quatrochi</strong></a> - Desenvolvedor Front-End</li>
+    <li><a href="https://www.linkedin.com/in/guidcampos/" target="_blank"><strong>Guilherme Campos</strong></a> - Desenvolvedor Front-End</li>
+    <li><a href="https://www.linkedin.com/in/gustavo-enzo/" target="_blank"><strong>Gustavo Enzo</strong></a> - Desenvolvedor Back-End</li>
+    <li><a href="https://www.linkedin.com/in/kaua-rodrigues01/" target="_blank"><strong>Kauâ Rodrigues</strong></a> - Desenvolvedor Back-End/DBA</li>
 </ul>
 
 </body>
