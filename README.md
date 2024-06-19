@@ -98,13 +98,14 @@
     <li><a href="https://www.linkedin.com/in/kaua-rodrigues01/" target="_blank"><strong>Kauâ Rodrigues</strong></a> - Desenvolvedor Back-End/DBA</li>
 </ul>
 
-<div class="gallery">
+<div class="gallery" style="display: flex;
+            flex-wrap: wrap;">
     <figure>
-        <img src="./Assets Readme/loginscreen.jpeg" alt="Tela de Login">
-        <figcaption>Tela de Login</figcaption>
+     <figcaption style="font-size:30px">Tela de Login</figcaption>
+        <img style="width:300px; height:600px;object-fit: cover; display: block;" src="./Assets Readme/loginscreen.jpeg" alt="Tela de Login">
     </figure>
     <figure>
-        <img src="link_do_perfil.jpg" alt="Tela de Perfil">
+        <img style="width:300px; height:600px;object-fit: cover; display: block;" src="./Assets Readme/perfilscreen.jpeg" alt="Tela de Perfil">
         <figcaption>Tela de Perfil</figcaption>
     </figure>
     <figure>
