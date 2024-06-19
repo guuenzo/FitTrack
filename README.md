@@ -98,5 +98,56 @@
     <li><a href="https://www.linkedin.com/in/kaua-rodrigues01/" target="_blank"><strong>Kauâ Rodrigues</strong></a> - Desenvolvedor Back-End/DBA</li>
 </ul>
 
+<div class="gallery">
+    <figure>
+        <img src="./Assets Readme/loginscreen.jpeg" alt="Tela de Login">
+        <figcaption>Tela de Login</figcaption>
+    </figure>
+    <figure>
+        <img src="link_do_perfil.jpg" alt="Tela de Perfil">
+        <figcaption>Tela de Perfil</figcaption>
+    </figure>
+    <figure>
+        <img src="link_do_dialog.jpg" alt="Diálogo de Notificação">
+        <figcaption>Diálogo de Notificação</figcaption>
+    </figure>
+    <figure>
+        <img src="link_do_fluxo_treino1.jpg" alt="Fluxo de Treino 1">
+        <figcaption>Fluxo de Treino 1</figcaption>
+    </figure>
+    <figure>
+        <img src="link_do_fluxo_treino2.jpg" alt="Fluxo de Treino 2">
+        <figcaption>Fluxo de Treino 2</figcaption>
+    </figure>
+    <figure>
+        <img src="link_do_fluxo_treino3.jpg" alt="Fluxo de Treino 3">
+        <figcaption>Fluxo de Treino 3</figcaption>
+    </figure>
+    <figure>
+        <img src="link_do_fluxo_treino4.jpg" alt="Fluxo de Treino 4">
+        <figcaption>Fluxo de Treino 4</figcaption>
+    </figure>
+    <figure>
+        <img src="link_do_fluxo_treino5.jpg" alt="Fluxo de Treino 5">
+        <figcaption>Fluxo de Treino 5</figcaption>
+    </figure>
+    <figure>
+        <img src="link_do_fluxo_treino6.jpg" alt="Fluxo de Treino 6">
+        <figcaption>Fluxo de Treino 6</figcaption>
+    </figure>
+    <figure>
+        <img src="link_do_fluxo_alimentacao1.jpg" alt="Fluxo de Alimentação 1">
+        <figcaption>Fluxo de Alimentação 1</figcaption>
+    </figure>
+    <figure>
+        <img src="link_do_fluxo_alimentacao2.jpg" alt="Fluxo de Alimentação 2">
+        <figcaption>Fluxo de Alimentação 2</figcaption>
+    </figure>
+    <figure>
+        <img src="link_do_fluxo_alimentacao3.jpg" alt="Fluxo de Alimentação 3">
+        <figcaption>Fluxo de Alimentação 3</figcaption>
+    </figure>
+</div>
+
 </body>
 </html>
