@@ -1,57 +1,93 @@
-# FitTrack
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
 
-Projeto em grupo desenvolvido ao final do terceiro termo do curso técnico de Desenvolvimento de Sistemas na escola SENAI de Informática.
+<h1>FitTrack</h1>
 
-## Problemática
+<p>Projeto em grupo desenvolvido ao final do terceiro termo do curso técnico de Desenvolvimento de Sistemas na escola SENAI de Informática.</p>
 
-A população mundial está cada vez mais consciente sobre a importância da saúde e do bem-estar. No entanto, a maioria dos aplicativos disponíveis no mercado enfrenta obstáculos significativos, como a falta de estrutura para reunir, de forma integrada, as funcionalidades de registro de treinos e controle de alimentação. Esta fragmentação dificulta para os usuários a adoção e manutenção de um estilo de vida saudável, uma vez que precisam utilizar múltiplos aplicativos para acompanhar sua rotina de exercícios físicos e dieta balanceada.
+<h2>Problemática</h2>
 
-## Solução: FitTrack
+<p>A população mundial está cada vez mais consciente sobre a importância da saúde e do bem-estar. No entanto, a maioria dos aplicativos disponíveis no mercado enfrenta obstáculos significativos, como a falta de estrutura para reunir, de forma integrada, as funcionalidades de registro de treinos e controle de alimentação. Esta fragmentação dificulta para os usuários a adoção e manutenção de um estilo de vida saudável, uma vez que precisam utilizar múltiplos aplicativos para acompanhar sua rotina de exercícios físicos e dieta balanceada.</p>
 
-A FitTrack surge como uma solução integral para esses desafios, oferecendo uma plataforma móvel que auxilia os usuários a:
+<h2>Solução: FitTrack</h2>
 
-- Definir metas de saúde e bem-estar.
-- Acompanhar o progresso dos seus treinos e alimentação.
+<p>A FitTrack surge como uma solução integral para esses desafios, oferecendo uma plataforma móvel que auxilia os usuários a:</p>
+<ul>
+    <li>Definir metas de saúde e bem-estar.</li>
+    <li>Acompanhar o progresso dos seus treinos e alimentação.</li>
+</ul>
 
-### Diferencial do Projeto
+<h3>✨ Diferencial do Projeto</h3>
 
-O grande diferencial da FitTrack é a junção das funcionalidades de treino e alimentação em um único aplicativo, na qual é extremamente difícil encontrar um aplicativo gratuito que reúna essas duas funcionalidades, proporcionando uma solução completa e acessível para os usuários.
+<p>O grande diferencial da FitTrack é a junção das funcionalidades de treino e alimentação em um único aplicativo, na qual é extremamente difícil encontrar um aplicativo gratuito que reúna essas duas funcionalidades, proporcionando uma solução completa e acessível para os usuários.</p>
 
-## Funcionalidades do Aplicativo
+<h2>📋 Funcionalidades do Aplicativo</h2>
+<ol>
+    <li><strong>Registro de Treinos e Alimentação:</strong>
+        <ul>
+            <li>Permite registrar os treinos realizados e a alimentação diária.</li>
+            <li>Analisa todas as calorias e macronutrientes consumidos.</li>
+        </ul>
+    </li>
+   <br/>
+    <li><strong>Análise de Treinos Semanais:</strong>
+        <ul>
+            <li>Oferece uma visão detalhada dos treinos da semana na academia.</li>
+        </ul>
+    </li>
+   <br/>
+    <li><strong>API Externa para Macronutrientes:</strong>
+        <ul>
+            <li>Utiliza uma API externa para retornar informações sobre macronutrientes.</li>
+            <li>Integra o serviço de tradução de texto da Azure para lidar com parâmetros em inglês.</li>
+        </ul>
+    </li>
+   <br/>
+    <li><strong>Perfil Personalizado:</strong>
+        <ul>
+            <li>Permite a alteração da imagem de perfil do usuário.</li>
+            <li>Armazena a imagem de perfil no Azure Blob Storage.</li>
+        </ul>
+    </li>
+</ol>
+<br/>
 
-1. **Registro de Treinos e Alimentação:**
-   - Permite registrar os treinos realizados e a alimentação diária.
-   - Analisa todas as calorias e macronutrientes consumidos.
+<p>A FitTrack é projetada para ser uma ferramenta completa e acessível, ajudando os usuários a alcançar suas metas de saúde e bem-estar de forma eficiente e motivadora.</p>
 
-2. **Análise de Treinos Semanais:**
-   - Oferece uma visão detalhada dos treinos da semana na academia.
+<h2>🔧 Ferramentas Utilizadas</h2>
 
-3. **API Externa para Macronutrientes:**
-   - Utiliza uma API externa para retornar informações sobre macronutrientes.
-   - Integra o serviço de tradução de texto da Azure para lidar com parâmetros em inglês.
+<h3>Back-end:</h3>
+<ul>
+    <li><strong>Linguagem:</strong> C# 8.0</li>
+    <li><strong>ORM:</strong> Entity Framework</li>
+</ul>
 
-4. **Perfil Personalizado:**
-   - Permite a alteração da imagem de perfil do usuário.
-   - Armazena a imagem de perfil no Azure Blob Storage.
+<h3>Serviços Externos:</h3>
+<ul>
+    <li><strong>Tradução:</strong> Azure Translate AI</li>
+    <li><strong>Armazenamento de Imagens:</strong> Azure Blob Storage</li>
+</ul>
 
-A FitTrack é projetada para ser uma ferramenta completa e acessível, ajudando os usuários a alcançar suas metas de saúde e bem-estar de forma eficiente e motivadora.
+<h3>Banco de Dados:</h3>
+<ul>
+    <li><strong>SGBD:</strong> SQL Server</li>
+</ul>
 
-## Ferramentas Utilizadas
+<h3>Front-end:</h3>
+<ul>
+    <li><strong>Framework:</strong> Expo, React Native</li>
+</ul>
 
-### Back-end:
-- **Linguagem:** C# 8.0
-- **ORM:** Entity Framework
+<h3>Bibliotecas de Estilização:</h3>
+<ul>
+    <li><strong>Componentes de UI:</strong> React Native Paper</li>
+    <li><strong>Estilização:</strong> Styled-components</li>
+</ul>
 
-### Serviços Externos:
-- **Tradução de Texto:** Azure Translate AI
-- **Armazenamento de Imagens e Vídeos:** Azure Blob Storage
-
-### Banco de Dados:
-- **SGBD:** SQL Server
-
-### Front-end:
-- **Framework:** Expo, React Native
-
-### Bibliotecas de Estilização:
-- **Componentes de UI:** React Native Paper
-- **Estilização:** Styled-components
+</body>
+</html>
