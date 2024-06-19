@@ -35,3 +35,23 @@ O grande diferencial da FitTrack é a junção das funcionalidades de treino e a
    - Armazena a imagem de perfil no Azure Blob Storage.
 
 A FitTrack é projetada para ser uma ferramenta completa e acessível, ajudando os usuários a alcançar suas metas de saúde e bem-estar de forma eficiente e motivadora.
+
+## Ferramentas Utilizadas
+
+### Back-end:
+- **Linguagem:** C# 8.0
+- **ORM:** Entity Framework
+
+### Serviços Externos:
+- **Tradução de Texto:** Azure Translate AI
+- **Armazenamento de Imagens e Vídeos:** Azure Blob Storage
+
+### Banco de Dados:
+- **SGBD:** SQL Server
+
+### Front-end:
+- **Framework:** Expo, React Native
+
+### Bibliotecas de Estilização:
+- **Componentes de UI:** React Native Paper
+- **Estilização:** Styled-components
