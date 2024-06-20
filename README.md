@@ -100,55 +100,72 @@
 
 <h2>📸 Exemplos Visuais do Aplicativo</h2>
 <div>
-    <figure style="margin: 10px; display: flex; flex-direction: column; align-items: center;">
-        <figcaption style="font-size: 30px;">Tela de Login</figcaption>
+    <figure style="display: flex; flex-direction: column; align-items: center;">
+        <!-- <figcaption style="font-size: 30px;">Tela de Login</figcaption> -->
         <img src="./Assets Readme/loginscreen.jpeg" alt="Tela de Login" style="width: 300px; height: 600px; object-fit: cover;">
     </figure>
-    <figure style="margin: 10px; display: flex; flex-direction: column; align-items: center;">
-        <figcaption style="font-size: 30px;">Tela de Perfil</figcaption>
+    <br>
+    <figure style="display: flex; flex-direction: column; align-items: center;">
+        <!-- <figcaption style="font-size: 30px;">Tela de Perfil</figcaption> -->
         <img src="./Assets Readme/perfilscreen.jpeg" alt="Tela de Perfil" style="width: 300px; height: 600px; object-fit: cover;">
     </figure>
-    <figure style="margin: 10px; display: flex; flex-direction: column; align-items: center;">
-        <figcaption style="font-size: 30px;">Diálogo de Notificação</figcaption>
+    <br>
+    <figure style="display: flex; flex-direction: column; align-items: center;">
+        <!-- <figcaption style="font-size: 30px;">Diálogo de Notificação</figcaption> -->
         <img src="./Assets Readme/dialogcomponent.jpeg" alt="Diálogo de Notificação" style="width: 300px; height: 600px; object-fit: cover;">
     </figure>
-    <figure style="margin: 10px; display: flex; flex-direction: column; align-items: center;">
-        <figcaption style="font-size: 30px;">Tela de Treinos</figcaption>
+    <br>
+    <figure style="display: flex; flex-direction: column; align-items: center;">
+        <!-- <figcaption style="font-size: 30px;">Tela de Treinos</figcaption> -->
         <img src="./Assets Readme/fluxo de treino/treinosscreen.jpeg" alt="Tela de Treinos" style="width: 300px; height: 600px; object-fit: cover;">
     </figure>
-    <figure style="margin: 10px; display: flex; flex-direction: column; align-items: center;">
-        <figcaption style="font-size: 30px;">Visualizar treino</figcaption>
+    <br>
+    <figure style="display: flex; flex-direction: column; align-items: center;">
+        <!-- <figcaption style="font-size: 30px;">Visualizar treino</figcaption> -->
         <img src="./Assets Readme/fluxo de treino/vertreinoscreen.jpeg" alt="Visualizar treino" style="width: 300px; height: 600px; object-fit: cover;">
     </figure>
-    <figure style="margin: 10px; display: flex; flex-direction: column; align-items: center;">
-        <figcaption style="font-size: 30px;">Tela de Selecionar Grupos Musculares</figcaption>
+    <br>
+    <figure style="display: flex; flex-direction: column; align-items: center;">
+        <!-- <figcaption style="font-size: 30px;">Tela de Selecionar Grupos Musculares</figcaption> -->
         <img src="./Assets Readme/fluxo de treino/slecionargruposmuscularesscreen.jpeg" alt="Tela de Selecionar Grupos Musculares" style="width: 300px; height: 600px; object-fit: cover;">
     </figure>
-    <figure style="margin: 10px; display: flex; flex-direction: column; align-items: center;">
-        <figcaption style="font-size: 30px;">Tela de Selecionar os Exercícios</figcaption>
+    <br>
+    <figure style="display: flex; flex-direction: column; align-items: center;">
+        <!-- <figcaption style="font-size: 30px;">Tela de Selecionar os Exercícios</figcaption> -->
         <img src="./Assets Readme/fluxo de treino/selecionarexerciciosscreen.jpeg" alt="Tela de Selecionar os Exercícios" style="width: 300px; height: 600px; object-fit: cover;">
     </figure>
-    <figure style="margin: 10px; display: flex; flex-direction: column; align-items: center;">
-        <figcaption style="font-size: 30px;">Modal com as suas informações do exercício</figcaption>
+    <br>
+    <figure style="display: flex; flex-direction: column; align-items: center;">
+        <!-- <figcaption style="font-size: 30px;">Modal com as suas informações do exercício</figcaption> -->
         <img src="./Assets Readme/fluxo de treino/verdetalhesexerciciomodal.jpeg" alt="Modal com as suas informações do exercício" style="width: 300px; height: 600px; object-fit: cover;">
     </figure>
-    <figure style="margin: 10px; display: flex; flex-direction: column; align-items: center;">
-        <figcaption style="font-size: 30px;">Modal para ver a execução do exercício</figcaption>
+    <br>
+    <figure style="display: flex; flex-direction: column; align-items: center;">
+        <!-- <figcaption style="font-size: 30px;">Modal para ver a execução do exercício</figcaption> -->
         <img src="./Assets Readme/fluxo de treino/verexecucaodoexerciciomodal.jpeg" alt="Modal para ver a execução do exercício" style="width: 300px; height: 600px; object-fit: cover;">
     </figure>
-    <figure style="margin: 10px; display: flex; flex-direction: column; align-items: center;">
-        <figcaption style="font-size: 30px;">Tela de alimentação</figcaption>
+    <br>
+    <figure style="display: flex; flex-direction: column; align-items: center;">
+        <!-- <figcaption style="font-size: 30px;">Tela de alimentação</figcaption> -->
         <img src="./Assets Readme/fluxo de alimentação/alimentacaoscreen.jpeg" style="width: 300px; height: 600px; object-fit: cover;" alt="Tela de alimentação">
     </figure>
-    <figure style="margin: 10px; display: flex; flex-direction: column; align-items: center;">
-        <figcaption style="font-size: 30px;">Tela para cadastrar/atualizar/excluir refeição</figcaption>
+    <br>
+    <figure style="display: flex; flex-direction: column; align-items: center;">
+        <!-- <figcaption style="font-size: 30px;">Tela para cadastrar/atualizar/excluir refeição</figcaption> -->
         <img src="./Assets Readme/fluxo de alimentação/montesuarefeicaoscreen.jpeg" style="width: 300px; height: 600px; object-fit: cover;" alt="Tela para cadastrar/atualizar/excluir refeição">
     </figure>
-    <figure style="margin: 10px; display: flex; flex-direction: column; align-items: center;">
-        <figcaption style="font-size: 30px;">Modal para alterar o peso do alimento</figcaption>
+    <br>
+    <figure style="display: flex; flex-direction: column; align-items: center;">
+        <!-- <figcaption style="font-size: 30px;">Modal para alterar o peso do alimento</figcaption> -->
         <img src="./Assets Readme/fluxo de alimentação/alterarpesoalimento.jpeg" style="width: 300px; height: 600px; object-fit: cover;" alt="Modal para alterar o peso do alimento">
     </figure>
 </div>
+
+
+
+</body>
+</html>
+
 
 
 </body>
