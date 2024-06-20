@@ -3,24 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        figure {
-            margin: 10px;
-        }
-        figure img {
-            width: 300px;
-            height: 600px;
-            object-fit: cover;
-            display: flex;
-        }
-        figcaption {
-            font-size: 20px;
-        }
-    </style>
 </head>
 <body>
 
@@ -116,56 +98,45 @@
     <li><a href="https://www.linkedin.com/in/kaua-rodrigues01/" target="_blank"><strong>Kauâ Rodrigues</strong></a> - Desenvolvedor Back-End/DBA</li>
 </ul>
 
-<div class="gallery">
-    <figure>
-        <figcaption>Tela de Login</figcaption>
-        <img src="./Assets Readme/loginscreen.jpeg" alt="Tela de Login">
-    </figure>
-    <figure>
-        <figcaption>Tela de Perfil</figcaption>
-        <img src="./Assets Readme/perfilscreen.jpeg" alt="Tela de Perfil">
-    </figure>
-    <figure>
-        <figcaption>Diálogo de Notificação</figcaption>
-        <img src="./Assets Readme/dialogcomponent.jpeg" alt="Diálogo de Notificação">
-    </figure>
-    <figure>
-        <figcaption>Tela de Treinos</figcaption>
-        <img src="./Assets Readme/fluxo de treino/treinosscreen.jpeg" alt="Tela de Treinos">
-    </figure>
-    <figure>
-        <figcaption>Visualizar treino</figcaption>
-        <img src="./Assets Readme/fluxo de treino/vertreinoscreen.jpeg" alt="Visualizar treino">
-    </figure>
-    <figure>
-        <figcaption>Tela de Selecionar Grupos Musculares</figcaption>
-        <img src="./Assets Readme/fluxo de treino/slecionargruposmuscularesscreen.jpeg" alt="Tela de Selecionar Grupos Musculares">
-    </figure>
-    <figure>
-        <figcaption>Tela de Selecionar os Exercícios</figcaption>
-        <img src="./Assets Readme/fluxo de treino/selecionarexerciciosscreen.jpeg" alt="Tela de Selecionar os Exercícios">
-    </figure>
-    <figure>
-        <figcaption>Modal com as suas informações do exercício</figcaption>
-        <img src="./Assets Readme/fluxo de treino/verdetalhesexerciciomodal.jpeg" alt="Modal com as suas informações do exercício">
-    </figure>
-    <figure>
-        <figcaption>Modal para ver a execução do exercício</figcaption>
-        <img src="./Assets Readme/fluxo de treino/verexecucaodoexerciciomodal.jpeg" alt="Modal para ver a execução do exercício">
-    </figure>
-    <figure>
-        <figcaption>Tela de alimentação</figcaption>
-        <img src="./Assets Readme/fluxo de alimentação/alimentacaoscreen.jpeg" alt="Tela de alimentação">
-    </figure>
-    <figure>
-        <figcaption>Tela para cadastrar/atualizar/excluir refeição</figcaption>
-        <img src="./Assets Readme/fluxo de alimentação/montesuarefeicaoscreen.jpeg" alt="Tela para cadastrar/atualizar/excluir refeição">
-    </figure>
-    <figure>
-        <figcaption>Modal para alterar o peso do alimento</figcaption>
-        <img src="./Assets Readme/fluxo de alimentação/alterarpesoalimento.jpeg" alt="Modal para alterar o peso do alimento">
-    </figure>
-</div>
+<h2>📸 Exemplos Visuais do Aplicativo</h2>
 
-</body>
-</html>
+<div class="gallery" style="display: flex; flex-wrap: wrap;">
+    <figure style="margin: 10px;">
+        <figcaption style="font-size: 30px;">Tela de Login</figcaption>
+        <img src="./Assets Readme/loginscreen.jpeg" alt="Tela de Login" style="width: 300px; height: 600px; object-fit: cover; display: flex;">
+    </figure>
+    <figure style="margin: 10px;">
+        <figcaption style="font-size: 30px;">Tela de Perfil</figcaption>
+        <img src="./Assets Readme/perfilscreen.jpeg" alt="Tela de Perfil" style="width: 300px; height: 600px; object-fit: cover; display: flex;">
+    </figure>
+    <figure style="margin: 10px;">
+        <figcaption style="font-size: 30px;">Diálogo de Notificação</figcaption>
+        <img src="./Assets Readme/dialogcomponent.jpeg" alt="Diálogo de Notificação" style="width: 300px; height: 600px; object-fit: cover; display: flex;">
+    </figure>
+    <figure style="margin: 10px;">
+        <figcaption style="font-size: 30px;">Tela de Treinos</figcaption>
+        <img src="./Assets Readme/fluxo de treino/treinosscreen.jpeg" alt="Tela de Treinos" style="width: 300px; height: 600px; object-fit: cover; display: flex;">
+    </figure>
+    <figure style="margin: 10px;">
+        <figcaption style="font-size: 30px;">Visualizar treino</figcaption>
+        <img src="./Assets Readme/fluxo de treino/vertreinoscreen.jpeg" alt="Visualizar treino" style="width: 300px; height: 600px; object-fit: cover; display: flex;">
+    </figure>
+    <figure style="margin: 10px;">
+        <figcaption style="font-size: 30px;">Tela de Selecionar Grupos Musculares</figcaption>
+        <img src="./Assets Readme/fluxo de treino/slecionargruposmuscularesscreen.jpeg" alt="Tela de Selecionar Grupos Musculares" style="width: 300px; height: 600px; object-fit: cover; display: flex;">
+    </figure>
+    <figure style="margin: 10px;">
+        <figcaption style="font-size: 30px;">Tela de Selecionar os Exercícios</figcaption>
+        <img src="./Assets Readme/fluxo de treino/selecionarexerciciosscreen.jpeg" alt="Tela de Selecionar os Exercícios" style="width: 300px; height: 600px; object-fit: cover; display: flex;">
+    </figure>
+    <figure style="margin: 10px;">
+        <figcaption style="font-size: 30px;">Modal com as suas informações do exercício</figcaption>
+        <img src="./Assets Readme/fluxo de treino/verdetalhesexerciciomodal.jpeg" alt="Modal com as suas informações do exercício" style="width: 300px; height: 600px; object-fit: cover; display: flex;">
+    </figure>
+    <figure style="margin: 10px;">
+        <figcaption style="font-size: 30px;">Modal para ver a execução do exercício</figcaption>
+        <img src="./Assets Readme/fluxo de treino/verexecucaodoexerciciomodal.jpeg" alt="Modal para ver a execução do exercício" style="width: 300px; height: 600px; object-fit: cover; display: flex;">
+    </figure>
+    <figure style="margin: 10px;">
+        <figcaption style="font-size: 30px;">Tela de alimentação</figcaption>
+        <img src="./Assets Readme/fluxo de alimentação/alimentacaoscreen.jpeg" alt="Tela de alimentação" style="width: 300px; height: 600px; object-fit: cover; display
