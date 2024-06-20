@@ -3,6 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        figure {
+            margin: 10px;
+        }
+        figure img {
+            width: 300px;
+            height: 600px;
+            object-fit: cover;
+            display: flex;
+        }
+        figcaption {
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
 
@@ -98,55 +116,54 @@
     <li><a href="https://www.linkedin.com/in/kaua-rodrigues01/" target="_blank"><strong>Kauâ Rodrigues</strong></a> - Desenvolvedor Back-End/DBA</li>
 </ul>
 
-<div class="gallery" style="display: flex;
-            flex-wrap: wrap;">
+<div class="gallery">
     <figure>
-     <figcaption style="font-size:30px">Tela de Login</figcaption>
-        <img style="width:300px; height:600px;object-fit: cover; display: block;" src="./Assets Readme/loginscreen.jpeg" alt="Tela de Login">
+        <figcaption>Tela de Login</figcaption>
+        <img src="./Assets Readme/loginscreen.jpeg" alt="Tela de Login">
     </figure>
     <figure>
-        <img style="width:300px; height:600px;object-fit: cover; display: block;" src="./Assets Readme/perfilscreen.jpeg" alt="Tela de Perfil">
         <figcaption>Tela de Perfil</figcaption>
+        <img src="./Assets Readme/perfilscreen.jpeg" alt="Tela de Perfil">
     </figure>
     <figure>
-        <img src="link_do_dialog.jpg" alt="Diálogo de Notificação">
         <figcaption>Diálogo de Notificação</figcaption>
+        <img src="./Assets Readme/dialogcomponent.jpeg" alt="Diálogo de Notificação">
     </figure>
     <figure>
-        <img src="link_do_fluxo_treino1.jpg" alt="Fluxo de Treino 1">
-        <figcaption>Fluxo de Treino 1</figcaption>
+        <figcaption>Tela de Treinos</figcaption>
+        <img src="./Assets Readme/fluxo de treino/treinosscreen.jpeg" alt="Tela de Treinos">
     </figure>
     <figure>
-        <img src="link_do_fluxo_treino2.jpg" alt="Fluxo de Treino 2">
-        <figcaption>Fluxo de Treino 2</figcaption>
+        <figcaption>Visualizar treino</figcaption>
+        <img src="./Assets Readme/fluxo de treino/vertreinoscreen.jpeg" alt="Visualizar treino">
     </figure>
     <figure>
-        <img src="link_do_fluxo_treino3.jpg" alt="Fluxo de Treino 3">
-        <figcaption>Fluxo de Treino 3</figcaption>
+        <figcaption>Tela de Selecionar Grupos Musculares</figcaption>
+        <img src="./Assets Readme/fluxo de treino/slecionargruposmuscularesscreen.jpeg" alt="Tela de Selecionar Grupos Musculares">
     </figure>
     <figure>
-        <img src="link_do_fluxo_treino4.jpg" alt="Fluxo de Treino 4">
-        <figcaption>Fluxo de Treino 4</figcaption>
+        <figcaption>Tela de Selecionar os Exercícios</figcaption>
+        <img src="./Assets Readme/fluxo de treino/selecionarexerciciosscreen.jpeg" alt="Tela de Selecionar os Exercícios">
     </figure>
     <figure>
-        <img src="link_do_fluxo_treino5.jpg" alt="Fluxo de Treino 5">
-        <figcaption>Fluxo de Treino 5</figcaption>
+        <figcaption>Modal com as suas informações do exercício</figcaption>
+        <img src="./Assets Readme/fluxo de treino/verdetalhesexerciciomodal.jpeg" alt="Modal com as suas informações do exercício">
     </figure>
     <figure>
-        <img src="link_do_fluxo_treino6.jpg" alt="Fluxo de Treino 6">
-        <figcaption>Fluxo de Treino 6</figcaption>
+        <figcaption>Modal para ver a execução do exercício</figcaption>
+        <img src="./Assets Readme/fluxo de treino/verexecucaodoexerciciomodal.jpeg" alt="Modal para ver a execução do exercício">
     </figure>
     <figure>
-        <img src="link_do_fluxo_alimentacao1.jpg" alt="Fluxo de Alimentação 1">
-        <figcaption>Fluxo de Alimentação 1</figcaption>
+        <figcaption>Tela de alimentação</figcaption>
+        <img src="./Assets Readme/fluxo de alimentação/alimentacaoscreen.jpeg" alt="Tela de alimentação">
     </figure>
     <figure>
-        <img src="link_do_fluxo_alimentacao2.jpg" alt="Fluxo de Alimentação 2">
-        <figcaption>Fluxo de Alimentação 2</figcaption>
+        <figcaption>Tela para cadastrar/atualizar/excluir refeição</figcaption>
+        <img src="./Assets Readme/fluxo de alimentação/montesuarefeicaoscreen.jpeg" alt="Tela para cadastrar/atualizar/excluir refeição">
     </figure>
     <figure>
-        <img src="link_do_fluxo_alimentacao3.jpg" alt="Fluxo de Alimentação 3">
-        <figcaption>Fluxo de Alimentação 3</figcaption>
+        <figcaption>Modal para alterar o peso do alimento</figcaption>
+        <img src="./Assets Readme/fluxo de alimentação/alterarpesoalimento.jpeg" alt="Modal para alterar o peso do alimento">
     </figure>
 </div>
 
